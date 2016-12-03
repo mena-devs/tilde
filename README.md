@@ -1,4 +1,4 @@
-# mena-devs_com
+# mena-devs
 
 This is a Rails 5 app.
 

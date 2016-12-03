@@ -1,6 +1,6 @@
 # Capybara + poltergeist allow JS testing via headless webkit
-require "capybara/rails"
-require "capybara/poltergeist"
+require 'capybara/rails'
+require 'capybara/poltergeist'
 Capybara.javascript_driver = :poltergeist
 
 class ActionDispatch::IntegrationTest
@@ -22,7 +22,7 @@ class ActiveRecord::Base
 
   def self.connection
     @@shared_connection || begin
-      ConnectionPool::Wrapper.new(:size => 1) { retrieve_connection }
+      ConnectionPool::Wrapper.new(size: 1) { retrieve_connection }
     end
   end
 end

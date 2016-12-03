@@ -32,7 +32,7 @@ PreCommit:
     on_warn: fail
 
   TrailingWhitespace:
-    enabled: true
+    enabled: false
     exclude:
       - "**/db/structure.sql"
 
