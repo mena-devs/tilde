@@ -1,0 +1,11 @@
+# Check documentation for further explanation
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Exclude:
+    - 'Gemfile'
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
