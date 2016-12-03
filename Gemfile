@@ -7,6 +7,7 @@ gem 'bootstrap_form', '~> 2.3'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootscale', require: false
 gem 'coffee-rails', '~> 4.2'
+gem 'config'
 gem 'devise'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'font-awesome-rails'
