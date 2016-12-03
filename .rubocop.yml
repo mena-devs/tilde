@@ -8,5 +8,19 @@ Metrics/BlockLength:
   Exclude:
     - 'Gemfile'
     - 'config/environments/*.rb'
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
+Metrics/MethodLength:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+Style/Documentation:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
+Style/NumericLiterals:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'
