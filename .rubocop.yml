@@ -7,5 +7,6 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - 'Gemfile'
+    - 'config/environments/*.rb'
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
