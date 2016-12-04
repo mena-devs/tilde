@@ -25,4 +25,11 @@
 
 class Invitation < ApplicationRecord
   belongs_to :user
+
+  after_create :send_welcome_email
+
+  private
+    def send_welcome_email
+      
+    end
 end

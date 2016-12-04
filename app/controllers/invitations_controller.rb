@@ -21,6 +21,7 @@ class InvitationsController < ApplicationController
 
   # POST /invitations
   def create
+    invitation_params[:user_id] = nil #current_user.id || nil
     @invitation = Invitation.new(invitation_params)
 
     if @invitation.save
