@@ -1,6 +1,7 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
-
+  # devise authentication required to access invitations
+  before_action :authenticate_user!, :except => [:new, :create]
   # GET /invitations
   def index
     @invitations = Invitation.all
@@ -25,7 +26,7 @@ class InvitationsController < ApplicationController
     @invitation = Invitation.new(invitation_params)
 
     if @invitation.save
-      redirect_to @invitation, notice: 'Invitation was successfully created.'
+      redirect_to root_path, notice: 'Invitation was successfully sent.'
     else
       render :new
     end
