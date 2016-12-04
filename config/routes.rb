@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :invitations
+  resources :profiles
   devise_for :users
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 

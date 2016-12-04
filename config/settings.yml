@@ -1,3 +1,6 @@
 slack_web_hook_url: 'https://hooks.slack.com/services/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'
 mailgun_api_key: 'key-d79d18069a79e152fcea907127ac8dbb'
 mailchimp_api_key: '0898e75c3c2310d387210cd036b64808-us13'
+mailgun_domain: 'mg.menadevs.com'
+mailgun_username: 'postmaster@mg.menadevs.com'
+mailgun_password: '84bd568b2eaca825fcd935fd9e9895fb'

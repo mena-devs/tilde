@@ -24,3 +24,7 @@ Style/NumericLiterals:
   Exclude:
     - 'db/migrate/*.rb'
     - 'db/schema.rb'
+Style/ExtraSpacing:
+  Exclude:
+    - 'db/migrate/*.rb'
+    - 'db/schema.rb'

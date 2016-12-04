@@ -41,9 +41,9 @@ Rails.application.configure do
     authentication: :plain,
     address: 'smtp.mailgun.org',
     port: 587,
-    domain: 'MYDOMAIN.mailgun.org',
-    user_name: 'postmaster@MYDOMAIN.mailgun.org',
-    password: 'MYPASSWORD'
+    domain: AppSettings.mailgun_domain,
+    user_name: AppSettings.mailgun_username,
+    password: AppSettings.mailgun_password
   }
 
   config.action_mailer.perform_caching = false

@@ -1,0 +1,38 @@
+<% provide(:title, "Listing profiles") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Biography</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @profiles.each do |profile| %>
+      <tr>
+        <td><%= profile.user %></td>
+        <td><%= profile.biography %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to profile, :class => "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", :text => "Show") %>
+            <% end %>
+            <%= link_to edit_profile_path(profile), :class => "btn btn-xs btn-default" do %>
+              <%= fa_icon("pencil", :text => "Edit") %>
+            <% end %>
+            <%= link_to profile, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this profile?" } do %>
+              <%= fa_icon("trash-o", :text => "Destroy") %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_profile_path, :class => "btn btn-default" do %>
+  <%= fa_icon("plus", :text => "New Profile") %>
+<% end %>

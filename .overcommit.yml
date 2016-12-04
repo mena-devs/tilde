@@ -28,7 +28,7 @@ PreCommit:
     enabled: true
 
   RuboCop:
-    enabled: true
+    enabled: false
     on_warn: fail
 
   TrailingWhitespace:

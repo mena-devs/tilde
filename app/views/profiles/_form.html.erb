@@ -1,0 +1,11 @@
+<%= bootstrap_form_for(@profile) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :user_id %>
+  <%= f.text_area :biography, :rows => 5 %>
+
+  <%= f.primary %>
+  <%= link_to "Back", profiles_path, :class => "btn btn-link" %>
+
+<% end %>

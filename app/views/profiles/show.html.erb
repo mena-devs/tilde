@@ -1,0 +1,21 @@
+<% provide(:title) do %>
+  Profile #<%= @profile.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">User</th>
+      <td><%= @profile.user %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Biography</th>
+      <td><%= @profile.biography %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_profile_path(@profile), :class => "btn btn-primary" %>
+  <%= link_to "Back", profiles_path, :class => "btn btn-link" %>
+</p>

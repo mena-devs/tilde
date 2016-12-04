@@ -1,0 +1,45 @@
+<% provide(:title) do %>
+  Invitation #<%= @invitation.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">User</th>
+      <td><%= @invitation.user %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Invitee name</th>
+      <td><%= @invitation.invitee_name %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Invitee email</th>
+      <td><%= @invitation.invitee_email %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Invitee title</th>
+      <td><%= @invitation.invitee_title %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Invitee company</th>
+      <td><%= @invitation.invitee_company %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Invitee location</th>
+      <td><%= @invitation.invitee_location %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Delivered</th>
+      <td><%= @invitation.delivered %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Registered</th>
+      <td><%= @invitation.registered %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_invitation_path(@invitation), :class => "btn btn-primary" %>
+  <%= link_to "Back", invitations_path, :class => "btn btn-link" %>
+</p>
