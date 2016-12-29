@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :admins
   resources :invitations
   resources :profiles
-  devise_for :users
+  devise_for :users,
+             controllers: { omniauth_callbacks: 'omniauth_callbacks' }
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 
   root 'home#index'
