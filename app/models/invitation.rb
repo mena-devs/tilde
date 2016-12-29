@@ -28,8 +28,11 @@ class Invitation < ApplicationRecord
 
   after_create :send_welcome_email
 
+  validates :invitee_email, presence: true
+  validates :invitee_name, presence: true
+
   private
     def send_welcome_email
-      
+
     end
 end

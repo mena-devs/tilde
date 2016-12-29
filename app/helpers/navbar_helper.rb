@@ -11,14 +11,18 @@ module NavbarHelper
   #           :active_when => { :controller => "home" }) %>
   #
   def navbar_link_to(label, path, options={})
-    active_when = options.delete(:active_when) { Hash.new }
-    active = active_when.all? do |key, value|
-      case value
-      when Regexp
-        params[key].to_s =~ value
-      else
-        params[key].to_s == value
+    if options.has_key?(:active_when)
+      active_when = options.delete(:active_when) { Hash.new }
+      active = active_when.all? do |key, value|
+        case value
+        when Regexp
+          params[key].to_s =~ value
+        else
+          params[key].to_s == value
+        end
       end
+    else
+      active = false
     end
 
     content_tag(:li, :class => ("active" if active)) do

@@ -12,13 +12,36 @@
     </div>
     <div class='navbar-collapse collapse'>
       <ul class='nav navbar-nav'>
-        <%= navbar_link_to('Home',
-                           root_path,
-                           :active_when => { controller: 'home' }) %>
-        <%= navbar_link_to('Invitations',
-                          new_invitation_path,
-                          :active_when => { controller: 'invitations' }) %>
-        <li><a href='#contact'>Contact</a></li>
+        <%= navbar_link_to('About us',
+                           about_path,
+                           :active_when => { controller: 'home',
+                                             action: 'about' }) %>
+        <%= content_tag(:li, class: 'dropdown') do %>
+          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
+            Slack Group
+            <%= fa_icon('caret-down') %>
+          <% end %>
+          <%= content_tag(:ul, class: 'dropdown-menu') do %>
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('Invitations',
+                                new_invitation_path,
+                                :active_when => { controller: 'invitations' }) %>
+            <% end %>
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('Code of Conduct',
+                                'https://github.com/mena-devs/code-of-conduct',
+                                target: '_blank') %>
+            <% end %>
+          <% end %>
+        <% end %>
+
+        <%= content_tag(:li, class: 'dropdown') do %>
+          <%= navbar_link_to('Contact',
+                             contact_path,
+                             :active_when => { controller: 'home',
+                                              action: 'contact'}) %>
+        <% end %>
+
         <li class='dropdown'>
           <a href='#' class='dropdown-toggle' data-toggle='dropdown'>Dropdown <b class='caret'></b></a>
           <ul class='dropdown-menu'>
