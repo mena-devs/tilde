@@ -1,0 +1,20 @@
+<% provide(:title, "Log in") %>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= render "form" %>
+    <br/>
+    <br/>
+    <%= render "devise/shared/links" %>
+  </div>
+  <div class="col-md-6 col-md-offset-2">
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <a href="https://slack.com/oauth/authorize?scope=identity.basic,identity.email,identity.team,identity.avatar&client_id=3378000868.113106258167">
+          <img alt="Sign in with Slack" height="40" width="172" src="https://platform.slack-edge.com/img/sign_in_with_slack.png" srcset="https://platform.slack-edge.com/img/sign_in_with_slack.png 1x, https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x" />
+        </a>
+      <% end -%>
+    <% end -%>
+  </div>
+</div>
