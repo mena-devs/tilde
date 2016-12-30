@@ -139,6 +139,8 @@ GEM
     font-awesome-rails (4.7.0.0)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     get_process_mem (0.2.1)
     gibbon (2.2.4)
       faraday (>= 0.9.1)
@@ -167,6 +169,8 @@ GEM
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
+    httparty (0.14.0)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     iniparse (1.4.2)
     jquery-rails (4.2.1)
@@ -414,10 +418,12 @@ DEPENDENCIES
   devise
   dotenv-rails (>= 2.0.0)
   font-awesome-rails
+  friendly_id (~> 5.1.0)
   gibbon
   guard (>= 2.2.2)
   guard-livereload
   guard-minitest
+  httparty
   jquery-rails
   launchy
   letter_opener

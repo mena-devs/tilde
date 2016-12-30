@@ -1,10 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-
-  # GET /profiles
-  def index
-    @profiles = Profile.all
-  end
+  before_action :set_profile, only: [:show, :edit, :update]
 
   # GET /profiles/1
   def show
@@ -39,20 +34,14 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # DELETE /profiles/1
-  def destroy
-    @profile.destroy
-    redirect_to profiles_url, notice: 'Profile was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = User.friendly.find(params[:user_id]).profile
     end
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:user_id, :biography)
+      params.require(:profile).permit(:user_id)
     end
 end

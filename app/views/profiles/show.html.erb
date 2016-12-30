@@ -1,21 +1,47 @@
 <% provide(:title) do %>
-  Profile #<%= @profile.id %>
+  My profile
 <% end %>
 
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <th class="col-sm-2">User</th>
-      <td><%= @profile.user %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Biography</th>
-      <td><%= @profile.biography %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="row">
+  <div class="col-md-2">
+    <%= image_tag(@profile.avatar_from_slack, class: 'img-thumbnail') %>
+  </div>
+  <div class="col-md-10">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-sm-2">Full Name</th>
+          <td><%= @profile.user.name.titleize %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Biography</th>
+          <td><%= @profile.biography %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Email</th>
+          <td><%= @profile.user.email %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Location</th>
+          <td><%= @profile.location %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Time Zone</th>
+          <td><%= @profile.user.time_zone %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Receive emails from MENA Devs?</th>
+          <td><%= @profile.receive_emails %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-2">Receive job alerts?</th>
+          <td><%= @profile.receive_job_alerts %></td>
+        </tr>
+      </tbody>
+    </table>
 
-<p>
-  <%= link_to "Edit", edit_profile_path(@profile), :class => "btn btn-primary" %>
-  <%= link_to "Back", profiles_path, :class => "btn btn-link" %>
-</p>
+    <p>
+      <%= link_to "Edit", edit_user_profile_path(current_user), :class => "btn btn-primary" %>
+    </p>
+  </div>
+</div>

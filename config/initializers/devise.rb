@@ -252,10 +252,11 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :slack, AppSettings.slack_app_client_id,
-                          AppSettings.slack_app_client_secret,
-                          scope: 'identity.basic',
-                          name: :sign_in_with_slack
+  config.omniauth :slack,
+                  '3378000868.113106258167',
+                  '9d006046e71b0203a6d1a3e4a426ccc1',
+                  scope: 'users:read',
+                  name: :sign_in_with_slack
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

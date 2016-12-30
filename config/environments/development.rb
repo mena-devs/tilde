@@ -38,12 +38,11 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    authentication: :plain,
-    address: 'smtp.mailgun.org',
-    port: 587,
-    domain: AppSettings.mailgun_domain,
-    user_name: AppSettings.mailgun_username,
-    password: AppSettings.mailgun_password
+    address: AppSettings.mail_host,
+    port: AppSettings.mail_port,
+    domain: AppSettings.mail_domain,
+    user_name: AppSettings.mail_username,
+    password: AppSettings.mail_password
   }
 
   config.action_mailer.perform_caching = false

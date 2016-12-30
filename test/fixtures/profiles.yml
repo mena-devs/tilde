@@ -2,6 +2,7 @@
 #
 # Table name: profiles
 #
+#  avatar_from_slack  :string
 #  biography          :text
 #  created_at         :datetime         not null
 #  id                 :integer          not null, primary key
