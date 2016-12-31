@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161230003251) do
+ActiveRecord::Schema.define(version: 20161204003039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,10 +51,11 @@ ActiveRecord::Schema.define(version: 20161230003251) do
     t.string   "invitee_title"
     t.string   "invitee_company"
     t.string   "invitee_location"
-    t.boolean  "delivered",        default: false
-    t.boolean  "registered",       default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.text     "invitee_introduction"
+    t.boolean  "delivered",            default: false
+    t.boolean  "registered",           default: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
 

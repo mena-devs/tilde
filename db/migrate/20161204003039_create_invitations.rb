@@ -7,6 +7,7 @@ class CreateInvitations < ActiveRecord::Migration[5.0]
       t.string :invitee_title
       t.string :invitee_company
       t.string :invitee_location
+      t.text   :invitee_introduction
       t.boolean :delivered, default: false
       t.boolean :registered, default: false
 

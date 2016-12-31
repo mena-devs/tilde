@@ -2,17 +2,18 @@
 #
 # Table name: invitations
 #
-#  created_at       :datetime         not null
-#  delivered        :boolean          default(FALSE)
-#  id               :integer          not null, primary key
-#  invitee_company  :string
-#  invitee_email    :string
-#  invitee_location :string
-#  invitee_name     :string
-#  invitee_title    :string
-#  registered       :boolean          default(FALSE)
-#  updated_at       :datetime         not null
-#  user_id          :integer
+#  created_at           :datetime         not null
+#  delivered            :boolean          default(FALSE)
+#  id                   :integer          not null, primary key
+#  invitee_company      :string
+#  invitee_email        :string
+#  invitee_introduction :text
+#  invitee_location     :string
+#  invitee_name         :string
+#  invitee_title        :string
+#  registered           :boolean          default(FALSE)
+#  updated_at           :datetime         not null
+#  user_id              :integer
 #
 # Indexes
 #
@@ -33,6 +34,6 @@ class Invitation < ApplicationRecord
 
   private
     def send_welcome_email
-
+      InvitationMailer.welcome_email(self)
     end
 end

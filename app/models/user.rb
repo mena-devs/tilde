@@ -59,6 +59,7 @@ class User < ApplicationRecord
       user.first_name = auth.info.first_name
       user.last_name = auth.info.last_name
       user.time_zone = auth.info.time_zone
+      user.auth_token = auth.credentials.token
       user.password = Devise.friendly_token[0,20]
 
       user.build_profile(avatar_from_slack: auth.info.image,
@@ -69,6 +70,15 @@ class User < ApplicationRecord
 
   def name
     self.first_name + ' ' + self.last_name
+  end
+
+  def connected_via_slack?
+    self.provider == 'slack' && self.uid.present?
+  end
+
+  def disconnect_slack
+    self.provider = nil
+    self.uid = nil
   end
 
   private

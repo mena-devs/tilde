@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
   # devise authentication required to access invitations
-  before_action :authenticate_user!, :except => [:new, :create]
+  before_action :authenticate_user!, :except => [:new]
   # GET /invitations
   def index
     @invitations = Invitation.all
@@ -22,7 +22,7 @@ class InvitationsController < ApplicationController
 
   # POST /invitations
   def create
-    invitation_params[:user_id] = nil #current_user.id || nil
+    invitation_params[:user_id] = current_user.try(:id)
     @invitation = Invitation.new(invitation_params)
 
     if @invitation.save

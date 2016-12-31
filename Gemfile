@@ -8,6 +8,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'bootscale', require: false
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
+gem 'country_select'
 gem 'devise'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'font-awesome-rails'

@@ -37,6 +37,12 @@
           <th class="col-sm-2">Receive job alerts?</th>
           <td><%= @profile.receive_job_alerts %></td>
         </tr>
+        <tr>
+          <th class="col-sm-2">Slack account connected?</th>
+          <td>
+            <%= @profile.user.connected_via_slack? %>
+          </td>
+        </tr>
       </tbody>
     </table>
 
