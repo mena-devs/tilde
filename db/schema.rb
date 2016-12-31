@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161204003039) do
+ActiveRecord::Schema.define(version: 20161203130220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20161204003039) do
     t.string   "unconfirmed_email"
     t.string   "provider"
     t.string   "uid"
+    t.string   "auth_token"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "time_zone"
