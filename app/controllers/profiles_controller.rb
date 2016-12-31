@@ -27,8 +27,18 @@ class ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   def update
-    if @profile.update(profile_params)
-      redirect_to @profile, notice: 'Profile was successfully updated.'
+    user_params = profile_params["user"]
+    profile_data = profile_params.reject {|k,v| k == "user"}
+    if @profile.update(profile_data) && @profile.user.update(user_params)
+      redirect_to user_profile_path(current_user), notice: 'Profile was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def disconnect_slack
+    if @profile.user.disconnect_slack
+      redirect_to @profile, notice: 'Disconnected your Slack account'
     else
       render :edit
     end
@@ -42,6 +52,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:user_id)
+      params.require(:profile).permit(:biography, :location, :receive_emails, :receive_job_alerts, user: [:time_zone, :first_name, :last_name])
     end
 end

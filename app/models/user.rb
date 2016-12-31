@@ -46,6 +46,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:slack]
 
+  validates :email, uniqueness: true
+  validates :email, format: {
+                      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
+                      on: :create }
+
   before_validation :generate_unique_user_id, on: :create
 
   friendly_id :custom_identifier
@@ -80,6 +85,7 @@ class User < ApplicationRecord
   def disconnect_slack
     self.provider = nil
     self.uid = nil
+    self.auth_token = nil
   end
 
   private
