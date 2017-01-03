@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     resource :profile
   end
 
+  namespace :directory do
+    resources :users, only: [:index, :show]
+  end
+
   devise_for :users,
              controllers: { omniauth_callbacks: 'omniauth_callbacks' }
 

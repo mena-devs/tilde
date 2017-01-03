@@ -1,0 +1,47 @@
+<% provide(:title) do %>
+  <%= @user.name.titleize %>
+<% end %>
+
+<div class="row">
+  <div class="col-md-1">
+    <%= image_tag(@user.profile.avatar_from_slack,
+                  size: '100x100',
+                  class: 'img-thumbnail') %>
+  </div>
+  <div class="col-md-6">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>
+            <%= fa_icon("user") %>
+            <%= @user.profile.biography %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= fa_icon("envelope") %>
+            <%= link_to @user.email, "mailto:#{@user.email}" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= fa_icon("map-marker") %>
+            <%= @user.profile.location_name %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="btn btn-xs btn-default">
+              <%= fa_icon("user-circle-o") %>
+              <%= is_user_a_slack_member?(@user.connected_via_slack?) %>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+      <%= link_to "Back", directory_users_path, :class => "btn btn-default" %>
+    </p>
+  </div>
+</div>
