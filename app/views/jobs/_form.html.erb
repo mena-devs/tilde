@@ -1,0 +1,16 @@
+<%= bootstrap_form_for(@job) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :title %>
+  <%= f.text_area :description, :rows => 5 %>
+  <%= f.text_field :job_location, label: 'URL' %>
+  <%= f.text_field :company_name %>
+  <%= f.text_field :apply_email, label: "Email to apply" %>
+  <%= f.select :job_type, Job.job_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select', selected: nil} %>
+  <%= f.select :level, Job.levels.keys.map { |w| [w.humanize, w] }, {label: 'Experience level', include_blank: 'Select', selected: nil} %>
+  <%= f.check_box :paid, label: "Is this job paid?" %>
+
+  <%= f.primary 'Post job' %>
+  <%= link_to "Back", jobs_path, :class => "btn btn-link" %>
+<% end %>

@@ -1,0 +1,55 @@
+<% provide(:title, "Jobs on MENA Devs") %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Expires on</th>
+      <th>Company name</th>
+      <th>Job type</th>
+      <th>Level</th>
+      <th>Paid</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td>
+          <% if job.job_location.nil? %>
+            <%= job.title %>
+          <% else %>
+            <%= fa_icon("globe") %>
+            <%= link_to job.title, job.job_location, target: '_blank' %>
+          <% end %>
+        </td>
+        <td><%= job.expires_on.strftime('%A %e %B %Y ') %></td>
+        <td><%= job.company_name %></td>
+        <td><%= job.job_type.try(:humanize) %></td>
+        <td><%= job.level.try(:humanize) %></td>
+        <td><%= job.paid %></td>
+        <td>
+          <div class="btn-group">
+            <%= link_to job, :class => "btn btn-xs btn-default" do %>
+              <%= fa_icon("eye", :text => "Show") %>
+            <% end %>
+            <% if job.user == current_user %>
+              <%= link_to edit_job_path(job), :class => "btn btn-xs btn-default" do %>
+                <%= fa_icon("pencil", :text => "Edit") %>
+              <% end %>
+              <%= link_to job, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this job?" } do %>
+                <%= fa_icon("trash-o", :text => "Destroy") %>
+              <% end %>
+            <% end %>
+          </div>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to new_job_path, :class => "btn btn-default" do %>
+  <%= fa_icon("plus", :text => "Post a Job on MENA Devs") %>
+<% end %>

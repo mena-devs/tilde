@@ -56,6 +56,7 @@ class User < ApplicationRecord
   friendly_id :custom_identifier
 
   has_one :profile
+  has_many :jobs
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

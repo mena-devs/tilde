@@ -44,13 +44,12 @@
           <%= content_tag(:ul, class: 'dropdown-menu') do %>
             <%= content_tag(:li) do %>
               <%= navbar_link_to('Job posts',
-                                new_invitation_path,
-                                :active_when => { controller: 'invitations' }) %>
+                                jobs_path,
+                                :active_when => { controller: 'jobs' }) %>
             <% end %>
             <%= content_tag(:li) do %>
               <%= navbar_link_to('Submit a job',
-                                'https://github.com/mena-devs/code-of-conduct',
-                                target: '_blank') %>
+                                 new_job_path) %>
             <% end %>
           <% end %>
         <% end %>

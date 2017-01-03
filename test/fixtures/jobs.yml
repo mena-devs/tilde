@@ -1,0 +1,67 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  apply_email       :string
+#  approved          :boolean          default(FALSE)
+#  company_name      :string
+#  created_at        :datetime         not null
+#  custom_identifier :string
+#  description       :text
+#  expires_on        :datetime
+#  id                :integer          not null, primary key
+#  job_location      :string
+#  job_type          :integer          default("internship")
+#  level             :integer          default("no_experience")
+#  paid              :boolean
+#  posted_on         :datetime
+#  posted_to_slack   :boolean          default(FALSE)
+#  state             :integer          default("pending")
+#  title             :string
+#  updated_at        :datetime         not null
+#  user_id           :integer
+#
+# Indexes
+#
+#  index_jobs_on_user_id  (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_df6238c8a6  (user_id => users.id)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  job_location: MyString
+  custom_identifier: MyString
+  posted_on: 2017-01-04 00:14:38
+  expires_on: 2017-01-04 00:14:38
+  state: false
+  approved: false
+  posted_to_slack: false
+  user: one
+  company_name: MyString
+  apply_email: MyString
+  job_type: 1
+  level: 1
+  paid: false
+
+two:
+  title: MyString
+  description: MyText
+  job_location: MyString
+  custom_identifier: MyString
+  posted_on: 2017-01-04 00:14:38
+  expires_on: 2017-01-04 00:14:38
+  state: false
+  approved: false
+  posted_to_slack: false
+  user: two
+  company_name: MyString
+  apply_email: MyString
+  job_type: 1
+  level: 1
+  paid: false

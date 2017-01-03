@@ -1,0 +1,47 @@
+<% provide(:title) do %>
+  <%= @job.title.humanize %> <small>at <%= @job.company_name.humanize %></small>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Description</th>
+      <td><%= @job.description %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Job location</th>
+      <td><%= @job.job_location %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Posted on</th>
+      <td><%= @job.posted_on %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Expires on</th>
+      <td><%= @job.expires_on %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Apply email</th>
+      <td><%= @job.apply_email %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Job type</th>
+      <td><%= @job.job_type.try(:humanize) %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Level</th>
+      <td><%= @job.level.try(:humanize) %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Paid</th>
+      <td><%= @job.paid %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <% if @job.user == current_user %>
+    <%= link_to "Edit", edit_job_path(@job), :class => "btn btn-primary" %>
+  <% end %>
+  <%= link_to "Back", jobs_path, :class => "btn btn-link" %>
+</p>

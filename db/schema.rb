@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203130220) do
+ActiveRecord::Schema.define(version: 20170103221438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,27 @@ ActiveRecord::Schema.define(version: 20161203130220) do
     t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
 
+  create_table "jobs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "job_location"
+    t.string   "custom_identifier"
+    t.datetime "posted_on"
+    t.datetime "expires_on"
+    t.integer  "state",             default: 0
+    t.boolean  "approved",          default: false
+    t.boolean  "posted_to_slack",   default: false
+    t.integer  "user_id"
+    t.string   "company_name"
+    t.string   "apply_email"
+    t.integer  "job_type",          default: 0
+    t.integer  "level",             default: 0
+    t.boolean  "paid"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "location"
@@ -104,5 +125,6 @@ ActiveRecord::Schema.define(version: 20161203130220) do
   end
 
   add_foreign_key "invitations", "users"
+  add_foreign_key "jobs", "users"
   add_foreign_key "profiles", "users"
 end
