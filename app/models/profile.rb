@@ -24,6 +24,24 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
+  def complete?
+    if (user.first_name.nil? &&
+        user.last_name.nil? &&
+        location.empty?)
+      return false
+    else
+      return true
+    end
+  end
+
+  def profile_picture
+    unless avatar_from_slack
+      return 'default_profile_picture.png'
+    end
+
+    avatar_from_slack
+  end
+
   def location_name
     country = ISO3166::Country[self.location]
     country.translations[I18n.locale.to_s] || country.name

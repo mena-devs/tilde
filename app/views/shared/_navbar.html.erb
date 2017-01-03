@@ -74,7 +74,7 @@
       <%= content_tag(:ul, class: 'nav navbar-nav navbar-right') do %>
         <% if !user_signed_in? %>
           <li><%= link_to 'Log in', new_user_session_path %></li>
-          <li><%= link_to 'Register', new_user_registration_path %></li>
+          <li><%= link_to 'Join us', new_user_registration_path %></li>
         <% else %>
           <%= content_tag(:li) do %>
             <%= link_to 'My profile', user_profile_path(current_user) %>

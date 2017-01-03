@@ -75,7 +75,11 @@ class User < ApplicationRecord
   end
 
   def name
-    self.first_name + ' ' + self.last_name
+    if self.first_name.nil? && self.last_name.nil?
+      return ""
+    else
+      self.first_name + ' ' + self.last_name
+    end
   end
 
   def connected_via_slack?

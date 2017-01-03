@@ -27,7 +27,7 @@
 
   <div class="form-group">
     <%= f.time_zone_select("profile[user[time_zone]]",
-                         [ActiveSupport::TimeZone[@profile.user.time_zone]],
+                         [display_time_zone(@profile.user.try(:time_zone))],
                          selected: true,
                          class: 'form-control',
                          label: 'Time Zone') %>
