@@ -2,28 +2,33 @@
 #
 # Table name: jobs
 #
-#  apply_email       :string
-#  approved          :boolean          default(FALSE)
-#  company_name      :string
-#  created_at        :datetime         not null
-#  custom_identifier :string
-#  description       :text
-#  expires_on        :datetime
-#  id                :integer          not null, primary key
-#  job_location      :string
-#  job_type          :integer          default("internship")
-#  level             :integer          default("no_experience")
-#  paid              :boolean
-#  posted_on         :datetime
-#  posted_to_slack   :boolean          default(FALSE)
-#  state             :integer          default("pending")
-#  title             :string
-#  updated_at        :datetime         not null
-#  user_id           :integer
+#  apply_email              :string
+#  approved                 :boolean          default(FALSE)
+#  company_name             :string
+#  created_at               :datetime         not null
+#  custom_identifier        :string
+#  deleted_at               :datetime
+#  description              :text
+#  expires_on               :datetime
+#  id                       :integer          not null, primary key
+#  job_description_location :string
+#  job_type                 :integer          default("internship")
+#  level                    :integer          default("no_experience")
+#  location                 :string
+#  number_of_openings       :integer          default(1)
+#  posted_on                :datetime
+#  posted_to_slack          :boolean          default(FALSE)
+#  remote_ok                :boolean          default(FALSE)
+#  salary                   :string
+#  state                    :integer          default("pending")
+#  title                    :string
+#  updated_at               :datetime         not null
+#  user_id                  :integer
 #
 # Indexes
 #
-#  index_jobs_on_user_id  (user_id)
+#  index_jobs_on_deleted_at  (deleted_at)
+#  index_jobs_on_user_id     (user_id)
 #
 # Foreign Keys
 #

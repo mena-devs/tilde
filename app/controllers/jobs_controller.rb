@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   # devise authentication required to access jobs
-  before_action :authenticate_user!, :only => [:destroy]
+  before_action :authenticate_user!, :except => [:new, :index, :show]
 
   # GET /jobs
   def index
@@ -56,6 +56,10 @@ class JobsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def job_params
-      params.require(:job).permit(:title, :description, :job_location, :custom_identifier, :posted_on, :expires_on, :state, :approved, :posted_to_slack, :user_id, :company_name, :apply_email, :job_type, :level, :paid)
+      params.require(:job).permit(:title, :description, :job_description_location,
+                                  :custom_identifier, :posted_on, :expires_on,
+                                  :state, :approved, :posted_to_slack, :user_id,
+                                  :company_name, :apply_email, :job_type,
+                                  :level, :paid, :location, :remote_ok)
     end
 end

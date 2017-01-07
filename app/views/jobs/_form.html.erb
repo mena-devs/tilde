@@ -4,12 +4,33 @@
 
   <%= f.text_field :title %>
   <%= f.text_area :description, :rows => 5 %>
-  <%= f.text_field :job_location, label: 'URL' %>
+  <%= f.text_field :job_description_location, label: 'URL of job description' %>
   <%= f.text_field :company_name %>
+  <div class="form-group">
+    <label class="control-label" for="invitation_invitee_location">Location</label>
+    <%= country_select("job",
+                       "location",
+                       { include_blank: 'Select' }, {class: 'form-control'}) %>
+  </div>
+  <%= f.check_box :remote_ok, label: "Remote ok?" %>
   <%= f.text_field :apply_email, label: "Email to apply" %>
   <%= f.select :job_type, Job.job_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select', selected: nil} %>
   <%= f.select :level, Job.levels.keys.map { |w| [w.humanize, w] }, {label: 'Experience level', include_blank: 'Select', selected: nil} %>
-  <%= f.check_box :paid, label: "Is this job paid?" %>
+  <div class='row'>
+    <div class="col-md-4">
+      <%= f.label :salary, 'Salary range' %>
+      <div class="input-group">
+        <div class="input-group-addon">$</div>
+        <%= f.text_field :salary, hide_label: true, placeholder: "amount per annum" %>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <div class='row'>
+    <div class="col-md-3">
+      <%= f.select :number_of_openings, [1, 2, 3, 4, 5], label: "Number of positions" %>
+    </div>
+  </div>
 
   <%= f.primary 'Post job' %>
   <%= link_to "Back", jobs_path, :class => "btn btn-link" %>

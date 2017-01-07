@@ -62,21 +62,26 @@ ActiveRecord::Schema.define(version: 20170103221438) do
   create_table "jobs", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
-    t.string   "job_location"
+    t.string   "job_description_location"
+    t.string   "location"
+    t.boolean  "remote_ok",                default: false
     t.string   "custom_identifier"
     t.datetime "posted_on"
     t.datetime "expires_on"
-    t.integer  "state",             default: 0
-    t.boolean  "approved",          default: false
-    t.boolean  "posted_to_slack",   default: false
+    t.integer  "state",                    default: 0
+    t.boolean  "approved",                 default: false
+    t.boolean  "posted_to_slack",          default: false
     t.integer  "user_id"
     t.string   "company_name"
     t.string   "apply_email"
-    t.integer  "job_type",          default: 0
-    t.integer  "level",             default: 0
-    t.boolean  "paid"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "salary"
+    t.integer  "job_type",                 default: 0
+    t.integer  "number_of_openings",       default: 1
+    t.integer  "level",                    default: 0
+    t.datetime "deleted_at"
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.index ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
 
