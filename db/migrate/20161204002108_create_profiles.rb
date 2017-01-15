@@ -7,6 +7,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.boolean :receive_job_alerts, default: false
       t.text :biography
       t.string :avatar_from_slack
+      t.integer :privacy_level, default: 0
 
       t.timestamps
     end

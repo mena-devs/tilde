@@ -58,7 +58,14 @@ class User < ApplicationRecord
   has_one :profile
   has_many :jobs
 
+  after_create :prepare_profile
+
   def self.from_omniauth(auth)
+    if auth['info']['team'].downcase != 'mena developers' &&
+      auth['info']['team_id'] != 'T03B400RJ'
+      return false
+    end
+
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
@@ -96,5 +103,9 @@ class User < ApplicationRecord
   private
     def generate_unique_user_id
       self.custom_identifier = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s + "#{self.email}")[1..24]
+    end
+
+    def prepare_profile
+      self.build_profile
     end
 end

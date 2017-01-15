@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170103221438) do
+ActiveRecord::Schema.define(version: 20161204002108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170103221438) do
     t.boolean  "receive_job_alerts", default: false
     t.text     "biography"
     t.string   "avatar_from_slack"
+    t.integer  "privacy_level",      default: 0
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree

@@ -20,7 +20,7 @@
   <div class="form-group">
     <label class="control-label" for="profile_location">Location</label>
     <%= f.country_select("profile[location]",
-                         @profile.location,
+                         [@profile.location_name],
                          { include_blank: 'Select' },
                          { class: 'form-control' }) %>
   </div>
@@ -35,11 +35,17 @@
 
   <%= f.check_box "profile[receive_emails]",
                   value: @profile.receive_emails,
-                  label: "Receive email from MENA Devs?" %>
+                  label: "Receive email from MENA Devs?",
+                  checked: @profile.receive_emails %>
 
   <%= f.check_box "profile[receive_job_alerts]",
                   value: @profile.receive_job_alerts,
-                  label: "Receive jobs alerts via MENA Devs?" %>
+                  label: "Receive jobs alerts via MENA Devs?",
+                  checked: @profile.receive_job_alerts %>
+
+  <%= f.select "profile[privacy_level]",
+               Profile.privacy_levels.keys,
+               label: "Select your profile's privacy level", help: 'Hidden: no one can see your profile. Members only: Only members of menadevs.com can see your profile. Open: Publicly viewable' %>
 
   <%= f.primary 'Update profile' %>
   <%= link_to "Cancel", user_profile_path(current_user), :class => "btn btn-link" %>

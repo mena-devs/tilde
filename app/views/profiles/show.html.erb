@@ -10,37 +10,80 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <th class="col-sm-2">Full Name</th>
+          <th class="col-sm-4">Full Name</th>
           <td><%= @profile.user.name.titleize %></td>
         </tr>
         <tr>
-          <th class="col-sm-2">Biography</th>
+          <th class="col-sm-4">Biography</th>
           <td><%= @profile.biography %></td>
         </tr>
         <tr>
-          <th class="col-sm-2">Email</th>
+          <th class="col-sm-4">Email</th>
           <td><%= @profile.user.email %></td>
         </tr>
         <tr>
-          <th class="col-sm-2">Location</th>
-          <td><%= @profile.location %></td>
+          <th class="col-sm-4">Location</th>
+          <td><%= @profile.location_name %></td>
         </tr>
         <tr>
-          <th class="col-sm-2">Time Zone</th>
+          <th class="col-sm-4">Time Zone</th>
           <td><%= @profile.user.time_zone %></td>
         </tr>
         <tr>
-          <th class="col-sm-2">Receive emails from MENA Devs?</th>
-          <td><%= @profile.receive_emails %></td>
-        </tr>
-        <tr>
-          <th class="col-sm-2">Receive job alerts?</th>
-          <td><%= @profile.receive_job_alerts %></td>
-        </tr>
-        <tr>
-          <th class="col-sm-2">Slack account connected?</th>
+          <th class="col-sm-4">Receive emails from MENA Devs?</th>
           <td>
-            <%= @profile.user.connected_via_slack? %>
+            <div class="btn btn-xs btn-default">
+              <% if @profile.receive_emails? %>
+                <%= fa_icon("check") %>
+                Enabled
+              <% else %>
+                <%= fa_icon("close") %>
+                Disabled
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-sm-4">Receive job alerts?</th>
+          <td>
+            <div class="btn btn-xs btn-default">
+              <% if @profile.receive_job_alerts %>
+                <%= fa_icon("check") %>
+                Enabled
+              <% else %>
+                <%= fa_icon("close") %>
+                Disabled
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-sm-4">Connected via Slack login</th>
+          <td>
+            <div class="btn btn-xs btn-default">
+              <% if @profile.user.connected_via_slack? %>
+                <%= fa_icon("check") %>
+                Enabled
+              <% else %>
+                <%= fa_icon("close") %>
+                Disabled
+              <% end %>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th class="col-sm-4">Account privacy</th>
+          <td>
+            <div class="btn btn-xs btn-default">
+              <% if Profile.privacy_levels[@profile.privacy_level] == 0 %>
+                <%= fa_icon("minus-circle") %>
+              <% elsif Profile.privacy_levels[@profile.privacy_level] == 1 %>
+                <%= fa_icon("adjust") %>
+              <% elsif Profile.privacy_levels[@profile.privacy_level] == 2 %>
+                <%= fa_icon("globe") %>
+              <% end %>
+              <%= @profile.privacy_level %>
+            </div>
           </td>
         </tr>
       </tbody>

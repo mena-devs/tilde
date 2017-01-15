@@ -14,4 +14,17 @@ module ApplicationHelper
       return ActiveSupport::TimeZone['Athens']
     end
   end
+
+  def visible_profile?(user)
+    if user.profile && user.profile.complete?
+      case Profile.privacy_levels[user.profile.privacy_level]
+      when 0
+        return false
+      when 1
+        return true
+      when 2
+        return true
+      end
+    end
+  end
 end

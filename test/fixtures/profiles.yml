@@ -7,6 +7,7 @@
 #  created_at         :datetime         not null
 #  id                 :integer          not null, primary key
 #  location           :string
+#  privacy_level      :integer          default("Hidden")
 #  receive_emails     :boolean          default(FALSE)
 #  receive_job_alerts :boolean          default(FALSE)
 #  updated_at         :datetime         not null

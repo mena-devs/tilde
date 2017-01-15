@@ -7,6 +7,7 @@
 #  created_at         :datetime         not null
 #  id                 :integer          not null, primary key
 #  location           :string
+#  privacy_level      :integer          default("Hidden")
 #  receive_emails     :boolean          default(FALSE)
 #  receive_job_alerts :boolean          default(FALSE)
 #  updated_at         :datetime         not null
@@ -23,6 +24,8 @@
 
 class Profile < ApplicationRecord
   belongs_to :user
+
+  enum privacy_level: [ "Hidden", "Members only", "Open" ]
 
   def complete?
     if (user.first_name.nil? &&
@@ -43,11 +46,11 @@ class Profile < ApplicationRecord
   end
 
   def location_name
-    country = ISO3166::Country[self.location]
-    if country
+    if self.location?
+      country = ISO3166::Country[self.location]
       country.translations[I18n.locale.to_s] || country.name
     else
-      ''
+      'Lebanon'
     end
   end
 end
