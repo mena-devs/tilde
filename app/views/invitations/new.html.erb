@@ -7,12 +7,40 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-lg-3 col-md-3">
-    <h3>Send invitation to</h3>
+<% if params.key?("tab-2") %>
+  <% tab_1 = '' %>
+  <% tab_2 = 'active' %>
+<% else %>
+  <% tab_1 = 'active' %>
+  <% tab_2 = '' %>
+<% end %>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" class="<%= tab_1 %>"><%= link_to "Apply to join", "#tab-1", data: { toggle: "tab"} %></li>
+  <li role="presentation" class="<%= tab_2 %>"><%= link_to "Invite someone else", "#tab-2", data: { toggle: "tab"} %></li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane <%= tab_1 %>" id="tab-1">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <h3>About yourself</h3>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <br/>
+        <%= render "apply_form" %>
+      </div>
+    </div>
   </div>
-  <div class="col-lg-6 col-md-6">
-    <br/>
-    <%= render "form" %>
+  <div class="tab-pane <%= tab_2 %>" id="tab-2">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <h3>Send invitation to</h3>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <br/>
+        <%= render "form" %>
+      </div>
+    </div>
   </div>
 </div>

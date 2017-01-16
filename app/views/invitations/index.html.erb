@@ -1,50 +1,33 @@
-<% provide(:title, "Listing invitations") %>
+<% provide(:title, "Sent invitations") %>
 
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>User</th>
       <th>Invitee name</th>
       <th>Invitee email</th>
-      <th>Invitee title</th>
-      <th>Invitee company</th>
       <th>Invitee location</th>
-      <th>Delivered</th>
-      <th>Registered</th>
-      <th></th>
+      <th>Sent on</th>
     </tr>
   </thead>
 
   <tbody>
     <% @invitations.each do |invitation| %>
       <tr>
-        <td><%= invitation.user %></td>
         <td><%= invitation.invitee_name %></td>
-        <td><%= invitation.invitee_email %></td>
-        <td><%= invitation.invitee_title %></td>
-        <td><%= invitation.invitee_company %></td>
-        <td><%= invitation.invitee_location %></td>
-        <td><%= invitation.delivered %></td>
-        <td><%= invitation.registered %></td>
         <td>
-          <div class="btn-group">
-            <%= link_to invitation, :class => "btn btn-xs btn-default" do %>
-              <%= fa_icon("eye", :text => "Show") %>
-            <% end %>
-            <%= link_to edit_invitation_path(invitation), :class => "btn btn-xs btn-default" do %>
-              <%= fa_icon("pencil", :text => "Edit") %>
-            <% end %>
-            <%= link_to invitation, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this invitation?" } do %>
-              <%= fa_icon("trash-o", :text => "Destroy") %>
-            <% end %>
-          </div>
+          <%= invitation.invitee_email %>
+          <% if invitation.invitee_email == current_user.email %>
+            <div class="btn btn-xs btn-primary">
+              <%= fa_icon("check") %>
+              me
+            </div>
+          <% end %>
+        </td>
+        <td><%= invitation.invitee_location %></td>
+        <td>
+          <%= invitation.created_at.strftime("%d %b %Y") %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to new_invitation_path, :class => "btn btn-default" do %>
-  <%= fa_icon("plus", :text => "New Invitation") %>
-<% end %>

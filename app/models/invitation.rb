@@ -2,6 +2,7 @@
 #
 # Table name: invitations
 #
+#  code_of_conduct      :boolean          default(FALSE)
 #  created_at           :datetime         not null
 #  delivered            :boolean          default(FALSE)
 #  id                   :integer          not null, primary key
@@ -11,6 +12,7 @@
 #  invitee_location     :string
 #  invitee_name         :string
 #  invitee_title        :string
+#  member_application   :boolean          default(FALSE)
 #  registered           :boolean          default(FALSE)
 #  updated_at           :datetime         not null
 #  user_id              :integer
@@ -24,16 +26,26 @@
 #  fk_rails_7eae413fe6  (user_id => users.id)
 #
 
+class CodeOfConductValidator < ActiveModel::Validator
+  def validate(record)
+    if record.code_of_conduct == false
+      record.errors[:base] << "Please accept our Code of Conduct to proceed"
+    end
+  end
+end
+
 class Invitation < ApplicationRecord
   belongs_to :user
 
-  after_create :send_welcome_email
+  after_create :notify_administrators
 
-  validates :invitee_email, presence: true
-  validates :invitee_name, presence: true
+  validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
+  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
+  validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
+  validates_with CodeOfConductValidator
 
   private
-    def send_welcome_email
-      InvitationMailer.welcome_email(self)
+    def notify_administrators
+
     end
 end

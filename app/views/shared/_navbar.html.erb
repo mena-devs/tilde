@@ -18,20 +18,29 @@
                                              action: 'about' }) %>
 
         <%= content_tag(:li, class: 'dropdown') do %>
-          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-            Slack Group
-            <%= fa_icon('caret-down') %>
-          <% end %>
-          <%= content_tag(:ul, class: 'dropdown-menu') do %>
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Invitations',
-                                new_invitation_path,
-                                :active_when => { controller: 'invitations' }) %>
+          <% if user_signed_in? %>
+            <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
+              Slack Group
+              <%= fa_icon('caret-down') %>
             <% end %>
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Code of Conduct',
-                                'https://github.com/mena-devs/code-of-conduct',
-                                target: '_blank') %>
+
+            <%= content_tag(:ul, class: 'dropdown-menu') do %>
+              <%= content_tag(:li) do %>
+                <%= navbar_link_to('Invitations to join Slack group',
+                                  new_invitation_path,
+                                  :active_when => { controller: 'invitations' }) %>
+              <% end %>
+
+              <%= content_tag(:li) do %>
+                <%= navbar_link_to('Sent Invitations',
+                                  invitations_path) %>
+              <% end %>
+
+              <%= content_tag(:li) do %>
+                <%= navbar_link_to('Code of Conduct',
+                                  'https://github.com/mena-devs/code-of-conduct',
+                                  target: '_blank') %>
+              <% end %>
             <% end %>
           <% end %>
         <% end %>
@@ -41,12 +50,14 @@
             Jobs
             <%= fa_icon('caret-down') %>
           <% end %>
+
           <%= content_tag(:ul, class: 'dropdown-menu') do %>
             <%= content_tag(:li) do %>
               <%= navbar_link_to('Job board',
                                 jobs_path,
                                 :active_when => { controller: 'jobs' }) %>
             <% end %>
+
             <%= content_tag(:li) do %>
               <%= navbar_link_to('Post a job',
                                  new_job_path) %>
@@ -61,12 +72,10 @@
                                               action: 'contact'}) %>
         <% end %>
 
-        <% if user_signed_in? %>
-          <%= content_tag(:li, class: 'dropdown') do %>
-            <%= navbar_link_to('Directory',
-                               directory_users_path,
-                               :active_when => { controller: 'users'}) %>
-          <% end %>
+        <%= content_tag(:li, class: 'dropdown') do %>
+          <%= navbar_link_to('Directory',
+                             directory_users_path,
+                             :active_when => { controller: 'users'}) %>
         <% end %>
       </ul>
 

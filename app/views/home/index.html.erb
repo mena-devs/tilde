@@ -11,21 +11,49 @@
   <div class='col-md-6'>
     <div class="panel panel-default">
       <div class="panel-heading">
-        Join MENA Devs
+        Join MENA Devs Community
       </div>
       <div class="panel-body">
-        Sign up here
+        <ul>
+          <li>Connect with members of MENA Devs community</li>
+          <li>Receive job alerts and announcements via email</li>
+          <li>Attend events and meetups</li>
+          <li>[Slack group only] Share and discuss ideas, articles and tech trends</li>
+        </ul>
+        <div class="text-center">
+          <div class="btn btn-default">
+            <%= fa_icon("user-plus") %>
+            <%= link_to "Sign up to join MENA Devs", new_user_registration_path %>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class='col-md-6'>
     <div class="panel panel-default">
       <div class="panel-heading">
-        Post a Job
+        Jobs on MENA Devs
       </div>
       <div class="panel-body">
-        Post a Job for free on menadevs.com
+        <ul>
+          <li>Post jobs on MENA Devs for the duration of one month, free of charge</li>
+          <li>Posted jobs are communicated to community members via email and Slack group</li>
+          <li>Receive anonymous analytics from interested members</li>
+        </ul>
+        <div class="text-center">
+          <div class="btn btn-default">
+            <%= fa_icon("briefcase") %>
+            <%= link_to "Post a job now", new_job_path %>
+          </div>
+        </div>
       </div>
+    </div>
+  </div>
+  <div class='col-md-12'>
+    <div class='text-center'>
+      Read our <%= link_to('Code of Conduct',
+                      'https://github.com/mena-devs/code-of-conduct',
+                      target: '_blank')%>
     </div>
   </div>
 </div>

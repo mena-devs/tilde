@@ -2,11 +2,8 @@
 
   <%= f.alert_message "Please review the problems below:" %>
 
-  <%= f.text_field :invitee_name, label: 'Full Name' %>
-  <%= f.text_field :invitee_email, label: 'Email' %>
-  <%= f.text_field :invitee_title, label: 'Title' %>
   <%= f.text_field :invitee_company, label: 'Company' %>
-  <%= f.text_area :invitee_introduction, label: 'Write a brief introduction about the person you are inviting' %>
+  <%= f.text_area :invitee_introduction, label: 'Write a brief introduction about yourself' %>
   <div class="form-group">
     <label class="control-label" for="invitation_invitee_location">Location</label>
     <%= country_select("invitation",
@@ -22,8 +19,9 @@
                 class: 'help-block' %>
   </div>
 
+  <%= f.hidden_field(:member_application, value: true) %>
 
-  <%= f.primary 'Send invitation', name: 'tab-2' %>
+  <%= f.primary 'Send invitation', name: 'tab-1' %>
   <%= link_to "Back", invitations_path, :class => "btn btn-link" %>
 
 <% end %>

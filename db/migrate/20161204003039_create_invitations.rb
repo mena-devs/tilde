@@ -10,6 +10,8 @@ class CreateInvitations < ActiveRecord::Migration[5.0]
       t.text   :invitee_introduction
       t.boolean :delivered, default: false
       t.boolean :registered, default: false
+      t.boolean :code_of_conduct, default: false
+      t.boolean :member_application, default: false
 
       t.timestamps
     end

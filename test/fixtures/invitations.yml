@@ -2,6 +2,7 @@
 #
 # Table name: invitations
 #
+#  code_of_conduct      :boolean          default(FALSE)
 #  created_at           :datetime         not null
 #  delivered            :boolean          default(FALSE)
 #  id                   :integer          not null, primary key
@@ -11,6 +12,7 @@
 #  invitee_location     :string
 #  invitee_name         :string
 #  invitee_title        :string
+#  member_application   :boolean          default(FALSE)
 #  registered           :boolean          default(FALSE)
 #  updated_at           :datetime         not null
 #  user_id              :integer

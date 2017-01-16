@@ -22,11 +22,17 @@ class InvitationsController < ApplicationController
 
   # POST /invitations
   def create
-    invitation_params[:user_id] = current_user.try(:id)
+    invitation_params[:user_id] = current_user.id
+
     @invitation = Invitation.new(invitation_params)
 
+    if @invitation.member_application?
+      @invitation.invitee_name = current_user.name
+      @invitation.invitee_email = current_user.email
+    end
+
     if @invitation.save
-      redirect_to root_path, notice: 'Invitation was successfully sent.'
+      redirect_to root_path, notice: 'Your application was received and will be processed shortly.'
     else
       render :new
     end
@@ -41,12 +47,6 @@ class InvitationsController < ApplicationController
     end
   end
 
-  # DELETE /invitations/1
-  def destroy
-    @invitation.destroy
-    redirect_to invitations_url, notice: 'Invitation was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invitation
@@ -55,6 +55,10 @@ class InvitationsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def invitation_params
-      params.require(:invitation).permit(:user_id, :invitee_name, :invitee_email, :invitee_title, :invitee_company, :invitee_location, :delivered, :registered)
+      params.require(:invitation).permit(:user_id, :invitee_name,
+                                         :invitee_email, :invitee_title,
+                                         :invitee_company, :invitee_location,
+                                         :delivered, :registered,
+                                         :code_of_conduct, :member_application)
     end
 end

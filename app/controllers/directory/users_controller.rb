@@ -1,7 +1,7 @@
 class Directory::UsersController < ApplicationController
   before_action :set_user, only: [:show]
   # devise authentication required to access invitations
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: :show
   # GET /invitations
   def index
     @users = User.all.order(:first_name, :last_name)
