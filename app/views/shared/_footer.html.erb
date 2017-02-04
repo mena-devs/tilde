@@ -1,5 +1,11 @@
 <hr>
 
 <footer>
-  <p>Mena Devs © <%= Time.zone.now.strftime("%Y") %></p>
+  <p>
+    Mena Devs © <%= Time.zone.now.strftime("%Y") %>
+    |
+    <%= link_to('Code of Conduct',
+                'https://github.com/mena-devs/code-of-conduct',
+                target: '_blank') %>
+  </p>
 </footer>

@@ -5,7 +5,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     if @user.persisted?
       sign_in_and_redirect @user, :event => :authentication
     else
-      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      # TODO: log errors generated from authenticating from omniauth
+      session["devise.slack_data"] = request.env["omniauth.auth"]
       redirect_to new_user_registration_url
     end
   end

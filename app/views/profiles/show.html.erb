@@ -1,17 +1,27 @@
 <% provide(:title) do %>
-  My profile
+  <div class="row">
+    <div class="col-md-10">
+      My profile
+    </div>
+    <div class="col-md-2">
+      <%= link_to "Preview your profile", directory_user_path(current_user), :class => "btn btn-primary" %>
+    </div>
+  </div>
 <% end %>
-
 <div class="row">
   <div class="col-md-2">
     <%= image_tag(@profile.profile_picture, class: 'img-thumbnail') %>
   </div>
   <div class="col-md-10">
-    <table class="table table-bordered">
+    <table class="table">
       <tbody>
         <tr>
           <th class="col-sm-4">Full Name</th>
           <td><%= @profile.user.name.titleize %></td>
+        </tr>
+        <tr>
+          <th class="col-sm-4">Nickname</th>
+          <td><%= @profile.nickname %></td>
         </tr>
         <tr>
           <th class="col-sm-4">Biography</th>
@@ -89,8 +99,13 @@
       </tbody>
     </table>
 
-    <p>
-      <%= link_to "Edit", edit_user_profile_path(current_user), :class => "btn btn-primary" %>
-    </p>
+    <div class="row">
+      <div class="col-md-4">
+      </div>
+      <div class="col-md-8">
+        <%= link_to "Update profile details & preferences", edit_user_profile_path(current_user), :class => "btn btn-success" %>
+        <%= link_to "Update email and password", edit_user_profile_path(current_user), :class => "btn btn-primary" %>
+      </div>
+    </div>
   </div>
 </div>

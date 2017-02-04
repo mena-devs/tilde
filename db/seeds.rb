@@ -15,6 +15,9 @@ user = User.new(first_name: "Constantine",
 user.skip_confirmation!
 user.save
 
+user.profile.privacy_level = Profile.privacy_levels["Open"]
+user.profile.save
+
 user = User.new(first_name: "User",
                 last_name: "One",
                 email: "user.one@example.com",
@@ -24,6 +27,9 @@ user = User.new(first_name: "User",
 user.skip_confirmation!
 user.save
 
+user.profile.privacy_level = Profile.privacy_levels["Open"]
+user.profile.save
+
 user = User.new(first_name: "User",
                 last_name: "Two",
                 email: "user.two@example.com",
@@ -32,3 +38,6 @@ user = User.new(first_name: "User",
 
 user.skip_confirmation!
 user.save
+
+user.profile.privacy_level = Profile.privacy_levels["Open"]
+user.profile.save

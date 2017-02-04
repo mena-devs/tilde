@@ -35,6 +35,12 @@ GEM
       activemodel (= 5.0.0.1)
       activesupport (= 5.0.0.1)
       arel (~> 7.0)
+    activerecord-session_store (1.0.0)
+      actionpack (>= 4.0, < 5.1)
+      activerecord (>= 4.0, < 5.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 1.5.2, < 3)
+      railties (>= 4.0, < 5.1)
     activesupport (5.0.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
@@ -187,6 +193,18 @@ GEM
       thor (>= 0.14, < 2.0)
     json (2.0.2)
     jwt (1.5.6)
+    kaminari (1.0.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.0.1)
+      kaminari-activerecord (= 1.0.1)
+      kaminari-core (= 1.0.1)
+    kaminari-actionview (1.0.1)
+      actionview
+      kaminari-core (= 1.0.1)
+    kaminari-activerecord (1.0.1)
+      activerecord
+      kaminari-core (= 1.0.1)
+    kaminari-core (1.0.1)
     kgio (2.10.0)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -412,6 +430,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_type (>= 0.3.2)
+  activerecord-session_store
   annotate (>= 2.5.0)
   autoprefixer-rails (>= 5.0.0.1)
   awesome_print
@@ -443,6 +462,7 @@ DEPENDENCIES
   guard-minitest
   httparty
   jquery-rails
+  kaminari
   launchy
   letter_opener
   listen (~> 3.0.5)

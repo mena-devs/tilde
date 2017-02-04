@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     @profile = Profile.new(profile_params)
 
     if @profile.save
-      redirect_to @profile, notice: 'Profile was successfully created.'
+      redirect_to @profile, notice: 'Your profile was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class ProfilesController < ApplicationController
     user_params = profile_params["user"]
     profile_data = profile_params.reject {|k,v| k == "user"}
     if @profile.update(profile_data) && @profile.user.update(user_params)
-      redirect_to user_profile_path(current_user), notice: 'Profile was successfully updated.'
+      redirect_to user_profile_path(current_user), notice: 'Your profile was successfully updated.'
     else
       render :edit
     end
@@ -52,6 +52,9 @@ class ProfilesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def profile_params
-      params.require(:profile).permit(:biography, :location, :receive_emails, :receive_job_alerts, :privacy_level, user: [:time_zone, :first_name, :last_name])
+      params.require(:profile).permit(:biography, :location, :receive_emails,
+                                      :receive_job_alerts, :privacy_level,
+                                      :nickname,
+                                      user: [:time_zone, :first_name, :last_name])
     end
 end

@@ -4,7 +4,7 @@ class Directory::UsersController < ApplicationController
   before_action :authenticate_user!, only: :show
   # GET /invitations
   def index
-    @users = User.all.order(:first_name, :last_name)
+    @users = User.order(:first_name, :last_name).page params[:page]
   end
 
   # GET /invitations/1

@@ -14,7 +14,11 @@
         <tr>
           <td>
             <%= fa_icon("user") %>
-            <%= @user.profile.biography %>
+            <% if @user.profile.biography.blank? %>
+              Biography not available
+            <% else %>
+              <%= @user.profile.biography %>
+            <% end %>
           </td>
         </tr>
         <tr>
@@ -41,7 +45,13 @@
     </table>
 
     <p>
-      <%= link_to "Back", directory_users_path, :class => "btn btn-default" %>
+      <%= link_to "Back to directory", directory_users_path, :class => "btn btn-default" %>
     </p>
+    <p>
+      <% if user_signed_in? && current_user == @user %>
+        <%= link_to "Update profile details & preferences", edit_user_profile_path(current_user), :class => "btn btn-success" %>
+      <% end %>
+    </p>
+
   </div>
 </div>
