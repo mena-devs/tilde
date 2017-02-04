@@ -1,0 +1,43 @@
+require 'slack-notifier'
+
+class Notifier
+  def self.get_notifier
+    notifier = Slack::Notifier.new(AppSettings.slack_web_hook_url,
+                                    channel: '#testing-menadevs',
+                                    username: 'menadevs.com job alert')
+    return notifier
+  end
+
+  def self.post_job_to_slack(job_id)
+    @notifier = Notifier.get_notifier
+    job = Job.find(job_id)
+
+    message = {
+        "attachments": [
+            {
+                "fallback": ":briefcase: #{job.title.titleize}",
+                "text": ":briefcase: #{job.title.titleize}",
+                "fields": [
+                    {
+                        "title": "Company",
+                        "value": job.company_name.titleize,
+                        "short": true
+                    },
+                    {
+                        "title": "Posted by",
+                        "value": job.user.name,
+                        "short": true
+                    },
+                    {
+                        "title": "Details",
+                        "value": "http://localhost:3000/job/#{job.custom_identifier}?md=slack",
+                        "short": false
+                    }
+                ],
+                "color": "#F35A00"
+            }
+        ]
+    }
+    @notifier.ping(message, channel: "#testing-menadevs")
+  end
+end

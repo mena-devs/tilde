@@ -48,7 +48,7 @@ class Job < ApplicationRecord
 
     event :post_online do
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
-      after do
+      success do
         # inform admin that there is a job post to be approved
         JobMailer.new_job(self).deliver
       end
@@ -60,6 +60,7 @@ class Job < ApplicationRecord
       after do
         # inform job ower that their job post is online
         JobMailer.job_published(self).deliver
+        Notifier.post_job_to_slack(self.id)
       end
     end
 
