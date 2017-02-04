@@ -33,11 +33,11 @@
               </td>
               <td>
                 <div class="btn-group">
-                  <% if user_signed_in? && job.user == current_user %>
+                  <% if user_signed_in? && current_user.id == job.user_id %>
                     <%= link_to edit_job_path(job), :class => "btn btn-xs btn-default" do %>
                       <%= fa_icon("pencil", :text => "Edit") %>
                     <% end %>
-                    <%= link_to job, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this job?" } do %>
+                    <%= link_to take_down_job_path(job), :class => "btn btn-xs btn-danger", :method => :put, :data => { :confirm => "Are you sure you want to unpublish this job?" } do %>
                       <%= fa_icon("trash-o", :text => "Take down") %>
                     <% end %>
                   <% end %>

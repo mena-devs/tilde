@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :jobs
+  resources :jobs do
+    member do
+      put :approve
+      put :take_down
+    end
+  end
+
   devise_for :admins
   resources :invitations
 
@@ -17,6 +23,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 
   get 'contact', to: 'home#contact'
+  get 'list-jobs-admin', to: 'jobs#list_jobs'
 
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

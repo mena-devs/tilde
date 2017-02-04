@@ -1,14 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
+# Create users
 user = User.new(first_name: "Constantine",
                 last_name: "Nicolaou",
                 email: "constantin.nicolaou@gmail.com",
+                admin: true,
                 password: "password",
                 password_confirmation: "password")
 
@@ -41,3 +35,24 @@ user.save
 
 user.profile.privacy_level = Profile.privacy_levels["Open"]
 user.profile.save
+
+# Create jobs
+job_params = {
+  title: "Software developer",
+  description: "You should be a kick-ass developer",
+  job_description_location: "http://www.keeward.com",
+  location: "LB",
+  remote_ok: true,
+  posted_on: Time.now,
+  posted_to_slack: false,
+  user_id: user.id,
+  company_name: "Keeward",
+  apply_email: "hr@example.com",
+  salary: nil,
+  job_type: "internship",
+  number_of_openings: 1,
+  level: "no_experience"
+}
+
+job = Job.create(job_params)
+job.post!

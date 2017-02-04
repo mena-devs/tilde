@@ -2,8 +2,8 @@
 #
 # Table name: jobs
 #
+#  aasm_state               :string
 #  apply_email              :string
-#  approved                 :boolean          default(FALSE)
 #  company_name             :string
 #  created_at               :datetime         not null
 #  custom_identifier        :string
@@ -20,7 +20,6 @@
 #  posted_to_slack          :boolean          default(FALSE)
 #  remote_ok                :boolean          default(FALSE)
 #  salary                   :string
-#  state                    :integer          default("pending")
 #  title                    :string
 #  updated_at               :datetime         not null
 #  user_id                  :integer
@@ -35,7 +34,38 @@
 #  fk_rails_df6238c8a6  (user_id => users.id)
 #
 
+require 'uri'
+
 class Job < ApplicationRecord
+  include AASM
+
+  aasm do
+    state :draft, :initial => true
+    state :under_review
+    state :approved
+    state :edited
+    state :disabled
+
+    event :post_online do
+      transitions :from => [:draft, :edited, :disabled], :to => :under_review
+      # inform admin that there is a job post to be approved
+      JobMailer.new_job(self).deliver
+    end
+
+    event :publish do
+      transitions :from => :under_review, :to => :approved
+      # inform job ower that their job post is online
+    end
+
+    event :modify do
+      transitions :from => [:under_review, :approved], :to => :edited
+    end
+
+    event :take_down do
+      transitions :from => [:under_review, :edited, :approved], :to => :disabled
+    end
+  end
+
   extend FriendlyId
   acts_as_paranoid
 
@@ -51,12 +81,11 @@ class Job < ApplicationRecord
 
   enum job_type: [ :internship, :part_time, :full_time, :contract, :freelance ]
   enum level: [ :no_experience, :beginner, :experienced, :manager ]
-  enum state: [ :pending, :posted, :archived ]
   enum category: [ :software, :management ]
 
-  default_scope { where(state: :posted, approved: true) }
-
   friendly_id :custom_identifier
+
+  validates :job_description_location, url: true
 
   def location_name
     country = ISO3166::Country[self.location]
@@ -71,8 +100,6 @@ class Job < ApplicationRecord
     def set_dates
       self.posted_on = Time.now.utc
       self.expires_on = Time.now.utc + 1.month
-      self.state = :posted
-      self.approved = true
     end
 
     def generate_unique_id

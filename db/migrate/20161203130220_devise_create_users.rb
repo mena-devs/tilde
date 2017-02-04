@@ -35,6 +35,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :last_name
       t.string :time_zone
 
+      t.boolean :admin, default: false
+
       t.string :custom_identifier
 
       ## Lockable

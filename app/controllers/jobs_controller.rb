@@ -1,11 +1,20 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :approve, :take_down]
   # devise authentication required to access jobs
   before_action :authenticate_user!, :except => [:new, :index, :show]
 
   # GET /jobs
   def index
-    @jobs = Job.order(updated_at: :desc).page params[:page]
+    @jobs = Job.approved.order(updated_at: :desc).page params[:page]
+  end
+
+  # GET /list-jobs-admin
+  def list_jobs
+    @jobs = Job.under_review.order(updated_at: :desc).page params[:page]
+    if !current_user.admin?
+      flash[:notice] = "Not authorised"
+    end
+    render :index
   end
 
   # GET /jobs/1
@@ -19,14 +28,18 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
+    if current_user != @job.user || !current_user.admin?
+      redirect_to @job, error: 'Not authorised'
+    end
   end
 
   # POST /jobs
   def create
     @job = Job.new(job_params)
+    @job.post_online
 
     if @job.save
-      redirect_to @job, notice: 'Job post was successfully created.'
+      redirect_to @job, notice: 'Job post was successfully created and is awaiting approval before it appears live.'
     else
       render :new
     end
@@ -36,6 +49,24 @@ class JobsController < ApplicationController
   def update
     if @job.update(job_params)
       redirect_to @job, notice: 'Job post was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  # PATCH/PUT /jobs/1/approve
+  def approve
+    if @job.publish!
+      redirect_to @job, notice: 'The job is now live.'
+    else
+      render :edit
+    end
+  end
+
+  # PATCH/PUT /jobs/1/take_down
+  def take_down
+    if @job.take_down!
+      redirect_to @job, notice: 'The job is no longer published live.'
     else
       render :edit
     end
@@ -58,7 +89,7 @@ class JobsController < ApplicationController
     def job_params
       params.require(:job).permit(:title, :description, :job_description_location,
                                   :custom_identifier, :posted_on, :expires_on,
-                                  :state, :approved, :posted_to_slack, :user_id,
+                                  :aasm_state, :posted_to_slack, :user_id,
                                   :company_name, :apply_email, :job_type,
                                   :level, :paid, :location, :remote_ok)
     end

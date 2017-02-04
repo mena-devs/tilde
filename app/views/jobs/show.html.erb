@@ -18,6 +18,29 @@
     </div>
   </div>
   <div class='col-md-3'>
+    <% if (user_signed_in? && current_user.id == @job.user_id) %>
+      <% if @job.draft? || @job.under_review? %>
+        <%= link_to edit_job_path(@job), :class => "btn btn-primary btn-lg btn-block", target: '_blank' do %>
+          Edit job post
+        <% end %>
+      <% elsif @job.approved? %>
+        <%= link_to take_down_job_path(@job), class: "btn btn-danger btn-lg btn-block", method: :put do %>
+          Take down
+        <% end %>
+      <% end %>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+      <% if @job.under_review? %>
+        <%= link_to approve_job_path(@job), class: "btn btn-warning btn-lg btn-block", method: :put do %>
+          Approve
+        <% end %>
+      <% elsif @job.approved? %>
+        <%= link_to take_down_job_path(@job), class: "btn btn-warning btn-lg btn-block", method: :put do %>
+          Take down
+        <% end %>
+      <% end %>
+    <% end %>
+
     <%= link_to @job.job_description_location, :class => "btn btn-success btn-lg btn-block", target: '_blank' do %>
       Visit page to apply
     <% end %>
@@ -58,7 +81,4 @@
 
 <p>
   <%= link_to "Back to all Jobs", jobs_path, :class => "btn btn-default" %>
-  <% if user_signed_in? && @job.user == current_user %>
-    <%= link_to "Edit job post", edit_job_path(@job), :class => "btn btn-primary" %>
-  <% end %>
 </p>

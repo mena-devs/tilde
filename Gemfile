@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'aasm'
 gem 'active_type', '>= 0.3.2'
 gem 'activerecord-session_store'
 gem 'autoprefixer-rails', '>= 5.0.0.1'

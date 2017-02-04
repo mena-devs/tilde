@@ -2,6 +2,7 @@
 #
 # Table name: users
 #
+#  admin                  :boolean          default(FALSE)
 #  auth_token             :string
 #  confirmation_sent_at   :datetime
 #  confirmation_token     :string
