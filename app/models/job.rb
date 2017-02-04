@@ -48,13 +48,19 @@ class Job < ApplicationRecord
 
     event :post_online do
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
-      # inform admin that there is a job post to be approved
-      JobMailer.new_job(self).deliver
+      after do
+        # inform admin that there is a job post to be approved
+        JobMailer.new_job(self).deliver
+      end
     end
 
     event :publish do
       transitions :from => :under_review, :to => :approved
-      # inform job ower that their job post is online
+
+      after do
+        # inform job ower that their job post is online
+        JobMailer.job_published(self).deliver
+      end
     end
 
     event :modify do
@@ -63,6 +69,10 @@ class Job < ApplicationRecord
 
     event :take_down do
       transitions :from => [:under_review, :edited, :approved], :to => :disabled
+      after do
+        # inform job ower that their job post was taken down
+        JobMailer.job_unpublished(self).deliver
+      end
     end
   end
 

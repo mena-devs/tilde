@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     end
   end
 
-  devise_for :admins
   resources :invitations
+  resources :members, only: [:index, :show]
 
   scope path: ':user_id', as: 'user' do
     resource :profile

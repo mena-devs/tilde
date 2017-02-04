@@ -55,4 +55,4 @@ job_params = {
 }
 
 job = Job.create(job_params)
-job.post!
+job.post_online!

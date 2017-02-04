@@ -1,12 +1,15 @@
-class Directory::UsersController < ApplicationController
+class MembersController < ApplicationController
+  before_action :is_admin
   before_action :set_user, only: [:show]
   # devise authentication required to access invitations
-  before_action :authenticate_user!, only: :show
+  before_action :authenticate_user!
 
+  # GET /members
   def index
     @users = User.order(:first_name, :last_name).page params[:page]
   end
 
+  # GET /member/1
   def show
   end
 
@@ -19,5 +22,11 @@ class Directory::UsersController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def user_params
       params.permit(:id)
+    end
+
+    def is_admin
+      unless user_signed_in? && current_user.admin?
+        redirect_to home_path, error: "You are not authorised"
+      end
     end
 end

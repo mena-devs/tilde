@@ -10,7 +10,7 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.under_review.order(updated_at: :desc).page params[:page]
+    @jobs = Job.unscoped.order(updated_at: :desc).page params[:page]
     if !current_user.admin?
       flash[:notice] = "Not authorised"
     end

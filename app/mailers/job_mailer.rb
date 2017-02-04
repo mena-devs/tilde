@@ -7,4 +7,22 @@ class JobMailer < ApplicationMailer
     mail to: "email@cnicolaou.com",
          subject: subject
   end
+
+  def job_published(job)
+    @job = job
+
+    subject = "Your job is now posted live on menadevs.com"
+
+    mail to: "email@cnicolaou.com",
+         subject: subject
+  end
+
+  def job_unpublished(job)
+    @job = job
+
+    subject = "Your job post is no longer live on menadevs.com"
+
+    mail to: "email@cnicolaou.com",
+         subject: subject
+  end
 end

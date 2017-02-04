@@ -25,23 +25,35 @@
         <tbody>
           <% @jobs.each do |job| %>
             <tr>
-              <td>
-                <h4><%= job.company_name %> &nbsp; <%= link_to job.title, job, class: 'link' %></h4>
+              <td width="85%">
+                <h4>
+                  <% if user_signed_in? && current_user.admin? %>
+                    <div class="btn-group">
+                      <%= link_to "#", :class => "btn btn-xs btn-info" do %>
+                        <%= job.aasm_state.humanize %>
+                      <% end %>
+                    </div>
+                  <% end %>
+
+                  <%= job.company_name %> &nbsp; <%= link_to job.title, job, class: 'link' %>
+                  <span style="float: right"><%= time_ago_in_words(job.created_at) %></span>
+                </h4>
               </td>
               <td>
-                <h4 style="text-align: right"><%= time_ago_in_words(job.created_at) %></h4>
-              </td>
-              <td>
-                <div class="btn-group">
-                  <% if user_signed_in? && current_user.id == job.user_id %>
-                    <%= link_to edit_job_path(job), :class => "btn btn-xs btn-default" do %>
+                <% if user_signed_in? && current_user.id == job.user_id %>
+                  <div class="btn-group" style="padding-top:10px">
+                    <%= link_to edit_job_path(job), :class => "btn btn-xs btn-primary" do %>
                       <%= fa_icon("pencil", :text => "Edit") %>
                     <% end %>
-                    <%= link_to take_down_job_path(job), :class => "btn btn-xs btn-danger", :method => :put, :data => { :confirm => "Are you sure you want to unpublish this job?" } do %>
-                      <%= fa_icon("trash-o", :text => "Take down") %>
+                    <% if job.approved? %>
+                      <%= link_to take_down_job_path(job), :class => "btn btn-xs btn-danger", :method => :put, :data => { :confirm => "Are you sure you want to unpublish this job?" } do %>
+                        <%= fa_icon("trash-o", :text => "Take down") %>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </div>
+
+                  </div>
+                <% end %>
+              </td>
             </tr>
           <% end %>
         </tbody>
