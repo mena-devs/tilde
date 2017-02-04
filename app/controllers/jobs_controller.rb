@@ -5,7 +5,7 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.all
+    @jobs = Job.order(updated_at: :desc).page params[:page]
   end
 
   # GET /jobs/1
@@ -26,7 +26,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
 
     if @job.save
-      redirect_to @job, notice: 'Job was successfully created.'
+      redirect_to @job, notice: 'Job post was successfully created.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   def update
     if @job.update(job_params)
-      redirect_to @job, notice: 'Job was successfully updated.'
+      redirect_to @job, notice: 'Job post was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   def destroy
     @job.destroy
-    redirect_to jobs_url, notice: 'Job was successfully destroyed.'
+    redirect_to jobs_url, notice: 'Job post was successfully destroyed.'
   end
 
   private

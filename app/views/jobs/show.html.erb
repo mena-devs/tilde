@@ -18,8 +18,8 @@
     </div>
   </div>
   <div class='col-md-3'>
-    <%= link_to @job.job_description_location, :class => "btn btn-primary btn-lg btn-block", target: '_blank' do %>
-      Apply
+    <%= link_to @job.job_description_location, :class => "btn btn-success btn-lg btn-block", target: '_blank' do %>
+      Visit page to apply
     <% end %>
     <br/>
     <div class="panel panel-default">
@@ -57,8 +57,8 @@
 </div>
 
 <p>
-  <%= link_to "See all Jobs", jobs_path, :class => "btn btn-link" %>
+  <%= link_to "Back to all Jobs", jobs_path, :class => "btn btn-default" %>
   <% if user_signed_in? && @job.user == current_user %>
-    <%= link_to "Edit", edit_job_path(@job), :class => "btn btn-primary" %>
+    <%= link_to "Edit job post", edit_job_path(@job), :class => "btn btn-primary" %>
   <% end %>
 </p>

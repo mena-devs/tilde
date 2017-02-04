@@ -1,40 +1,53 @@
-<% provide(:title, "Job board") %>
+<% provide(:title) do %>
+  <div class="row">
+    <div class="col-md-9">
+      Job board
+    </div>
+    <div class="col-md-3" style="text-align: right">
+      <%= link_to new_job_path, :class => "btn btn-success" do %>
+        <%= fa_icon("plus", :text => "Post a Job on MENA Devs") %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <% if @jobs.empty? %>
   <p>There are no recent jobs on MENA Devs job board</p>
 <% else %>
-  <table class="table table-striped">
-    <tbody>
-      <% @jobs.each do |job| %>
-        <tr>
-          <td>
-            <h4><%= job.company_name %></h4>
-          </td>
-          <td>
-            <h4><%= link_to job.title, job %></h4>
-          </td>
-          <td>
-            <h4><%= job.expires_on.strftime('%e %b') %></h4>
-          </td>
-          <td>
-            <div class="btn-group">
-              <% if user_signed_in? && job.user == current_user %>
-                <%= link_to edit_job_path(job), :class => "btn btn-xs btn-default" do %>
-                  <%= fa_icon("pencil", :text => "Edit") %>
-                <% end %>
-                <%= link_to job, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this job?" } do %>
-                  <%= fa_icon("trash-o", :text => "Take down") %>
-                <% end %>
-              <% end %>
-            </div>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <!-- <h3>All jobs</h3> -->
+  <!-- <div class="btn btn-xs btn-primary">
+    <%= fa_icon("check") %>
+    New!
+  </div> -->
+  <div class="row">
+    <div class="col-md-12">
+      <table class="table">
+        <tbody>
+          <% @jobs.each do |job| %>
+            <tr>
+              <td>
+                <h4><%= job.company_name %> &nbsp; <%= link_to job.title, job, class: 'link' %></h4>
+              </td>
+              <td>
+                <h4 style="text-align: right"><%= time_ago_in_words(job.created_at) %></h4>
+              </td>
+              <td>
+                <div class="btn-group">
+                  <% if user_signed_in? && job.user == current_user %>
+                    <%= link_to edit_job_path(job), :class => "btn btn-xs btn-default" do %>
+                      <%= fa_icon("pencil", :text => "Edit") %>
+                    <% end %>
+                    <%= link_to job, :class => "btn btn-xs btn-danger", :method => :delete, :data => { :confirm => "Are you sure you want to delete this job?" } do %>
+                      <%= fa_icon("trash-o", :text => "Take down") %>
+                    <% end %>
+                  <% end %>
+                </div>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
-  <br>
-<% end %>
-
-<%= link_to new_job_path, :class => "btn btn-primary" do %>
-  <%= fa_icon("plus", :text => "Post a Job on MENA Devs") %>
+  <%= paginate @jobs %>
 <% end %>
