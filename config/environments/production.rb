@@ -67,17 +67,25 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Production email config
-  config.action_mailer.delivery_method = :postmark
-  config.action_mailer.postmark_settings = {
-    :api_token => ENV.fetch("POSTMARK_API_KEY")
-  }
+  # config.action_mailer.delivery_method = :postmark
+  # config.action_mailer.postmark_settings = {
+  #   :api_token => ENV.fetch("POSTMARK_API_KEY")
+  # }
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default_url_options = {
-    :host => "mena-devs.com",
-    :protocol => "https"
+    :host => AppSettings.mail_domain,
+    :protocol => "http"
   }
-  config.action_mailer.asset_host = "https://mena-devs.com"
+  config.action_mailer.asset_host = "http://menadevs.com"
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: AppSettings.mail_host,
+    port: AppSettings.mail_port,
+    domain: AppSettings.mail_domain,
+    user_name: AppSettings.mail_username,
+    password: AppSettings.mail_password
+  }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
