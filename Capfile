@@ -5,6 +5,9 @@ require "capistrano/setup"
 require "capistrano/deploy"
 
 # Include tasks from other gems included in your Gemfile
+require "capistrano/scm/git"
+install_plugin Capistrano::SCM::Git
+
 require "airbrussh/capistrano"
 require "capistrano/bundler"
 require "capistrano/rails"

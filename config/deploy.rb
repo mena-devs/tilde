@@ -8,7 +8,7 @@ set :repo_url, "git@bitbucket.org:menadevs/menadevs.git"
 # fetch(:mb_recipes) << "sidekiq"
 # fetch(:mb_aptitude_packages)["redis-server@ppa:rwky/redis"] = :redis
 
-set :deploy_to, "/home/menadevs/"
+set :deploy_to, "/home/rails/"
 set :branch, "master"
 set :deploy_via, :copy
 
@@ -22,7 +22,7 @@ set :mb_dotenv_keys, %w(
 after "deploy:published", "bundler:clean"
 
 # Default value for :linked_files is []
-append :linked_files, "config/settings.yml"
+# append :linked_files, "config/settings.yml"
 
 # Default value for linked_dirs is []
 # append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
