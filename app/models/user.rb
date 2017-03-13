@@ -114,6 +114,6 @@ class User < ApplicationRecord
     end
 
     def prepare_profile
-      self.build_profile
+      self.create_profile
     end
 end
