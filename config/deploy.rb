@@ -12,6 +12,10 @@ set :deploy_to, "/home/rails/"
 set :branch, "master"
 set :deploy_via, :copy
 
+set :user, 'rails'
+# set :use_sudo, true
+# set :sudo, "sudo -u #{@user} -i"
+
 set :mb_dotenv_keys, %w(
   rails_secret_key_base
 )
