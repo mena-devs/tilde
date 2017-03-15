@@ -1,6 +1,6 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :slack,
-           '3378000868.113106258167',
-           '9d006046e71b0203a6d1a3e4a426ccc1',
+           '3378000868.155724249398',
+           '202699c56ad4ee34621e2d04dfac9984',
            scope: 'users:read'
 end
