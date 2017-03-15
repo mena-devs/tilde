@@ -1,5 +1,3 @@
-require 'HTTParty'
-
 class SlackApi
   def self.get_user_info(auth)
     base_uri = 'https://slack.com/api/users.info'
