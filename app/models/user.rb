@@ -75,6 +75,7 @@ class User < ApplicationRecord
     if user_exists
       begin
         user_exists.update(provider: auth.provider, uid: auth.uid)
+        user_exists.skip_confirmation! if user_exists.confirmed_at.blank?
       rescue Exception => e
         logger.info(e)
       end
