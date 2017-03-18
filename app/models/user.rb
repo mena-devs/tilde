@@ -73,22 +73,30 @@ class User < ApplicationRecord
     user_exists = where(email: auth.info.email).first
 
     if user_exists
-      user_exists.update(provider: auth.provider, uid: auth.uid)
+      begin
+        user_exists.update(provider: auth.provider, uid: auth.uid)
+      rescue Exception => e
+        logger.info(e)
+      end
       return user_exists
     else
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-        user.provider = auth.provider
-        user.uid = auth.uid
-        user.email = auth.info.email
-        user.first_name = auth.info.first_name
-        user.last_name = auth.info.last_name
-        user.time_zone = auth.info.time_zone
-        user.auth_token = auth.credentials.token
-        user.password = Devise.friendly_token[0,20]
+      begin
+        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.email = auth.info.email
+          user.first_name = auth.info.first_name
+          user.last_name = auth.info.last_name
+          user.time_zone = auth.info.time_zone
+          user.auth_token = auth.credentials.token
+          user.password = Devise.friendly_token[0,20]
 
-        user.build_profile(avatar_from_slack: auth.info.image,
-                           biography: auth.info.description)
-        user.skip_confirmation! if user.new_record?
+          user.build_profile(avatar_from_slack: auth.info.image,
+                             biography: auth.info.description)
+          user.skip_confirmation! if user.new_record?
+        end
+      rescue Exception => e
+        logger.info(e)
       end
     end
   end
