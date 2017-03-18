@@ -7,7 +7,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     else
       # TODO: log errors generated from authenticating from omniauth
       session["devise.slack_data"] = request.env["omniauth.auth"]
-      redirect_to new_user_registration_url
+      logger.info("An error has occured")
+      logger.info(request.env["omniauth.auth"])
+
+      redirect_to new_user_registration_url, alert: 'An error has occured while signing in using your Slack identity. Please try again in a few minutes.'
     end
   end
 

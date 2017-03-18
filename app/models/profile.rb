@@ -42,7 +42,7 @@ class Profile < ApplicationRecord
 
   def profile_picture
     unless avatar_from_slack
-      return 'default_profile_picture.png'
+      return 'profile_picture_default.png'
     end
 
     avatar_from_slack
