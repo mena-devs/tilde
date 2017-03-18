@@ -44,9 +44,9 @@
       </tbody>
     </table>
 
-    <p>
-      <%= link_to "Back to directory", directory_users_path, :class => "btn btn-default" %>
-    </p>
+    <!-- <p> -->
+      <%# link_to "Back to directory", directory_users_path, :class => "btn btn-default" %>
+    <!-- </p> -->
     <p>
       <% if user_signed_in? && current_user == @user %>
         <%= link_to "Update profile details & preferences", edit_user_profile_path(current_user), :class => "btn btn-success" %>
