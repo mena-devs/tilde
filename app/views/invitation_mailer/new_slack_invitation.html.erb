@@ -1,0 +1,25 @@
+<p>Hello,</p>
+
+<p>A new invitation to join our Slack group has been received.</p>
+
+<h3>Invitation details</h3>
+
+<strong>Sender:</strong>
+
+<ul>
+  <li><%= @invitation.user.name %></li>
+  <li><%= @invitation.user.email %></li>
+</ul>
+
+<strong>Receiver:</strong>
+
+<ul>
+  <li>Company: <%= @invitation.invitee_company %></li>
+  <li>Title: <%= @invitation.invitee_title %></li>
+  <li>Name: <%= @invitation.invitee_name %></li>
+  <li>Email: <%= @invitation.invitee_email %></li>
+  <li>Location: <%= @invitation.invitee_location %></li>
+  <li>Intro: <%= @invitation.invitee_introduction %></li>
+</ul>
+
+<p>MENA devs</p>

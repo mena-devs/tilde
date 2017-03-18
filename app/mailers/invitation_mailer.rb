@@ -9,4 +9,11 @@ class InvitationMailer < ApplicationMailer
 
     mail to: @invitation.invitee_email
   end
+
+  def new_slack_invitation(invitation)
+    @invitation = invitation
+
+    mail to: AppSettings.admin_email,
+         subject: "[MENAdevs] We've received an invitation to join our Slack group"
+  end
 end

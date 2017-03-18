@@ -22,9 +22,8 @@ class InvitationsController < ApplicationController
 
   # POST /invitations
   def create
-    invitation_params[:user_id] = current_user.id
-
     @invitation = Invitation.new(invitation_params)
+    @invitation.user = current_user
 
     if @invitation.member_application?
       @invitation.invitee_name = current_user.name
@@ -58,6 +57,7 @@ class InvitationsController < ApplicationController
       params.require(:invitation).permit(:user_id, :invitee_name,
                                          :invitee_email, :invitee_title,
                                          :invitee_company, :invitee_location,
+                                         :invitee_introduction,
                                          :delivered, :registered,
                                          :code_of_conduct, :member_application)
     end

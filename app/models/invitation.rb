@@ -44,8 +44,17 @@ class Invitation < ApplicationRecord
   validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
   validates_with CodeOfConductValidator
 
+  def invitee_location_name
+    if self.invitee_location?
+      country = ISO3166::Country[self.invitee_location]
+      country.translations[I18n.locale.to_s] || country.name
+    else
+      'Lebanon'
+    end
+  end
+
   private
     def notify_administrators
-
+      InvitationMailer.new_slack_invitation(self).deliver
     end
 end
