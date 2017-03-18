@@ -14,7 +14,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'no-reply@menadevs.com'
+  config.mailer_sender = AppSettings.app_email
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -253,9 +253,9 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
   config.omniauth :slack,
-                  '3378000868.113106258167',
-                  '9d006046e71b0203a6d1a3e4a426ccc1',
-                  scope: 'users:read',
+                  AppSettings.slack_app_client_id,
+                  AppSettings.slack_app_client_secret,
+                  scope: 'users:read;users:read.email',
                   name: :sign_in_with_slack
 
   # ==> Warden configuration
