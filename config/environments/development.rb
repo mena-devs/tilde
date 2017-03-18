@@ -36,7 +36,7 @@ Rails.application.configure do
                                                port: 3000 }
   config.action_mailer.asset_host = 'http://localhost:3000'
 
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.smtp_settings = {
     address: AppSettings.mail_host,
     port: AppSettings.mail_port,
