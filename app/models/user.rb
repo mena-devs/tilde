@@ -56,12 +56,15 @@ class User < ApplicationRecord
 
   friendly_id :custom_identifier
 
-  has_one :profile
-  has_many :jobs
+  has_one :profile, :dependent => :destroy
+  has_many :jobs, :dependent => :destroy
 
   after_create :prepare_profile
 
   def self.from_omniauth(auth)
+    logger.info("Information returned from SLACK API")
+    logger.info(auth.inspect)
+
     if auth['info']['team'].downcase != 'mena developers' &&
       auth['info']['team_id'] != 'T03B400RJ'
       return false
