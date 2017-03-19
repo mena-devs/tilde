@@ -1,17 +1,17 @@
-# Create users
-user = User.new(first_name: "Constantine",
-                last_name: "Nicolaou",
-                email: "constantin.nicolaou@gmail.com",
-                admin: true,
-                password: "password",
-                password_confirmation: "password")
-
-user.skip_confirmation!
-user.save!
-
-profile = user.profile
-profile.privacy_level = Profile.privacy_options["Open"]
-profile.save
+# # Create users
+# user = User.new(first_name: "Constantine",
+#                 last_name: "Nicolaou",
+#                 email: "constantin.nicolaou@gmail.com",
+#                 admin: true,
+#                 password: "password",
+#                 password_confirmation: "password")
+#
+# user.skip_confirmation!
+# user.save!
+#
+# profile = user.profile
+# profile.privacy_level = Profile.privacy_options["Open"]
+# profile.save
 
 # user_1 = User.new(first_name: "User",
 #                   last_name: "One",
