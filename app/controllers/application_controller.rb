@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # API access
-  before_filter :restrict_access, if: :api_request
   before_filter :authenticate_with_token!, if: :api_request
 
   def api_request
@@ -30,28 +29,19 @@ class ApplicationController < ActionController::Base
     def authenticate_with_token!
       auth_token = params[:auth_token].presence
 
-      device = Device.find_by_authentication_token(auth_token)
+      api_key = ApiKey.where(access_token: auth_token).first
 
-      if (user_token.blank? || device.blank?)
+      if (auth_token.blank? || api_key.blank?)
         @user = nil
       else
-        @user = device.user
+        @user = api_key.user
       end
 
-      if (@user && Devise.secure_compare(device.authentication_token, user_token))
+      if (@user && Devise.secure_compare(api_key.access_token, auth_token))
         sign_in @user
       else
         render status: :unauthorized,
                nothing: true
-      end
-    end
-
-    def restrict_access
-      authenticate_or_request_with_http_token do |token, options|
-        if api_key = ApiKey.find_by_access_token(token)
-          @user_id = api_key.user_id
-        end
-        api_key
       end
     end
 end

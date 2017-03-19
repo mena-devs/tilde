@@ -12,8 +12,10 @@
 #  invitee_location     :string
 #  invitee_name         :string
 #  invitee_title        :string
+#  medium               :string
 #  member_application   :boolean          default(FALSE)
 #  registered           :boolean          default(FALSE)
+#  slack_uid            :string
 #  updated_at           :datetime         not null
 #  user_id              :integer
 #
@@ -61,7 +63,12 @@ class Invitation < ApplicationRecord
 
     def process_invitation_on_slack
       unless self.invitee_email.blank?
-        SlackApi.send_invitation(self.invitee_email)
+        begin
+          resp = SlackApi.send_invitation(self.invitee_email)
+          raise resp.inspect
+        rescue Exception => e
+          logger.info(e)
+        end
       end
     end
 end

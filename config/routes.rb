@@ -28,6 +28,13 @@ Rails.application.routes.draw do
   get 'contact', to: 'home#contact'
   get 'list-jobs-admin', to: 'jobs#list_jobs'
 
+  # API resources
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :invitations, only: [:create]
+    end
+  end
+
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

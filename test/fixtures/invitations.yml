@@ -12,8 +12,10 @@
 #  invitee_location     :string
 #  invitee_name         :string
 #  invitee_title        :string
+#  medium               :string
 #  member_application   :boolean          default(FALSE)
 #  registered           :boolean          default(FALSE)
+#  slack_uid            :string
 #  updated_at           :datetime         not null
 #  user_id              :integer
 #

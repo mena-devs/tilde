@@ -24,6 +24,7 @@ class InvitationsController < ApplicationController
   def create
     @invitation = Invitation.new(invitation_params)
     @invitation.user = current_user
+    @invitation.medium = 'web'
 
     if @invitation.member_application?
       @invitation.invitee_name = current_user.name
