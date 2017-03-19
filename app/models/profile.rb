@@ -8,7 +8,7 @@
 #  id                 :integer          not null, primary key
 #  location           :string
 #  nickname           :string
-#  privacy_level      :integer          default("Hidden")
+#  privacy_level      :integer          default(0)
 #  receive_emails     :boolean          default(FALSE)
 #  receive_job_alerts :boolean          default(FALSE)
 #  updated_at         :datetime         not null
@@ -28,7 +28,7 @@ class Profile < ApplicationRecord
 
   validates_uniqueness_of :nickname
 
-  enum privacy_level: [ "Hidden", "Members only", "Open" ]
+  enum privacy_option: [ "Hidden", "Members only", "Open" ]
 
   def complete?
     if (user.first_name.nil? &&

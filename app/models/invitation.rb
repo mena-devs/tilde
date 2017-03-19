@@ -38,6 +38,7 @@ class Invitation < ApplicationRecord
   belongs_to :user
 
   after_create :notify_administrators
+  after_create :process_invitation_on_slack
 
   validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
   validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
@@ -56,5 +57,11 @@ class Invitation < ApplicationRecord
   private
     def notify_administrators
       InvitationMailer.new_slack_invitation(self).deliver
+    end
+
+    def process_invitation_on_slack
+      unless self.invitee_email.blank?
+        SlackApi.send_invitation(self.invitee_email)
+      end
     end
 end

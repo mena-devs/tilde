@@ -1,40 +1,51 @@
-# # Create users
-# user = User.create(first_name: "Constantine",
-#                   last_name: "Nicolaou",
-#                   email: "constantin.nicolaou@gmail.com",
-#                   admin: true,
+# Create users
+user = User.new(first_name: "Constantine",
+                last_name: "Nicolaou",
+                email: "constantin.nicolaou@gmail.com",
+                admin: true,
+                password: "password",
+                password_confirmation: "password")
+
+user.skip_confirmation!
+user.save!
+
+profile = user.profile
+profile.privacy_level = Profile.privacy_options["Open"]
+profile.save
+
+# user_1 = User.new(first_name: "User",
+#                   last_name: "One",
+#                   email: "user.one@example.com",
 #                   password: "password",
 #                   password_confirmation: "password")
 #
-# user.skip_confirmation!
+# user_1.skip_confirmation!
+# user_1.save!
+# user_1.reload
 #
-# user.profile.privacy_level = Profile.privacy_levels["Open"]
-# user.profile.save
+# puts user_1.inspect
 #
-# user = User.new(first_name: "User",
-#                 last_name: "One",
-#                 email: "user.one@example.com",
-#                 password: "password",
-#                 password_confirmation: "password")
+# profile = user_1.profile
+# profile.privacy_level = Profile.privacy_options["Open"]
+# profile.save
 #
-# user.skip_confirmation!
-#
-# user.profile.privacy_level = Profile.privacy_levels["Open"]
-# user.profile.save
-#
-# user = User.new(first_name: "User",
+# user_2 = User.new(first_name: "User",
 #                 last_name: "Two",
 #                 email: "user.two@example.com",
 #                 password: "password",
 #                 password_confirmation: "password")
 #
-# user.skip_confirmation!
-# user.save
+# user_2.skip_confirmation!
+# user_2.save!
+# user_2.reload
 #
-# user.profile.privacy_level = Profile.privacy_levels["Open"]
-# user.profile.save
+# puts user_2.profile.inspect
 #
-# # Create jobs
+# profile = user_2.profile
+# profile.privacy_level = Profile.privacy_options["Open"]
+# profile.save
+
+# Create jobs
 # job_params = {
 #   title: "Software developer",
 #   description: "You should be a kick-ass developer",

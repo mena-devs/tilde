@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy]
   # devise authentication required to access invitations
-  before_action :authenticate_user!, :except => [:new]
+  before_action :authenticate_user!, unless: :api_request
   # GET /invitations
   def index
     @invitations = Invitation.all

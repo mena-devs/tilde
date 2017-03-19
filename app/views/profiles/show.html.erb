@@ -85,11 +85,11 @@
           <th class="col-sm-4">Account privacy</th>
           <td>
             <div class="btn btn-xs btn-default">
-              <% if Profile.privacy_levels[@profile.privacy_level] == 0 %>
+              <% if Profile.privacy_options[@profile.privacy_level] == 0 %>
                 <%= fa_icon("minus-circle") %>
-              <% elsif Profile.privacy_levels[@profile.privacy_level] == 1 %>
+              <% elsif Profile.privacy_options[@profile.privacy_level] == 1 %>
                 <%= fa_icon("adjust") %>
-              <% elsif Profile.privacy_levels[@profile.privacy_level] == 2 %>
+              <% elsif Profile.privacy_options[@profile.privacy_level] == 2 %>
                 <%= fa_icon("globe") %>
               <% end %>
               <%= @profile.privacy_level %>

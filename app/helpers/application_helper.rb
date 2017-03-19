@@ -17,7 +17,7 @@ module ApplicationHelper
 
   def visible_profile?(user)
     if user.profile && user.profile.complete?
-      case Profile.privacy_levels[user.profile.privacy_level]
+      case Profile.privacy_options[user.profile.privacy_level]
       when 0
         return false
       when 1
