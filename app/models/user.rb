@@ -61,6 +61,7 @@ class User < ApplicationRecord
   has_many :api_keys, :dependent => :destroy
 
   after_create :prepare_profile
+  after_save :prepare_profile
 
   def self.from_omniauth(auth)
     logger.info("Information returned from SLACK API")
@@ -129,6 +130,6 @@ class User < ApplicationRecord
     end
 
     def prepare_profile
-      self.create_profile
+      self.create_profile if self.profile.nil?
     end
 end
