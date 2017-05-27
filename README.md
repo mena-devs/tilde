@@ -7,14 +7,12 @@ This is a Rails 5 app.
 This README describes the purpose of this repository and how to set up a development environment. Other sources of documentation are as follows:
 
 * UI and API designs are in `doc/`
-* Server setup instructions are in `PROVISIONING.md`
-* Staging and production deployment instructions are in `DEPLOYMENT.md`
 
 ## Prerequisites
 
 This project requires:
 
-* Ruby 2.3.0, preferably managed using [rbenv][]
+* Ruby 2.4.1, preferably managed using [rbenv][]
 * PhantomJS (in order to use the [poltergeist][] gem)
 * PostgreSQL must be installed and accepting connections
 * [Redis][] must be installed and running on localhost with the default port
