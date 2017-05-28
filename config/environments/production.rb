@@ -76,7 +76,7 @@ Rails.application.configure do
     :host => AppSettings.mail_domain,
     :protocol => "https"
   }
-  config.action_mailer.asset_host = "http://menadevs.com"
+  config.action_mailer.asset_host = "https://46.101.46.105"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
