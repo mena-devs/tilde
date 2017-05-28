@@ -45,7 +45,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = false
+  config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -76,7 +76,7 @@ Rails.application.configure do
     :host => AppSettings.mail_domain,
     :protocol => "https"
   }
-  config.action_mailer.asset_host = "http://46.101.47.134"
+  config.action_mailer.asset_host = "staging.menadevs.com"
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
