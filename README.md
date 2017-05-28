@@ -8,6 +8,10 @@ This README describes the purpose of this repository and how to set up a develop
 
 * UI and API designs are in `doc/`
 
+## Purpose and features
+
+You can find our objectives and a preliminary set of features on the following [Google Docs link](https://docs.google.com/document/d/1Qmyx_wfw-gard0VMcBCzu8TG42cSIHbGze7eQ0GAvw0/edit?usp=sharing)
+
 ## Prerequisites
 
 This project requires:
@@ -42,3 +46,7 @@ Run the `bin/setup` script. This script will:
 [poltergeist]:https://github.com/teampoltergeist/poltergeist
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
+
+## Git workflow
+
+For contributions, please follow the following [git workflow](GIT-WORKFLOW.md)
