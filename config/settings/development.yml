@@ -1,7 +1,9 @@
+application_host: 'localhost:3000'
 slack_web_hook_url: 'https://hooks.slack.com/services/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'
 slack_app_client_id: '3378000868.156416488277'
 slack_app_client_secret: ''
 slack_legacy_token: 'xoxp-3378000868-3378000870-156467067556-b062fc95f3370d690d3f6c595c33b08b'
+slack_job_channel: '#testing-menadevs'
 
 mailgun_api_key: ''
 mailchimp_api_key: ''

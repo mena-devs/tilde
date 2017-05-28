@@ -3,7 +3,7 @@ require 'slack-notifier'
 class Notifier
   def self.get_notifier
     notifier = Slack::Notifier.new(AppSettings.slack_web_hook_url,
-                                    channel: '#testing-menadevs',
+                                    channel: AppSettings.slack_job_channel,
                                     username: 'menadevs.com job alert')
     return notifier
   end
@@ -30,7 +30,7 @@ class Notifier
                     },
                     {
                         "title": "Details",
-                        "value": "http://localhost:3000/job/#{job.custom_identifier}?md=slack",
+                        "value": "#{AppSettings.application_host}/job/#{job.custom_identifier}?md=slack",
                         "short": false
                     }
                 ],
@@ -38,6 +38,6 @@ class Notifier
             }
         ]
     }
-    @notifier.ping(message, channel: "#testing-menadevs")
+    @notifier.ping(message, channel: AppSettings.slack_job_channel)
   end
 end
