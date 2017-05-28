@@ -18,7 +18,7 @@ module Api
         end
 
         if @invitation.save
-          render status: :no_content, json: {} and return
+          render status: :created, json: {status: 201} and return
         else
           render status: 422,
                  json: { message: @invitation.errors } and return
