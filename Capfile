@@ -12,6 +12,7 @@ require "airbrussh/capistrano"
 require "capistrano/bundler"
 require "capistrano/rails"
 require "capistrano/mb"
+require "capistrano/lets-encrypt"
 require "capistrano-nc/nc"
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

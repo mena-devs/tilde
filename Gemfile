@@ -51,6 +51,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2', require: false
   gem 'capistrano-mb', '>= 0.22.2', require: false
   gem 'capistrano-nc', require: false
+  gem 'capistrano-lets-encrypt', require: false
   gem 'capistrano-rails', require: false
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-livereload', require: false
