@@ -12,6 +12,10 @@ This README describes the purpose of this repository and how to set up a develop
 
 You can find our objectives and a preliminary set of features on the following [Google Docs link](https://docs.google.com/document/d/1Qmyx_wfw-gard0VMcBCzu8TG42cSIHbGze7eQ0GAvw0/edit?usp=sharing)
 
+## Resources
+
+Graphics and other resources are available on Dropbox using the following [link](https://www.dropbox.com/sh/2z1p8y2cux8yzea/AAAhDFbkcOs5Gf2vgIB15aKra?dl=0)
+
 ## Prerequisites
 
 This project requires:
