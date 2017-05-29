@@ -1,23 +1,8 @@
 <% provide(:title, "Contact us") %>
 
-<div>
-  <%= fa_icon('envelope') %>
-  &nbsp;
-  <%= link_to('info@menadevs.com', 'mailto:info@menadevs.com') %>
-</div>
 
-<div>
-  <%= fa_icon('twitter') %>
-  &nbsp;
-  <%= link_to('twitter.com/menadevs',
-              'https://twitter.com/menadevs',
-              target: '_blank') %>
-</div>
+  <%= link_to(raw("<i class='fa fa-envelope contact-icon'></i>info@menadevs.com") , "mailto:info@menadevs.com", :class => "contact-link") %>
 
-<div>
-  <%= fa_icon('github') %>
-  &nbsp;
-  <%= link_to('github.com/menadevs',
-              'https://github.com/menadevs',
-              target: '_blank') %>
-</div>
+  <%= link_to(raw("<i class='fa fa-twitter contact-icon'></i>@menadevs") , "https://twitter.com/menadevs", :class => "contact-link", target: "_blank") %>
+
+  <%= link_to(raw("<i class='fa fa-github contact-icon'></i>menadevs") , "https://github.com/menadevs", :class => "contact-link", target: "_blank") %>
