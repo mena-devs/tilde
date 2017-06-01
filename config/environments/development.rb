@@ -30,20 +30,11 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
 
   # Ensure mailer works in development.
-  # config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_url_options = { host: 'localhost',
-  #                                              port: 3000 }
-  # config.action_mailer.asset_host = 'http://localhost:3000'
-
   config.action_mailer.delivery_method = :letter_opener
-  # config.action_mailer.smtp_settings = {
-  #   address: AppSettings.mail_host,
-  #   port: AppSettings.mail_port,
-  #   domain: AppSettings.mail_domain,
-  #   user_name: AppSettings.mail_username,
-  #   password: AppSettings.mail_password
-  # }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { host: 'localhost',
+                                               port: 3000 }
+  config.action_mailer.asset_host = AppSettings.application_host
 
   config.action_mailer.perform_caching = false
 
