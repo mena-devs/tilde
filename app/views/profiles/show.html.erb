@@ -42,13 +42,11 @@
         <tr>
           <th class="col-sm-4">Receive emails from MENA Devs?</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.receive_emails? %>
                 <%= fa_icon("check") %>
-                Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -56,13 +54,11 @@
         <tr>
           <th class="col-sm-4">Receive job alerts?</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.receive_job_alerts %>
                 <%= fa_icon("check") %>
-                Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -70,13 +66,12 @@
         <tr>
           <th class="col-sm-4">Connected via Slack login</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.user.connected_via_slack? %>
                 <%= fa_icon("check") %>
                 Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -84,7 +79,7 @@
         <tr>
           <th class="col-sm-4">Account privacy</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if Profile.privacy_options[@profile.privacy_level] == 0 %>
                 <%= fa_icon("minus-circle") %>
               <% elsif Profile.privacy_options[@profile.privacy_level] == 1 %>
