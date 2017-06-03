@@ -50,7 +50,8 @@
                   checked: @profile.receive_job_alerts %>
 
   <%= f.select "profile[privacy_level]",
-                Profile.privacy_options.keys,
+                Profile.privacy_options,
+                :selected => @profile.privacy_level,
                 label: "Select your profile's privacy level",
                 help: 'Hidden: no one can see your profile. Members only: Only members of menadevs.com can see your profile. Open: Publicly viewable' %>
 
