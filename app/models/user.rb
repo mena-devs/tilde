@@ -67,8 +67,8 @@ class User < ApplicationRecord
     logger.info("Information returned from SLACK API")
     logger.info(auth.inspect)
 
-    if auth['info']['team'].downcase != 'mena developers' &&
-      auth['info']['team_id'] != 'T03B400RJ'
+    if auth['info']['team'].downcase != AppSettings.slack_team_name &&
+      auth['info']['team_id'] != AppSettings.slack_team_id
       return false
     end
 
@@ -87,14 +87,14 @@ class User < ApplicationRecord
     else
       begin
         where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-          user.provider = auth.provider
-          user.uid = auth.uid
-          user.email = auth.info.email
+          user.provider   = auth.provider
+          user.uid        = auth.uid
+          user.email      = auth.info.email
           user.first_name = auth.info.first_name
-          user.last_name = auth.info.last_name
-          user.time_zone = auth.info.time_zone
+          user.last_name  = auth.info.last_name
+          user.time_zone  = auth.info.time_zone
           user.auth_token = auth.credentials.token
-          user.password = Devise.friendly_token[0,20]
+          user.password   = Devise.friendly_token[0,20]
 
           user.build_profile(avatar_from_slack: auth.info.image,
                              biography: auth.info.description)
