@@ -51,7 +51,7 @@ class Profile < ApplicationRecord
   def location_name
     if self.location?
       country = ISO3166::Country[self.location]
-      country.translations[I18n.locale.to_s] || country.name
+      (country.translations[I18n.locale.to_s] || country.name) if country
     else
       'Lebanon'
     end
