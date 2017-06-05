@@ -14,7 +14,7 @@
         <div class="panel-heading">
           Welcome to MENA Devs Community
         </div>
-        <div class="panel-body">
+        <div class="panel-body welcome-panel-body">
           <ul>
             <li>Connect with members of MENA Devs community</li>
             <li>Receive job alerts and announcements via email</li>
@@ -22,18 +22,19 @@
             <li>[Slack group] Share and discuss ideas, articles and tech trends</li>
           </ul>
 
-          <div class="text-center">
-            <div class="btn btn-default">
-              <%= fa_icon("pencil") %>
-              <%= link_to "Update your profile", edit_user_profile_path(current_user) %>
-            </div>
+          <div class="text-left">
+              <%= link_to raw("<i class='fa fa-pencil'></i> Update your profile"),
+                              edit_user_profile_path(current_user),
+                              { :class=> "btn btn-default sign-up-btn custom-btn-1" } %>
           </div>
+
+
         </div>
       <% else %>
         <div class="panel-heading">
           Join MENA Devs Community
         </div>
-        <div class="panel-body">
+        <div class="panel-body welcome-panel-body">
           <ul>
             <li>Connect with members of MENA Devs community</li>
             <li>Receive job alerts and announcements via email</li>
@@ -41,11 +42,10 @@
             <li>[Slack group] Share and discuss ideas, articles and tech trends</li>
           </ul>
 
-          <div class="text-center">
-            <div class="btn btn-default">
-              <%= fa_icon("user-plus") %>
-              <%= link_to "Sign up to join MENA Devs", new_user_registration_path %>
-            </div>
+          <div class="text-left">
+              <%= link_to raw("<i class='fa fa-user-plus'></i> Sign up to join MENA Devs"),
+                              new_user_registration_path,
+                              { :class=> "btn btn-default sign-up-btn custom-btn-1" } %>
           </div>
         </div>
       <% end %>
@@ -56,17 +56,16 @@
       <div class="panel-heading">
         Jobs on MENA Devs
       </div>
-      <div class="panel-body">
+      <div class="panel-body jobs-panel-body">
         <ul>
           <li>Post jobs on menadevs.com, free of charge</li>
           <li>Community members receive job notifications via email and Slack group</li>
           <li>Monitor interest in jobs from community members</li>
         </ul>
-        <div class="text-center">
-          <div class="btn btn-default">
-            <%= fa_icon("briefcase") %>
-            <%= link_to "Post a job now", new_job_path %>
-          </div>
+        <div class="text-left">
+          <%= link_to raw("<i class='fa fa-briefcase'></i> Post a job now"),
+                          new_job_path,
+                          { :class=> "btn btn-default post-job-btn custom-btn-1" } %>
         </div>
       </div>
     </div>

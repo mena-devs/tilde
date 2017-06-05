@@ -3,7 +3,7 @@
   <%= f.alert_message "Please review the problems below:" %>
 
   <%= f.text_field :title %>
-  <%= f.text_area :description, :rows => 5 %>
+  <%= f.text_area :description, :rows => 13 %>
   <%= f.text_field :job_description_location, label: 'URL of job description' %>
   <%= f.text_field :company_name %>
   <div class="form-group">
@@ -12,26 +12,31 @@
                        "location",
                        { include_blank: 'Select' }, {class: 'form-control'}) %>
   </div>
-  <%= f.check_box :remote_ok, label: "Remote ok?" %>
+  <%= f.check_box :remote_ok, label: "Check if the applicant can work remotely" %>
   <%= f.text_field :apply_email, label: "Email to apply" %>
   <%= f.select :job_type, Job.job_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select', selected: nil} %>
   <%= f.select :level, Job.levels.keys.map { |w| [w.humanize, w] }, {label: 'Experience level', include_blank: 'Select', selected: nil} %>
   <div class='row'>
-    <div class="col-md-4">
+
+    <div class="col-md-6">
       <%= f.label :salary, 'Salary range' %>
       <div class="input-group">
         <div class="input-group-addon">$</div>
         <%= f.text_field :salary, hide_label: true, placeholder: "amount per annum" %>
       </div>
-    </div>
-  </div>
-  <br/>
-  <div class='row'>
-    <div class="col-md-3">
+    </div> <!-- salary range -->
+
+    <div class="col-md-6">
       <%= f.select :number_of_openings, [1, 2, 3, 4, 5], label: "Number of positions" %>
-    </div>
+    </div> <!-- nb of positions -->
+
   </div>
 
-  <%= f.primary 'Post job' %>
-  <%= link_to "Back", jobs_path, :class => "btn btn-link" %>
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= link_to raw("<i class='fa fa-caret-left back-icon'></i> Back"), jobs_path, :class => "btn btn-default back-btn" %>
+      <%= f.submit "Post job", :class => "btn custom-btn-1 post-job-btn-1 btn-default pull-right" %>
+    </div>  <!-- /.col-md-12 -->
+  </div>  <!-- /.job-form-buttons -->
+
 <% end %>

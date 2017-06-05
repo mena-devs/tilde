@@ -1,10 +1,7 @@
 <% provide(:title) do %>
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       My profile
-    </div>
-    <div class="col-md-2">
-      <%= link_to "Preview your profile", directory_user_path(current_user), :class => "btn btn-primary" %>
     </div>
   </div>
 <% end %>
@@ -12,8 +9,21 @@
   <div class="col-md-2">
     <%= image_tag(@profile.profile_picture, class: 'img-thumbnail') %>
   </div>
-  <div class="col-md-10">
-    <table class="table">
+  <div class="col-sm-10">
+
+    <div class="row profile-buttons">
+      <div class="col-sm-8">
+        <%= link_to raw("<i class='fa fa-pencil'></i> Edit profile"), edit_user_profile_path(current_user), :class => "btn btn-default custom-btn-1" %>
+        <%= link_to raw("<i class='fa fa-lock'></i> Change password"), new_user_password_path(current_user), :class => "btn btn-danger" %>
+      </div>
+
+      <div class="col-sm-4">
+        <%= link_to raw("<i class='fa fa-user-circle profile-icon'></i> Preview"), directory_user_path(current_user), :class => "btn btn-default custom-btn-1 pull-right" %>
+      </div>
+
+    </div>
+
+    <table class="table table-striped">
       <tbody>
         <tr>
           <th class="col-sm-4">Full Name</th>
@@ -42,13 +52,11 @@
         <tr>
           <th class="col-sm-4">Receive emails from MENA Devs?</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.receive_emails? %>
                 <%= fa_icon("check") %>
-                Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -56,13 +64,11 @@
         <tr>
           <th class="col-sm-4">Receive job alerts?</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.receive_job_alerts %>
                 <%= fa_icon("check") %>
-                Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -70,13 +76,12 @@
         <tr>
           <th class="col-sm-4">Connected via Slack login</th>
           <td>
-            <div class="btn btn-xs btn-default">
+            <div>
               <% if @profile.user.connected_via_slack? %>
                 <%= fa_icon("check") %>
                 Enabled
               <% else %>
                 <%= fa_icon("close") %>
-                Disabled
               <% end %>
             </div>
           </td>
@@ -84,28 +89,20 @@
         <tr>
           <th class="col-sm-4">Account privacy</th>
           <td>
-            <div class="btn btn-xs btn-default">
-              <% if Profile.privacy_options[@profile.privacy_level] == 0 %>
-                <%= fa_icon("minus-circle") %>
-              <% elsif Profile.privacy_options[@profile.privacy_level] == 1 %>
-                <%= fa_icon("adjust") %>
-              <% elsif Profile.privacy_options[@profile.privacy_level] == 2 %>
-                <%= fa_icon("globe") %>
+            <div>
+              <% privacy_level_string =  Profile.privacy_options.key(@profile.privacy_level) %>
+              <% if privacy_level_string == "Hidden" %>
+                <%= fa_icon("minus-circle") + " " + privacy_level_string %>
+              <% elsif privacy_level_string == "Members only" %>
+                <%= fa_icon("adjust") + " " + privacy_level_string %>
+              <% elsif privacy_level_string == "Open" %>
+                <%= fa_icon("globe") + " " + privacy_level_string %>
               <% end %>
-              <%= @profile.privacy_level %>
             </div>
           </td>
         </tr>
       </tbody>
     </table>
 
-    <div class="row">
-      <div class="col-md-4">
-      </div>
-      <div class="col-md-8">
-        <%= link_to "Update profile details & preferences", edit_user_profile_path(current_user), :class => "btn btn-success" %>
-        <%= link_to "Update password", new_user_password_path(current_user), :class => "btn btn-primary" %>
-      </div>
-    </div>
   </div>
 </div>

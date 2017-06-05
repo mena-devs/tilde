@@ -33,7 +33,7 @@ class Profile < ApplicationRecord
   def complete?
     if (user.first_name.nil? &&
         user.last_name.nil? &&
-        location.empty?)
+        @location.blank?)
       return false
     else
       return true
