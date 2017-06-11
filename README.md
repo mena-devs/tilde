@@ -2,6 +2,10 @@
 
 This is a Rails 5 app.
 
+## Staging environment
+
+[https://staging.menadevs.com](https://staging.menadevs.com)
+
 ## Documentation
 
 This README describes the purpose of this repository and how to set up a development environment. Other sources of documentation are as follows:
