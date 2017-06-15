@@ -101,6 +101,14 @@
             </div>
           </td>
         </tr>
+        <tr>
+          <th class="col-sm-4">Skills</th>
+          <td><% @profile.skill_list.each do |tag| %>
+            <%= link_to tag, "#", class: "btn btn-default tag-btn" %>
+            <% end %>
+
+          </td>
+        </tr>
       </tbody>
     </table>
 

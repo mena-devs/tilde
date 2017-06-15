@@ -18,6 +18,39 @@
                    label: "Nickname",
                    help: "Unique. Reserved for future use on menadevs.com" %>
 
+
+
+<label>Skills</label>
+<select id="skill_list" name="skill_list[]" class="skills-input" class="js-example-basic-single" multiple="multiple">
+
+  User.where(weekly_subscriber: true).find_each do |user|
+    NewsMailer.weekly(user).deliver_now
+  end
+
+
+  <% Tag.where(is_approved: true).find_each do |skill| %>
+    <option value="<%= skill.name %>"><%= skill.name %></option>
+  <% end %>
+</select>
+<span class="help-block skills-help">Note: if a skill doesn't exist in the list, manually type it and press enter.</span>
+
+<script type="text/javascript">
+  $("document").ready(function() {
+     // show current user skills in the skills box
+     var currentUserSkills = [];
+     <% @profile.skill_list.each do |skill| %>
+       currentUserSkills.push("<%= skill %>");
+     <% end %>
+     $(".skills-input").val(currentUserSkills).trigger("change");
+  });
+
+</script>
+
+
+
+
+
+
   <%= f.text_area "profile[biography]",
                   rows: 5,
                   value: @profile.biography,

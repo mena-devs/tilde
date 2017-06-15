@@ -24,6 +24,8 @@
 #
 
 class Profile < ApplicationRecord
+  acts_as_taggable_on :skills
+
   belongs_to :user
 
   validates :nickname, uniqueness: {scope: :user_id, allow_blank: true}
