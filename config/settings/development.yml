@@ -14,3 +14,6 @@ mail_username: ''
 mail_password: ''
 app_email: ''
 admin_email: ''
+
+developers_emails:
+  - email@example.com

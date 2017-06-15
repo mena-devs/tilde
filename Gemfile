@@ -35,6 +35,7 @@ gem 'slack-notifier'
 gem 'turbolinks', '~> 5'
 
 group :production, :staging do
+  gem 'exception_notification'
   gem 'postmark-rails'
   gem 'unicorn'
   gem 'unicorn-worker-killer'

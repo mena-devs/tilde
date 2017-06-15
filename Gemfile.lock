@@ -151,6 +151,9 @@ GEM
       http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
     eventmachine (1.2.3)
+    exception_notification (4.2.1)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
@@ -466,6 +469,7 @@ DEPENDENCIES
   country_select
   devise
   dotenv-rails (>= 2.0.0)
+  exception_notification
   font-awesome-rails
   friendly_id (~> 5.1.0)
   gibbon
@@ -515,4 +519,4 @@ DEPENDENCIES
   xray-rails (>= 0.1.18)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
