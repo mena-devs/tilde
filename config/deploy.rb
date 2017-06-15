@@ -1,5 +1,5 @@
 set :application, "menadevs"
-set :repo_url, "git@bitbucket.org:menadevs/menadevs.git"
+set :repo_url, "git@github.com:mena-devs/tilde.git"
 
 # Project-specific overrides go here.
 # For list of variables that can be customized, see:
