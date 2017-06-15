@@ -7,4 +7,13 @@ $("document").ready(function() {
         return false;
     }
    })
+
+
+   $(".skills-input").select2({
+    theme: "bootstrap",
+    tags: true,
+    tokenSeparators: [',']
+});
+
+
 });

@@ -29,6 +29,11 @@ class ProfilesController < ApplicationController
   def update
     user_params = profile_params["user"]
     profile_data = profile_params.reject {|k,v| k == "user"}
+
+    # add the skills 'tags' to the profile data
+    profile_data.merge!(skill_list: params[:skill_list].join(","))
+
+    # update profile + user info
     if @profile.update(profile_data) && @profile.user.update(user_params)
       redirect_to user_profile_path(current_user), notice: 'Your profile was successfully updated.'
     else
@@ -54,7 +59,7 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:biography, :location, :receive_emails,
                                       :receive_job_alerts, :privacy_level,
-                                      :nickname,
+                                      :nickname, :skill_list,
                                       user: [:time_zone, :first_name, :last_name])
     end
 end

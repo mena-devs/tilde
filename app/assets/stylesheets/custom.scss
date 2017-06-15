@@ -37,6 +37,14 @@ label.required:after {
     min-width: 160px;
 }
 
+.tag-btn {
+    min-width: 70px;
+    height:24px;
+    padding:2px 6px;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
 .custom-btn-1:hover {
    background-color: $darker-logo-color;
    color: #EEEEEE;
@@ -78,4 +86,12 @@ label.required:after {
   display: block;
   font-size: 16px;
   margin-bottom: 10px;
+}
+
+.skills-input {
+  width:100%;
+}
+
+.skills-help {
+  margin-bottom: 20px;
 }
