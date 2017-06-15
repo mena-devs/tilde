@@ -17,3 +17,5 @@ admin_email: ''
 
 developers_emails:
   - email@example.com
+
+sender_email: email@example.com
