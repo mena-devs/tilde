@@ -113,6 +113,6 @@ Rails.application.configure do
   :email => {
     :email_prefix => "[#{Rails.env}] ",
     :sender_address => %{"notifier" <#{AppSettings.developers_emails}>},
-    :exception_recipients => %w{AppSettings.developers_emails}
+    :exception_recipients => AppSettings.developers_emails.join(', ')
   }
 end
