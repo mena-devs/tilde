@@ -68,710 +68,714 @@
 
 
 # add skills
-Tag.create(name: "A# .NET", is_approved: true)
-Tag.create(name: "A# (Axiom)", is_approved: true)
-Tag.create(name: "A-0 System", is_approved: true)
-Tag.create(name: "A+", is_approved: true)
-Tag.create(name: "A++", is_approved: true)
-Tag.create(name: "ABAP", is_approved: true)
-Tag.create(name: "ABC", is_approved: true)
-Tag.create(name: "ABC ALGOL", is_approved: true)
-Tag.create(name: "ABLE", is_approved: true)
-Tag.create(name: "ABSET", is_approved: true)
-Tag.create(name: "ABSYS", is_approved: true)
-Tag.create(name: "ACC", is_approved: true)
-Tag.create(name: "Accent", is_approved: true)
-Tag.create(name: "Ace DASL", is_approved: true)
-Tag.create(name: "ACL2", is_approved: true)
-Tag.create(name: "ACT-III", is_approved: true)
-Tag.create(name: "Action!", is_approved: true)
-Tag.create(name: "ActionScript", is_approved: true)
-Tag.create(name: "Ada", is_approved: true)
-Tag.create(name: "Adenine", is_approved: true)
-Tag.create(name: "Agda", is_approved: true)
-Tag.create(name: "Agilent VEE", is_approved: true)
-Tag.create(name: "Agora", is_approved: true)
-Tag.create(name: "AIMMS", is_approved: true)
-Tag.create(name: "Alef", is_approved: true)
-Tag.create(name: "ALF", is_approved: true)
-Tag.create(name: "ALGOL 58", is_approved: true)
-Tag.create(name: "ALGOL 60", is_approved: true)
-Tag.create(name: "ALGOL 68", is_approved: true)
-Tag.create(name: "ALGOL W", is_approved: true)
-Tag.create(name: "Alice", is_approved: true)
-Tag.create(name: "Alma-0", is_approved: true)
-Tag.create(name: "AmbientTalk", is_approved: true)
-Tag.create(name: "Amiga E", is_approved: true)
-Tag.create(name: "AMOS", is_approved: true)
-Tag.create(name: "AMPL", is_approved: true)
-Tag.create(name: "APL", is_approved: true)
-Tag.create(name: "App Inventor for Android's visual block language", is_approved: true)
-Tag.create(name: "AppleScript", is_approved: true)
-Tag.create(name: "Arc", is_approved: true)
-Tag.create(name: "ARexx", is_approved: true)
-Tag.create(name: "Argus", is_approved: true)
-Tag.create(name: "AspectJ", is_approved: true)
-Tag.create(name: "Assembly language", is_approved: true)
-Tag.create(name: "ATS", is_approved: true)
-Tag.create(name: "Ateji PX", is_approved: true)
-Tag.create(name: "AutoHotkey", is_approved: true)
-Tag.create(name: "Autocoder", is_approved: true)
-Tag.create(name: "AutoIt", is_approved: true)
-Tag.create(name: "AutoLISP / Visual LISP", is_approved: true)
-Tag.create(name: "Averest", is_approved: true)
-Tag.create(name: "AWK", is_approved: true)
-Tag.create(name: "Axum", is_approved: true)
-Tag.create(name: "B", is_approved: true)
-Tag.create(name: "Babbage", is_approved: true)
-Tag.create(name: "Bash", is_approved: true)
-Tag.create(name: "BASIC", is_approved: true)
-Tag.create(name: "bc", is_approved: true)
-Tag.create(name: "BCPL", is_approved: true)
-Tag.create(name: "BeanShell", is_approved: true)
-Tag.create(name: "Batch (Windows/Dos)", is_approved: true)
-Tag.create(name: "Bertrand", is_approved: true)
-Tag.create(name: "BETA", is_approved: true)
-Tag.create(name: "Bigwig", is_approved: true)
-Tag.create(name: "Bistro", is_approved: true)
-Tag.create(name: "BitC", is_approved: true)
-Tag.create(name: "BLISS", is_approved: true)
-Tag.create(name: "Blue", is_approved: true)
-Tag.create(name: "Bon", is_approved: true)
-Tag.create(name: "Boo", is_approved: true)
-Tag.create(name: "Boomerang", is_approved: true)
-Tag.create(name: "Bourne shell", is_approved: true)
-Tag.create(name: "bash", is_approved: true)
-Tag.create(name: "ksh", is_approved: true)
-Tag.create(name: "BREW", is_approved: true)
-Tag.create(name: "BPEL", is_approved: true)
-Tag.create(name: "C", is_approved: true)
-Tag.create(name: "C--", is_approved: true)
-Tag.create(name: "C++", is_approved: true)
-Tag.create(name: "C#", is_approved: true)
-Tag.create(name: "C/AL", is_approved: true)
-Tag.create(name: "Caché ObjectScript", is_approved: true)
-Tag.create(name: "C Shell", is_approved: true)
-Tag.create(name: "Caml", is_approved: true)
-Tag.create(name: "Candle", is_approved: true)
-Tag.create(name: "Cayenne", is_approved: true)
-Tag.create(name: "CDuce", is_approved: true)
-Tag.create(name: "Cecil", is_approved: true)
-Tag.create(name: "Cel", is_approved: true)
-Tag.create(name: "Cesil", is_approved: true)
-Tag.create(name: "Ceylon", is_approved: true)
-Tag.create(name: "CFEngine", is_approved: true)
-Tag.create(name: "CFML", is_approved: true)
-Tag.create(name: "Cg", is_approved: true)
-Tag.create(name: "Ch", is_approved: true)
-Tag.create(name: "Chapel", is_approved: true)
-Tag.create(name: "CHAIN", is_approved: true)
-Tag.create(name: "Charity", is_approved: true)
-Tag.create(name: "Charm", is_approved: true)
-Tag.create(name: "Chef", is_approved: true)
-Tag.create(name: "CHILL", is_approved: true)
-Tag.create(name: "CHIP-8", is_approved: true)
-Tag.create(name: "chomski", is_approved: true)
-Tag.create(name: "ChucK", is_approved: true)
-Tag.create(name: "CICS", is_approved: true)
-Tag.create(name: "Cilk", is_approved: true)
-Tag.create(name: "CL", is_approved: true)
-Tag.create(name: "Claire", is_approved: true)
-Tag.create(name: "Clarion", is_approved: true)
-Tag.create(name: "Clean", is_approved: true)
-Tag.create(name: "Clipper", is_approved: true)
-Tag.create(name: "CLIST", is_approved: true)
-Tag.create(name: "Clojure", is_approved: true)
-Tag.create(name: "CLU", is_approved: true)
-Tag.create(name: "CMS-2", is_approved: true)
-Tag.create(name: "COBOL", is_approved: true)
-Tag.create(name: "Cobra", is_approved: true)
-Tag.create(name: "CODE", is_approved: true)
-Tag.create(name: "CoffeeScript", is_approved: true)
-Tag.create(name: "Cola", is_approved: true)
-Tag.create(name: "ColdC", is_approved: true)
-Tag.create(name: "ColdFusion", is_approved: true)
-Tag.create(name: "COMAL", is_approved: true)
-Tag.create(name: "Combined Programming Language", is_approved: true)
-Tag.create(name: "COMIT", is_approved: true)
-Tag.create(name: "Common Intermediate Language", is_approved: true)
-Tag.create(name: "Common Lisp", is_approved: true)
-Tag.create(name: "COMPASS", is_approved: true)
-Tag.create(name: "Component Pascal", is_approved: true)
-Tag.create(name: "Constraint Handling Rules", is_approved: true)
-Tag.create(name: "Converge", is_approved: true)
-Tag.create(name: "Cool", is_approved: true)
-Tag.create(name: "Coq", is_approved: true)
-Tag.create(name: "Coral 66", is_approved: true)
-Tag.create(name: "Corn", is_approved: true)
-Tag.create(name: "CorVision", is_approved: true)
-Tag.create(name: "COWSEL", is_approved: true)
-Tag.create(name: "CPL", is_approved: true)
-Tag.create(name: "csh", is_approved: true)
-Tag.create(name: "CSP", is_approved: true)
-Tag.create(name: "Csound", is_approved: true)
-Tag.create(name: "CUDA", is_approved: true)
-Tag.create(name: "Curl", is_approved: true)
-Tag.create(name: "Curry", is_approved: true)
-Tag.create(name: "Cyclone", is_approved: true)
-Tag.create(name: "Cython", is_approved: true)
-Tag.create(name: "D", is_approved: true)
-Tag.create(name: "DASL", is_approved: true)
-Tag.create(name: "Dart", is_approved: true)
-Tag.create(name: "DataFlex", is_approved: true)
-Tag.create(name: "Datalog", is_approved: true)
-Tag.create(name: "DATATRIEVE", is_approved: true)
-Tag.create(name: "dBase", is_approved: true)
-Tag.create(name: "dc", is_approved: true)
-Tag.create(name: "Deesel", is_approved: true)
-Tag.create(name: "Delphi", is_approved: true)
-Tag.create(name: "DCL", is_approved: true)
-Tag.create(name: "DinkC", is_approved: true)
-Tag.create(name: "DIBOL", is_approved: true)
-Tag.create(name: "Dog", is_approved: true)
-Tag.create(name: "Draco", is_approved: true)
-Tag.create(name: "DRAKON", is_approved: true)
-Tag.create(name: "Dylan", is_approved: true)
-Tag.create(name: "DYNAMO", is_approved: true)
-Tag.create(name: "E", is_approved: true)
-Tag.create(name: "E#", is_approved: true)
-Tag.create(name: "Ease", is_approved: true)
-Tag.create(name: "Easy PL/I", is_approved: true)
-Tag.create(name: "Easy Programming Language", is_approved: true)
-Tag.create(name: "EASYTRIEVE PLUS", is_approved: true)
-Tag.create(name: "ECMAScript", is_approved: true)
-Tag.create(name: "Edinburgh IMP", is_approved: true)
-Tag.create(name: "EGL", is_approved: true)
-Tag.create(name: "Eiffel", is_approved: true)
-Tag.create(name: "ELAN", is_approved: true)
-Tag.create(name: "Elixir", is_approved: true)
-Tag.create(name: "Elm", is_approved: true)
-Tag.create(name: "Emacs Lisp", is_approved: true)
-Tag.create(name: "Emerald", is_approved: true)
-Tag.create(name: "Epigram", is_approved: true)
-Tag.create(name: "EPL", is_approved: true)
-Tag.create(name: "Erlang", is_approved: true)
-Tag.create(name: "es", is_approved: true)
-Tag.create(name: "Escapade", is_approved: true)
-Tag.create(name: "Escher", is_approved: true)
-Tag.create(name: "ESPOL", is_approved: true)
-Tag.create(name: "Esterel", is_approved: true)
-Tag.create(name: "Etoys", is_approved: true)
-Tag.create(name: "Euclid", is_approved: true)
-Tag.create(name: "Euler", is_approved: true)
-Tag.create(name: "Euphoria", is_approved: true)
-Tag.create(name: "EusLisp Robot Programming Language", is_approved: true)
-Tag.create(name: "CMS EXEC", is_approved: true)
-Tag.create(name: "EXEC 2", is_approved: true)
-Tag.create(name: "Executable UML", is_approved: true)
-Tag.create(name: "F", is_approved: true)
-Tag.create(name: "F#", is_approved: true)
-Tag.create(name: "Factor", is_approved: true)
-Tag.create(name: "Falcon", is_approved: true)
-Tag.create(name: "Fancy", is_approved: true)
-Tag.create(name: "Fantom", is_approved: true)
-Tag.create(name: "FAUST", is_approved: true)
-Tag.create(name: "Felix", is_approved: true)
-Tag.create(name: "Ferite", is_approved: true)
-Tag.create(name: "FFP", is_approved: true)
-Tag.create(name: "Fjölnir", is_approved: true)
-Tag.create(name: "FL", is_approved: true)
-Tag.create(name: "Flavors", is_approved: true)
-Tag.create(name: "Flex", is_approved: true)
-Tag.create(name: "FLOW-MATIC", is_approved: true)
-Tag.create(name: "FOCAL", is_approved: true)
-Tag.create(name: "FOCUS", is_approved: true)
-Tag.create(name: "FOIL", is_approved: true)
-Tag.create(name: "FORMAC", is_approved: true)
-Tag.create(name: "@Formula", is_approved: true)
-Tag.create(name: "Forth", is_approved: true)
-Tag.create(name: "Fortran", is_approved: true)
-Tag.create(name: "Fortress", is_approved: true)
-Tag.create(name: "FoxBase", is_approved: true)
-Tag.create(name: "FoxPro", is_approved: true)
-Tag.create(name: "FP", is_approved: true)
-Tag.create(name: "FPr", is_approved: true)
-Tag.create(name: "Franz Lisp", is_approved: true)
-Tag.create(name: "F-Script", is_approved: true)
-Tag.create(name: "FSProg", is_approved: true)
-Tag.create(name: "G", is_approved: true)
-Tag.create(name: "Google Apps Script", is_approved: true)
-Tag.create(name: "Game Maker Language", is_approved: true)
-Tag.create(name: "GameMonkey Script", is_approved: true)
-Tag.create(name: "GAMS", is_approved: true)
-Tag.create(name: "GAP", is_approved: true)
-Tag.create(name: "G-code", is_approved: true)
-Tag.create(name: "Genie", is_approved: true)
-Tag.create(name: "GDL", is_approved: true)
-Tag.create(name: "Gibiane", is_approved: true)
-Tag.create(name: "GJ", is_approved: true)
-Tag.create(name: "GEORGE", is_approved: true)
-Tag.create(name: "GLSL", is_approved: true)
-Tag.create(name: "GNU E", is_approved: true)
-Tag.create(name: "GM", is_approved: true)
-Tag.create(name: "Go", is_approved: true)
-Tag.create(name: "Go!", is_approved: true)
-Tag.create(name: "GOAL", is_approved: true)
-Tag.create(name: "Gödel", is_approved: true)
-Tag.create(name: "Godiva", is_approved: true)
-Tag.create(name: "GOM (Good Old Mad)", is_approved: true)
-Tag.create(name: "Goo", is_approved: true)
-Tag.create(name: "Gosu", is_approved: true)
-Tag.create(name: "GOTRAN", is_approved: true)
-Tag.create(name: "GPSS", is_approved: true)
-Tag.create(name: "GraphTalk", is_approved: true)
-Tag.create(name: "GRASS", is_approved: true)
-Tag.create(name: "Groovy", is_approved: true)
-Tag.create(name: "Hack (programming language)", is_approved: true)
-Tag.create(name: "HAL/S", is_approved: true)
-Tag.create(name: "Hamilton C shell", is_approved: true)
-Tag.create(name: "Harbour", is_approved: true)
-Tag.create(name: "Hartmann pipelines", is_approved: true)
-Tag.create(name: "Haskell", is_approved: true)
-Tag.create(name: "Haxe", is_approved: true)
-Tag.create(name: "High Level Assembly", is_approved: true)
-Tag.create(name: "HLSL", is_approved: true)
-Tag.create(name: "Hop", is_approved: true)
-Tag.create(name: "Hope", is_approved: true)
-Tag.create(name: "Hugo", is_approved: true)
-Tag.create(name: "Hume", is_approved: true)
-Tag.create(name: "HyperTalk", is_approved: true)
-Tag.create(name: "IBM Basic assembly language", is_approved: true)
-Tag.create(name: "IBM HAScript", is_approved: true)
-Tag.create(name: "IBM Informix-4GL", is_approved: true)
-Tag.create(name: "IBM RPG", is_approved: true)
-Tag.create(name: "ICI", is_approved: true)
-Tag.create(name: "Icon", is_approved: true)
-Tag.create(name: "Id", is_approved: true)
-Tag.create(name: "IDL", is_approved: true)
-Tag.create(name: "Idris", is_approved: true)
-Tag.create(name: "IMP", is_approved: true)
-Tag.create(name: "Inform", is_approved: true)
-Tag.create(name: "Io", is_approved: true)
-Tag.create(name: "Ioke", is_approved: true)
-Tag.create(name: "IPL", is_approved: true)
-Tag.create(name: "IPTSCRAE", is_approved: true)
-Tag.create(name: "ISLISP", is_approved: true)
-Tag.create(name: "ISPF", is_approved: true)
-Tag.create(name: "ISWIM", is_approved: true)
-Tag.create(name: "J", is_approved: true)
-Tag.create(name: "J#", is_approved: true)
-Tag.create(name: "J++", is_approved: true)
-Tag.create(name: "JADE", is_approved: true)
-Tag.create(name: "Jako", is_approved: true)
-Tag.create(name: "JAL", is_approved: true)
-Tag.create(name: "Janus", is_approved: true)
-Tag.create(name: "JASS", is_approved: true)
-Tag.create(name: "Java", is_approved: true)
-Tag.create(name: "JavaScript", is_approved: true)
-Tag.create(name: "JCL", is_approved: true)
-Tag.create(name: "JEAN", is_approved: true)
-Tag.create(name: "Join Java", is_approved: true)
-Tag.create(name: "JOSS", is_approved: true)
-Tag.create(name: "Joule", is_approved: true)
-Tag.create(name: "JOVIAL", is_approved: true)
-Tag.create(name: "Joy", is_approved: true)
-Tag.create(name: "JScript", is_approved: true)
-Tag.create(name: "JScript .NET", is_approved: true)
-Tag.create(name: "JavaFX Script", is_approved: true)
-Tag.create(name: "Julia", is_approved: true)
-Tag.create(name: "Jython", is_approved: true)
-Tag.create(name: "K", is_approved: true)
-Tag.create(name: "Kaleidoscope", is_approved: true)
-Tag.create(name: "Karel", is_approved: true)
-Tag.create(name: "Karel++", is_approved: true)
-Tag.create(name: "KEE", is_approved: true)
-Tag.create(name: "Kixtart", is_approved: true)
-Tag.create(name: "KIF", is_approved: true)
-Tag.create(name: "Kojo", is_approved: true)
-Tag.create(name: "Kotlin", is_approved: true)
-Tag.create(name: "KRC", is_approved: true)
-Tag.create(name: "KRL", is_approved: true)
-Tag.create(name: "KUKA", is_approved: true)
-Tag.create(name: "KRYPTON", is_approved: true)
-Tag.create(name: "L", is_approved: true)
-Tag.create(name: "L# .NET", is_approved: true)
-Tag.create(name: "LabVIEW", is_approved: true)
-Tag.create(name: "Ladder", is_approved: true)
-Tag.create(name: "Lagoona", is_approved: true)
-Tag.create(name: "LANSA", is_approved: true)
-Tag.create(name: "Lasso", is_approved: true)
-Tag.create(name: "LaTeX", is_approved: true)
-Tag.create(name: "Lava", is_approved: true)
-Tag.create(name: "LC-3", is_approved: true)
-Tag.create(name: "Leda", is_approved: true)
-Tag.create(name: "Legoscript", is_approved: true)
-Tag.create(name: "LIL", is_approved: true)
-Tag.create(name: "LilyPond", is_approved: true)
-Tag.create(name: "Limbo", is_approved: true)
-Tag.create(name: "Limnor", is_approved: true)
-Tag.create(name: "LINC", is_approved: true)
-Tag.create(name: "Lingo", is_approved: true)
-Tag.create(name: "Linoleum", is_approved: true)
-Tag.create(name: "LIS", is_approved: true)
-Tag.create(name: "LISA", is_approved: true)
-Tag.create(name: "Lisaac", is_approved: true)
-Tag.create(name: "Lisp", is_approved: true)
-Tag.create(name: "Lite-C", is_approved: true)
-Tag.create(name: "Lithe", is_approved: true)
-Tag.create(name: "Little b", is_approved: true)
-Tag.create(name: "Logo", is_approved: true)
-Tag.create(name: "Logtalk", is_approved: true)
-Tag.create(name: "LPC", is_approved: true)
-Tag.create(name: "LSE", is_approved: true)
-Tag.create(name: "LSL", is_approved: true)
-Tag.create(name: "LiveCode", is_approved: true)
-Tag.create(name: "LiveScript", is_approved: true)
-Tag.create(name: "Lua", is_approved: true)
-Tag.create(name: "Lucid", is_approved: true)
-Tag.create(name: "Lustre", is_approved: true)
-Tag.create(name: "LYaPAS", is_approved: true)
-Tag.create(name: "Lynx", is_approved: true)
-Tag.create(name: "M2001", is_approved: true)
-Tag.create(name: "M4", is_approved: true)
-Tag.create(name: "Machine code", is_approved: true)
-Tag.create(name: "MAD", is_approved: true)
-Tag.create(name: "MAD/I", is_approved: true)
-Tag.create(name: "Magik", is_approved: true)
-Tag.create(name: "Magma", is_approved: true)
-Tag.create(name: "make", is_approved: true)
-Tag.create(name: "Maple", is_approved: true)
-Tag.create(name: "MAPPER", is_approved: true)
-Tag.create(name: "MARK-IV", is_approved: true)
-Tag.create(name: "Mary", is_approved: true)
-Tag.create(name: "MASM Microsoft Assembly x86", is_approved: true)
-Tag.create(name: "Mathematica", is_approved: true)
-Tag.create(name: "MATLAB", is_approved: true)
-Tag.create(name: "Maxima", is_approved: true)
-Tag.create(name: "Macsyma", is_approved: true)
-Tag.create(name: "Max", is_approved: true)
-Tag.create(name: "MaxScript", is_approved: true)
-Tag.create(name: "Maya (MEL)", is_approved: true)
-Tag.create(name: "MDL", is_approved: true)
-Tag.create(name: "Mercury", is_approved: true)
-Tag.create(name: "Mesa", is_approved: true)
-Tag.create(name: "Metacard", is_approved: true)
-Tag.create(name: "Metafont", is_approved: true)
-Tag.create(name: "MetaL", is_approved: true)
-Tag.create(name: "Microcode", is_approved: true)
-Tag.create(name: "MicroScript", is_approved: true)
-Tag.create(name: "MIIS", is_approved: true)
-Tag.create(name: "MillScript", is_approved: true)
-Tag.create(name: "MIMIC", is_approved: true)
-Tag.create(name: "Mirah", is_approved: true)
-Tag.create(name: "Miranda", is_approved: true)
-Tag.create(name: "MIVA Script", is_approved: true)
-Tag.create(name: "ML", is_approved: true)
-Tag.create(name: "Moby", is_approved: true)
-Tag.create(name: "Model 204", is_approved: true)
-Tag.create(name: "Modelica", is_approved: true)
-Tag.create(name: "Modula", is_approved: true)
-Tag.create(name: "Modula-2", is_approved: true)
-Tag.create(name: "Modula-3", is_approved: true)
-Tag.create(name: "Mohol", is_approved: true)
-Tag.create(name: "MOO", is_approved: true)
-Tag.create(name: "Mortran", is_approved: true)
-Tag.create(name: "Mouse", is_approved: true)
-Tag.create(name: "MPD", is_approved: true)
-Tag.create(name: "CIL", is_approved: true)
-Tag.create(name: "MSL", is_approved: true)
-Tag.create(name: "MUMPS", is_approved: true)
-Tag.create(name: "NASM", is_approved: true)
-Tag.create(name: "NATURAL", is_approved: true)
-Tag.create(name: "Napier88", is_approved: true)
-Tag.create(name: "Neko", is_approved: true)
-Tag.create(name: "Nemerle", is_approved: true)
-Tag.create(name: "nesC", is_approved: true)
-Tag.create(name: "NESL", is_approved: true)
-Tag.create(name: "Net.Data", is_approved: true)
-Tag.create(name: "NetLogo", is_approved: true)
-Tag.create(name: "NetRexx", is_approved: true)
-Tag.create(name: "NewLISP", is_approved: true)
-Tag.create(name: "NEWP", is_approved: true)
-Tag.create(name: "Newspeak", is_approved: true)
-Tag.create(name: "NewtonScript", is_approved: true)
-Tag.create(name: "NGL", is_approved: true)
-Tag.create(name: "Nial", is_approved: true)
-Tag.create(name: "Nice", is_approved: true)
-Tag.create(name: "Nickle", is_approved: true)
-Tag.create(name: "NPL", is_approved: true)
-Tag.create(name: "Not eXactly C", is_approved: true)
-Tag.create(name: "Not Quite C", is_approved: true)
-Tag.create(name: "NSIS", is_approved: true)
-Tag.create(name: "Nu", is_approved: true)
-Tag.create(name: "NWScript", is_approved: true)
-Tag.create(name: "NXT-G", is_approved: true)
-Tag.create(name: "o:XML", is_approved: true)
-Tag.create(name: "Oak", is_approved: true)
-Tag.create(name: "Oberon", is_approved: true)
-Tag.create(name: "Obix", is_approved: true)
-Tag.create(name: "OBJ2", is_approved: true)
-Tag.create(name: "Object Lisp", is_approved: true)
-Tag.create(name: "ObjectLOGO", is_approved: true)
-Tag.create(name: "Object REXX", is_approved: true)
-Tag.create(name: "Object Pascal", is_approved: true)
-Tag.create(name: "Objective-C", is_approved: true)
-Tag.create(name: "Objective-J", is_approved: true)
-Tag.create(name: "Obliq", is_approved: true)
-Tag.create(name: "Obol", is_approved: true)
-Tag.create(name: "OCaml", is_approved: true)
-Tag.create(name: "occam", is_approved: true)
-Tag.create(name: "occam-π", is_approved: true)
-Tag.create(name: "Octave", is_approved: true)
-Tag.create(name: "OmniMark", is_approved: true)
-Tag.create(name: "Onyx", is_approved: true)
-Tag.create(name: "Opa", is_approved: true)
-Tag.create(name: "Opal", is_approved: true)
-Tag.create(name: "OpenCL", is_approved: true)
-Tag.create(name: "OpenEdge ABL", is_approved: true)
-Tag.create(name: "OPL", is_approved: true)
-Tag.create(name: "OPS5", is_approved: true)
-Tag.create(name: "OptimJ", is_approved: true)
-Tag.create(name: "Orc", is_approved: true)
-Tag.create(name: "ORCA/Modula-2", is_approved: true)
-Tag.create(name: "Oriel", is_approved: true)
-Tag.create(name: "Orwell", is_approved: true)
-Tag.create(name: "Oxygene", is_approved: true)
-Tag.create(name: "Oz", is_approved: true)
-Tag.create(name: "P#", is_approved: true)
-Tag.create(name: "ParaSail (programming language)", is_approved: true)
-Tag.create(name: "PARI/GP", is_approved: true)
-Tag.create(name: "Pascal", is_approved: true)
-Tag.create(name: "Pawn", is_approved: true)
-Tag.create(name: "PCASTL", is_approved: true)
-Tag.create(name: "PCF", is_approved: true)
-Tag.create(name: "PEARL", is_approved: true)
-Tag.create(name: "PeopleCode", is_approved: true)
-Tag.create(name: "Perl", is_approved: true)
-Tag.create(name: "PDL", is_approved: true)
-Tag.create(name: "PHP", is_approved: true)
-Tag.create(name: "Phrogram", is_approved: true)
-Tag.create(name: "Pico", is_approved: true)
-Tag.create(name: "Picolisp", is_approved: true)
-Tag.create(name: "Pict", is_approved: true)
-Tag.create(name: "Pike", is_approved: true)
-Tag.create(name: "PIKT", is_approved: true)
-Tag.create(name: "PILOT", is_approved: true)
-Tag.create(name: "Pipelines", is_approved: true)
-Tag.create(name: "Pizza", is_approved: true)
-Tag.create(name: "PL-11", is_approved: true)
-Tag.create(name: "PL/0", is_approved: true)
-Tag.create(name: "PL/B", is_approved: true)
-Tag.create(name: "PL/C", is_approved: true)
-Tag.create(name: "PL/I", is_approved: true)
-Tag.create(name: "PL/M", is_approved: true)
-Tag.create(name: "PL/P", is_approved: true)
-Tag.create(name: "PL/SQL", is_approved: true)
-Tag.create(name: "PL360", is_approved: true)
-Tag.create(name: "PLANC", is_approved: true)
-Tag.create(name: "Plankalkül", is_approved: true)
-Tag.create(name: "Planner", is_approved: true)
-Tag.create(name: "PLEX", is_approved: true)
-Tag.create(name: "PLEXIL", is_approved: true)
-Tag.create(name: "Plus", is_approved: true)
-Tag.create(name: "POP-11", is_approved: true)
-Tag.create(name: "PostScript", is_approved: true)
-Tag.create(name: "PortablE", is_approved: true)
-Tag.create(name: "Powerhouse", is_approved: true)
-Tag.create(name: "PowerBuilder", is_approved: true)
-Tag.create(name: "PowerShell", is_approved: true)
-Tag.create(name: "PPL", is_approved: true)
-Tag.create(name: "Processing", is_approved: true)
-Tag.create(name: "Processing.js", is_approved: true)
-Tag.create(name: "Prograph", is_approved: true)
-Tag.create(name: "PROIV", is_approved: true)
-Tag.create(name: "Prolog", is_approved: true)
-Tag.create(name: "PROMAL", is_approved: true)
-Tag.create(name: "Promela", is_approved: true)
-Tag.create(name: "PROSE modeling language", is_approved: true)
-Tag.create(name: "PROTEL", is_approved: true)
-Tag.create(name: "ProvideX", is_approved: true)
-Tag.create(name: "Pro*C", is_approved: true)
-Tag.create(name: "Pure", is_approved: true)
-Tag.create(name: "Python", is_approved: true)
-Tag.create(name: "Q (equational programming language)", is_approved: true)
-Tag.create(name: "Q (programming language from Kx Systems)", is_approved: true)
-Tag.create(name: "Qalb", is_approved: true)
-Tag.create(name: "Qi", is_approved: true)
-Tag.create(name: "QtScript", is_approved: true)
-Tag.create(name: "QuakeC", is_approved: true)
-Tag.create(name: "QPL", is_approved: true)
-Tag.create(name: "R", is_approved: true)
-Tag.create(name: "R++", is_approved: true)
-Tag.create(name: "Racket", is_approved: true)
-Tag.create(name: "RAPID", is_approved: true)
-Tag.create(name: "Rapira", is_approved: true)
-Tag.create(name: "Ratfiv", is_approved: true)
-Tag.create(name: "Ratfor", is_approved: true)
-Tag.create(name: "rc", is_approved: true)
-Tag.create(name: "REBOL", is_approved: true)
-Tag.create(name: "Red", is_approved: true)
-Tag.create(name: "Redcode", is_approved: true)
-Tag.create(name: "REFAL", is_approved: true)
-Tag.create(name: "Reia", is_approved: true)
-Tag.create(name: "Revolution", is_approved: true)
-Tag.create(name: "rex", is_approved: true)
-Tag.create(name: "REXX", is_approved: true)
-Tag.create(name: "Rlab", is_approved: true)
-Tag.create(name: "RobotC", is_approved: true)
-Tag.create(name: "ROOP", is_approved: true)
-Tag.create(name: "RPG", is_approved: true)
-Tag.create(name: "RPL", is_approved: true)
-Tag.create(name: "RSL", is_approved: true)
-Tag.create(name: "RTL/2", is_approved: true)
-Tag.create(name: "Ruby", is_approved: true)
-Tag.create(name: "RuneScript", is_approved: true)
-Tag.create(name: "Rust", is_approved: true)
-Tag.create(name: "S", is_approved: true)
-Tag.create(name: "S2", is_approved: true)
-Tag.create(name: "S3", is_approved: true)
-Tag.create(name: "S-Lang", is_approved: true)
-Tag.create(name: "S-PLUS", is_approved: true)
-Tag.create(name: "SA-C", is_approved: true)
-Tag.create(name: "SabreTalk", is_approved: true)
-Tag.create(name: "SAIL", is_approved: true)
-Tag.create(name: "SALSA", is_approved: true)
-Tag.create(name: "SAM76", is_approved: true)
-Tag.create(name: "SAS", is_approved: true)
-Tag.create(name: "SASL", is_approved: true)
-Tag.create(name: "Sather", is_approved: true)
-Tag.create(name: "Sawzall", is_approved: true)
-Tag.create(name: "SBL", is_approved: true)
-Tag.create(name: "Scala", is_approved: true)
-Tag.create(name: "Scheme", is_approved: true)
-Tag.create(name: "Scilab", is_approved: true)
-Tag.create(name: "Scratch", is_approved: true)
-Tag.create(name: "Script.NET", is_approved: true)
-Tag.create(name: "Sed", is_approved: true)
-Tag.create(name: "Seed7", is_approved: true)
-Tag.create(name: "Self", is_approved: true)
-Tag.create(name: "SenseTalk", is_approved: true)
-Tag.create(name: "SequenceL", is_approved: true)
-Tag.create(name: "SETL", is_approved: true)
-Tag.create(name: "Shift Script", is_approved: true)
-Tag.create(name: "SIMPOL", is_approved: true)
-Tag.create(name: "Shakespeare", is_approved: true)
-Tag.create(name: "SIGNAL", is_approved: true)
-Tag.create(name: "SiMPLE", is_approved: true)
-Tag.create(name: "SIMSCRIPT", is_approved: true)
-Tag.create(name: "Simula", is_approved: true)
-Tag.create(name: "Simulink", is_approved: true)
-Tag.create(name: "SISAL", is_approved: true)
-Tag.create(name: "SLIP", is_approved: true)
-Tag.create(name: "SMALL", is_approved: true)
-Tag.create(name: "Smalltalk", is_approved: true)
-Tag.create(name: "Small Basic", is_approved: true)
-Tag.create(name: "SML", is_approved: true)
-Tag.create(name: "Snap!", is_approved: true)
-Tag.create(name: "SNOBOL", is_approved: true)
-Tag.create(name: "SPITBOL", is_approved: true)
-Tag.create(name: "Snowball", is_approved: true)
-Tag.create(name: "SOL", is_approved: true)
-Tag.create(name: "Span", is_approved: true)
-Tag.create(name: "SPARK", is_approved: true)
-Tag.create(name: "SPIN", is_approved: true)
-Tag.create(name: "SP/k", is_approved: true)
-Tag.create(name: "SPS", is_approved: true)
-Tag.create(name: "Squeak", is_approved: true)
-Tag.create(name: "Squirrel", is_approved: true)
-Tag.create(name: "SR", is_approved: true)
-Tag.create(name: "S/SL", is_approved: true)
-Tag.create(name: "Stackless Python", is_approved: true)
-Tag.create(name: "Starlogo", is_approved: true)
-Tag.create(name: "Strand", is_approved: true)
-Tag.create(name: "Stata", is_approved: true)
-Tag.create(name: "Stateflow", is_approved: true)
-Tag.create(name: "Subtext", is_approved: true)
-Tag.create(name: "SuperCollider", is_approved: true)
-Tag.create(name: "SuperTalk", is_approved: true)
-Tag.create(name: "Swift (Apple programming language)", is_approved: true)
-Tag.create(name: "Swift (parallel scripting language)", is_approved: true)
-Tag.create(name: "SYMPL", is_approved: true)
-Tag.create(name: "SyncCharts", is_approved: true)
-Tag.create(name: "SystemVerilog", is_approved: true)
-Tag.create(name: "T", is_approved: true)
-Tag.create(name: "TACL", is_approved: true)
-Tag.create(name: "TACPOL", is_approved: true)
-Tag.create(name: "TADS", is_approved: true)
-Tag.create(name: "TAL", is_approved: true)
-Tag.create(name: "Tcl", is_approved: true)
-Tag.create(name: "Tea", is_approved: true)
-Tag.create(name: "TECO", is_approved: true)
-Tag.create(name: "TELCOMP", is_approved: true)
-Tag.create(name: "TeX", is_approved: true)
-Tag.create(name: "TEX", is_approved: true)
-Tag.create(name: "TIE", is_approved: true)
-Tag.create(name: "Timber", is_approved: true)
-Tag.create(name: "TMG", is_approved: true)
-Tag.create(name: "Tom", is_approved: true)
-Tag.create(name: "TOM", is_approved: true)
-Tag.create(name: "Topspeed", is_approved: true)
-Tag.create(name: "TPU", is_approved: true)
-Tag.create(name: "Trac", is_approved: true)
-Tag.create(name: "TTM", is_approved: true)
-Tag.create(name: "T-SQL", is_approved: true)
-Tag.create(name: "TTCN", is_approved: true)
-Tag.create(name: "Turing", is_approved: true)
-Tag.create(name: "TUTOR", is_approved: true)
-Tag.create(name: "TXL", is_approved: true)
-Tag.create(name: "TypeScript", is_approved: true)
-Tag.create(name: "Turbo C++", is_approved: true)
-Tag.create(name: "Ubercode", is_approved: true)
-Tag.create(name: "UCSD Pascal", is_approved: true)
-Tag.create(name: "Umple", is_approved: true)
-Tag.create(name: "Unicon", is_approved: true)
-Tag.create(name: "Uniface", is_approved: true)
-Tag.create(name: "UNITY", is_approved: true)
-Tag.create(name: "Unix shell", is_approved: true)
-Tag.create(name: "UnrealScript", is_approved: true)
-Tag.create(name: "Vala", is_approved: true)
-Tag.create(name: "VBA", is_approved: true)
-Tag.create(name: "VBScript", is_approved: true)
-Tag.create(name: "Verilog", is_approved: true)
-Tag.create(name: "VHDL", is_approved: true)
-Tag.create(name: "Visual Basic", is_approved: true)
-Tag.create(name: "Visual Basic .NET", is_approved: true)
-Tag.create(name: "Visual DataFlex", is_approved: true)
-Tag.create(name: "Visual DialogScript", is_approved: true)
-Tag.create(name: "Visual Fortran", is_approved: true)
-Tag.create(name: "Visual FoxPro", is_approved: true)
-Tag.create(name: "Visual J++", is_approved: true)
-Tag.create(name: "Visual J#", is_approved: true)
-Tag.create(name: "Visual Objects", is_approved: true)
-Tag.create(name: "Visual Prolog", is_approved: true)
-Tag.create(name: "VSXu", is_approved: true)
-Tag.create(name: "Vvvv", is_approved: true)
-Tag.create(name: "WATFIV, WATFOR", is_approved: true)
-Tag.create(name: "WebDNA", is_approved: true)
-Tag.create(name: "WebQL", is_approved: true)
-Tag.create(name: "Windows PowerShell", is_approved: true)
-Tag.create(name: "Winbatch", is_approved: true)
-Tag.create(name: "Wolfram", is_approved: true)
-Tag.create(name: "Wyvern", is_approved: true)
-Tag.create(name: "X++", is_approved: true)
-Tag.create(name: "X#", is_approved: true)
-Tag.create(name: "X10", is_approved: true)
-Tag.create(name: "XBL", is_approved: true)
-Tag.create(name: "XC", is_approved: true)
-Tag.create(name: "XMOS architecture", is_approved: true)
-Tag.create(name: "xHarbour", is_approved: true)
-Tag.create(name: "XL", is_approved: true)
-Tag.create(name: "Xojo", is_approved: true)
-Tag.create(name: "XOTcl", is_approved: true)
-Tag.create(name: "XPL", is_approved: true)
-Tag.create(name: "XPL0", is_approved: true)
-Tag.create(name: "XQuery", is_approved: true)
-Tag.create(name: "XSB", is_approved: true)
-Tag.create(name: "XSLT", is_approved: true)
-Tag.create(name: "XPath", is_approved: true)
-Tag.create(name: "Xtend", is_approved: true)
-Tag.create(name: "Yorick", is_approved: true)
-Tag.create(name: "YQL", is_approved: true)
-Tag.create(name: "Z notation", is_approved: true)
-Tag.create(name: "Zeno", is_approved: true)
-Tag.create(name: "ZOPL", is_approved: true)
-Tag.create(name: "ZPL", is_approved: true)
-Tag.create(name: "Web development", is_approved: true)
-Tag.create(name: "Linux", is_approved: true)
-Tag.create(name: "AWS", is_approved: true)
-Tag.create(name: "Docker", is_approved: true)
-Tag.create(name: "Arduino", is_approved: true)
+skills = [
+{name: "A# .NET", is_approved: true},
+{name: "A# (Axiom)", is_approved: true},
+{name: "A-0 System", is_approved: true},
+{name: "A+", is_approved: true},
+{name: "A++", is_approved: true},
+{name: "ABAP", is_approved: true},
+{name: "ABC", is_approved: true},
+{name: "ABC ALGOL", is_approved: true},
+{name: "ABLE", is_approved: true},
+{name: "ABSET", is_approved: true},
+{name: "ABSYS", is_approved: true},
+{name: "ACC", is_approved: true},
+{name: "Accent", is_approved: true},
+{name: "Ace DASL", is_approved: true},
+{name: "ACL2", is_approved: true},
+{name: "ACT-III", is_approved: true},
+{name: "Action!", is_approved: true},
+{name: "ActionScript", is_approved: true},
+{name: "Ada", is_approved: true},
+{name: "Adenine", is_approved: true},
+{name: "Agda", is_approved: true},
+{name: "Agilent VEE", is_approved: true},
+{name: "Agora", is_approved: true},
+{name: "AIMMS", is_approved: true},
+{name: "Alef", is_approved: true},
+{name: "ALF", is_approved: true},
+{name: "ALGOL 58", is_approved: true},
+{name: "ALGOL 60", is_approved: true},
+{name: "ALGOL 68", is_approved: true},
+{name: "ALGOL W", is_approved: true},
+{name: "Alice", is_approved: true},
+{name: "Alma-0", is_approved: true},
+{name: "AmbientTalk", is_approved: true},
+{name: "Amiga E", is_approved: true},
+{name: "AMOS", is_approved: true},
+{name: "AMPL", is_approved: true},
+{name: "APL", is_approved: true},
+{name: "App Inventor for Android's visual block language", is_approved: true},
+{name: "AppleScript", is_approved: true},
+{name: "Arc", is_approved: true},
+{name: "ARexx", is_approved: true},
+{name: "Argus", is_approved: true},
+{name: "AspectJ", is_approved: true},
+{name: "Assembly language", is_approved: true},
+{name: "ATS", is_approved: true},
+{name: "Ateji PX", is_approved: true},
+{name: "AutoHotkey", is_approved: true},
+{name: "Autocoder", is_approved: true},
+{name: "AutoIt", is_approved: true},
+{name: "AutoLISP / Visual LISP", is_approved: true},
+{name: "Averest", is_approved: true},
+{name: "AWK", is_approved: true},
+{name: "Axum", is_approved: true},
+{name: "B", is_approved: true},
+{name: "Babbage", is_approved: true},
+{name: "Bash", is_approved: true},
+{name: "BASIC", is_approved: true},
+{name: "bc", is_approved: true},
+{name: "BCPL", is_approved: true},
+{name: "BeanShell", is_approved: true},
+{name: "Batch (Windows/Dos)", is_approved: true},
+{name: "Bertrand", is_approved: true},
+{name: "BETA", is_approved: true},
+{name: "Bigwig", is_approved: true},
+{name: "Bistro", is_approved: true},
+{name: "BitC", is_approved: true},
+{name: "BLISS", is_approved: true},
+{name: "Blue", is_approved: true},
+{name: "Bon", is_approved: true},
+{name: "Boo", is_approved: true},
+{name: "Boomerang", is_approved: true},
+{name: "Bourne shell", is_approved: true},
+{name: "bash", is_approved: true},
+{name: "ksh", is_approved: true},
+{name: "BREW", is_approved: true},
+{name: "BPEL", is_approved: true},
+{name: "C", is_approved: true},
+{name: "C--", is_approved: true},
+{name: "C++", is_approved: true},
+{name: "C#", is_approved: true},
+{name: "C/AL", is_approved: true},
+{name: "Caché ObjectScript", is_approved: true},
+{name: "C Shell", is_approved: true},
+{name: "Caml", is_approved: true},
+{name: "Candle", is_approved: true},
+{name: "Cayenne", is_approved: true},
+{name: "CDuce", is_approved: true},
+{name: "Cecil", is_approved: true},
+{name: "Cel", is_approved: true},
+{name: "Cesil", is_approved: true},
+{name: "Ceylon", is_approved: true},
+{name: "CFEngine", is_approved: true},
+{name: "CFML", is_approved: true},
+{name: "Cg", is_approved: true},
+{name: "Ch", is_approved: true},
+{name: "Chapel", is_approved: true},
+{name: "CHAIN", is_approved: true},
+{name: "Charity", is_approved: true},
+{name: "Charm", is_approved: true},
+{name: "Chef", is_approved: true},
+{name: "CHILL", is_approved: true},
+{name: "CHIP-8", is_approved: true},
+{name: "chomski", is_approved: true},
+{name: "ChucK", is_approved: true},
+{name: "CICS", is_approved: true},
+{name: "Cilk", is_approved: true},
+{name: "CL", is_approved: true},
+{name: "Claire", is_approved: true},
+{name: "Clarion", is_approved: true},
+{name: "Clean", is_approved: true},
+{name: "Clipper", is_approved: true},
+{name: "CLIST", is_approved: true},
+{name: "Clojure", is_approved: true},
+{name: "CLU", is_approved: true},
+{name: "CMS-2", is_approved: true},
+{name: "COBOL", is_approved: true},
+{name: "Cobra", is_approved: true},
+{name: "CODE", is_approved: true},
+{name: "CoffeeScript", is_approved: true},
+{name: "Cola", is_approved: true},
+{name: "ColdC", is_approved: true},
+{name: "ColdFusion", is_approved: true},
+{name: "COMAL", is_approved: true},
+{name: "Combined Programming Language", is_approved: true},
+{name: "COMIT", is_approved: true},
+{name: "Common Intermediate Language", is_approved: true},
+{name: "Common Lisp", is_approved: true},
+{name: "COMPASS", is_approved: true},
+{name: "Component Pascal", is_approved: true},
+{name: "Constraint Handling Rules", is_approved: true},
+{name: "Converge", is_approved: true},
+{name: "Cool", is_approved: true},
+{name: "Coq", is_approved: true},
+{name: "Coral 66", is_approved: true},
+{name: "Corn", is_approved: true},
+{name: "CorVision", is_approved: true},
+{name: "COWSEL", is_approved: true},
+{name: "CPL", is_approved: true},
+{name: "csh", is_approved: true},
+{name: "CSP", is_approved: true},
+{name: "Csound", is_approved: true},
+{name: "CUDA", is_approved: true},
+{name: "Curl", is_approved: true},
+{name: "Curry", is_approved: true},
+{name: "Cyclone", is_approved: true},
+{name: "Cython", is_approved: true},
+{name: "D", is_approved: true},
+{name: "DASL", is_approved: true},
+{name: "Dart", is_approved: true},
+{name: "DataFlex", is_approved: true},
+{name: "Datalog", is_approved: true},
+{name: "DATATRIEVE", is_approved: true},
+{name: "dBase", is_approved: true},
+{name: "dc", is_approved: true},
+{name: "Deesel", is_approved: true},
+{name: "Delphi", is_approved: true},
+{name: "DCL", is_approved: true},
+{name: "DinkC", is_approved: true},
+{name: "DIBOL", is_approved: true},
+{name: "Dog", is_approved: true},
+{name: "Draco", is_approved: true},
+{name: "DRAKON", is_approved: true},
+{name: "Dylan", is_approved: true},
+{name: "DYNAMO", is_approved: true},
+{name: "E", is_approved: true},
+{name: "E#", is_approved: true},
+{name: "Ease", is_approved: true},
+{name: "Easy PL/I", is_approved: true},
+{name: "Easy Programming Language", is_approved: true},
+{name: "EASYTRIEVE PLUS", is_approved: true},
+{name: "ECMAScript", is_approved: true},
+{name: "Edinburgh IMP", is_approved: true},
+{name: "EGL", is_approved: true},
+{name: "Eiffel", is_approved: true},
+{name: "ELAN", is_approved: true},
+{name: "Elixir", is_approved: true},
+{name: "Elm", is_approved: true},
+{name: "Emacs Lisp", is_approved: true},
+{name: "Emerald", is_approved: true},
+{name: "Epigram", is_approved: true},
+{name: "EPL", is_approved: true},
+{name: "Erlang", is_approved: true},
+{name: "es", is_approved: true},
+{name: "Escapade", is_approved: true},
+{name: "Escher", is_approved: true},
+{name: "ESPOL", is_approved: true},
+{name: "Esterel", is_approved: true},
+{name: "Etoys", is_approved: true},
+{name: "Euclid", is_approved: true},
+{name: "Euler", is_approved: true},
+{name: "Euphoria", is_approved: true},
+{name: "EusLisp Robot Programming Language", is_approved: true},
+{name: "CMS EXEC", is_approved: true},
+{name: "EXEC 2", is_approved: true},
+{name: "Executable UML", is_approved: true},
+{name: "F", is_approved: true},
+{name: "F#", is_approved: true},
+{name: "Factor", is_approved: true},
+{name: "Falcon", is_approved: true},
+{name: "Fancy", is_approved: true},
+{name: "Fantom", is_approved: true},
+{name: "FAUST", is_approved: true},
+{name: "Felix", is_approved: true},
+{name: "Ferite", is_approved: true},
+{name: "FFP", is_approved: true},
+{name: "Fjölnir", is_approved: true},
+{name: "FL", is_approved: true},
+{name: "Flavors", is_approved: true},
+{name: "Flex", is_approved: true},
+{name: "FLOW-MATIC", is_approved: true},
+{name: "FOCAL", is_approved: true},
+{name: "FOCUS", is_approved: true},
+{name: "FOIL", is_approved: true},
+{name: "FORMAC", is_approved: true},
+{name: "@Formula", is_approved: true},
+{name: "Forth", is_approved: true},
+{name: "Fortran", is_approved: true},
+{name: "Fortress", is_approved: true},
+{name: "FoxBase", is_approved: true},
+{name: "FoxPro", is_approved: true},
+{name: "FP", is_approved: true},
+{name: "FPr", is_approved: true},
+{name: "Franz Lisp", is_approved: true},
+{name: "F-Script", is_approved: true},
+{name: "FSProg", is_approved: true},
+{name: "G", is_approved: true},
+{name: "Google Apps Script", is_approved: true},
+{name: "Game Maker Language", is_approved: true},
+{name: "GameMonkey Script", is_approved: true},
+{name: "GAMS", is_approved: true},
+{name: "GAP", is_approved: true},
+{name: "G-code", is_approved: true},
+{name: "Genie", is_approved: true},
+{name: "GDL", is_approved: true},
+{name: "Gibiane", is_approved: true},
+{name: "GJ", is_approved: true},
+{name: "GEORGE", is_approved: true},
+{name: "GLSL", is_approved: true},
+{name: "GNU E", is_approved: true},
+{name: "GM", is_approved: true},
+{name: "Go", is_approved: true},
+{name: "Go!", is_approved: true},
+{name: "GOAL", is_approved: true},
+{name: "Gödel", is_approved: true},
+{name: "Godiva", is_approved: true},
+{name: "GOM (Good Old Mad)", is_approved: true},
+{name: "Goo", is_approved: true},
+{name: "Gosu", is_approved: true},
+{name: "GOTRAN", is_approved: true},
+{name: "GPSS", is_approved: true},
+{name: "GraphTalk", is_approved: true},
+{name: "GRASS", is_approved: true},
+{name: "Groovy", is_approved: true},
+{name: "Hack (programming language)", is_approved: true},
+{name: "HAL/S", is_approved: true},
+{name: "Hamilton C shell", is_approved: true},
+{name: "Harbour", is_approved: true},
+{name: "Hartmann pipelines", is_approved: true},
+{name: "Haskell", is_approved: true},
+{name: "Haxe", is_approved: true},
+{name: "High Level Assembly", is_approved: true},
+{name: "HLSL", is_approved: true},
+{name: "Hop", is_approved: true},
+{name: "Hope", is_approved: true},
+{name: "Hugo", is_approved: true},
+{name: "Hume", is_approved: true},
+{name: "HyperTalk", is_approved: true},
+{name: "IBM Basic assembly language", is_approved: true},
+{name: "IBM HAScript", is_approved: true},
+{name: "IBM Informix-4GL", is_approved: true},
+{name: "IBM RPG", is_approved: true},
+{name: "ICI", is_approved: true},
+{name: "Icon", is_approved: true},
+{name: "Id", is_approved: true},
+{name: "IDL", is_approved: true},
+{name: "Idris", is_approved: true},
+{name: "IMP", is_approved: true},
+{name: "Inform", is_approved: true},
+{name: "Io", is_approved: true},
+{name: "Ioke", is_approved: true},
+{name: "IPL", is_approved: true},
+{name: "IPTSCRAE", is_approved: true},
+{name: "ISLISP", is_approved: true},
+{name: "ISPF", is_approved: true},
+{name: "ISWIM", is_approved: true},
+{name: "J", is_approved: true},
+{name: "J#", is_approved: true},
+{name: "J++", is_approved: true},
+{name: "JADE", is_approved: true},
+{name: "Jako", is_approved: true},
+{name: "JAL", is_approved: true},
+{name: "Janus", is_approved: true},
+{name: "JASS", is_approved: true},
+{name: "Java", is_approved: true},
+{name: "JavaScript", is_approved: true},
+{name: "JCL", is_approved: true},
+{name: "JEAN", is_approved: true},
+{name: "Join Java", is_approved: true},
+{name: "JOSS", is_approved: true},
+{name: "Joule", is_approved: true},
+{name: "JOVIAL", is_approved: true},
+{name: "Joy", is_approved: true},
+{name: "JScript", is_approved: true},
+{name: "JScript .NET", is_approved: true},
+{name: "JavaFX Script", is_approved: true},
+{name: "Julia", is_approved: true},
+{name: "Jython", is_approved: true},
+{name: "K", is_approved: true},
+{name: "Kaleidoscope", is_approved: true},
+{name: "Karel", is_approved: true},
+{name: "Karel++", is_approved: true},
+{name: "KEE", is_approved: true},
+{name: "Kixtart", is_approved: true},
+{name: "KIF", is_approved: true},
+{name: "Kojo", is_approved: true},
+{name: "Kotlin", is_approved: true},
+{name: "KRC", is_approved: true},
+{name: "KRL", is_approved: true},
+{name: "KUKA", is_approved: true},
+{name: "KRYPTON", is_approved: true},
+{name: "L", is_approved: true},
+{name: "L# .NET", is_approved: true},
+{name: "LabVIEW", is_approved: true},
+{name: "Ladder", is_approved: true},
+{name: "Lagoona", is_approved: true},
+{name: "LANSA", is_approved: true},
+{name: "Lasso", is_approved: true},
+{name: "LaTeX", is_approved: true},
+{name: "Lava", is_approved: true},
+{name: "LC-3", is_approved: true},
+{name: "Leda", is_approved: true},
+{name: "Legoscript", is_approved: true},
+{name: "LIL", is_approved: true},
+{name: "LilyPond", is_approved: true},
+{name: "Limbo", is_approved: true},
+{name: "Limnor", is_approved: true},
+{name: "LINC", is_approved: true},
+{name: "Lingo", is_approved: true},
+{name: "Linoleum", is_approved: true},
+{name: "LIS", is_approved: true},
+{name: "LISA", is_approved: true},
+{name: "Lisaac", is_approved: true},
+{name: "Lisp", is_approved: true},
+{name: "Lite-C", is_approved: true},
+{name: "Lithe", is_approved: true},
+{name: "Little b", is_approved: true},
+{name: "Logo", is_approved: true},
+{name: "Logtalk", is_approved: true},
+{name: "LPC", is_approved: true},
+{name: "LSE", is_approved: true},
+{name: "LSL", is_approved: true},
+{name: "LiveCode", is_approved: true},
+{name: "LiveScript", is_approved: true},
+{name: "Lua", is_approved: true},
+{name: "Lucid", is_approved: true},
+{name: "Lustre", is_approved: true},
+{name: "LYaPAS", is_approved: true},
+{name: "Lynx", is_approved: true},
+{name: "M2001", is_approved: true},
+{name: "M4", is_approved: true},
+{name: "Machine code", is_approved: true},
+{name: "MAD", is_approved: true},
+{name: "MAD/I", is_approved: true},
+{name: "Magik", is_approved: true},
+{name: "Magma", is_approved: true},
+{name: "make", is_approved: true},
+{name: "Maple", is_approved: true},
+{name: "MAPPER", is_approved: true},
+{name: "MARK-IV", is_approved: true},
+{name: "Mary", is_approved: true},
+{name: "MASM Microsoft Assembly x86", is_approved: true},
+{name: "Mathematica", is_approved: true},
+{name: "MATLAB", is_approved: true},
+{name: "Maxima", is_approved: true},
+{name: "Macsyma", is_approved: true},
+{name: "Max", is_approved: true},
+{name: "MaxScript", is_approved: true},
+{name: "Maya (MEL)", is_approved: true},
+{name: "MDL", is_approved: true},
+{name: "Mercury", is_approved: true},
+{name: "Mesa", is_approved: true},
+{name: "Metacard", is_approved: true},
+{name: "Metafont", is_approved: true},
+{name: "MetaL", is_approved: true},
+{name: "Microcode", is_approved: true},
+{name: "MicroScript", is_approved: true},
+{name: "MIIS", is_approved: true},
+{name: "MillScript", is_approved: true},
+{name: "MIMIC", is_approved: true},
+{name: "Mirah", is_approved: true},
+{name: "Miranda", is_approved: true},
+{name: "MIVA Script", is_approved: true},
+{name: "ML", is_approved: true},
+{name: "Moby", is_approved: true},
+{name: "Model 204", is_approved: true},
+{name: "Modelica", is_approved: true},
+{name: "Modula", is_approved: true},
+{name: "Modula-2", is_approved: true},
+{name: "Modula-3", is_approved: true},
+{name: "Mohol", is_approved: true},
+{name: "MOO", is_approved: true},
+{name: "Mortran", is_approved: true},
+{name: "Mouse", is_approved: true},
+{name: "MPD", is_approved: true},
+{name: "CIL", is_approved: true},
+{name: "MSL", is_approved: true},
+{name: "MUMPS", is_approved: true},
+{name: "NASM", is_approved: true},
+{name: "NATURAL", is_approved: true},
+{name: "Napier88", is_approved: true},
+{name: "Neko", is_approved: true},
+{name: "Nemerle", is_approved: true},
+{name: "nesC", is_approved: true},
+{name: "NESL", is_approved: true},
+{name: "Net.Data", is_approved: true},
+{name: "NetLogo", is_approved: true},
+{name: "NetRexx", is_approved: true},
+{name: "NewLISP", is_approved: true},
+{name: "NEWP", is_approved: true},
+{name: "Newspeak", is_approved: true},
+{name: "NewtonScript", is_approved: true},
+{name: "NGL", is_approved: true},
+{name: "Nial", is_approved: true},
+{name: "Nice", is_approved: true},
+{name: "Nickle", is_approved: true},
+{name: "NPL", is_approved: true},
+{name: "Not eXactly C", is_approved: true},
+{name: "Not Quite C", is_approved: true},
+{name: "NSIS", is_approved: true},
+{name: "Nu", is_approved: true},
+{name: "NWScript", is_approved: true},
+{name: "NXT-G", is_approved: true},
+{name: "o:XML", is_approved: true},
+{name: "Oak", is_approved: true},
+{name: "Oberon", is_approved: true},
+{name: "Obix", is_approved: true},
+{name: "OBJ2", is_approved: true},
+{name: "Object Lisp", is_approved: true},
+{name: "ObjectLOGO", is_approved: true},
+{name: "Object REXX", is_approved: true},
+{name: "Object Pascal", is_approved: true},
+{name: "Objective-C", is_approved: true},
+{name: "Objective-J", is_approved: true},
+{name: "Obliq", is_approved: true},
+{name: "Obol", is_approved: true},
+{name: "OCaml", is_approved: true},
+{name: "occam", is_approved: true},
+{name: "occam-π", is_approved: true},
+{name: "Octave", is_approved: true},
+{name: "OmniMark", is_approved: true},
+{name: "Onyx", is_approved: true},
+{name: "Opa", is_approved: true},
+{name: "Opal", is_approved: true},
+{name: "OpenCL", is_approved: true},
+{name: "OpenEdge ABL", is_approved: true},
+{name: "OPL", is_approved: true},
+{name: "OPS5", is_approved: true},
+{name: "OptimJ", is_approved: true},
+{name: "Orc", is_approved: true},
+{name: "ORCA/Modula-2", is_approved: true},
+{name: "Oriel", is_approved: true},
+{name: "Orwell", is_approved: true},
+{name: "Oxygene", is_approved: true},
+{name: "Oz", is_approved: true},
+{name: "P#", is_approved: true},
+{name: "ParaSail (programming language)", is_approved: true},
+{name: "PARI/GP", is_approved: true},
+{name: "Pascal", is_approved: true},
+{name: "Pawn", is_approved: true},
+{name: "PCASTL", is_approved: true},
+{name: "PCF", is_approved: true},
+{name: "PEARL", is_approved: true},
+{name: "PeopleCode", is_approved: true},
+{name: "Perl", is_approved: true},
+{name: "PDL", is_approved: true},
+{name: "PHP", is_approved: true},
+{name: "Phrogram", is_approved: true},
+{name: "Pico", is_approved: true},
+{name: "Picolisp", is_approved: true},
+{name: "Pict", is_approved: true},
+{name: "Pike", is_approved: true},
+{name: "PIKT", is_approved: true},
+{name: "PILOT", is_approved: true},
+{name: "Pipelines", is_approved: true},
+{name: "Pizza", is_approved: true},
+{name: "PL-11", is_approved: true},
+{name: "PL/0", is_approved: true},
+{name: "PL/B", is_approved: true},
+{name: "PL/C", is_approved: true},
+{name: "PL/I", is_approved: true},
+{name: "PL/M", is_approved: true},
+{name: "PL/P", is_approved: true},
+{name: "PL/SQL", is_approved: true},
+{name: "PL360", is_approved: true},
+{name: "PLANC", is_approved: true},
+{name: "Plankalkül", is_approved: true},
+{name: "Planner", is_approved: true},
+{name: "PLEX", is_approved: true},
+{name: "PLEXIL", is_approved: true},
+{name: "Plus", is_approved: true},
+{name: "POP-11", is_approved: true},
+{name: "PostScript", is_approved: true},
+{name: "PortablE", is_approved: true},
+{name: "Powerhouse", is_approved: true},
+{name: "PowerBuilder", is_approved: true},
+{name: "PowerShell", is_approved: true},
+{name: "PPL", is_approved: true},
+{name: "Processing", is_approved: true},
+{name: "Processing.js", is_approved: true},
+{name: "Prograph", is_approved: true},
+{name: "PROIV", is_approved: true},
+{name: "Prolog", is_approved: true},
+{name: "PROMAL", is_approved: true},
+{name: "Promela", is_approved: true},
+{name: "PROSE modeling language", is_approved: true},
+{name: "PROTEL", is_approved: true},
+{name: "ProvideX", is_approved: true},
+{name: "Pro*C", is_approved: true},
+{name: "Pure", is_approved: true},
+{name: "Python", is_approved: true},
+{name: "Q (equational programming language)", is_approved: true},
+{name: "Q (programming language from Kx Systems)", is_approved: true},
+{name: "Qalb", is_approved: true},
+{name: "Qi", is_approved: true},
+{name: "QtScript", is_approved: true},
+{name: "QuakeC", is_approved: true},
+{name: "QPL", is_approved: true},
+{name: "R", is_approved: true},
+{name: "R++", is_approved: true},
+{name: "Racket", is_approved: true},
+{name: "RAPID", is_approved: true},
+{name: "Rapira", is_approved: true},
+{name: "Ratfiv", is_approved: true},
+{name: "Ratfor", is_approved: true},
+{name: "rc", is_approved: true},
+{name: "REBOL", is_approved: true},
+{name: "Red", is_approved: true},
+{name: "Redcode", is_approved: true},
+{name: "REFAL", is_approved: true},
+{name: "Reia", is_approved: true},
+{name: "Revolution", is_approved: true},
+{name: "rex", is_approved: true},
+{name: "REXX", is_approved: true},
+{name: "Rlab", is_approved: true},
+{name: "RobotC", is_approved: true},
+{name: "ROOP", is_approved: true},
+{name: "RPG", is_approved: true},
+{name: "RPL", is_approved: true},
+{name: "RSL", is_approved: true},
+{name: "RTL/2", is_approved: true},
+{name: "Ruby", is_approved: true},
+{name: "RuneScript", is_approved: true},
+{name: "Rust", is_approved: true},
+{name: "S", is_approved: true},
+{name: "S2", is_approved: true},
+{name: "S3", is_approved: true},
+{name: "S-Lang", is_approved: true},
+{name: "S-PLUS", is_approved: true},
+{name: "SA-C", is_approved: true},
+{name: "SabreTalk", is_approved: true},
+{name: "SAIL", is_approved: true},
+{name: "SALSA", is_approved: true},
+{name: "SAM76", is_approved: true},
+{name: "SAS", is_approved: true},
+{name: "SASL", is_approved: true},
+{name: "Sather", is_approved: true},
+{name: "Sawzall", is_approved: true},
+{name: "SBL", is_approved: true},
+{name: "Scala", is_approved: true},
+{name: "Scheme", is_approved: true},
+{name: "Scilab", is_approved: true},
+{name: "Scratch", is_approved: true},
+{name: "Script.NET", is_approved: true},
+{name: "Sed", is_approved: true},
+{name: "Seed7", is_approved: true},
+{name: "Self", is_approved: true},
+{name: "SenseTalk", is_approved: true},
+{name: "SequenceL", is_approved: true},
+{name: "SETL", is_approved: true},
+{name: "Shift Script", is_approved: true},
+{name: "SIMPOL", is_approved: true},
+{name: "Shakespeare", is_approved: true},
+{name: "SIGNAL", is_approved: true},
+{name: "SiMPLE", is_approved: true},
+{name: "SIMSCRIPT", is_approved: true},
+{name: "Simula", is_approved: true},
+{name: "Simulink", is_approved: true},
+{name: "SISAL", is_approved: true},
+{name: "SLIP", is_approved: true},
+{name: "SMALL", is_approved: true},
+{name: "Smalltalk", is_approved: true},
+{name: "Small Basic", is_approved: true},
+{name: "SML", is_approved: true},
+{name: "Snap!", is_approved: true},
+{name: "SNOBOL", is_approved: true},
+{name: "SPITBOL", is_approved: true},
+{name: "Snowball", is_approved: true},
+{name: "SOL", is_approved: true},
+{name: "Span", is_approved: true},
+{name: "SPARK", is_approved: true},
+{name: "SPIN", is_approved: true},
+{name: "SP/k", is_approved: true},
+{name: "SPS", is_approved: true},
+{name: "Squeak", is_approved: true},
+{name: "Squirrel", is_approved: true},
+{name: "SR", is_approved: true},
+{name: "S/SL", is_approved: true},
+{name: "Stackless Python", is_approved: true},
+{name: "Starlogo", is_approved: true},
+{name: "Strand", is_approved: true},
+{name: "Stata", is_approved: true},
+{name: "Stateflow", is_approved: true},
+{name: "Subtext", is_approved: true},
+{name: "SuperCollider", is_approved: true},
+{name: "SuperTalk", is_approved: true},
+{name: "Swift (Apple programming language)", is_approved: true},
+{name: "Swift (parallel scripting language)", is_approved: true},
+{name: "SYMPL", is_approved: true},
+{name: "SyncCharts", is_approved: true},
+{name: "SystemVerilog", is_approved: true},
+{name: "T", is_approved: true},
+{name: "TACL", is_approved: true},
+{name: "TACPOL", is_approved: true},
+{name: "TADS", is_approved: true},
+{name: "TAL", is_approved: true},
+{name: "Tcl", is_approved: true},
+{name: "Tea", is_approved: true},
+{name: "TECO", is_approved: true},
+{name: "TELCOMP", is_approved: true},
+{name: "TeX", is_approved: true},
+{name: "TEX", is_approved: true},
+{name: "TIE", is_approved: true},
+{name: "Timber", is_approved: true},
+{name: "TMG", is_approved: true},
+{name: "Tom", is_approved: true},
+{name: "TOM", is_approved: true},
+{name: "Topspeed", is_approved: true},
+{name: "TPU", is_approved: true},
+{name: "Trac", is_approved: true},
+{name: "TTM", is_approved: true},
+{name: "T-SQL", is_approved: true},
+{name: "TTCN", is_approved: true},
+{name: "Turing", is_approved: true},
+{name: "TUTOR", is_approved: true},
+{name: "TXL", is_approved: true},
+{name: "TypeScript", is_approved: true},
+{name: "Turbo C++", is_approved: true},
+{name: "Ubercode", is_approved: true},
+{name: "UCSD Pascal", is_approved: true},
+{name: "Umple", is_approved: true},
+{name: "Unicon", is_approved: true},
+{name: "Uniface", is_approved: true},
+{name: "UNITY", is_approved: true},
+{name: "Unix shell", is_approved: true},
+{name: "UnrealScript", is_approved: true},
+{name: "Vala", is_approved: true},
+{name: "VBA", is_approved: true},
+{name: "VBScript", is_approved: true},
+{name: "Verilog", is_approved: true},
+{name: "VHDL", is_approved: true},
+{name: "Visual Basic", is_approved: true},
+{name: "Visual Basic .NET", is_approved: true},
+{name: "Visual DataFlex", is_approved: true},
+{name: "Visual DialogScript", is_approved: true},
+{name: "Visual Fortran", is_approved: true},
+{name: "Visual FoxPro", is_approved: true},
+{name: "Visual J++", is_approved: true},
+{name: "Visual J#", is_approved: true},
+{name: "Visual Objects", is_approved: true},
+{name: "Visual Prolog", is_approved: true},
+{name: "VSXu", is_approved: true},
+{name: "Vvvv", is_approved: true},
+{name: "WATFIV, WATFOR", is_approved: true},
+{name: "WebDNA", is_approved: true},
+{name: "WebQL", is_approved: true},
+{name: "Windows PowerShell", is_approved: true},
+{name: "Winbatch", is_approved: true},
+{name: "Wolfram", is_approved: true},
+{name: "Wyvern", is_approved: true},
+{name: "X++", is_approved: true},
+{name: "X#", is_approved: true},
+{name: "X10", is_approved: true},
+{name: "XBL", is_approved: true},
+{name: "XC", is_approved: true},
+{name: "XMOS architecture", is_approved: true},
+{name: "xHarbour", is_approved: true},
+{name: "XL", is_approved: true},
+{name: "Xojo", is_approved: true},
+{name: "XOTcl", is_approved: true},
+{name: "XPL", is_approved: true},
+{name: "XPL0", is_approved: true},
+{name: "XQuery", is_approved: true},
+{name: "XSB", is_approved: true},
+{name: "XSLT", is_approved: true},
+{name: "XPath", is_approved: true},
+{name: "Xtend", is_approved: true},
+{name: "Yorick", is_approved: true},
+{name: "YQL", is_approved: true},
+{name: "Z notation", is_approved: true},
+{name: "Zeno", is_approved: true},
+{name: "ZOPL", is_approved: true},
+{name: "ZPL", is_approved: true},
+{name: "Web development", is_approved: true},
+{name: "Linux", is_approved: true},
+{name: "AWS", is_approved: true},
+{name: "Docker", is_approved: true},
+{name: "Arduino", is_approved: true},
+]
+
+Tag.create(skills)
