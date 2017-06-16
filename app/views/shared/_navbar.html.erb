@@ -10,14 +10,13 @@
       <%= link_to(image_tag(asset_path('mena_devs_logo_sm.png'), alt: 'MENA Devs'),
                   root_path, :class => 'navbar-brand') %>
     </div>
+
     <div class='navbar-collapse collapse'>
-      <ul class='nav navbar-nav'>
-        <%# navbar_link_to('About us',
-                           about_path,
-                           :active_when => { controller: 'home',
-                                             action: 'about' }) %>
+
+      <%= content_tag(:ul, class: 'nav navbar-nav') do %>
 
         <%= content_tag(:li, class: 'dropdown') do %>
+
           <% if user_signed_in? %>
             <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
               Slack Group
@@ -27,50 +26,34 @@
             <%= content_tag(:ul, class: 'dropdown-menu') do %>
               <%= content_tag(:li) do %>
                 <%= navbar_link_to('Invitations to join Slack group',
-                                  new_invitation_path,
-                                  :active_when => { controller: 'invitations' }) %>
+                                   new_invitation_path,
+                                   :active_when => { controller: 'invitations' }) %>
               <% end %>
 
               <%= content_tag(:li) do %>
                 <%= navbar_link_to('Sent Invitations',
-                                  invitations_path) %>
+                                    invitations_path) %>
               <% end %>
-            <% end %>
-          <% end %>
-        <% end %>
-
-        <%= content_tag(:li, class: 'dropdown') do %>
-          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-            Jobs
-            <%= fa_icon('caret-down') %>
-          <% end %>
-
-          <%= content_tag(:ul, class: 'dropdown-menu') do %>
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Job board',
-                                jobs_path,
-                                :active_when => { controller: 'jobs' }) %>
-            <% end %>
-
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Post a job',
-                                 new_job_path) %>
             <% end %>
           <% end %>
         <% end %>
 
         <%= content_tag(:li) do %>
-          <%= navbar_link_to(raw("<i class='fa fa-envelope'></i> contact"),
-                             contact_path,
-                             :active_when => { controller: 'home',
-                                              action: 'contact'}) %>
+          <% menu_item = fa_icon('briefcase') + ' Job Board'%>
+
+          <%= navbar_link_to(menu_item,
+                            jobs_path,
+                            :active_when => { controller: 'jobs' }) %>
         <% end %>
 
-        <!-- <%= content_tag(:li, class: 'dropdown') do %>
-          <%= navbar_link_to('Directory',
-                             directory_users_path,
-                             :active_when => { controller: 'directory/users'}) %>
-        <% end %> -->
+        <%= content_tag(:li) do %>
+          <% menu_item = fa_icon('envelope') + ' Contact us'%>
+
+          <%= navbar_link_to(menu_item,
+                             contact_path,
+                             :active_when => { controller: 'home',
+                                               action: 'contact'}) %>
+        <% end %>
 
         <% if user_signed_in? && current_user.admin? %>
           <%= content_tag(:li, class: 'dropdown') do %>
@@ -85,27 +68,39 @@
                                   list_jobs_admin_path,
                                   :active_when => { controller: 'jobs' }) %>
               <% end %>
-
-              <!-- <%= content_tag(:li) do %>
-                <%= navbar_link_to('All users',
-                                   members_path) %>
-              <% end %> -->
             <% end %>
+
           <% end %>
         <% end %>
-      </ul>
+      <% end %>
 
       <%= content_tag(:ul, class: 'nav navbar-nav navbar-right') do %>
+
         <% if !user_signed_in? %>
-          <li><%= link_to raw("<i class='fa fa-sign-in'></i> Log in"), new_user_session_path %></li>
-          <li><%= link_to raw("<i class='fa fa-user-plus'></i> Join us"), new_user_registration_path %></li>
+          <%= content_tag(:li) do %>
+            <%= link_to(new_user_session_path) do %>
+              <%= fa_icon('sign-in') %>
+              Log in
+            <% end %>
+          <% end %>
+
+          <%= content_tag(:li) do %>
+            <%= link_to(new_user_registration_path) do %>
+              <%= fa_icon('user-plus') %>
+              Join us
+            <% end %>
+          <% end %>
+
         <% else %>
+
           <%= content_tag(:li) do %>
             <%= link_to 'My profile', user_profile_path(current_user) %>
           <% end %>
+
           <%= content_tag(:li) do %>
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           <% end %>
+
         <% end %>
       <% end %>
     </div><!--/.nav-collapse -->
