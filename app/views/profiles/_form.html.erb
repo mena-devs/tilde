@@ -23,11 +23,6 @@
 <label>Skills</label>
 <select id="skill_list" name="skill_list[]" class="skills-input" class="js-example-basic-single" multiple="multiple">
 
-  User.where(weekly_subscriber: true).find_each do |user|
-    NewsMailer.weekly(user).deliver_now
-  end
-
-
   <% Tag.where(is_approved: true).find_each do |skill| %>
     <option value="<%= skill.name %>"><%= skill.name %></option>
   <% end %>
