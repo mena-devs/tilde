@@ -23,8 +23,8 @@
 <label>Skills</label>
 <select id="skill_list" name="skill_list[]" class="skills-input" class="js-example-basic-single" multiple="multiple">
 
-  <% Tag.where(is_approved: true).find_each do |skill| %>
-    <option value="<%= skill.name %>"><%= skill.name %></option>
+  <% @skills_autocomplete_list.each do |skill_name| %>
+    <option value="<%= skill_name %>"><%= skill_name %></option>
   <% end %>
 </select>
 <span class="help-block skills-help">Note: if a skill doesn't exist in the list, manually type it and press enter.</span>
