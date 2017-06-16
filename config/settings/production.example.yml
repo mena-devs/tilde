@@ -1,0 +1,23 @@
+application_host: ''
+slack_web_hook_url: ''
+slack_app_client_id: ''
+slack_app_client_secret: ''
+slack_legacy_token: ''
+slack_job_channel: ''
+slack_team_name: ''
+slack_team_id: ''
+
+mailgun_api_key: ''
+mailchimp_api_key: ''
+mail_host: ''
+mail_port: ''
+mail_domain: ''
+mail_username: ''
+mail_password: ''
+app_email: ''
+admin_email: ''
+
+developers_emails:
+  - email@example.com
+
+sender_email: email@example.com
