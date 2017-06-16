@@ -1,9 +1,9 @@
 class SlackApi
-  def self.get_user_info(auth)
+  def self.get_user_info(slack_uid)
     base_uri = 'https://slack.com/api/users.info'
-    api_response = HTTParty.get(base_uri, query: {token: auth.credentials.token,
-                                                  user: auth.uid})
-    raise api_response.inspect
+    api_response = HTTParty.get(base_uri, query: {token: AppSettings.slack_legacy_token,
+                                                  user: slack_uid})
+
     json_hash = api_response.parsed_response
     return json_hash
   end

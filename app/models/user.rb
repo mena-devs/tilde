@@ -63,47 +63,86 @@ class User < ApplicationRecord
   after_create :prepare_profile
   after_save :prepare_profile
 
+  def new_from_slack_oauth(user_info)
+    self.provider   = user_info.provider
+    self.uid        = user_info.uid
+    self.email      = user_info.info.email
+    self.first_name = user_info.info.first_name
+    self.last_name  = user_info.info.last_name
+    self.time_zone  = user_info.info.time_zone
+    self.auth_token = user_info.credentials.token
+    self.password   = Devise.friendly_token[0,20]
+
+    if self.valid?
+      self.build_profile(avatar_from_slack: user_info.info.image,
+                         biography: user_info.info.description)
+    end
+
+    self.skip_confirmation! if self.new_record?
+
+    self
+  end
+
+  def self.new_from_slack_token(user_info)
+    user = User.new
+    user.uid        = user_info['user']['id']
+    user.email      = user_info['user']['profile']['email']
+    user.first_name = user_info['user']['profile']['first_name']
+    user.last_name  = user_info['user']['profile']['last_name']
+    user.time_zone  = user_info['user']['tz']
+    user.password   = Devise.friendly_token[0,20]
+
+    if user.valid?
+      user.build_profile(avatar_from_slack: user_info['user']['profile']['image_original'],
+                         biography: user_info['user']['profile']['title'])
+    end
+
+    user
+  end
+
+  def self.find_user_by_slack_uid(slack_uid)
+    user = where(uid: slack_uid).first
+
+    if user.blank?
+      user_info_from_slack = SlackApi.get_user_info(slack_uid)
+      user = User.new_from_slack_token(user_info_from_slack)
+      user.skip_confirmation! if user.new_record?
+      user.save
+    end
+
+    user
+  end
+
   def self.from_omniauth(auth)
     logger.info("Information returned from SLACK API")
     logger.info(auth.inspect)
 
-    if auth['info']['team'].downcase != AppSettings.slack_team_name &&
-      auth['info']['team_id'] != AppSettings.slack_team_id
+    if auth['info']['team_id'] != AppSettings.slack_team_id
       return false
     end
 
-    user_exists = where(email: auth.info.email).first
+    user = where(email: auth.info.email).first
 
-    if user_exists
+    if user
       begin
-        user_exists.update(provider: auth.provider,
-                           uid: auth.uid,
-                           auth_token: auth.credentials.token)
-        user_exists.skip_confirmation! if user_exists.confirmed_at.blank?
+        user.update(provider: auth.provider,
+                    uid: auth.uid,
+                    auth_token: auth.credentials.token)
+        user.skip_confirmation! if user.confirmed_at.blank?
       rescue Exception => e
         logger.info(e)
       end
-      return user_exists
     else
       begin
-        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-          user.provider   = auth.provider
-          user.uid        = auth.uid
-          user.email      = auth.info.email
-          user.first_name = auth.info.first_name
-          user.last_name  = auth.info.last_name
-          user.time_zone  = auth.info.time_zone
-          user.auth_token = auth.credentials.token
-          user.password   = Devise.friendly_token[0,20]
-
-          user.build_profile(avatar_from_slack: auth.info.image,
-                             biography: auth.info.description)
-          user.skip_confirmation! if user.new_record?
+        user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+          u.new_from_slack_oauth(auth)
         end
       rescue Exception => e
         logger.info(e)
       end
     end
+
+    user
   end
 
   def name

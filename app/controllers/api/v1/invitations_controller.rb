@@ -13,7 +13,7 @@ module Api
         @invitation.medium = 'api'
         @invitation.code_of_conduct = true
 
-        if user = User.where(uid: invitation_params[:slack_uid]).first
+        if user = User.where(uid: invitation_params[:slack_uid])
           @invitation.user = user
         end
 
