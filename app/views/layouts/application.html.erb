@@ -2,18 +2,68 @@
 <%# to include things like header, footer, and alerts that are common  %>
 <%# to most (but not all) views.                                       %>
 
-<%= render("shared/navbar") %>
+<!-- The Main Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
 
-<div class="container">
+	<!-- Header
+	============================================= -->
+	<header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
 
-  <%= render("shared/flash") %>
-  <%= render("shared/page_header") %>
+    <div id="header-wrap">
 
-  <%= yield %>
+      <div class="container clearfix">
 
-  <%= render("shared/footer") %>
-  <%= render("shared/analytics") %>
+        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+
+        <div id="logo">
+          <%= link_to(image_tag(asset_path('menadevs_logo.png')),
+                      root_path, :class => 'standard-logo') %>
+
+          <%= link_to(image_tag(asset_path('menadevs_logo@2x.png')),
+                      root_path, :class => 'retina-logo') %>
+        </div>
+
+        <%= render("shared/navbar") %>
+
+      </div>
+
+    </div>
+
+	</header>
+
+  <%# render("shared/slider") %>
+
+	<!-- Site Content
+	============================================= -->
+	<section id="content">
+
+		<div class="content-wrap">
+
+      <%= render("shared/flash") %>
+
+      <%= yield %>
+
+		</div>
+
+	</section>
+
+	<!-- Footer
+	============================================= -->
+	<footer id="footer" class="dark">
+
+		<div class="container">
+
+			<%= render("shared/footer") %>
+
+		<div>
+
+	</footer>
 
 </div>
+
+<div id="gotoTop" class="icon-angle-up"></div>
+
+<%= render("shared/analytics") %>
 
 <% parent_layout "base" %>

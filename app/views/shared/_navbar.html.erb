@@ -1,130 +1,110 @@
-<div class='navbar navbar-default navbar-static-top' role='navigation'>
-  <div class='container'>
-    <div class='navbar-header'>
-      <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'>
-        <span class='sr-only'>Toggle navigation</span>
-        <span class='icon-bar'></span>
-        <span class='icon-bar'></span>
-        <span class='icon-bar'></span>
-      </button>
-      <%= link_to(image_tag(asset_path('mena_devs_logo_sm.png'), alt: 'MENAdevs'),
-                  root_path, :class => 'navbar-brand') %>
-    </div>
+<%= content_tag(:nav, id: 'primary-menu', class: 'dark') do %>
 
-    <div class='navbar-collapse collapse'>
+    <%= content_tag(:ul) do %>
 
-      <%= content_tag(:ul, class: 'nav navbar-nav') do %>
+      <%= content_tag(:li) do %>
 
-        <%= content_tag(:li, class: 'dropdown') do %>
-
-          <% if user_signed_in? %>
-            <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-              Slack Group
-              <%= fa_icon('caret-down') %>
-            <% end %>
-
-            <%= content_tag(:ul, class: 'dropdown-menu') do %>
-              <%= content_tag(:li) do %>
-                <%= navbar_link_to('Invitations to join Slack group',
-                                   new_invitation_path,
-                                   :active_when => { controller: 'invitations' }) %>
-              <% end %>
-
-              <%= content_tag(:li) do %>
-                <%= navbar_link_to('Sent Invitations',
-                                    invitations_path) %>
-              <% end %>
-            <% end %>
+        <% if user_signed_in? %>
+          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
+            Slack Group
+            <%= fa_icon('caret-down') %>
           <% end %>
-        <% end %>
 
-        <!-- About -->
-
-        <%= content_tag(:li) do %>
-          <% menu_item = fa_icon('home') + ' About'%>
-
-          <%= navbar_link_to(menu_item,
-                             about_path,
-                             :active_when => { controller: 'home',
-                                               action: 'about' }) %>
-        <% end %>
-
-        <!-- Job Board -->
-
-        <%= content_tag(:li) do %>
-          <% menu_item = fa_icon('briefcase') + ' Job Board'%>
-
-          <%= navbar_link_to(menu_item,
-                            jobs_path,
-                            :active_when => { controller: 'jobs' }) %>
-        <% end %>
-
-        <!-- Open Source -->
-        <%= content_tag(:li) do %>
-          <% menu_item = fa_icon('github') + ' Open Source'%>
-
-          <%= navbar_link_to(menu_item,
-                            'https://github.com/mena-devs') %>
-        <% end %>
-
-        <!-- Contact us -->
-        <%= content_tag(:li) do %>
-          <% menu_item = fa_icon('envelope') + ' Contact us'%>
-
-          <%= navbar_link_to(menu_item,
-                             contact_path,
-                             :active_when => { controller: 'home',
-                                               action: 'contact'}) %>
-        <% end %>
-
-        <% if user_signed_in? && current_user.admin? %>
-          <%= content_tag(:li, class: 'dropdown') do %>
-            <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-              Admin panels
-              <%= fa_icon('caret-down') %>
+          <%= content_tag(:ul) do %>
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('Invitations to join Slack group',
+                                 new_invitation_path,
+                                 :active_when => { controller: 'invitations' }) %>
             <% end %>
 
-            <%= content_tag(:ul, class: 'dropdown-menu') do %>
-              <%= content_tag(:li) do %>
-                <%= navbar_link_to('All jobs',
-                                  list_jobs_admin_path,
-                                  :active_when => { controller: 'jobs' }) %>
-              <% end %>
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('Sent Invitations',
+                                  invitations_path) %>
             <% end %>
-
           <% end %>
         <% end %>
       <% end %>
 
-      <%= content_tag(:ul, class: 'nav navbar-nav navbar-right') do %>
+      <%= content_tag(:li) do %>
 
-        <% if !user_signed_in? %>
-          <%= content_tag(:li) do %>
-            <%= link_to(new_user_session_path) do %>
-              <%= fa_icon('sign-in') %>
-              Log in
+        <%= navbar_link_to('About',
+                           about_path,
+                           :active_when => { controller: 'home',
+                                             action: 'about' }) %>
+      <% end %>
+
+      <%= content_tag(:li) do %>
+
+        <%= navbar_link_to('Job Board',
+                          jobs_path,
+                          :active_when => { controller: 'jobs' }) %>
+      <% end %>
+
+      <%= content_tag(:li) do %>
+
+        <%= navbar_link_to('Members',
+                          jobs_path,
+                          :active_when => { controller: 'jobs' }) %>
+      <% end %>
+
+      <%= content_tag(:li) do %>
+
+        <%= navbar_link_to('Open Source',
+                          'https://github.com/mena-devs') %>
+      <% end %>
+
+      <%= content_tag(:li) do %>
+
+        <%= navbar_link_to('Contact us',
+                           contact_path,
+                           :active_when => { controller: 'home',
+                                             action: 'contact'}) %>
+      <% end %>
+
+      <% if user_signed_in? && current_user.admin? %>
+        <%= content_tag(:li) do %>
+          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
+            Admin panels
+            <%= fa_icon('caret-down') %>
+          <% end %>
+
+          <%= content_tag(:ul, class: 'dropdown-menu') do %>
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('All jobs',
+                                list_jobs_admin_path,
+                                :active_when => { controller: 'jobs' }) %>
             <% end %>
-          <% end %>
-
-          <%= content_tag(:li) do %>
-            <%= link_to(new_user_registration_path) do %>
-              <%= fa_icon('user-plus') %>
-              Join us
-            <% end %>
-          <% end %>
-
-        <% else %>
-
-          <%= content_tag(:li) do %>
-            <%= link_to 'My profile', user_profile_path(current_user) %>
-          <% end %>
-
-          <%= content_tag(:li) do %>
-            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
           <% end %>
 
         <% end %>
       <% end %>
-    </div><!--/.nav-collapse -->
-  </div>
-</div>
+    <% end %>
+
+    <%= content_tag(:ul) do %>
+
+      <% if !user_signed_in? %>
+        <%= content_tag(:li) do %>
+          <%= link_to(new_user_session_path) do %>
+            Sign in
+          <% end %>
+        <% end %>
+
+        <%= content_tag(:li) do %>
+          <%= link_to(new_user_registration_path) do %>
+            Sign up
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <%= content_tag(:li) do %>
+          <%= link_to 'My profile', user_profile_path(current_user) %>
+        <% end %>
+
+        <%= content_tag(:li) do %>
+          <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        <% end %>
+
+      <% end %>
+    <% end %>
+<% end %>
