@@ -37,6 +37,7 @@ gem 'acts-as-taggable-on', '~> 4.0'
 gem 'select2-rails'
 
 group :production, :staging do
+  gem 'exception_notification'
   gem 'postmark-rails'
   gem 'unicorn'
   gem 'unicorn-worker-killer'
