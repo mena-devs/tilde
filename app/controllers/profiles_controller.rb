@@ -12,7 +12,23 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-  end
+    # merging approved skills with the user skills (or else unapproved user skills
+    # won't appear in the skills box [even if they were actually added by the user])
+
+    @skills_autocomplete_list = []
+
+    #loop and push approved skills
+    Tag.where(is_approved: true).find_each do |skill|
+      @skills_autocomplete_list.push(skill.name)
+    end
+
+    #loop and push user skills as well (while removing duplicates)
+    @profile.skill_list.each do |skill_name|
+      if !@skills_autocomplete_list.include? skill_name
+            @skills_autocomplete_list.push(skill_name)
+      end # if skill doesn't exist
+    end # loop user skills
+  end # edit
 
   # POST /profiles
   def create
@@ -29,6 +45,10 @@ class ProfilesController < ApplicationController
   def update
     user_params = profile_params["user"]
     profile_data = profile_params.reject {|k,v| k == "user"}
+    # add the skills 'tags' to the profile data
+    profile_data.merge!(skill_list: params[:skill_list].join(","))
+
+    # update profile + user info
     if @profile.update(profile_data) && @profile.user.update(user_params)
       redirect_to user_profile_path(current_user), notice: 'Your profile was successfully updated.'
     else
@@ -54,7 +74,7 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:biography, :location, :receive_emails,
                                       :receive_job_alerts, :privacy_level,
-                                      :nickname,
+                                      :nickname, :skill_list,
                                       user: [:time_zone, :first_name, :last_name])
     end
 end

@@ -33,6 +33,8 @@ gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'slack-notifier'
 gem 'turbolinks', '~> 5'
+gem 'acts-as-taggable-on', '~> 4.0'
+gem 'select2-rails'
 
 group :production, :staging do
   gem 'exception_notification'

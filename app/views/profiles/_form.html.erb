@@ -18,6 +18,28 @@
                    label: "Nickname",
                    help: "Unique. Reserved for future use on menadevs.com" %>
 
+
+
+<label>Skills</label>
+<select id="skill_list" name="skill_list[]" class="skills-input" class="js-example-basic-single" multiple="multiple">
+
+  <% @skills_autocomplete_list.each do |skill_name| %>
+    <option value="<%= skill_name %>"><%= skill_name %></option>
+  <% end %>
+</select>
+<span class="help-block skills-help">Note: if a skill doesn't exist in the list, manually type it and press enter.</span>
+
+<script type="text/javascript">
+  $("document").ready(function() {
+     // show current user skills in the skills box
+     var currentUserSkills = [];
+     <% @profile.skill_list.each do |skill| %>
+       currentUserSkills.push("<%= skill %>");
+     <% end %>
+     $(".skills-input").val(currentUserSkills).trigger("change");
+  });
+</script>
+
   <%= f.text_area "profile[biography]",
                   rows: 5,
                   value: @profile.biography,
