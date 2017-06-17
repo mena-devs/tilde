@@ -17,6 +17,8 @@ mail_password: ''
 app_email: ''
 admin_email: ''
 
+google_analytics_code: ''
+
 developers_emails:
   - email@example.com
 
