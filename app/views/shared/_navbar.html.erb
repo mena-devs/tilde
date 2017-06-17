@@ -7,7 +7,7 @@
         <span class='icon-bar'></span>
         <span class='icon-bar'></span>
       </button>
-      <%= link_to(image_tag(asset_path('mena_devs_logo_sm.png'), alt: 'MENA Devs'),
+      <%= link_to(image_tag(asset_path('mena_devs_logo_sm.png'), alt: 'MENAdevs'),
                   root_path, :class => 'navbar-brand') %>
     </div>
 
@@ -38,6 +38,19 @@
           <% end %>
         <% end %>
 
+        <!-- About -->
+
+        <%= content_tag(:li) do %>
+          <% menu_item = fa_icon('home') + ' About'%>
+
+          <%= navbar_link_to(menu_item,
+                             about_path,
+                             :active_when => { controller: 'home',
+                                               action: 'about' }) %>
+        <% end %>
+
+        <!-- Job Board -->
+
         <%= content_tag(:li) do %>
           <% menu_item = fa_icon('briefcase') + ' Job Board'%>
 
@@ -46,6 +59,15 @@
                             :active_when => { controller: 'jobs' }) %>
         <% end %>
 
+        <!-- Open Source -->
+        <%= content_tag(:li) do %>
+          <% menu_item = fa_icon('github') + ' Open Source'%>
+
+          <%= navbar_link_to(menu_item,
+                            'https://github.com/mena-devs') %>
+        <% end %>
+
+        <!-- Contact us -->
         <%= content_tag(:li) do %>
           <% menu_item = fa_icon('envelope') + ' Contact us'%>
 

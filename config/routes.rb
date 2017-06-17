@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 
+  get 'about', to: 'home#about'
   get 'contact', to: 'home#contact'
   get 'list-jobs-admin', to: 'jobs#list_jobs'
 
