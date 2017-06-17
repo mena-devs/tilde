@@ -776,6 +776,8 @@ skills = [
 {name: "AWS", is_approved: true},
 {name: "Docker", is_approved: true},
 {name: "Arduino", is_approved: true},
+{name: "Laravel", is_approved: true},
+{name: "Ruby on Rails", is_approved: true},
 ]
 
 Tag.create(skills)
