@@ -56,6 +56,10 @@ class Invitation < ApplicationRecord
     end
   end
 
+  def resend
+    self.process_invitation_on_slack
+  end
+
   private
     def notify_administrators
       InvitationMailer.new_slack_invitation(self).deliver
@@ -64,10 +68,10 @@ class Invitation < ApplicationRecord
     def process_invitation_on_slack
       unless self.invitee_email.blank?
         begin
-          resp = SlackApi.send_invitation(self.invitee_email)
-          raise resp.inspect
+          response = SlackApi.send_invitation(self.invitee_email)
+          return response
         rescue Exception => e
-          logger.info(e)
+          logger.error(e)
         end
       end
     end
