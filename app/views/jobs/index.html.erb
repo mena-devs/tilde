@@ -1,65 +1,49 @@
-<% provide(:title) do %>
-  <div class="row">
-    <div class="col-md-9">
-      Job board
+<!-- Page Title
+============================================= -->
+<section id="page-title">
+
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-8 nopadding">
+        <h1>Job Board</h1>
+        <span>All jobs posted on MENAdevs</span>
+			</div>
+
+      <div class="col-md-4 col-xs-4 nopadding">
+        <%= link_to new_job_path, :class => "button button-3d notopmargin fright" do %>
+          <%= fa_icon("plus", :text => "Post a Job") %>
+        <% end %>
+      </div>
     </div>
-    <div class="col-md-3" style="text-align: right">
-      <%= link_to new_job_path, :class => "btn btn-default custom-btn-1" do %>
-        <%= fa_icon("plus", :text => "Post a Job on MENAdevs") %>
+  </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <% if @jobs.empty? %>
+        <div class="style-msg alertmsg">
+  				<div class="sb-msg"><i class="icon-warning-sign"></i>There are no jobs on MENAdevs at the moment</div>
+  			</div>
+      <% else %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= render "jobs_table", locals: { jobs: @jobs } %>
+          </div>
+        </div>
+
+        <%= paginate @jobs %>
       <% end %>
+
     </div>
-  </div>
-<% end %>
 
-<% if @jobs.empty? %>
-  <p>There are no recent jobs on MENAdevs job board</p>
-<% else %>
-  <!-- <h3>All jobs</h3> -->
-  <!-- <div class="btn btn-xs btn-primary">
-    <%= fa_icon("check") %>
-    New!
-  </div> -->
-  <div class="row">
-    <div class="col-md-12">
-      <table class="table">
-        <tbody>
-          <% @jobs.each do |job| %>
-            <tr>
-              <td width="85%">
-                <h4>
-                  <% if user_signed_in? && current_user.admin? %>
-                    <div class="btn-group">
-                      <%= link_to "#", :class => "btn btn-xs btn-info" do %>
-                        <%= job.aasm_state.humanize %>
-                      <% end %>
-                    </div>
-                  <% end %>
-
-                  <%= job.company_name %> &nbsp; <%= link_to job.title, job, class: 'link' %>
-                  <span style="float: right"><%= time_ago_in_words(job.created_at) %></span>
-                </h4>
-              </td>
-              <td>
-                <% if user_signed_in? && current_user.id == job.user_id %>
-                  <div class="btn-group" style="padding-top:10px">
-                    <%= link_to edit_job_path(job), :class => "btn btn-xs btn-primary" do %>
-                      <%= fa_icon("pencil", :text => "Edit") %>
-                    <% end %>
-                    <% if job.approved? %>
-                      <%= link_to take_down_job_path(job), :class => "btn btn-xs btn-danger", :method => :put, :data => { :confirm => "Are you sure you want to unpublish this job?" } do %>
-                        <%= fa_icon("trash-o", :text => "Take down") %>
-                      <% end %>
-                    <% end %>
-
-                  </div>
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
   </div>
 
-  <%= paginate @jobs %>
-<% end %>
+</section><!-- #content end -->

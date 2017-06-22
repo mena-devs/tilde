@@ -34,19 +34,10 @@
 
   <%# render("shared/slider") %>
 
-	<!-- Site Content
-	============================================= -->
-	<section id="content">
+  <%= render("shared/flash") %>
 
-		<div class="content-wrap">
+  <%= yield %>
 
-      <%= render("shared/flash") %>
-
-      <%= yield %>
-
-		</div>
-
-	</section>
 
 	<!-- Footer
 	============================================= -->
