@@ -5,12 +5,12 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.approved.order(updated_at: :desc).page params[:page]
+    @jobs = Job.approved.order(updated_at: :desc).page(params[:page])
   end
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.unscoped.order(updated_at: :desc).page params[:page]
+    @jobs = Job.unscoped.order(updated_at: :desc).page(params[:page])
     if !current_user.admin?
       flash[:notice] = "Not authorised"
     end
@@ -28,7 +28,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    if current_user != @job.user || !current_user.admin?
+    if (current_user != @job.user || !current_user.admin?)
       redirect_to @job, error: 'Not authorised'
     end
   end
@@ -57,7 +57,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/approve
   def approve
     if @job.publish!
-      redirect_to @job, notice: 'The job is now live.'
+      redirect_to @job, notice: 'The job is now live on the Job Board.'
     else
       render :edit
     end

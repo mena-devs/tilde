@@ -4,29 +4,6 @@
 
       <%= content_tag(:li) do %>
 
-        <% if user_signed_in? %>
-          <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-            Slack Group
-            <%= fa_icon('caret-down') %>
-          <% end %>
-
-          <%= content_tag(:ul) do %>
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Invitations to join Slack group',
-                                 new_invitation_path,
-                                 :active_when => { controller: 'invitations' }) %>
-            <% end %>
-
-            <%= content_tag(:li) do %>
-              <%= navbar_link_to('Sent Invitations',
-                                  invitations_path) %>
-            <% end %>
-          <% end %>
-        <% end %>
-      <% end %>
-
-      <%= content_tag(:li) do %>
-
         <%= navbar_link_to('About',
                            about_path,
                            :active_when => { controller: 'home',
@@ -36,13 +13,6 @@
       <%= content_tag(:li) do %>
 
         <%= navbar_link_to('Job Board',
-                          jobs_path,
-                          :active_when => { controller: 'jobs' }) %>
-      <% end %>
-
-      <%= content_tag(:li) do %>
-
-        <%= navbar_link_to('Members',
                           jobs_path,
                           :active_when => { controller: 'jobs' }) %>
       <% end %>
@@ -61,22 +31,51 @@
                                              action: 'contact'}) %>
       <% end %>
 
-      <% if user_signed_in? && current_user.admin? %>
+      <!-- user section -->
+      <% if user_signed_in? %>
+
         <%= content_tag(:li) do %>
           <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
-            Admin panels
+            Slack Group
             <%= fa_icon('caret-down') %>
           <% end %>
 
-          <%= content_tag(:ul, class: 'dropdown-menu') do %>
+          <%= content_tag(:ul) do %>
             <%= content_tag(:li) do %>
-              <%= navbar_link_to('All jobs',
-                                list_jobs_admin_path,
-                                :active_when => { controller: 'jobs' }) %>
+              <%= navbar_link_to('Invitations to join Slack group',
+                                 new_invitation_path,
+                                 :active_when => { controller: 'invitations' }) %>
+            <% end %>
+
+            <%= content_tag(:li) do %>
+              <%= navbar_link_to('Sent Invitations',
+                                  invitations_path) %>
             <% end %>
           <% end %>
 
+          <!-- admin section -->
+          <% if current_user.admin? %>
+            <%= content_tag(:li) do %>
+              <%= link_to('#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}) do %>
+                Admin
+                <%= fa_icon('caret-down') %>
+              <% end %>
+
+              <%= content_tag(:ul, class: 'dropdown-menu') do %>
+                <%= content_tag(:li) do %>
+                  <%= navbar_link_to('Jobs',
+                                    list_jobs_admin_path,
+                                    :active_when => { controller: 'jobs' }) %>
+                <% end %>
+              <% end %>
+
+            <% end %>
+          <% end %>
+          <!-- admin section: end -->
+
         <% end %>
+        <!-- user section: end -->
+
       <% end %>
     <% end %>
 

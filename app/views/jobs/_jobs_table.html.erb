@@ -1,0 +1,20 @@
+<div class="table-responsive bottommargin">
+
+	<table class="table cart">
+		<thead>
+			<tr>
+				<th class="cart-product-name">Title</th>
+				<th class="cart-product-name">Company</th>
+				<th class="cart-product-name">Live</th>
+				<th class="cart-product-name">Posted by</th>
+				<th class="cart-product-name">Created</th>
+				<th class="cart-product-name">&nbsp;</th>
+			</tr>
+		</thead>
+
+		<tbody>
+      <%= render partial: "job", collection: @jobs %>
+		</tbody>
+
+	</table>
+</div>
