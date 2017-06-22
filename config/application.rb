@@ -20,5 +20,6 @@ module MenaDevsCom
     # Ensure non-standard paths are eager-loaded in production
     # (these paths are also autoloaded in development mode)
     # config.eager_load_paths += %W(#{config.root}/lib)
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end
