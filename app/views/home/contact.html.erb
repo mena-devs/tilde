@@ -1,8 +1,67 @@
-<% provide(:title, "Contact us") %>
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
+  <div class="container clearfix">
+    <h1>Contact Us</h1>
+  </div>
 
-<%= link_to(raw("<i class='fa fa-envelope contact-icon'></i>info@menadevs.com") , "mailto:info@menadevs.com", :class => "contact-link") %>
+</section>
+<!-- #page-title end -->
 
-<%= link_to(raw("<i class='fa fa-twitter contact-icon'></i>@menadevs") , "https://twitter.com/menadevs", :class => "contact-link", target: "_blank") %>
+<!-- Content
+============================================= -->
+<section id="content">
 
-<%= link_to(raw("<i class='fa fa-github contact-icon'></i>menadevs") , "https://github.com/menadevs", :class => "contact-link", target: "_blank") %>
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <!-- Single Post
+            ============================================= -->
+      <div class="entry clearfix">
+
+        <div class="nobottommargin clearfix">
+
+          <div class="col_one_third nobottommargin center">
+            <div class="rounded-skill nobottommargin skills-animated" data-color="#00ACEE" data-size="150" data-percent="100" data-width="6" data-speed="2000" style="width: 150px; height: 150px; line-height: 150px; opacity: 1;">
+              <i class="icon-twitter2"></i>
+              <canvas height="300" width="300" style="height: 150px; width: 150px;"></canvas>
+            </div>
+          </div>
+
+          <div class="col_one_third nobottommargin center">
+            <div class="rounded-skill nobottommargin skills-animated" data-color="#3B5998" data-size="150" data-percent="100" data-width="6" data-speed="2000" style="width: 150px; height: 150px; line-height: 150px; opacity: 1;">
+              <i class="icon-github2"></i>
+              <canvas height="300" width="300" style="height: 150px; width: 150px;"></canvas>
+            </div>
+          </div>
+
+          <div class="col_one_third nobottommargin center col_last">
+            <div class="rounded-skill nobottommargin skills-animated" data-color="#EA4C89" data-size="150" data-percent="100" data-width="6" data-speed="2000" style="width: 150px; height: 150px; line-height: 150px; opacity: 1;">
+              <i class="icon-email2"></i>
+              <canvas height="300" width="300" style="height: 150px; width: 150px;"></canvas>
+            </div>
+          </div>
+
+          <div class="col_one_third nobottommargin center">
+            <%= link_to("@menadevs", "https://twitter.com/menadevs", :class => "contact-link", target: "_blank") %>
+          </div>
+
+          <div class="col_one_third nobottommargin center">
+            <%= link_to("menadevs", "https://github.com/menadevs", :class => "contact-link", target: "_blank") %>
+          </div>
+
+          <div class="col_one_third nobottommargin center col_last">
+            <%= link_to("info@menadevs.com", "mailto:info@menadevs.com", :class => "contact-link") %>
+          </div>
+
+        </div>
+
+        <!-- Entry Content
+              ============================================= -->
+        <div class="entry-content notopmargin"></div>
+      </div>
+    </div>
+  </div>
+</div>
