@@ -4,97 +4,95 @@
 		<div class="row clearfix">
 			<div class="col-md-8 col-xs-8 nopadding">
 				<h1><%= @job.title.humanize %></h1>
-				<h3><%= @job.company_name.humanize %></h3>
-				<span>Posted on
-					<%= @job.posted_on.strftime('%A %e %B %Y ') %></span>
 			</div>
 
-			<div class="col-md-4 col-xs-4 nopadding">
+			<div class="col-md-4 col-xs-4 nopadding fright">
 				<% if (user_signed_in? && current_user.id == @job.user_id) %>
-					<% if @job.draft? || @job.under_review? %>
-						<%= link_to "Edit Job", edit_job_path(@job), :class => "button button-3d notopmargin fright", target: '_blank' %>
-					<% elsif @job.approved? && !current_user.admin? %>
-						<%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% end %>
+				<% if @job.draft? || @job.under_review? %>
+				<%= link_to "Edit Job", edit_job_path(@job), :class => "button button-3d notopmargin fright", target: '_blank' %>
+				<% elsif @job.approved? && !current_user.admin? %>
+				<%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+				<% end %>
 				<% end %>
 
 				<% if user_signed_in? && current_user.admin? %>
-					<% if @job.under_review? %>
-						<%= button_to "[admin] Approve", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% elsif @job.approved? %>
-						<%= button_to "[admin] Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% end %>
+				<% if @job.under_review? %>
+				<%= button_to "[admin] Approve", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+				<% elsif @job.approved? %>
+				<%= button_to "[admin] Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+				<% end %>
 				<% end %>
 
 				<%= link_to "Visit page to apply", @job.job_description_location, :class => "button button-3d notopmargin fright", target: '_blank' %>
 			</div>
 		</div>
+	</div>
+</section>
 
-	</section>
+<section id="content" style="margin-bottom: 0px;">
 
-	<section id="content" style="margin-bottom: 0px;">
+	<div class="content-wrap">
 
-		<div class="content-wrap">
+		<div class="container clearfix">
+			<!-- Post Content
+				============================================= -->
+			<div class="postcontent nobottommargin clearfix">
 
-			<div class="container clearfix">
+				<div class="single-post nobottommargin">
 
-				<div class="container clearfix">
+					<!-- Single Post
+						============================================= -->
+					<div class="entry clearfix">
 
-					<!-- Post Content
-			============================================= -->
-					<div class="postcontent nobottommargin clearfix">
-						<div id="shop" class="shop product-1 clearfix">
-							<div class="product clearfix">
-								<div class="product-desc">
-									<p>
-										<%= @job.description %>
-									</p>
-								</div>
-							</div>
+						<!-- Entry Meta
+							============================================= -->
+						<ul class="entry-meta clearfix">
+							<li>
+								<i class="icon-calendar3"></i>
+								Posted on:
+								<%= @job.posted_on.strftime('%A %e %B %Y ') %>
+							</li>
+							<li>
+								<i class="icon-user"></i>
+								Posted by:
+								<%= @job.user %>
+							</li>
+							<li>
+								<i class="icon-briefcase"></i>
+								Type:
+								<%= @job.job_type.try(:humanize) %>
+							</li>
+							<li>
+								<i class="icon-briefcase"></i>
+								Experience level:
+								<%= @job.level.try(:humanize) %>
+							</li>
+						</ul>
+						<!-- .entry-meta end -->
+
+						<!-- Entry Content
+							============================================= -->
+						<div class="entry-content notopmargin">
+							<h3><%= @job.company_name.humanize %></h3>
+							<%= @job.description %>
 						</div>
+						<!-- .entry-content end -->
 					</div>
-					<!-- .postcontent end -->
-
-					<!-- Sidebar
-			============================================= -->
-					<div class="sidebar nobottommargin col_last clearfix">
-						<div class="sidebar-widgets-wrap">
-
-							<div class="widget widget_links clearfix fright">
-								<div class="panel panel-default">
-									<div class="panel-heading">Details</div>
-									<div class="panel-body">
-										<p>
-											<strong>Posted by</strong><br/>
-											<%= @job.user.try(:name) %>
-										</p>
-										<p>
-											<strong>Apply via email</strong><br/>
-											<%= link_to @job.apply_email, "mailto:#{@job.apply_email}" %>
-										</p>
-										<p>
-											<strong>Job type</strong><br/>
-											<%= @job.job_type.try(:humanize) %>
-										</p>
-										<p>
-											<strong>Experience level</strong><br/>
-											<%= @job.level.try(:humanize) %>
-										</p>
-									</div>
-								</div>
-
-								<%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua" do %>
-								<%= fa_icon("inbox") %>
-								Tell a friend
-								<% end %>
-							</div>
-
-						</div>
-
-					</div>
-					<!-- .sidebar end -->
-
 				</div>
 			</div>
+
+			<!-- Sidebar
+					============================================= -->
+			<div class="sidebar nobottommargin col_last clearfix">
+				<div class="sidebar-widgets-wrap fright">
+					<%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua" do %>
+					<%= fa_icon("inbox") %>
+					Tell a friend
+					<% end %>
+				</div>
+
+			</div>
+			<!-- .sidebar end -->
 		</div>
-	</section>
+	</div>
+</section>
