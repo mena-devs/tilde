@@ -1,26 +1,70 @@
-<% provide(:title, "Log in") %>
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
-<div class="row">
-  <div class="col-md-4 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Email login</h3>
-      </div>
-      <div class="panel-body">
-        <%= render "form" %>
-      </div>
-    </div>
-    <%= render "devise/shared/links" %>
+  <div class="container clearfix">
+    <h1>Login</h1>
   </div>
 
-  <div class="col-md-4 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Alternative logins</h3>
+</section>
+<!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="tabs divcenter nobottommargin clearfix" id="tab-login-email" style="max-width: 500px;">
+
+        <ul class="tab-nav tab-nav2 center clearfix">
+          <li class="inline-block">
+            <a href="#tab-login-slack">Slack Credentials</a>
+          </li>
+          <li class="inline-block">
+            <a href="#tab-login-email">Personal Email</a>
+          </li>
+        </ul>
+
+        <div class="tab-container">
+
+          <div class="tab-content clearfix" id="tab-login-slack">
+            <div class="panel panel-default nobottommargin">
+              <div class="panel-body" style="padding: 40px;">
+                <h3>Login with MENAdevs Slack</h3>
+
+                <div class="col_full center">
+                  <%= render "devise/shared/omniauthable" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-content clearfix" id="tab-login-email">
+            <div class="panel panel-default nobottommargin">
+              <div class="panel-body" style="padding: 40px;">
+                <h3>Login with your email</h3>
+
+                <div class="col_full">
+                  <%= render "form" %>
+                </div>
+
+                <div class="col_full">
+                  <%= render "devise/shared/links" %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      <div class="panel-body">
-        <%= render "devise/shared/omniauthable" %>
-      </div>
+
     </div>
+
   </div>
-</div>
+
+</section>
+<!-- #content end -->
