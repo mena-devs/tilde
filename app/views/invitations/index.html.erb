@@ -29,14 +29,14 @@
           <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
             <thead>
               <tr>
-                <th>Invitee name</th>
-                <th>Invitee email</th>
-                <th>Invitee location</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Location</th>
                 <th>Sent on</th>
               </tr>
             </thead>
             <tbody>
-              <%= render "invitation", collection: @invitations %>
+              <%= render partial: "invitation", collection: @invitations %>
 
               <%= paginate @invitations %>
             </tbody>
