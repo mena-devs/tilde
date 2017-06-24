@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy, :approve, :take_down]
+  before_action :set_job, only: [:create, :show, :edit, :update, :destroy, :approve, :take_down]
+  before_action :set_creator, only: [:create]
   # devise authentication required to access jobs
   before_action :authenticate_user!, :except => [:new, :index, :show]
 
@@ -35,6 +36,10 @@ class JobsController < ApplicationController
 
   # POST /jobs
   def create
+    if (current_user != @job.user || !current_user.admin?)
+      redirect_to @job, error: 'Not authorised'
+    end
+
     @job = Job.new(job_params)
     @job.post_online
 
@@ -82,6 +87,9 @@ class JobsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_job
       @job = Job.friendly.find(params[:id])
+    end
+
+    def set_creator
       @job.user = current_user
     end
 
