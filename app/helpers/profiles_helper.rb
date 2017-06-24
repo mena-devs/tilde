@@ -14,4 +14,12 @@ module ProfilesHelper
       profile.nickname.downcase
     end
   end
+
+  def biography(profile)
+    if profile.biography.blank?
+      "<strong>Please update your biography</strong>".html_safe
+    else
+      profile.biography.html_safe
+    end
+  end
 end
