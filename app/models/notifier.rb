@@ -29,6 +29,11 @@ class Notifier
                         "short": true
                     },
                     {
+                        "title": "Expected salary",
+                        "value": job.salary,
+                        "short": true
+                    },
+                    {
                         "title": "Details",
                         "value": "#{AppSettings.application_host}/job/#{job.custom_identifier}?md=slack",
                         "short": false
