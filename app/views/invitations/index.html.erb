@@ -1,51 +1,55 @@
-<!-- Page Title
-============================================= -->
-<section id="page-title">
-
-  <div class="container clearfix">
-    <h1>Sent Slack invitations</h1>
-  </div>
-
-</section><!-- #page-title end -->
-
-<!-- Content
-============================================= -->
-<section id="content">
-
-  <div class="content-wrap">
+<!-- Document Wrapper
+	============================================= -->
+	<div id="wrapper" class="clearfix">
+  <!-- Page Title
+  ============================================= -->
+  <section id="page-title">
 
     <div class="container clearfix">
+      <h1>Sent Slack invitations</h1>
+    </div>
 
-      <div class="table-responsive">
-        <% if @invitations.blank? %>
-          <div class="style-msg alertmsg">
-            <div class="sb-msg"><i class="icon-warning-sign"></i>You have sent 0 invitations</div>
-          </div>
+  </section><!-- #page-title end -->
 
-          <div class="fright">
-            <%= link_to "Invite a friend or colleague", new_invitation_path, class: "button button-3d button-rounded button-aqua" %>
-          </div>
-        <% else %>
-          <table id="datatable1" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Location</th>
-                <th>Sent on</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= render partial: "invitation", collection: @invitations %>
+  <!-- Content
+  ============================================= -->
+  <section id="content">
 
-              <%= paginate @invitations %>
-            </tbody>
-          </table>
-        <% end %>
+    <div class="content-wrap">
+
+      <div class="container clearfix">
+
+        <div class="table-responsive">
+          <% if @invitations.blank? %>
+            <div class="style-msg alertmsg">
+              <div class="sb-msg"><i class="icon-warning-sign"></i>You have sent 0 invitations</div>
+            </div>
+
+            <div class="fright">
+              <%= link_to "Invite a friend or colleague", new_invitation_path, class: "button button-3d button-rounded button-aqua" %>
+            </div>
+          <% else %>
+            <table id="invitations-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Location</th>
+                  <th>Sent on</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: "invitation", collection: @invitations %>
+
+                <%= paginate @invitations %>
+              </tbody>
+            </table>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</section><!-- #content end -->
+  </section><!-- #content end -->
+</div>
 
 <!-- Bootstrap Data Table Plugin -->
 <%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
@@ -54,7 +58,7 @@
 <script>
 
   $(document).ready(function() {
-    $('#datatable1').dataTable();
+    $('#invitations-datatable').dataTable();
   });
 
 </script>

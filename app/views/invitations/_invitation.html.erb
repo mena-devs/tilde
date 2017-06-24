@@ -3,10 +3,8 @@
   <td>
     <%= invitation.invitee_email %>
     <% if invitation.invitee_email == current_user.email %>
-      <div class="btn btn-xs btn-primary">
-        <%= fa_icon("check") %>
-        me
-      </div>
+      &nbsp;
+      <%= fa_icon("check", text: "me") %>
     <% end %>
   </td>
   <td><%= invitation.invitee_location_name %></td>
