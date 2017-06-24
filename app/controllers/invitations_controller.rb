@@ -4,7 +4,11 @@ class InvitationsController < ApplicationController
   before_action :authenticate_user!, unless: :api_request
   # GET /invitations
   def index
-    @invitations = Invitation.all
+    if current_user.admin?
+      @invitations = Invitation.all
+    else
+      @invitations = Invitation.sent(current_user.id)
+    end
   end
 
   # GET /invitations/1

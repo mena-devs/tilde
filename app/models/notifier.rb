@@ -4,7 +4,7 @@ class Notifier
   def self.get_notifier
     notifier = Slack::Notifier.new(AppSettings.slack_web_hook_url,
                                     channel: AppSettings.slack_job_channel,
-                                    username: 'menadevs.com job alert')
+                                    username: 'tilde ~')
     return notifier
   end
 
