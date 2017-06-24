@@ -13,9 +13,9 @@
   </td>
 
   <td class="cart-product-name">
-    <%= job.user.name %>
+    <%= job_invitee_name(job) %>
   </td>
-  
+
   <td class="cart-product-name">
     <%= time_ago_in_words(job.created_at) %>
   </td>
