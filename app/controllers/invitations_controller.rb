@@ -5,9 +5,9 @@ class InvitationsController < ApplicationController
   # GET /invitations
   def index
     if current_user.admin?
-      @invitations = Invitation.all
+      @invitations = Invitation.all.order(updated_at: :desc).page(params[:page])
     else
-      @invitations = Invitation.sent(current_user.id)
+      @invitations = Invitation.sent(current_user.id).order(updated_at: :desc).page(params[:page])
     end
   end
 

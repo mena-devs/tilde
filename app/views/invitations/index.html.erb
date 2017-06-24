@@ -36,24 +36,9 @@
               </tr>
             </thead>
             <tbody>
-              <% @invitations.each do |invitation| %>
-                <tr>
-                  <td><%= invitation.invitee_name %></td>
-                  <td>
-                    <%= invitation.invitee_email %>
-                    <% if invitation.invitee_email == current_user.email %>
-                      <div class="btn btn-xs btn-primary">
-                        <%= fa_icon("check") %>
-                        me
-                      </div>
-                    <% end %>
-                  </td>
-                  <td><%= invitation.invitee_location_name %></td>
-                  <td>
-                    <%= invitation.created_at.strftime("%d %b %Y") %>
-                  </td>
-                </tr>
-              <% end %>
+              <%= render "invitation", collection: @invitations %>
+
+              <%= paginate @invitations %>
             </tbody>
           </table>
         <% end %>
