@@ -34,13 +34,13 @@
 
           <%= content_tag(:ul) do %>
             <%= content_tag(:li) do %>
-              <%= navbar_link_to('Invitations to join Slack group',
+              <%= navbar_link_to('New Invitations',
                                  new_invitation_path,
                                  :active_when => { controller: 'invitations' }) %>
             <% end %>
 
             <%= content_tag(:li) do %>
-              <%= navbar_link_to('Sent Invitations',
+              <%= navbar_link_to('History',
                                   invitations_path) %>
             <% end %>
           <% end %>

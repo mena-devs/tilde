@@ -12,10 +12,12 @@
                        "location",
                        { include_blank: 'Select' }, {class: 'form-control'}) %>
   </div>
+
   <%= f.check_box :remote_ok, label: "Check if the applicant can work remotely" %>
   <%= f.text_field :apply_email, label: "Email to apply" %>
   <%= f.select :job_type, Job.job_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select', selected: nil} %>
   <%= f.select :level, Job.levels.keys.map { |w| [w.humanize, w] }, {label: 'Experience level', include_blank: 'Select', selected: nil} %>
+
   <div class='row'>
 
     <div class="col-md-6">
@@ -34,9 +36,12 @@
 
   <div class="row job-form-buttons">
     <div class="col-md-12">
-      <%= link_to raw("<i class='fa fa-caret-left back-icon'></i> Back"), jobs_path, :class => "btn btn-default back-btn" %>
-      <%= f.submit "Post job", :class => "btn custom-btn-1 post-job-btn-1 btn-default pull-right" %>
+      <%= f.submit "Post job", :class => "button button-3d button button-rounded button-green pull-right" %>
     </div>  <!-- /.col-md-12 -->
   </div>  <!-- /.job-form-buttons -->
 
 <% end %>
+
+<script>
+  // $('.description').froalaEditor();
+</script>

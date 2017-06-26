@@ -9,4 +9,4 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf components/bs-datatable.js)
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf components/bs-datatable.js froala_editor.min.js font-awesome-sprockets froala_style.min.css froala_editor.min.css)
