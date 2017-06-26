@@ -7,11 +7,12 @@
       <div class="col-md-8 col-xs-8 nopadding">
         <h1>New job post</h1>
         <span>Post a job for free</span>
-			</div>
+      </div>
     </div>
   </div>
 
-</section><!-- #page-title end -->
+</section>
+<!-- #page-title end -->
 
 <!-- Content
 ============================================= -->
@@ -23,8 +24,10 @@
 
       <div class="row clearfix">
         <div class="col-md-12">
-          <div class="alert alert-warning">
-            <p>Jobs posted on <a href='http://menadevs.com/jobs'>menadevs.com</a> are sent via email to all its members and remain online for 1 month (renewable), free of charge.</p>
+          <div class="style-msg alertmsg">
+            <div class="sb-msg">
+              <i class="icon-warning-sign"></i>
+              Jobs posted on <%= link_to AppSettings.application_host, AppSettings.application_host %>  are sent via email to all its members and remain online for 1 month (renewable), free of charge.</div>
           </div>
           <!-- /.alert alert-warning -->
           <%= render "form" %>
