@@ -20,6 +20,8 @@
 				<%= button_to "[admin] Approve", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
 				<% elsif @job.approved? %>
 				<%= button_to "[admin] Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+				<% elsif @job.disabled? %>
+				<%= button_to "[admin] Publish", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
 				<% end %>
 				<% end %>
 
@@ -63,7 +65,7 @@
 								<%= @job.job_type.try(:humanize) %>
 							</li>
 							<li>
-								<i class="icon-briefcase"></i>
+								<i class="icon-users"></i>
 								Experience level:
 								<%= @job.level.try(:humanize) %>
 							</li>

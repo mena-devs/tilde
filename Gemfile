@@ -32,7 +32,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'slack-notifier'
-gem 'turbolinks', '~> 5'
 
 group :production, :staging do
   gem 'exception_notification'

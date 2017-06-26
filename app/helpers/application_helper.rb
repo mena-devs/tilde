@@ -27,4 +27,12 @@ module ApplicationHelper
       end
     end
   end
+
+  def boolean_icon(objkt)
+    if objkt
+      fa_icon('check')
+    else
+      fa_icon('times')
+    end
+  end
 end

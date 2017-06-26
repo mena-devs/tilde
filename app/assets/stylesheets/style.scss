@@ -214,7 +214,7 @@ h1 > span:not(.nocolor), h2 > span:not(.nocolor), h3 > span:not(.nocolor), h4 > 
 }
 
 p, pre, ul, ol, dl, dd, blockquote, address, table, fieldset, form {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 small {
@@ -3905,7 +3905,7 @@ body {
 
 #page-title {
   position: relative;
-  padding: 50px 0;
+  padding: 30px 0;
   background-color: #F5F5F5;
   border-bottom: 1px solid #EEE;
   .container {
@@ -4107,7 +4107,7 @@ body.stretched .container-fullwidth .breadcrumb {
 
 .content-wrap {
   position: relative;
-  padding: 80px 0;
+  padding: 30px 0;
 }
 
 #content .container {

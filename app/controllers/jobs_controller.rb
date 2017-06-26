@@ -1,5 +1,5 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy, :approve, :take_down]
+  before_action :set_job, only: [:show, :edit, :update, :destroy, :approve, :take_down, :publish]
   # devise authentication required to access jobs
   before_action :authenticate_user!, :except => [:new, :index, :show]
 
@@ -10,11 +10,12 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.unscoped.order(updated_at: :desc).page(params[:page])
+    @admin_jobs = Job.all.order(updated_at: :desc).page(params[:page])
     if !current_user.admin?
       flash[:notice] = "Not authorised"
     end
-    render :index
+
+    render :admin_index
   end
 
   # GET /jobs/1
@@ -68,6 +69,15 @@ class JobsController < ApplicationController
   def take_down
     if @job.take_down!
       redirect_to @job, notice: 'The job is no longer published live.'
+    else
+      render :edit
+    end
+  end
+
+  # PATCH/PUT /jobs/1/publish
+  def publish
+    if @job.publish!
+      redirect_to @job, notice: 'The job is now live on the Job Board.'
     else
       render :edit
     end

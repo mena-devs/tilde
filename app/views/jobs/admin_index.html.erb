@@ -1,0 +1,49 @@
+<!-- Page Title
+============================================= -->
+<section id="page-title">
+
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-8 nopadding">
+        <h1>Job Board</h1>
+        <span>Browse all jobs posted on MENAdevs</span>
+			</div>
+
+      <div class="col-md-4 col-xs-4 nopadding">
+        <%= link_to new_job_path, :class => "button button-3d notopmargin fright" do %>
+          <%= fa_icon("plus", :text => "Post a Job") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <% if @admin_jobs.blank? %>
+        <div class="style-msg alertmsg">
+  				<div class="sb-msg"><i class="icon-warning-sign"></i>There are no jobs on MENAdevs at the moment</div>
+  			</div>
+      <% else %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= render "admin_jobs_table", locals: { admin_jobs: @admin_jobs } %>
+          </div>
+        </div>
+
+        <%= paginate @admin_jobs %>
+      <% end %>
+
+    </div>
+
+  </div>
+
+</section><!-- #content end -->

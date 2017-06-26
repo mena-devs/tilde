@@ -55,7 +55,7 @@ class Job < ApplicationRecord
     end
 
     event :publish do
-      transitions :from => :under_review, :to => :approved
+      transitions :from => [:under_review, :disabled], :to => :approved
 
       after do
         # inform job ower that their job post is online

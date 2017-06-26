@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     member do
       put :approve
       put :take_down
+      put :publish
     end
   end
 
