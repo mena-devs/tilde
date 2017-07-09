@@ -15,9 +15,6 @@ class SlackApi
 
     json_hash = api_response.parsed_response
 
-    # Log data
-    logger.debug(json_hash)
-
     return json_hash
   end
 end

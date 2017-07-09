@@ -42,6 +42,7 @@ class Invitation < ApplicationRecord
   after_create :notify_administrators
   after_create :process_invitation_on_slack
 
+  # TODO: DRY up boolean method
   validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
   validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
   validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
@@ -59,7 +60,7 @@ class Invitation < ApplicationRecord
   end
 
   def resend
-    self.process_invitation_on_slack
+    process_invitation_on_slack
   end
 
   private
