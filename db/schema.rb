@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319214240) do
+ActiveRecord::Schema.define(version: 20170709204510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,8 @@ ActiveRecord::Schema.define(version: 20170319214240) do
     t.datetime "updated_at",                           null: false
     t.string   "slack_uid"
     t.string   "medium"
+    t.string   "aasm_state"
+    t.integer  "retries",              default: 0
     t.index ["user_id"], name: "index_invitations_on_user_id", using: :btree
   end
 

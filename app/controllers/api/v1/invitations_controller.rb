@@ -9,19 +9,29 @@ module Api
 
       # POST /invitations
       def create
-        @invitation = Invitation.new(invitation_params)
-        @invitation.medium = 'api'
-        @invitation.code_of_conduct = true
+        @invitation = Invitation.where(invitee_email: invitation_params[:invitee_email]).first
 
-        if user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
-          @invitation.user = user
-        end
+        if @invitation
+          @invitation.resend_invite!
 
-        if @invitation.save
-          render status: :created, json: { status: 201 }.to_json and return
+          render status: :found, json: { status: 302 }.to_json and return
         else
-          render status: 422,
-                 json: { message: @invitation.errors } and return
+          @invitation = Invitation.new(invitation_params)
+          @invitation.medium = 'api'
+          @invitation.code_of_conduct = true
+
+          if user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
+            @invitation.user = user
+          end
+
+          if @invitation.save
+            @invitation.send_invite!
+
+            render status: :created, json: { status: 201 }.to_json and return
+          else
+            render status: 422,
+                   json: { message: @invitation.errors } and return
+          end
         end
       end
 

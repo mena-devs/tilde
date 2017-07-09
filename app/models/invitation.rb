@@ -2,6 +2,7 @@
 #
 # Table name: invitations
 #
+#  aasm_state           :string
 #  code_of_conduct      :boolean          default(FALSE)
 #  created_at           :datetime         not null
 #  delivered            :boolean          default(FALSE)
@@ -15,6 +16,7 @@
 #  medium               :string
 #  member_application   :boolean          default(FALSE)
 #  registered           :boolean          default(FALSE)
+#  retries              :integer          default(0)
 #  slack_uid            :string
 #  updated_at           :datetime         not null
 #  user_id              :integer
@@ -37,10 +39,31 @@ class CodeOfConductValidator < ActiveModel::Validator
 end
 
 class Invitation < ApplicationRecord
-  belongs_to :user
+  include AASM
 
-  after_create :notify_administrators
-  after_create :process_invitation_on_slack
+  aasm do
+    state :not_sent, :initial => true
+    state :sent
+    state :resent
+    state :accepted
+    state :revoked
+
+    event :send_invite do
+      transitions :from => [:draft], :to => :sent
+      success do
+        process_invitation
+      end
+    end
+
+    event :resend_invite do
+      transitions :from => [:sent, :resent], :to => :resent
+      success do
+        resend_invitation
+      end
+    end
+  end
+
+  belongs_to :user
 
   # TODO: DRY up boolean method
   validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
@@ -59,8 +82,14 @@ class Invitation < ApplicationRecord
     end
   end
 
-  def resend
+  def process_invitation
+    notify_administrators
     process_invitation_on_slack
+  end
+
+  def resend_invitation
+    increment!(:retries)
+    process_invitation
   end
 
   private
