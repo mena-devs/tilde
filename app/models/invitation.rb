@@ -49,7 +49,7 @@ class Invitation < ApplicationRecord
     state :revoked
 
     event :send_invite do
-      transitions :from => [:draft], :to => :sent
+      transitions :from => [:not_sent], :to => :sent
       success do
         process_invitation
       end
