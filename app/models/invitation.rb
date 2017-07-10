@@ -56,7 +56,7 @@ class Invitation < ApplicationRecord
     end
 
     event :resend_invite do
-      transitions :from => [:sent, :resent], :to => :resent
+      transitions :from => [:not_sent, :sent, :resent], :to => :resent
       success do
         resend_invitation
       end
