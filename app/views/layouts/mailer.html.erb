@@ -6,12 +6,7 @@
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 
     <%# CSS should go closest to the top of the document as possible. %>
-    <%= stylesheet_link_tag('application',
-                            media: 'all',
-                            'data-turbolinks-track': false) %>
-
-    <%# JavaScript must be in head for Turbolinks to work. %>
-    <%= javascript_tag('application', 'data-turbolinks-track': false) %>
+    <%= stylesheet_link_tag('application', media: 'all') %>
 
     <%= yield(:head) %>
 
@@ -22,36 +17,13 @@
     <meta name='apple-mobile-web-app-title' content='MENAdevs'>
 
     <title>
-      <%= strip_tags(yield(:title)) + ' – ' if content_for?(:title) %>
       MENAdevs.com
     </title>
   </head>
+
   <body class="stretched no-transition">
+
     <div id="wrapper" class="clearfix">
-
-    	<!-- Header
-    	============================================= -->
-    	<header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
-
-        <div id="header-wrap">
-
-          <div class="container clearfix">
-
-            <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
-
-            <div id="logo">
-              <%= link_to(image_tag('menadevs_logo.png'),
-                          root_url, :class => 'standard-logo') %>
-
-              <%= link_to(image_tag('menadevs_logo@2x.png'),
-                          root_url, :class => 'retina-logo') %>
-            </div>
-
-          </div>
-
-        </div>
-
-    	</header>
 
       <section id="content">
 
