@@ -83,18 +83,23 @@ class Invitation < ApplicationRecord
   end
 
   def process_invitation
-    notify_administrators
+    new_invite_notify_administrators
     process_invitation_on_slack
   end
 
   def resend_invitation
     increment!(:retries)
-    process_invitation
+    resend_invite_notify_administrators
+    process_invitation_on_slack
   end
 
   private
-    def notify_administrators
+    def new_invite_notify_administrators
       InvitationMailer.new_slack_invitation(self).deliver
+    end
+
+    def resend_invite_notify_administrators
+      InvitationMailer.resend_slack_invitation(self).deliver
     end
 
     def process_invitation_on_slack
