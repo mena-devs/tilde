@@ -131,6 +131,8 @@ GEM
     country_select (3.0.0)
       countries (~> 2.0)
       sort_alphabetical (~> 1.0)
+    css_parser (1.5.0)
+      addressable
     debug_inspector (0.0.2)
     deep_merge (1.1.1)
     devise (4.2.0)
@@ -188,6 +190,7 @@ GEM
       guard-compat (~> 1.2)
       minitest (>= 3.0)
     hashie (3.5.5)
+    htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
@@ -305,6 +308,13 @@ GEM
       actionmailer (>= 3.0.0)
       postmark (~> 1.10.0)
     powerpack (0.1.1)
+    premailer (1.10.4)
+      addressable
+      css_parser (>= 1.4.10)
+      htmlentities (>= 4.0.0)
+    premailer-rails (1.9.7)
+      actionmailer (>= 3, < 6)
+      premailer (~> 1.7, >= 1.7.9)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -485,6 +495,7 @@ DEPENDENCIES
   minitest-capybara
   minitest-reporters
   mocha
+  nokogiri
   omniauth-slack
   overcommit
   paranoia (~> 2.2)
@@ -492,6 +503,7 @@ DEPENDENCIES
   pgcli-rails
   poltergeist
   postmark-rails
+  premailer-rails
   puma (~> 3.0)
   rack-livereload
   rails (= 5.0.0.1)

@@ -14,6 +14,6 @@ class InvitationMailer < ApplicationMailer
     @invitation = invitation
 
     mail to: AppSettings.admin_email,
-         subject: "[MENAdevs] We've received an invitation to join our Slack group"
+         subject: "[MENAdevs] We've received an invitation to join the Slack group"
   end
 end
