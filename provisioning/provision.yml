@@ -1,0 +1,95 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        rvm1_rubies: ['ruby-2.4.1'],
+        rvm1_user: 'ubuntu'
+      }
+  tasks:
+    - name: Add repository for PostgreSQL 9.6
+      apt_repository: repo={{item}} state=present
+      with_items:
+        - "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+        - "deb-src http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main"
+
+    - name: Add PostgreSQL apt key
+      apt_key:
+        url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+        state: present
+
+    - name: Update apt
+      apt:
+        update_cache: yes
+
+    - name: Install PostgreSQL
+      apt: name={{item}}
+      with_items:
+        - postgresql-9.6
+        - postgresql-contrib-9.6
+        - python-psycopg2
+
+    - name: Copy PostgreSQL configuration files
+      copy: src={{item}} dest=/etc/postgresql/9.6/main/{{item}} owner=postgres group=postgres mode=0644
+      with_items:
+        - pg_hba.conf
+        - postgresql.conf
+
+    - name: Stop PostgreSQL service
+      service:
+        name: postgresql
+        state: stopped
+        enabled: yes
+
+    - name: Upgrade from 9.4 to 9.6 if 9.4 present
+      shell: pg_lsclusters | grep 9.4
+      register: pg_94_result
+      ignore_errors: yes
+    - command: pg_dropcluster 9.6 main --stop
+      when: pg_94_result.stdout != ""
+    - command: pg_upgradecluster 9.4 main
+      when: pg_94_result.stdout != ""
+    - command: pg_dropcluster 9.4 main
+      when: pg_94_result.stdout != ""
+
+    - name: Start PostgreSQL service
+      service:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create PostgreSQL DBs
+      become: yes
+      become_user: postgres
+      vars:
+        ansible_ssh_pipelining: true
+      postgresql_db:
+        name: "{{ item }}"
+        encoding: "UTF-8"
+      with_items:
+        - tilde_development
+        - tilde_test
+
+    - name: Create PostgreSQL users
+      become: true
+      become_user: postgres
+      vars:
+        ansible_ssh_pipelining: true
+      postgresql_user:
+        name: tilde
+        password: tilde
+        role_attr_flags: SUPERUSER
+        state: present
+
+    - name: Restart PostgreSQL service
+      service:
+        name: postgresql
+        state: restarted
+
+    - name: Open ports
+      ufw: rule=allow port={{item}} proto=tcp
+      with_items:
+        - 5432   # Postgresql
+        - 3000   # Rails app
