@@ -33,6 +33,16 @@ On a Mac, you can obtain all of the above packages using [Homebrew][].
 
 If you need help setting up a Ruby development environment, check out this [Rails OS X Setup Guide](https://mattbrictson.com/rails-osx-setup-guide).
 
+### Download vagrant box to use with project
+
+[Download link]()
+
+1. Import the box by running the following command:
+
+`vagrant box add "ubuntu/xenial64" ~/path-to-vagrant-box`
+
+2. Run `vagrant up` and you should be able to access the box
+
 ## Getting started
 
 ### bin/setup
