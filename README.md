@@ -35,7 +35,7 @@ If you need help setting up a Ruby development environment, check out this [Rail
 
 ### Download vagrant box to use with project
 
-[Download link]()
+[Download link](http://bit.ly/2vhoTvS)
 
 1. Import the box by running the following command:
 
