@@ -41,65 +41,85 @@
 
                 <div class="tab-container">
                   <div class="tab-content clearfix" id="tab-account">
-                    <table class="table">
-                      <tr>
-                        <td>
-                          <%= fa_icon('link') %>
-                          menadevs.com/profiles/<%= nickname(@profile) %>
-                        </td>
 
-                        <td>
-                          <%= fa_icon('envelope') %>
-                          <%= email(@profile) %>
-                        </td>
-                      </tr>
 
-                      <tr>
-                        <td><%= fa_icon('globe') %>
-                          <%= @profile.location_name %></td>
-                        <td><%= fa_icon('clock-o') %>
-                          <%= @profile.user.time_zone %></td>
-                      </tr>
 
-                      <tr>
-                        <td>
-                          <% if @profile.receive_emails? %>
-                          <%= fa_icon("check") %>
-                        <% else %>
-                          <%= fa_icon("close") %>
-                          <% end %>
-                          <span>Receive updates via emails from MENAdevs?</span>
-                        </td>
 
-                        <td>
-                          <% if @profile.receive_job_alerts %>
-                          <%= fa_icon("check") %>
-                        <% else %>
-                          <%= fa_icon("close") %>
-                          <% end %>
-                          <span>Receive job alerts via emails?</span>
-                        </td>
-                      </tr>
+                    <table class="table table-striped">
+                      <tbody>
+                        <tr>
+                          <th class="col-sm-5">Porfile URL</th>
+                          <td>menadevs.com/profiles/<%= nickname(@profile) %></td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Nickname</th>
+                          <td><%= @profile.nickname %></td>
+                        </tr>
 
-                      <tr>
-                        <td>
-                          <% if @profile.user.connected_via_slack? %>
-                          <%= fa_icon("check") %>
-                        <% else %>
-                          <%= fa_icon("close") %>
-                          <% end %>
-                          Logged in using Slack credentials?
-                        </td>
-                        <td>
-                          <% if @profile.privacy_level == 0 %>
-                          <%= fa_icon("eye-slash", text: "Your profile is hidden") %>
-                          <% elsif @profile.privacy_level == 1 %>
-                          <%= fa_icon("adjust", text: "Your profile visible to members only") %>
-                          <% elsif @profile.privacy_level == 2 %>
-                          <%= fa_icon("eye", text: "Your profile is public") %>
-                          <% end %>
-                        </td>
-                      </tr>
+                        <tr>
+                          <th class="col-sm-5">Email</th>
+                          <td><%= @profile.user.email %></td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Location</th>
+                          <td><%= @profile.location_name %></td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Time Zone</th>
+                          <td><%= @profile.user.time_zone %></td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Receive emails from MENA Devs?</th>
+                          <td>
+                            <div>
+                              <% if @profile.receive_emails? %>
+                                <%= fa_icon("check") %>
+                              <% else %>
+                                <%= fa_icon("close") %>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Receive job alerts?</th>
+                          <td>
+                            <div>
+                              <% if @profile.receive_job_alerts %>
+                                <%= fa_icon("check") %>
+                              <% else %>
+                                <%= fa_icon("close") %>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Connected via Slack login</th>
+                          <td>
+                            <div>
+                              <% if @profile.user.connected_via_slack? %>
+                                <%= fa_icon("check") %>
+                                Enabled
+                              <% else %>
+                                <%= fa_icon("close") %>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                        <tr>
+                          <th class="col-sm-5">Account privacy</th>
+                          <td>
+                            <div>
+                              <% if @profile.privacy_level == 0 %>
+                              <%= fa_icon("eye-slash", text: "Your profile is hidden") %>
+                              <% elsif @profile.privacy_level == 1 %>
+                              <%= fa_icon("adjust", text: "Your profile visible to members only") %>
+                              <% elsif @profile.privacy_level == 2 %>
+                              <%= fa_icon("eye", text: "Your profile is public") %>
+                              <% end %>
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
                     </table>
 
                   </div>
