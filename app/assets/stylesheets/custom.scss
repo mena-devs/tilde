@@ -1,81 +1,91 @@
-// /*variables*/
-//
-// $logo-color: #414656;
-// $darker-logo-color: darken($logo-color,10%);
-//
-//
-//
-// /*styles*/
-//
-// label.required:after {
-//   content:" *";
-// }
-//
-// .page-header{
-//   margin: 10px 0 20px;
-// }
-//
-// .welcome-panel-body, .jobs-panel-body {
-//     min-height: 189px;
-// }
-//
-// .welcome-panel-body ul, .jobs-panel-body ul{
-//     min-height: 115px;
-// }
-//
-// .welcome-panel-body ul li, .jobs-panel-body ul li{
-//     padding-bottom: 8px;
-// }
-//
-// .jumbotron {
-//     border-radius: 0 !important;
-// }
-//
-// .custom-btn-1 {
-//     background-color: $logo-color;
-//     color: #EEEEEE;
-//     min-width: 160px;
-// }
-//
-// .custom-btn-1:hover {
-//    background-color: $darker-logo-color;
-//    color: #EEEEEE;
-// }
-//
-// .panel {
-//     border-radius: 0;
-// }
-//
-// .sign-up-btn {
-//     margin-left: 40px;
-// }
-//
-// .post-job-btn {
-//     margin-left: 40px;
-// }
-//
-// .job-form-buttons {
-//     margin-top: 20px;
-// }
-//
-// .profile-buttons {
-//     margin-bottom: 15px;
-// }
-//
-// .profile-icon {
-//   padding-right: 3px;
-// }
-//
-// .back-icon {
-//     padding-right: 5px;
-// }
-//
-// .contact-icon {
-//   margin-right: 10px;
-// }
-//
-// .contact-link {
-//   display: block;
-//   font-size: 16px;
-//   margin-bottom: 10px;
-// }
+/* /*variables*/ /*
+
+ $logo-color: #414656;
+ $darker-logo-color: darken($logo-color,10%);
+
+
+
+ /*styles*/ /*
+
+ label.required:after {
+   content:" *";
+ }
+
+ .page-header{
+   margin: 10px 0 20px;
+ }
+
+ .welcome-panel-body, .jobs-panel-body {
+     min-height: 189px;
+ }
+
+ .welcome-panel-body ul, .jobs-panel-body ul{
+     min-height: 115px;
+ }
+
+ .welcome-panel-body ul li, .jobs-panel-body ul li{
+     padding-bottom: 8px;
+ }
+
+ .jumbotron {
+     border-radius: 0 !important;
+ }
+
+ .custom-btn-1 {
+     background-color: $logo-color;
+     color: #EEEEEE;
+     min-width: 160px;
+ }
+
+ .custom-btn-1:hover {
+    background-color: $darker-logo-color;
+    color: #EEEEEE;
+ }
+
+ .panel {
+     border-radius: 0;
+ }
+
+ .sign-up-btn {
+     margin-left: 40px;
+ }
+
+ .post-job-btn {
+     margin-left: 40px;
+ }
+
+ .job-form-buttons {
+     margin-top: 20px;
+ }
+
+ .profile-buttons {
+     margin-bottom: 15px;
+ }
+
+ .profile-icon {
+   padding-right: 3px;
+ }
+
+ .back-icon {
+     padding-right: 5px;
+ }
+
+ .contact-icon {
+   margin-right: 10px;
+ }
+
+ .contact-link {
+   display: block;
+   font-size: 16px;
+   margin-bottom: 10px;
+ }
+*/
+
+/* useful to avoid the blank space below the footer */
+.content-min-height {
+    min-height: 400px;
+}
+
+.profile-preview {
+    margin-top: 45px;
+}
