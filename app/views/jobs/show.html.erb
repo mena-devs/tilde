@@ -59,36 +59,8 @@
 							</li>
 							<li>
 								<i class="icon-user"></i>
-								Posted by:
-								<%= job_invitee_name(@job) %>
-							</li>
-							<li>
-								<i class="icon-briefcase"></i>
-								Employment type:
-								<%= @job.employment_type.try(:humanize) %>
-							</li>
-							<li>
-								<i class="icon-users"></i>
-								Experience:
-								<%= @job.experience.try(:humanize) %>
-							</li>
-						</ul>
-
-						<ul class="entry-meta clearfix">
-							<li>
-								<i class="icon-money"></i>
-								Salary range:
-								<%= @job.currency %> <%= @job.from_salary %> <%= @job.to_salary %>
-							</li>
-							<li>
-								<i class="icon-plane"></i>
-								Remote:
-								<%= @job.remote? ? 'Yes' : 'No' %>
-							</li>
-							<li>
-								<i class="icon-email"></i>
-								Email:
-								<%= @job.apply_email %>
+								By:
+								<%= job_creator_name(@job) %>
 							</li>
 						</ul>
 						<!-- .entry-meta end -->
@@ -97,7 +69,33 @@
 							============================================= -->
 						<div class="entry-content notopmargin">
 							<h3><%= @job.company_name.humanize %></h3>
-							<%= @job.description %>
+
+							<ul style='margin-left: 26px'>
+								<li>
+									<i class="icon-briefcase"></i>
+									Employment type: <%= @job.employment_type.try(:humanize) %>
+								</li>
+								<li>
+									<i class="icon-users"></i>
+									Experience: <%= @job.experience.try(:humanize) %>
+								</li>
+								<li>
+									<i class="icon-money"></i>
+									Salary: <%= job_salary(@job) %>
+								</li>
+								<li>
+									<i class="icon-plane"></i>
+									Remote: <%= @job.remote? ? 'Yes' : 'No' %>
+								</li>
+								<li>
+									<i class="icon-email"></i>
+									Email: <%= @job.apply_email %>
+								</li>
+							</ul>
+
+							<p>
+								<%= @job.description %>
+							</p>
 						</div>
 						<!-- .entry-content end -->
 					</div>
