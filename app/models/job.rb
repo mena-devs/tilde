@@ -2,27 +2,30 @@
 #
 # Table name: jobs
 #
-#  aasm_state               :string
-#  apply_email              :string
-#  company_name             :string
-#  created_at               :datetime         not null
-#  custom_identifier        :string
-#  deleted_at               :datetime
-#  description              :text
-#  expires_on               :datetime
-#  id                       :integer          not null, primary key
-#  job_description_location :string
-#  job_type                 :integer          default("internship")
-#  level                    :integer          default("no_experience")
-#  location                 :string
-#  number_of_openings       :integer          default(1)
-#  posted_on                :datetime
-#  posted_to_slack          :boolean          default(FALSE)
-#  remote_ok                :boolean          default(FALSE)
-#  salary                   :string
-#  title                    :string
-#  updated_at               :datetime         not null
-#  user_id                  :integer
+#  aasm_state         :string
+#  apply_email        :string
+#  company_name       :string
+#  country            :string
+#  created_at         :datetime         not null
+#  currency           :string
+#  custom_identifier  :string
+#  deleted_at         :datetime
+#  description        :text
+#  education          :string
+#  employment_type    :integer          default(0)
+#  experience         :integer          default(0)
+#  expires_on         :datetime
+#  external_link      :string
+#  from_salary        :string
+#  id                 :integer          not null, primary key
+#  number_of_openings :integer          default(1)
+#  posted_on          :datetime
+#  posted_to_slack    :boolean          default(FALSE)
+#  remote             :boolean          default(FALSE)
+#  title              :string
+#  to_salary          :string
+#  updated_at         :datetime         not null
+#  user_id            :integer
 #
 # Indexes
 #
@@ -84,19 +87,23 @@ class Job < ApplicationRecord
 
   validates :company_name, presence: true
   validates :title, presence: true
-  validates :job_type, presence: true
-  validates :level, presence: true
+  validates :employment_type, presence: true
+  validates :experience, presence: true
+  validates :from_salary, presence: true
+  validates :currency, presence: true
+
+  validates :external_link, url: true, allow_nil: true
+  validates :apply_email, email: true, allow_nil: true
 
   before_validation :generate_unique_id, on: :create
   before_create :set_dates
 
-  enum job_type: [ :internship, :part_time, :full_time, :contract, :freelance ]
-  enum level: [ :no_experience, :beginner, :experienced, :manager ]
-  enum category: [ :software, :management ]
+  enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
+  enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
+  enum education: [ :unspecified, :high_school_or_equivalent, :certification, :bachelor_degree, :master_degree, :doctorate, :professional ]
+  enum currency: [:lbp, :usd, :aed]
 
   friendly_id :custom_identifier
-
-  validates :job_description_location, url: true
 
   def location_name
     country = ISO3166::Country[self.location]
@@ -107,7 +114,18 @@ class Job < ApplicationRecord
     end
   end
 
+  def self.all_currencies
+    {
+      lbp: 'Lebanese Pound (LBP)',
+      usd: 'United States Dollar (USD)',
+      aed: 'United Arab Emirates Dirham (AED)',
+      eur: 'Euro (EUR)',
+      gbp: 'British Pound (GBP)'
+    }
+  end
+
   private
+
     def set_dates
       self.posted_on = Time.now.utc
       self.expires_on = Time.now.utc + 1.month

@@ -29,12 +29,9 @@
 
 /config/database.local.yml
 
-/config/settings.local.yml
-/config/settings/*.local.yml
-/config/settings/development.yml
-/config/settings/production.yml
-/config/settings/test.yml
-/config/environments/*.local.yml
+/config/settings.yml
+/config/settings/*.yml
+/config/environments/*.yml
 
 /config/deploy.rb
 /config/deploy/*

@@ -5,8 +5,7 @@
   <div class="container clearfix">
     <div class="row clearfix">
       <div class="col-md-8 col-xs-8 nopadding">
-        <h1>New job post</h1>
-        <span>Post a job for free</span>
+        <h1>New job</h1>
       </div>
     </div>
   </div>
@@ -27,8 +26,10 @@
           <div class="style-msg alertmsg">
             <div class="sb-msg">
               <i class="icon-warning-sign"></i>
-              Jobs posted on <%= link_to AppSettings.application_host, AppSettings.application_host %>  are sent via email to all its members and remain online for 1 month (renewable), free of charge.</div>
+              Jobs posted on <%= link_to AppSettings.application_host, AppSettings.application_host %>  are sent via email to all its members and remain online for 1 month (renewable), free of charge.
+            </div>
           </div>
+          <br/>
           <!-- /.alert alert-warning -->
           <%= render "form" %>
         </div>

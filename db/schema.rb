@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170709204510) do
+ActiveRecord::Schema.define(version: 20170731010858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,23 +78,26 @@ ActiveRecord::Schema.define(version: 20170709204510) do
     t.string   "aasm_state"
     t.string   "title"
     t.text     "description"
-    t.string   "job_description_location"
-    t.string   "location"
-    t.boolean  "remote_ok",                default: false
+    t.string   "external_link"
+    t.string   "country"
+    t.boolean  "remote",             default: false
     t.string   "custom_identifier"
     t.datetime "posted_on"
     t.datetime "expires_on"
-    t.boolean  "posted_to_slack",          default: false
+    t.boolean  "posted_to_slack",    default: false
     t.integer  "user_id"
     t.string   "company_name"
     t.string   "apply_email"
-    t.string   "salary"
-    t.integer  "job_type",                 default: 0
-    t.integer  "number_of_openings",       default: 1
-    t.integer  "level",                    default: 0
+    t.string   "to_salary"
+    t.integer  "employment_type",    default: 0
+    t.integer  "number_of_openings", default: 1
+    t.integer  "experience",         default: 0
     t.datetime "deleted_at"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.string   "from_salary"
+    t.string   "currency"
+    t.string   "education"
     t.index ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
     t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end

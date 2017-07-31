@@ -1,44 +1,77 @@
-<%= bootstrap_form_for(@job) do |f| %>
+<%= bootstrap_form_for(@job, inline_errors: true) do |f| %>
 
   <%= f.alert_message "Please review the problems below:" %>
 
-  <%= f.text_field :title %>
-  <%= f.text_area :description, :rows => 13 %>
-  <%= f.text_field :job_description_location, label: 'URL of job description' %>
-  <%= f.text_field :company_name %>
-  <div class="form-group">
-    <label class="control-label" for="invitation_invitee_location">Location</label>
-    <%= country_select("job",
-                       "location",
-                       { include_blank: 'Select' }, {class: 'form-control'}) %>
-  </div>
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Save and continue", class: "button button-3d button button-rounded button-green pull-right" %>
+    </div>  <!-- /.col-md-12 -->
+  </div>  <!-- /.job-form-buttons -->
 
-  <%= f.check_box :remote_ok, label: "Check if the applicant can work remotely" %>
-  <%= f.text_field :apply_email, label: "Email to apply" %>
-  <%= f.select :job_type, Job.job_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select', selected: nil} %>
-  <%= f.select :level, Job.levels.keys.map { |w| [w.humanize, w] }, {label: 'Experience level', include_blank: 'Select', selected: nil} %>
+  <%= f.text_field :title, label: 'Job title' %>
+  <%= f.text_field :external_link, label: 'Link to job elsewhere' %>
+
+  <%= f.text_area :description, rows: 6, placeholder: 'Include key areas of responsibility and what the candidate might do on a typical day.' %>
 
   <div class='row'>
 
     <div class="col-md-6">
-      <%= f.label :salary, 'Salary range' %>
+      <%= f.text_field :company_name %>
+  
+      <%= f.text_field :apply_email, label: "Email to apply" %>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= f.label :country, 'Country', class: 'control-label' %>
+        <%= country_select("job",
+                           "country",
+                           { include_blank: 'Select country' }, { class: 'form-control' }) %>
+      </div>
+
+    </div>
+
+    <div class="col-md-2">
+      <br/>
+      <%= f.check_box :remote, label: "Remote job?" %>
+    </div>
+  </div>
+
+  <div class='row'>
+
+    <div class="col-md-6">
+      <%= f.select :employment_type, Job.employment_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select employment type', selected: nil} %>
+
+      <%= f.select :education, Job.educations.keys.map { |w| [w.humanize, w] }, {label: 'Education', include_blank: 'Select education', selected: nil} %>
+
+    </div>
+
+    <div class="col-md-6">
+      <%= f.select :experience, Job.experiences.keys.map { |w| [w.humanize, w] }, {label: 'Experience', include_blank: 'Select experience', selected: nil} %>
+
+      <%= f.select :number_of_openings, [1, 2, 3, 4, 5], { label: "Number of positions", include_blank: 'Select number of positions', selected: nil } %>
+    </div>
+  </div>
+
+  <div class='row'>
+
+    <div class="col-md-2">
       <div class="input-group">
-        <div class="input-group-addon">$</div>
-        <%= f.text_field :salary, hide_label: true, placeholder: "amount per annum" %>
+        <%= f.text_field :from_salary, label: 'From salary', placeholder: "amount per annum" %>
       </div>
     </div> <!-- salary range -->
 
-    <div class="col-md-6">
-      <%= f.select :number_of_openings, [1, 2, 3, 4, 5], label: "Number of positions" %>
+    <div class="col-md-2">
+      <div class="input-group">
+        <%= f.text_field :to_salary, label: 'To salary', placeholder: "amount per annum" %>
+      </div>
+    </div> <!-- salary range -->
+
+    <div class="col-md-3">
+      <%= f.select :currency, Job.all_currencies.values, { label: 'Currency', include_blank: 'Select currency', selected: nil } %>
     </div> <!-- nb of positions -->
 
   </div>
-
-  <div class="row job-form-buttons">
-    <div class="col-md-12">
-      <%= f.submit "Post job", :class => "button button-3d button button-rounded button-green pull-right" %>
-    </div>  <!-- /.col-md-12 -->
-  </div>  <!-- /.job-form-buttons -->
 
 <% end %>
 

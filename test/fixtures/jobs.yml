@@ -2,27 +2,30 @@
 #
 # Table name: jobs
 #
-#  aasm_state               :string
-#  apply_email              :string
-#  company_name             :string
-#  created_at               :datetime         not null
-#  custom_identifier        :string
-#  deleted_at               :datetime
-#  description              :text
-#  expires_on               :datetime
-#  id                       :integer          not null, primary key
-#  job_description_location :string
-#  job_type                 :integer          default("internship")
-#  level                    :integer          default("no_experience")
-#  location                 :string
-#  number_of_openings       :integer          default(1)
-#  posted_on                :datetime
-#  posted_to_slack          :boolean          default(FALSE)
-#  remote_ok                :boolean          default(FALSE)
-#  salary                   :string
-#  title                    :string
-#  updated_at               :datetime         not null
-#  user_id                  :integer
+#  aasm_state         :string
+#  apply_email        :string
+#  company_name       :string
+#  country            :string
+#  created_at         :datetime         not null
+#  currency           :string
+#  custom_identifier  :string
+#  deleted_at         :datetime
+#  description        :text
+#  education          :string
+#  employment_type    :integer          default(0)
+#  experience         :integer          default(0)
+#  expires_on         :datetime
+#  external_link      :string
+#  from_salary        :string
+#  id                 :integer          not null, primary key
+#  number_of_openings :integer          default(1)
+#  posted_on          :datetime
+#  posted_to_slack    :boolean          default(FALSE)
+#  remote             :boolean          default(FALSE)
+#  title              :string
+#  to_salary          :string
+#  updated_at         :datetime         not null
+#  user_id            :integer
 #
 # Indexes
 #
