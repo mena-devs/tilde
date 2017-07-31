@@ -8,24 +8,27 @@
 
 			<div class="col-md-4 col-xs-4 nopadding fright">
 				<% if (user_signed_in? && current_user.id == @job.user_id) %>
-				<% if @job.draft? || @job.under_review? %>
-				<%= link_to "Edit Job", edit_job_path(@job), :class => "button button-3d notopmargin fright", target: '_blank' %>
-				<% elsif @job.approved? && !current_user.admin? %>
-				<%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-				<% end %>
+
+					<% if @job.draft? || @job.under_review? %>
+						<%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright", target: '_blank' %>
+					<% elsif @job.approved? && !current_user.admin? %>
+						<%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+					<% end %>
 				<% end %>
 
 				<% if user_signed_in? && current_user.admin? %>
-				<% if @job.under_review? %>
-				<%= button_to "[admin] Approve", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-				<% elsif @job.approved? %>
-				<%= button_to "[admin] Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-				<% elsif @job.disabled? %>
-				<%= button_to "[admin] Publish", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-				<% end %>
+					<% if @job.under_review? %>
+						<%= button_to "Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+					<% elsif @job.approved? %>
+						<%= button_to "Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+					<% elsif @job.disabled? %>
+						<%= button_to "Publish (as admin)", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+					<% end %>
 				<% end %>
 
-				<%= link_to "Visit page to apply", @job.job_description_location, :class => "button button-3d notopmargin fright", target: '_blank' %>
+				<% unless (user_signed_in? && current_user.id == @job.user_id) %>
+					<%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright", target: '_blank' %>
+				<% end %>
 			</div>
 		</div>
 	</div>
@@ -61,13 +64,31 @@
 							</li>
 							<li>
 								<i class="icon-briefcase"></i>
-								Type:
-								<%= @job.job_type.try(:humanize) %>
+								Employment type:
+								<%= @job.employment_type.try(:humanize) %>
 							</li>
 							<li>
 								<i class="icon-users"></i>
-								Experience level:
-								<%= @job.level.try(:humanize) %>
+								Experience:
+								<%= @job.experience.try(:humanize) %>
+							</li>
+						</ul>
+
+						<ul class="entry-meta clearfix">
+							<li>
+								<i class="icon-money"></i>
+								Salary range:
+								<%= @job.currency %> <%= @job.from_salary %> <%= @job.to_salary %>
+							</li>
+							<li>
+								<i class="icon-plane"></i>
+								Remote:
+								<%= @job.remote? ? 'Yes' : 'No' %>
+							</li>
+							<li>
+								<i class="icon-email"></i>
+								Email:
+								<%= @job.apply_email %>
 							</li>
 						</ul>
 						<!-- .entry-meta end -->

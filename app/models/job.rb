@@ -92,8 +92,8 @@ class Job < ApplicationRecord
   validates :from_salary, presence: true
   validates :currency, presence: true
 
-  validates :external_link, url: true, allow_nil: true
-  validates :apply_email, email: true, allow_nil: true
+  validates :external_link, url: true
+  validates :apply_email, email: true
 
   before_validation :generate_unique_id, on: :create
   before_create :set_dates
@@ -101,7 +101,6 @@ class Job < ApplicationRecord
   enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
   enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
   enum education: [ :unspecified, :high_school_or_equivalent, :certification, :bachelor_degree, :master_degree, :doctorate, :professional ]
-  enum currency: [:lbp, :usd, :aed]
 
   friendly_id :custom_identifier
 
