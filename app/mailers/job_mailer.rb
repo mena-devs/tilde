@@ -4,7 +4,7 @@ class JobMailer < ApplicationMailer
 
     subject = "[MENAdevs] Someone posted a new job"
 
-    mail to: job.user.email,
+    mail to: @job.user.email,
          subject: subject
   end
 
@@ -13,7 +13,7 @@ class JobMailer < ApplicationMailer
 
     subject = "[MENAdevs] Your job is now posted live"
 
-    mail to: job.user.email,
+    mail to: @job.user.email,
          subject: subject
   end
 
@@ -22,7 +22,7 @@ class JobMailer < ApplicationMailer
 
     subject = "[MENAdevs] Your job post is no longer live"
 
-    mail to: job.user.email,
+    mail to: @job.user.email,
          subject: subject
   end
 end
