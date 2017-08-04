@@ -12,8 +12,8 @@
 #  deleted_at         :datetime
 #  description        :text
 #  education          :string
-#  employment_type    :integer          default(0)
-#  experience         :integer          default(0)
+#  employment_type    :integer
+#  experience         :integer
 #  expires_on         :datetime
 #  external_link      :string
 #  from_salary        :string
@@ -62,7 +62,7 @@ class Job < ApplicationRecord
 
       after do
         # inform job ower that their job post is online
-        JobMailer.job_published(self).deliver
+        JobMailer.job_published(self.id).deliver_later
         Notifier.post_job_to_slack(self.id)
       end
     end
@@ -75,7 +75,7 @@ class Job < ApplicationRecord
       transitions :from => [:under_review, :edited, :approved], :to => :disabled
       after do
         # inform job ower that their job post was taken down
-        JobMailer.job_unpublished(self).deliver
+        JobMailer.job_unpublished(self.id).deliver_later
       end
     end
   end
@@ -110,6 +110,14 @@ class Job < ApplicationRecord
       country.translations[I18n.locale.to_s] || country.name
     else
       ''
+    end
+  end
+
+  def salary
+    if to_salary.blank?
+      "starting #{self.currency} #{self.from_salary}"
+    else
+      "between #{self.currency} #{self.from_salary} and #{self.to_salary}"
     end
   end
 

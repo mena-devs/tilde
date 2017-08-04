@@ -12,8 +12,8 @@
 #  deleted_at         :datetime
 #  description        :text
 #  education          :string
-#  employment_type    :integer          default(0)
-#  experience         :integer          default(0)
+#  employment_type    :integer
+#  experience         :integer
 #  expires_on         :datetime
 #  external_link      :string
 #  from_salary        :string

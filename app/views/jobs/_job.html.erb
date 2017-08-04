@@ -9,7 +9,7 @@
   </td>
 
   <td>
-    <%= job_invitee_name(job) %>
+    <%= job_creator_name(job) %>
   </td>
 
   <td>
@@ -19,9 +19,7 @@
   <td>
     <% if (user_signed_in? && current_user.id == job.user_id) %>
       <% if job.draft? || job.under_review? %>
-        <%= link_to "Edit Job", edit_job_path(job), :class => "button button-3d button-mini button-rounded button-blue", target: '_blank' %>
-      <% elsif job.approved? && current_user.admin? %>
-        <%= link_to "Take down", take_down_job_path(job), class: "button button-3d button-mini button-rounded button-red", method: :put %>
+        <%= link_to "Edit Job", edit_job_path(job), class: "button button-3d button-mini button-rounded button-blue", target: '_blank' %>
       <% end %>
     <% end %>
   </td>

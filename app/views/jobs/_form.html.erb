@@ -17,16 +17,15 @@
 
     <div class="col-md-6">
       <%= f.text_field :company_name %>
-  
+
       <%= f.text_field :apply_email, label: "Email to apply" %>
     </div>
 
     <div class="col-md-4">
       <div class="form-group">
         <%= f.label :country, 'Country', class: 'control-label' %>
-        <%= country_select("job",
-                           "country",
-                           { include_blank: 'Select country' }, { class: 'form-control' }) %>
+        <%= f.country_select(:country,
+                            { include_blank: 'Select country', selected: @job.country }, { class: 'form-control' }) %>
       </div>
 
     </div>
@@ -40,16 +39,16 @@
   <div class='row'>
 
     <div class="col-md-6">
-      <%= f.select :employment_type, Job.employment_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select employment type', selected: nil} %>
+      <%= f.select :employment_type, Job.employment_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select employment type', selected: @job.employment_type} %>
 
-      <%= f.select :education, Job.educations.keys.map { |w| [w.humanize, w] }, {label: 'Education', include_blank: 'Select education', selected: nil} %>
+      <%= f.select :education, Job.educations.keys.map { |w| [w.humanize, w] }, {label: 'Education', include_blank: 'Select education', selected: @job.education} %>
 
     </div>
 
     <div class="col-md-6">
-      <%= f.select :experience, Job.experiences.keys.map { |w| [w.humanize, w] }, {label: 'Experience', include_blank: 'Select experience', selected: nil} %>
+      <%= f.select :experience, Job.experiences.keys.map { |w| [w.humanize, w] }, {label: 'Experience', include_blank: 'Select experience', selected: @job.experience} %>
 
-      <%= f.select :number_of_openings, [1, 2, 3, 4, 5], { label: "Number of positions", include_blank: 'Select number of positions', selected: nil } %>
+      <%= f.select :number_of_openings, [1, 2, 3, 4, 5], { label: "Number of positions", include_blank: 'Select number of positions', selected: @job.number_of_openings } %>
     </div>
   </div>
 
@@ -68,7 +67,7 @@
     </div> <!-- salary range -->
 
     <div class="col-md-3">
-      <%= f.select :currency, Job.all_currencies.values, { label: 'Currency', include_blank: 'Select currency', selected: nil } %>
+      <%= f.select :currency, Job.all_currencies.values, { label: 'Currency', include_blank: 'Select currency', selected: @job.currency } %>
     </div> <!-- nb of positions -->
 
   </div>

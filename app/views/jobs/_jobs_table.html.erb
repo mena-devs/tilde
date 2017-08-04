@@ -1,19 +1,18 @@
 <div class="table-responsive bottommargin">
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th>Title</th>
-				<th>Company</th>
-				<th>Posted by</th>
-				<th>Created</th>
-				<th>&nbsp;</th>
-			</tr>
-		</thead>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+      <th>Title</th>
+      <th>Company</th>
+      <th>Posted by</th>
+      <th>Created</th>
+      <th>&nbsp;</th>
+      </tr>
+    </thead>
 
-		<tbody>
+    <tbody>
       <%= render partial: "job", collection: @jobs %>
-		</tbody>
-
-	</table>
+    </tbody>
+  </table>
 </div>

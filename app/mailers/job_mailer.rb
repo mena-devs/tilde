@@ -1,6 +1,6 @@
 class JobMailer < ApplicationMailer
-  def new_job(job)
-    @job = job
+  def new_job(job_id)
+    @job = Job.find(job_id)
 
     subject = "[MENAdevs] Someone posted a new job"
 
@@ -8,8 +8,8 @@ class JobMailer < ApplicationMailer
          subject: subject
   end
 
-  def job_published(job)
-    @job = job
+  def job_published(job_id)
+    @job = Job.find(job_id)
 
     subject = "[MENAdevs] Your job is now posted live"
 
@@ -17,8 +17,8 @@ class JobMailer < ApplicationMailer
          subject: subject
   end
 
-  def job_unpublished(job)
-    @job = job
+  def job_unpublished(job_id)
+    @job = Job.find(job_id)
 
     subject = "[MENAdevs] Your job post is no longer live"
 

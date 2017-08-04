@@ -1,7 +1,40 @@
-<% provide(:title, "Editing: Job post") %>
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
-<div class="row">
-  <div class="col-md-8">
-    <%= render "form" %>
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-8 nopadding">
+        <h1>Edit job</h1>
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="row clearfix">
+        <div class="col-md-12">
+          <div class="style-msg alertmsg">
+            <div class="sb-msg">
+              <i class="icon-warning-sign"></i>
+              Jobs posted on <%= link_to AppSettings.application_host, AppSettings.application_host %>  are sent via email to all its members and remain online for 1 month (renewable), free of charge.
+            </div>
+          </div>
+          <br/>
+          <!-- /.alert alert-warning -->
+          <%= render "form" %>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>
