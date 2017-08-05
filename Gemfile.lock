@@ -411,6 +411,8 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.6)
+    tinymce-rails (4.6.5)
+      railties (>= 3.1.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     unf (0.1.4)
@@ -510,6 +512,7 @@ DEPENDENCIES
   sshkit (~> 1.8)
   terminal-notifier
   terminal-notifier-guard
+  tinymce-rails
   unicorn
   unicorn-worker-killer
   xray-rails (>= 0.1.18)

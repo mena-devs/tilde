@@ -13,3 +13,4 @@
 //= require jquery
 //= require plugins
 //= require functions
+//= require tinymce

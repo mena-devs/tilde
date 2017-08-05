@@ -1,119 +1,125 @@
 <section id="page-title">
 
-	<div class="container clearfix">
-		<div class="row clearfix">
-			<div class="col-md-8 col-xs-8 nopadding">
-				<h1><%= @job.title.humanize %></h1>
-			</div>
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-8 nopadding">
+        <h1><%= @job.title.humanize %></h1>
+      </div>
 
-			<div class="col-md-4 col-xs-4 nopadding fright">
-				<% if (user_signed_in? && current_user.id == @job.user_id) %>
+      <div class="col-md-4 col-xs-4 nopadding fright">
+        <% if (user_signed_in? && current_user.id == @job.user_id) %>
 
-					<% if @job.draft? || @job.under_review? %>
-						<%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright", target: '_blank' %>
-					<% elsif @job.approved? && !current_user.admin? %>
-						<%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% end %>
-				<% end %>
+          <% if @job.draft? || @job.under_review? %>
+            <%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright", target: '_blank' %>
+          <% elsif @job.approved? && !current_user.admin? %>
+            <%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+          <% end %>
+        <% end %>
 
-				<% if user_signed_in? && current_user.admin? %>
-					<% if @job.under_review? %>
-						<%= button_to "Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% elsif @job.approved? %>
-						<%= button_to "Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% elsif @job.disabled? %>
-						<%= button_to "Publish (as admin)", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
-					<% end %>
-				<% end %>
+        <% if user_signed_in? && current_user.admin? %>
+          <% if @job.under_review? %>
+            <%= button_to "Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+          <% elsif @job.approved? %>
+            <%= button_to "Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+          <% elsif @job.disabled? %>
+            <%= button_to "Publish (as admin)", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+          <% end %>
+        <% end %>
 
-				<% unless (user_signed_in? && current_user.id == @job.user_id) %>
-					<%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright", target: '_blank' %>
-				<% end %>
-			</div>
-		</div>
-	</div>
+        <% unless (user_signed_in? && current_user.id == @job.user_id) %>
+          <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright", target: '_blank' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="content" style="margin-bottom: 0px;">
 
-	<div class="content-wrap">
+  <div class="content-wrap">
 
-		<div class="container clearfix">
-			<!-- Post Content
-				============================================= -->
-			<div class="postcontent nobottommargin clearfix">
+    <div class="container clearfix">
+      <!-- Post Content
+        ============================================= -->
+      <div class="postcontent nobottommargin clearfix">
 
-				<div class="single-post nobottommargin">
+        <div class="single-post nobottommargin">
 
-					<!-- Single Post
-						============================================= -->
-					<div class="entry clearfix">
+          <!-- Single Post
+            ============================================= -->
+          <div class="entry clearfix">
 
-						<!-- Entry Meta
-							============================================= -->
-						<ul class="entry-meta clearfix">
-							<li>
-								<i class="icon-calendar3"></i>
-								Posted on:
-								<%= @job.posted_on.strftime('%A %e %B %Y ') %>
-							</li>
-							<li>
-								<i class="icon-user"></i>
-								By:
-								<%= job_creator_name(@job) %>
-							</li>
-						</ul>
-						<!-- .entry-meta end -->
+            <!-- Entry Meta
+              ============================================= -->
+            <ul class="entry-meta clearfix">
+              <li>
+                <i class="icon-calendar3"></i>
+                Posted on:
+                <%= @job.posted_on.strftime('%A %e %B %Y ') %>
+              </li>
+              <li>
+                <i class="icon-user"></i>
+                By:
+                <%= job_creator_name(@job) %>
+              </li>
+            </ul>
+            <!-- .entry-meta end -->
 
-						<!-- Entry Content
-							============================================= -->
-						<div class="entry-content notopmargin">
-							<h3><%= @job.company_name.humanize %></h3>
+            <!-- Entry Content
+              ============================================= -->
+            <div class="entry-content notopmargin">
+              <h3><%= @job.company_name.humanize %></h3>
 
-							<ul style='margin-left: 26px'>
-								<li>
-									<i class="icon-briefcase"></i>
-									Employment type: <%= @job.employment_type.try(:humanize) %>
-								</li>
-								<li>
-									<i class="icon-users"></i>
-									Experience: <%= @job.experience.try(:humanize) %>
-								</li>
-								<li>
-									<i class="icon-money"></i>
-									Salary: <%= job_salary(@job) %>
-								</li>
-								<li>
-									<i class="icon-plane"></i>
-									Remote: <%= @job.remote? ? 'Yes' : 'No' %>
-								</li>
-								<li>
-									<i class="icon-email"></i>
-									Email: <%= @job.apply_email %>
-								</li>
-							</ul>
+              <ul style='margin-left: 26px'>
+                <li>
+                  <i class="icon-briefcase"></i>
+                  Employment type: <%= @job.employment_type.try(:humanize) %>
+                </li>
 
-							<p>
-								<%= @job.description %>
-							</p>
-						</div>
-						<!-- .entry-content end -->
-					</div>
-				</div>
-			</div>
+                <li>
+                  <i class="icon-users"></i>
+                  Experience: <%= @job.experience.try(:humanize) %>
+                </li>
 
-			<!-- Sidebar
-					============================================= -->
-			<div class="sidebar nobottommargin col_last clearfix">
-				<div class="sidebar-widgets-wrap fright">
-					<%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua" do %>
-						<%= fa_icon("inbox") %>
-						Tell a friend
-					<% end %>
-				</div>
+                <li>
+                  <i class="icon-money"></i>
+                  Salary: <%= job_salary(@job) %>
+                </li>
 
-			</div>
-			<!-- .sidebar end -->
-		</div>
-	</div>
+                <li>
+                  <i class="icon-plane"></i>
+                  Remote: <%= @job.remote? ? 'Yes' : 'No' %>
+                </li>
+
+                <% unless @job.apply_email.blank? %>
+                  <li>
+                    <i class="icon-email"></i>
+                    Email: <%= @job.apply_email %>
+                  </li>
+                <% end %>
+              </ul>
+              <hr/>
+              <p>
+                <%= @job.description.html_safe %>
+              </p>
+            </div>
+            <!-- .entry-content end -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar
+          ============================================= -->
+      <div class="sidebar nobottommargin col_last clearfix">
+        <div class="sidebar-widgets-wrap fright">
+          <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua" do %>
+            <%= fa_icon("inbox") %>
+            Tell a friend
+          <% end %>
+        </div>
+
+      </div>
+      <!-- .sidebar end -->
+    </div>
+  </div>
 </section>
