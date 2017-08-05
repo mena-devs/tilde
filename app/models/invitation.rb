@@ -95,11 +95,11 @@ class Invitation < ApplicationRecord
 
   private
     def new_invite_notify_administrators
-      InvitationMailer.new_slack_invitation(self).deliver
+      InvitationMailer.new_slack_invitation(self.id).deliver
     end
 
     def resend_invite_notify_administrators
-      InvitationMailer.resend_slack_invitation(self).deliver
+      InvitationMailer.resend_slack_invitation(self.id).deliver
     end
 
     def process_invitation_on_slack

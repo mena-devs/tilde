@@ -10,15 +10,15 @@ class InvitationMailer < ApplicationMailer
     mail to: @invitation.invitee_email
   end
 
-  def new_slack_invitation(invitation)
-    @invitation = invitation
+  def new_slack_invitation(invitation_id)
+    @invitation = Invitation.find(invitation_id)
 
     mail to: AppSettings.admin_email,
          subject: "[MENAdevs] We've received an invitation to join the Slack group"
   end
 
-  def resend_slack_invitation(invitation)
-    @invitation = invitation
+  def resend_slack_invitation(invitation_id)
+    @invitation = Invitation.find(invitation_id)
 
     mail to: AppSettings.admin_email,
          subject: "[MENAdevs] An existing invitation to join the Slack group is resent"
