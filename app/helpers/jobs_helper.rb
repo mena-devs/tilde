@@ -8,12 +8,10 @@ module JobsHelper
   end
 
   def job_salary(job)
-    if job.to_salary.blank?
-      job_salary = "starting #{job.from_salary}"
-    else
-      job_salary = "between #{job.from_salary} and #{job.to_salary}"
-    end
+    return "" if job.from_salary.blank?
 
-    job_salary
+    return number_to_currency(job.from_salary, precision: 0) if job.to_salary.blank?
+
+    number_to_currency(job.from_salary, precision: 0) + " - " + number_to_currency(job.from_salary, precision: 0)
   end
 end
