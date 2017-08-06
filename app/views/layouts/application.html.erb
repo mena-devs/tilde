@@ -55,7 +55,7 @@
 
 <div id="gotoTop" class="icon-angle-up"></div>
 
-<% if Rails.production? %>
+<% if Rails.env.production? %>
   <%= render("shared/analytics") %>
 <% end %>
 
