@@ -2,9 +2,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <!-- MENAdevs Com <%= Rails.application.config.version %> (<%= l(Rails.application.config.version_time) %>) -->
-
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+
+    <%= csrf_meta_tags %>
 
     <%# CSS should go closest to the top of the document as possible. %>
     <%= stylesheet_link_tag('application',
@@ -22,8 +22,6 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <%# Specifies the default name of home screen bookmark in iOS 6+ %>
     <meta name='apple-mobile-web-app-title' content='MENAdevs'>
-
-    <%= csrf_meta_tags %>
 
     <title>
       <%= strip_tags(yield(:title)) + ' – ' if content_for?(:title) %>
