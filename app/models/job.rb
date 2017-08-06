@@ -122,13 +122,28 @@ class Job < ApplicationRecord
   end
 
   def self.all_currencies
-    {
-      lbp: 'Lebanese Pound (LBP)',
-      usd: 'United States Dollar (USD)',
-      aed: 'United Arab Emirates Dirham (AED)',
-      eur: 'Euro (EUR)',
-      gbp: 'British Pound (GBP)'
-    }
+    [
+      {
+        title: 'Lebanese Pound (LBP)',
+        code: 'LBP'
+      },
+      {
+        title: 'United States Dollar (USD)',
+        code: 'USD'
+      },
+      {
+        title: 'United Arab Emirates Dirham (AED)',
+        code: 'AED'
+      },
+      {
+        title: 'Euro (EUR)',
+        code: 'EUR'
+      },
+      {
+        title: 'British Pound (GBP)',
+        code: 'GBP'
+      }
+    ]
   end
 
   private

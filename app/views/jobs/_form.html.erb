@@ -56,7 +56,7 @@
 
     <div class="col-md-2">
       <div class="input-group">
-        <%= f.text_field :from_salary, label: 'From salary', placeholder: "amount per annum" %>
+        <%= f.text_field :from_salary, label: 'Starting salary', placeholder: "amount per annum" %>
       </div>
     </div> <!-- salary range -->
 
@@ -67,10 +67,16 @@
     </div> <!-- salary range -->
 
     <div class="col-md-3">
-      <%= f.select :currency, Job.all_currencies.values, { label: 'Currency', include_blank: 'Select currency', selected: @job.currency } %>
+      <%= f.select :currency, Job.all_currencies.map { |obj| [obj[:title], obj[:code]] }, { label: 'Currency', include_blank: 'Select currency', selected: @job.currency } %>
     </div> <!-- nb of positions -->
 
   </div>
+
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Save and continue", class: "button button-3d button button-rounded button-green pull-right" %>
+    </div>  <!-- /.col-md-12 -->
+  </div>  <!-- /.job-form-buttons -->
 
 <% end %>
 
