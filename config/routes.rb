@@ -19,10 +19,10 @@ Rails.application.routes.draw do
   end
 
   devise_for :users,
-             controllers: {
+              controllers: {
                 omniauth_callbacks: 'omniauth_callbacks',
                 sessions: 'users/sessions'
-             }
+              }
 
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 
