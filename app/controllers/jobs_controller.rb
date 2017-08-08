@@ -59,7 +59,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/approve
   def approve
     if @job.publish!
-      redirect_to @job, notice: 'The job is now live on the Job Board.'
+      redirect_to @job, notice: 'The job is now live.'
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/take_down
   def take_down
     if @job.take_down!
-      redirect_to @job, error: 'The job is no longer published live.'
+      redirect_to @job, error: 'The job is no longer published.'
     else
       render :edit
     end
@@ -77,7 +77,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/publish
   def publish
     if @job.publish!
-      redirect_to @job, notice: 'The job is now live on the Job Board.'
+      redirect_to @job, notice: 'The job is now live.'
     else
       render :edit
     end
@@ -86,7 +86,7 @@ class JobsController < ApplicationController
   # DELETE /jobs/1
   def destroy
     @job.destroy
-    redirect_to jobs_url, error: 'Job post was successfully destroyed.'
+    redirect_to jobs_url, error: 'The job was successfully removed.'
   end
 
   private

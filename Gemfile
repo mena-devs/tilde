@@ -57,7 +57,7 @@ group :development do
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-livereload', require: false
   gem 'guard-minitest', require: false
-  gem 'letter_opener'
+  gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'overcommit', require: false
   gem 'puma', '~> 3.0'

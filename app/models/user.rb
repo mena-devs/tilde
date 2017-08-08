@@ -63,6 +63,8 @@ class User < ApplicationRecord
   after_create :prepare_profile
   after_save :prepare_profile
 
+  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
+
   def new_from_slack_oauth(user_info)
     self.provider   = user_info.provider
     self.uid        = user_info.uid

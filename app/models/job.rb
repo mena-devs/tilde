@@ -63,6 +63,7 @@ class Job < ApplicationRecord
       after do
         # inform job ower that their job post is online
         JobMailer.job_published(self.id).deliver
+        notify_subscribers
         Notifier.post_job_to_slack(self.id)
       end
     end
@@ -113,11 +114,9 @@ class Job < ApplicationRecord
     end
   end
 
-  def salary
-    if to_salary.blank?
-      "starting #{self.currency} #{self.from_salary}"
-    else
-      "between #{self.currency} #{self.from_salary} and #{self.to_salary}"
+  def notify_subscribers
+    User.job_alert_subscribers.each do |user|
+      JobMailer.notify_subscriber(self.id, user).deliver
     end
   end
 
