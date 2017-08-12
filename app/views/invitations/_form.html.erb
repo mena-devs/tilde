@@ -22,8 +22,12 @@
                 class: 'help-block' %>
   </div>
 
-
-  <%= f.primary 'Send invitation', name: 'tab-2' %>
-  <%= link_to "Back", invitations_path, :class => "btn btn-link" %>
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Send invitation",
+          class: "button button-3d button button-rounded button-green pull-right",
+          name: 'tab-2' %>
+    </div>
+  </div>
 
 <% end %>

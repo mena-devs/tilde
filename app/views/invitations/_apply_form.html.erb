@@ -21,7 +21,11 @@
 
   <%= f.hidden_field(:member_application, value: true) %>
 
-  <%= f.primary 'Send invitation', name: 'tab-1' %>
-  <%= link_to "Back", invitations_path, :class => "btn btn-link" %>
-
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Send invitation",
+          class: "button button-3d button button-rounded button-green pull-right",
+          name: 'tab-1' %>
+    </div>
+  </div>
 <% end %>

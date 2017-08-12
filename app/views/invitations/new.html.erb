@@ -1,46 +1,88 @@
-<% provide(:title, "Slack group invitations") %>
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
-<div class="row">
-  <div class="col-lg-12 col-md-12">
-    <p>Admittance to MENAdevs Slack group is invitation only.</p>
-    <p>If you wish to join or send an invitation for other people to join the group, please fill the following form with your contact details.</p>
-  </div>
-</div>
-
-<% if params.key?("tab-2") %>
-  <% tab_1 = '' %>
-  <% tab_2 = 'active' %>
-<% else %>
-  <% tab_1 = 'active' %>
-  <% tab_2 = '' %>
-<% end %>
-
-<ul class="nav nav-tabs">
-  <li role="presentation" class="<%= tab_1 %>"><%= link_to "Apply to join", "#tab-1", data: { toggle: "tab"} %></li>
-  <li role="presentation" class="<%= tab_2 %>"><%= link_to "Invite someone else", "#tab-2", data: { toggle: "tab"} %></li>
-</ul>
-
-<div class="tab-content">
-  <div class="tab-pane <%= tab_1 %>" id="tab-1">
-    <div class="row">
-      <div class="col-lg-3 col-md-3">
-        <h3>About yourself</h3>
-      </div>
-      <div class="col-lg-6 col-md-6">
-        <br/>
-        <%= render "apply_form" %>
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-8 nopadding">
+        <h1>Slack group invitations</h1>
       </div>
     </div>
   </div>
-  <div class="tab-pane <%= tab_2 %>" id="tab-2">
-    <div class="row">
-      <div class="col-lg-3 col-md-3">
-        <h3>Send invitation to</h3>
+
+</section>
+<!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="row clearfix">
+        <div class="col-md-12">
+          <div class="style-msg alertmsg">
+            <div class="sb-msg">
+              <i class="icon-warning-sign"></i>
+              Admittance to MENAdevs Slack group is invitation only.
+              <br/>
+              If you wish to join or send an invitation for other people to join the group, please fill the following form with your contact details.
+            </div>
+          </div>
+          <br/>
+          <!-- /.alert alert-warning -->
+
+          <% if ((user_signed_in? && current_user.connected_via_slack?) || params.key?("tab-2")) %>
+            <% tab_1 = '' %>
+            <% tab_2 = 'active' %>
+          <% else %>
+            <% tab_1 = 'active' %>
+            <% tab_2 = '' %>
+          <% end %>
+
+          <ul class="nav nav-tabs">
+            <% unless (user_signed_in? && current_user.connected_via_slack?) %>
+              <li role="presentation" class="<%= tab_1 %>">
+                <%= link_to "Apply to join", "#tab-1", data: { toggle: "tab"} %>
+              </li>
+            <% end %>
+            <li role="presentation" class="<%= tab_2 %>">
+              <%= link_to "Invite someone to join", "#tab-2", data: { toggle: "tab"} %>
+            </li>
+          </ul>
+
+          <div class="tab-content">
+            <% unless (user_signed_in? && current_user.connected_via_slack?) %>
+              <div class="tab-pane <%= tab_1 %>" id="tab-1">
+                <div class="row">
+                  <div class="col-lg-12 col-md-12">
+                    <div style="margin-left: 200px; margin-right: 200px; padding-top: 20px">
+                      <h4>About yourself</h4>
+                      <%= render "apply_form" %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
+            <div class="tab-pane <%= tab_2 %>" id="tab-2">
+              <div class="row">
+                <div class="col-lg-12 col-md-12">
+                  <div style="margin-left: 200px; margin-right: 200px; padding-top: 20px">
+                    <h4>Send invitation to</h4>
+                    <%= render "form" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
-      <div class="col-lg-6 col-md-6">
-        <br/>
-        <%= render "form" %>
-      </div>
+
     </div>
   </div>
 </div>
