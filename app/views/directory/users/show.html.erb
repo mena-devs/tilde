@@ -1,57 +1,28 @@
-<% provide(:title) do %>
-  <%= @user.name.titleize %>
-<% end %>
+<!-- Content
+============================================= -->
+<section id="content">
 
-<div class="row">
-  <div class="col-md-1">
-    <%= image_tag(@user.profile.profile_picture,
-                  size: '100x100',
-                  class: 'img-thumbnail') %>
-  </div>
-  <div class="col-md-6">
-    <table class="table table-bordered">
-      <tbody>
-        <tr>
-          <td>
-            <%= fa_icon("user") %>
-            <% if @user.profile.biography.blank? %>
-              Biography not available
-            <% else %>
-              <%= @user.profile.biography %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= fa_icon("envelope") %>
-            <%= link_to @user.email, "mailto:#{@user.email}" %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <%= fa_icon("map-marker") %>
-            <%= @user.profile.location_name %>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="btn btn-xs btn-default">
-              <%= fa_icon("user-circle-o") %>
-              <%= is_user_a_slack_member?(@user.connected_via_slack?) %>
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="row clearfix">
+
+        <div class="col-sm-9">
+
+          <div class="row clearfix">
+            <div class="col-md-2">
+              <%= image_tag(@user.profile.profile_picture, class: 'alignleft img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 84px;') %>
             </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
 
-    <!-- <p> -->
-      <%# link_to "Back to directory", directory_users_path, :class => "btn btn-default" %>
-    <!-- </p> -->
-    <p>
-      <% if user_signed_in? && current_user == @user %>
-        <%= link_to "Update profile details & preferences", edit_user_profile_path(current_user), :class => "btn btn-success" %>
-      <% end %>
-    </p>
-
+            <div class="col-sm-10">
+              <div class="heading-block noborder">
+                <h3><%= name(@user.profile) %></h3>
+                <span><%= biography(@user.profile) %></span>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
-</div>
+</section>

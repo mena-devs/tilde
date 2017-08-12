@@ -1,4 +1,9 @@
 <%= bootstrap_form_tag(url: user_profile_path(current_user), method: :put) do |f| %>
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Update profile", class: "button button-3d button button-rounded button-green pull-right" %>
+    </div>
+  </div>
 
   <%= f.alert_message "Please review the problems below:" %>
 
@@ -41,21 +46,23 @@
 
   <%= f.check_box "profile[receive_emails]",
                   value: @profile.receive_emails,
-                  label: "Receive email from MENAdevs?",
+                  label: "Receive - general purpose - emails from MENAdevs?",
                   checked: @profile.receive_emails %>
 
   <%= f.check_box "profile[receive_job_alerts]",
                   value: @profile.receive_job_alerts,
-                  label: "Receive jobs alerts via MENAdevs?",
+                  label: "Receive - job alert - emails from MENAdevs?",
                   checked: @profile.receive_job_alerts %>
 
   <%= f.select "profile[privacy_level]",
                 Profile.privacy_options,
                 :selected => @profile.privacy_level,
-                label: "Select your profile's privacy level",
-                help: 'Hidden: no one can see your profile. Members only: Only members of menadevs.com can see your profile. Open: Publicly viewable' %>
+                label: "Select profile privacy level",
+                help: 'Hidden: no one can see your profile. Members only: Only members of MENAdevs.com can see your profile. Open: Publicly visible to visitors of MENAdevs.com' %>
 
-  <%= f.primary 'Update profile' %>
-  <%= link_to "Cancel", user_profile_path(current_user), :class => "btn btn-link" %>
-
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Update profile", class: "button button-3d button button-rounded button-green pull-right" %>
+    </div>
+  </div>
 <% end %>
