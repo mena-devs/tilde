@@ -4,8 +4,8 @@ class EmailValidator < ActiveModel::EachValidator
   end
 
   def email_valid?(email_address)
-  	return true if email_address.blank?
-  	
-  	email_address =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+    return true if email_address.blank?
+
+    email_address =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
   end
 end
