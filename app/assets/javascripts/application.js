@@ -12,6 +12,4 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require plugins
-//= require functions
 //= require tinymce

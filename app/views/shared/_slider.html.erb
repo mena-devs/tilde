@@ -1,44 +1,41 @@
-<section id="slider" class="slider-parallax swiper_wrapper full-screen clearfix">
+<div id="home" class="page-section" style="position:absolute;top:0;left:0;width:100%;height:200px;z-index:-2;"></div>
+
+<section id="slider" class="slider-parallax full-screen with-header swiper_wrapper clearfix" style="height: 521px;">
   <div class="slider-parallax-inner">
 
     <div class="swiper-container swiper-parent">
       <div class="swiper-wrapper">
-        <div class="swiper-slide dark" style="background-image: url('<%= asset_path('slider/swiper/1.jpg') %>');">
-          <div class="container clearfix">
-            <div class="slider-caption slider-caption-center">
-              <h2 data-caption-animate="fadeInUp">Welcome to Canvas</h2>
-              <p data-caption-animate="fadeInUp" data-caption-delay="200">Create just what you need for your Perfect Website. Choose from a wide range of Elements &amp; simply put them on your own Canvas.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide dark">
-          <div class="container clearfix">
-            <div class="slider-caption slider-caption-center">
-              <h2 data-caption-animate="fadeInUp">Beautifully Flexible</h2>
-              <p data-caption-animate="fadeInUp" data-caption-delay="200">Looks beautiful &amp; ultra-sharp on Retina Screen Displays. Powerful Layout with Responsive functionality that can be adapted to any screen size.</p>
-            </div>
-          </div>
-
-          <div class="video-wrap">
-            <video id="slide-video" poster="images/videos/explore.jpg" preload="auto" loop autoplay muted>
-              <source src='images/videos/explore.webm' type='video/webm' />
-              <source src='images/videos/explore.mp4' type='video/mp4' />
-            </video>
-            <div class="video-overlay" style="background-color: rgba(0,0,0,0.55);"></div>
-          </div>
-        </div>
-        <div class="swiper-slide" style="background-image: url('<%= asset_path('slider/swiper/3.jpg') %>'); background-position: center top;">
+        <div class="swiper-slide dark" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('<%= asset_path('slider/swiper/2.jpg') %>');">
           <div class="container clearfix">
             <div class="slider-caption">
-              <h2 data-caption-animate="fadeInUp">Great Performance</h2>
-              <p data-caption-animate="fadeInUp" data-caption-delay="200">You'll be surprised to see the Final Results of your Creation &amp; would crave for more.</p>
+              <h2 data-caption-animate="fadeInUp">Are you a Software Engineer?</h2>
+              <p data-caption-animate="fadeInUp" data-caption-delay="200">Want to better understand the Software Engineering Industry in Lebanon? Fill MENA Devs Survey (2017) Now</p>
+              <a href="http://survey2017.menadevs.com" target="_blank" data-caption-animate="fadeInUp" data-caption-delay="200" class="button button-border button-dark button-rounded button-large noleftmargin topmargin-sm">Fill Survey</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide dark" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('<%= asset_path('slider/swiper/1.jpg') %>');">
+          <div class="container clearfix">
+            <div class="slider-caption">
+              <h2 data-caption-animate="fadeInUp">MENA Devs</h2>
+              <p data-caption-animate="fadeInUp" data-caption-delay="200">Home of the region's Software Engineers, Technical Managers and CTOs.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide dark" style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('<%= asset_path('slider/swiper/3.jpg') %>'); background-position: center top;">
+          <div class="container clearfix">
+            <div class="slider-caption">
+              <h2 data-caption-animate="fadeInUp">Connect With Like Minded People</h2>
+              <p data-caption-animate="fadeInUp" data-caption-delay="200">Have you been looking for the perfect place to geek-out? You found it!</p>
             </div>
           </div>
         </div>
       </div>
       <div id="slider-arrow-left"><i class="icon-angle-left"></i></div>
       <div id="slider-arrow-right"><i class="icon-angle-right"></i></div>
+      <div id="slide-number"><div id="slide-number-current"></div><span>/</span><div id="slide-number-total"></div></div>
     </div>
 
     <a href="#" data-scrollto="#content" data-offset="100" class="dark one-page-arrow"><i class="icon-angle-down infinite animated fadeInDown"></i></a>

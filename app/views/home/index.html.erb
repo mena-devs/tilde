@@ -1,92 +1,95 @@
+<%= content_for :slider do %>
+  <%= render("shared/slider") %>
+<% end %>
 <!-- Site Content
 ============================================= -->
 <section id="content">
 
-	<div class="content-wrap">
+  <div class="content-wrap">
 
-		<section id="section-about" class="page-section">
+    <section id="section-about" class="page-section">
 
-			<div class="container clearfix">
+      <div class="container clearfix">
 
-				<div class="heading-block center">
-					<h2>We are <span>MENA Devs</span></h2>
-					<span>one of the largest active online communities in the <abbr title="Middle East and North Africa">MENA</abbr> region</span>
-				</div>
+        <div class="heading-block center">
+          <h2>We are <span>MENA Devs</span></h2>
+          <span>one of the largest active online communities in the <abbr title="Middle East and North Africa">MENA</abbr> region</span>
+        </div>
 
-				<div class="col_one_third nobottommargin">
-					<div class="feature-box media-box">
-						<div class="fbox-media">
-		          <%= image_tag('services/1.jpg', alt: 'What is MENAdevs') %>
-						</div>
-						<div class="fbox-desc">
-							<h3>What is MENAdevs<span class="subtitle">A group to belong to</span></h3>
-							<p>The Slack group started in January 2015 and we've grown steadily ever since. We have now reached a total of 299 members. The group is restricted to professionals working in the Software Development Industry.</p>
-						</div>
-					</div>
-				</div>
+        <div class="col_one_third nobottommargin">
+          <div class="feature-box media-box">
+            <div class="fbox-media">
+              <%= image_tag('services/1.jpg', alt: 'What is MENAdevs') %>
+            </div>
+            <div class="fbox-desc">
+              <h3>What is MENAdevs<span class="subtitle">A group to belong to</span></h3>
+              <p>The Slack group started in January 2015 and we've grown steadily ever since. We have now reached a total of 299 members. The group is restricted to professionals working in the Software Development Industry.</p>
+            </div>
+          </div>
+        </div>
 
-				<div class="col_one_third nobottommargin">
-					<div class="feature-box media-box">
-						<div class="fbox-media">
-		          <%= image_tag('services/2.jpg', alt: 'Our mission') %>
-						</div>
-						<div class="fbox-desc">
-							<h3>Our Mission<span class="subtitle">To learn, have fun, exchange knowledge</span></h3>
-							<p>Slack is one of the mediums with which we achieved the goal of connecting. The purpose of our existence is to join forces to grow at an individual capacity and as a collective.</p>
-						</div>
-					</div>
-				</div>
+        <div class="col_one_third nobottommargin">
+          <div class="feature-box media-box">
+            <div class="fbox-media">
+              <%= image_tag('services/2.jpg', alt: 'Our mission') %>
+            </div>
+            <div class="fbox-desc">
+              <h3>Our Mission<span class="subtitle">To learn, have fun, exchange knowledge</span></h3>
+              <p>Slack is one of the mediums with which we achieved the goal of connecting. The purpose of our existence is to join forces to grow at an individual capacity and as a collective.</p>
+            </div>
+          </div>
+        </div>
 
-				<div class="col_one_third nobottommargin col_last">
-					<div class="feature-box media-box">
-						<div class="fbox-media">
-		          <%= image_tag('services/3.jpg', alt: 'What is our aim') %>
-						</div>
-						<div class="fbox-desc">
-							<h3>What is our aim<span class="subtitle"> To produce</span></h3>
-							<p>Our region is known for its reliance on consuming technology and repurposing it for our needs. Our aim is to change that. As a collective we have and we will continue to produce what's in the best interest of our group and the communities we are part of.</p>
-						</div>
-					</div>
-				</div>
+        <div class="col_one_third nobottommargin col_last">
+          <div class="feature-box media-box">
+            <div class="fbox-media">
+              <%= image_tag('services/3.jpg', alt: 'What is our aim') %>
+            </div>
+            <div class="fbox-desc">
+              <h3>What is our aim<span class="subtitle"> To produce</span></h3>
+              <p>Our region is known for its reliance on consuming technology and repurposing it for our needs. Our aim is to change that. As a collective we have and we will continue to produce what's in the best interest of our group and the communities we are part of.</p>
+            </div>
+          </div>
+        </div>
 
-				<div class="clear"></div>
+        <div class="clear"></div>
 
-			</div>
+      </div>
 
-			<div class="section dark parallax nobottommargin" style="padding: 80px 0; background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('<%= asset_path('parallax/beirut.jpg') %>');" data-stellar-background-ratio="0.3">
+      <div class="section dark parallax nobottommargin" style="padding: 80px 0; background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('<%= asset_path('parallax/beirut.jpg') %>');" data-stellar-background-ratio="0.3">
 
-				<div class="container clearfix">
+        <div class="container clearfix">
 
-					<div class="col_one_fourth nobottommargin center" data-animate="bounceIn">
-						<i class="i-plain i-xlarge divcenter nobottommargin icon-code"></i>
-						<div class="counter counter-lined"><span data-from="0" data-to="5" data-refresh-interval="50" data-speed="2000"></span>+</div>
-						<h5>Actively Developed Open Source Projects</h5>
-					</div>
+          <div class="col_one_fourth nobottommargin center" data-animate="bounceIn">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-code"></i>
+            <div class="counter counter-lined"><span data-from="0" data-to="5" data-refresh-interval="50" data-speed="2000"></span>+</div>
+            <h5>Actively Developed Open Source Projects</h5>
+          </div>
 
-					<div class="col_one_fourth nobottommargin center" data-animate="bounceIn" data-delay="200">
-						<i class="i-plain i-xlarge divcenter nobottommargin icon-magic"></i>
-						<div class="counter counter-lined"><span data-from="0" data-to="280" data-refresh-interval="100" data-speed="2500"></span>+</div>
-						<h5>Active Members and Counting</h5>
-					</div>
+          <div class="col_one_fourth nobottommargin center" data-animate="bounceIn" data-delay="200">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-magic"></i>
+            <div class="counter counter-lined"><span data-from="0" data-to="280" data-refresh-interval="100" data-speed="2500"></span>+</div>
+            <h5>Active Members and Counting</h5>
+          </div>
 
-					<div class="col_one_fourth nobottommargin center" data-animate="bounceIn" data-delay="400">
-						<i class="i-plain i-xlarge divcenter nobottommargin icon-file-text"></i>
-						<div class="counter counter-lined"><span data-from="0" data-to="19" data-refresh-interval="25" data-speed="3500"></span>*</div>
-						<h5>Channels</h5>
-					</div>
+          <div class="col_one_fourth nobottommargin center" data-animate="bounceIn" data-delay="400">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-file-text"></i>
+            <div class="counter counter-lined"><span data-from="0" data-to="19" data-refresh-interval="25" data-speed="3500"></span>*</div>
+            <h5>Channels</h5>
+          </div>
 
-					<div class="col_one_fourth nobottommargin center col_last" data-animate="bounceIn" data-delay="600">
-						<i class="i-plain i-xlarge divcenter nobottommargin icon-time"></i>
-						<div class="counter counter-lined"><span data-from="60" data-to="11300" data-refresh-interval="30" data-speed="2700"></span>+</div>
-						<h5>Messages Per Week (on average)</h5>
-					</div>
+          <div class="col_one_fourth nobottommargin center col_last" data-animate="bounceIn" data-delay="600">
+            <i class="i-plain i-xlarge divcenter nobottommargin icon-time"></i>
+            <div class="counter counter-lined"><span data-from="60" data-to="11300" data-refresh-interval="30" data-speed="2700"></span>+</div>
+            <h5>Messages Per Week (on average)</h5>
+          </div>
 
-				</div>
+        </div>
 
-			</div>
+      </div>
 
-		</section>
+    </section>
 
-	</div>
+  </div>
 
 </section>

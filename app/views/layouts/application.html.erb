@@ -6,9 +6,11 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
+  <%= yield(:slider) %>
+
   <!-- Header
   ============================================= -->
-  <header id="header" class="transparent-header full-header" data-sticky-class="not-dark">
+  <header id="header" class="full-header" data-sticky-class="not-dark">
 
     <div id="header-wrap">
 
@@ -32,12 +34,11 @@
 
   </header>
 
-  <%# render("shared/slider") %>
+  <div class="clear"></div>
 
   <%= render("shared/flash") %>
 
   <%= yield %>
-
 
   <!-- Footer
   ============================================= -->
@@ -57,6 +58,13 @@
 
 <% if Rails.env.production? %>
   <%= render("shared/analytics") %>
+<% end %>
+
+<%= content_for :javascript do %>
+  <%= javascript_include_async_tag('plugins.js',
+                                    'data-turbolinks-track': false) %>
+  <%= javascript_include_async_tag('functions.js',
+                                    'data-turbolinks-track': false) %>
 <% end %>
 
 <% parent_layout "base" %>
