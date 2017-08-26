@@ -255,7 +255,7 @@ Devise.setup do |config|
   config.omniauth :slack,
                   AppSettings.slack_app_client_id,
                   AppSettings.slack_app_client_secret,
-                  scope: 'users:read users:read.email',
+                  scope: AppSettings.slack_app_scopes,
                   name: :sign_in_with_slack
 
   # ==> Warden configuration

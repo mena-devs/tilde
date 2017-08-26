@@ -3,7 +3,7 @@ if !AppSettings.slack_app_client_id.blank? && !AppSettings.slack_app_client_secr
     provider :slack,
              AppSettings.slack_app_client_id,
              AppSettings.slack_app_client_secret,
-             scope: 'users:read users:read.email'
+             scope: AppSettings.slack_app_scopes
   end
 else
   raise Exception.new("Please configure /config/settings/*.yml with correct values")
