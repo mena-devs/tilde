@@ -6,7 +6,9 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
-  <%= yield(:slider) %>
+  <% if !user_signed_in? %>
+    <%= yield(:slider) %>
+  <% end %>
 
   <!-- Header
   ============================================= -->
