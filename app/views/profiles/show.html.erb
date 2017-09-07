@@ -58,7 +58,7 @@
                         <td><%= fa_icon('globe') %>
                           <%= @profile.location_name %></td>
                         <td><%= fa_icon('clock-o') %>
-                          <%= @profile.user.time_zone.titleize %></td>
+                          <%= @profile.user.time_zone.try(:titleize) %></td>
                       </tr>
 
                       <tr>
