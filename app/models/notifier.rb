@@ -30,7 +30,7 @@ class Notifier
                     },
                     {
                         "title": "Expected salary",
-                        "value": job.from_salary,
+                        "value": job.from_salary + job.currency + '/year',
                         "short": true
                     },
                     {
