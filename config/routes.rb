@@ -11,7 +11,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :invitations
+  resources :invitations do
+    member do
+      put :resend
+    end
+  end
+
   resources :members, only: [:index, :show]
 
   scope path: ':user_id', as: 'user' do

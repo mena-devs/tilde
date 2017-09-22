@@ -8,7 +8,14 @@
     <% end %>
   </td>
   <td><%= invitation.invitee_location_name %></td>
+  <td><%= invitation.aasm_state.humanize %></td>
+  <td><%= invitation.retries %></td>
   <td>
     <%= invitation.created_at.strftime("%d %b %Y") %>
   </td>
+  <% if current_user.admin? %>
+    <td>
+        <%= link_to "Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put %>
+    </td>
+  <% end %>
 </tr>

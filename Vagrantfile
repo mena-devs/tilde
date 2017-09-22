@@ -16,8 +16,10 @@ Vagrant.configure("2") do |config|
   config.vm.network "private_network", ip: "192.168.33.11"
   config.vm.network "forwarded_port", guest: 3000,  host: 3000, auto_correct: true
   config.vm.network "forwarded_port", guest: 5432,  host: 5432, auto_correct: true
+  config.ssh.forward_agent = true
 
   config.vm.provider "virtualbox" do |vb|
+    vb.name = "tilde"
     vb.memory = "1536"
   end
 
@@ -82,7 +84,18 @@ Vagrant.configure("2") do |config|
   #   apt-get install -y apache2
   # SHELL
 
-  config.vm.provision :ansible do |ansible|
-    ansible.playbook = "provisioning/provision.yml"
+  config.vm.define :tilde do |tilde|
   end
+
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "ruby.yml"
+    ansible.host_vars = {
+        "default" => {
+            "ansible_python_interpreter" => "/usr/bin/python2.7"
+        }
+    }
+  end
+
+  # base_name = `which ruby`
+  # config.vm.provision "shell", inline: "#{base_name} bin/setup"
 end

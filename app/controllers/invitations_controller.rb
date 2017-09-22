@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-  before_action :set_invitation, only: [:show, :edit, :update, :destroy]
+  before_action :set_invitation, only: [:show, :edit, :update, :destroy, :resend]
   # devise authentication required to access invitations
   before_action :authenticate_user!, unless: :api_request
   # GET /invitations
@@ -45,9 +45,18 @@ class InvitationsController < ApplicationController
   # PATCH/PUT /invitations/1
   def update
     if @invitation.update(invitation_params)
-      redirect_to @invitation, notice: 'Invitation was successfully updated.'
+      redirect_to invitations_path, notice: 'Invitation was successfully updated.'
     else
       render :edit
+    end
+  end
+
+  # PATCH/PUT /invitations/1/resend
+  def resend
+    if @invitation.resend_invitation
+      redirect_to invitations_path, notice: 'Invitation was resent.'
+    else
+      render :index
     end
   end
 
