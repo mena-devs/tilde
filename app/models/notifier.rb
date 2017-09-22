@@ -34,11 +34,6 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "Description",
-                        "value": job.description,
-                        "short": false
-                    },
-                    {
                         "title": "For more details, check out the following link:",
                         "value": "#{AppSettings.application_host}/jobs/#{job.custom_identifier}?md=slack",
                         "short": false
