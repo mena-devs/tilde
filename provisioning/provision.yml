@@ -10,7 +10,7 @@
     - user:
         name: deploy
         password: 'deploy'
-        comment: "User for deployment"
+        comment: "User used to deploy and run code"
         group: admin
   roles:
       - role: geerlingguy.ruby

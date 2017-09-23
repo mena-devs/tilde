@@ -11,7 +11,7 @@
   <td><%= invitation.aasm_state.humanize %></td>
   <td><%= invitation.retries %></td>
   <td>
-    <%= invitation.created_at.strftime("%d %b %Y") %>
+    <%= invitation.updated_at.strftime("%d %b %Y") %>
   </td>
   <% if current_user.admin? %>
     <td>
