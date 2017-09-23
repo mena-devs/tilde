@@ -88,12 +88,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "ruby.yml"
-    ansible.host_vars = {
-        "default" => {
-            "ansible_python_interpreter" => "/usr/bin/python2.7"
-        }
-    }
+    ansible.playbook = "provisioning/provision.yml"
   end
 
   # base_name = `which ruby`
