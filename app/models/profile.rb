@@ -11,7 +11,6 @@
 #  privacy_level      :integer          default(0)
 #  receive_emails     :boolean          default(FALSE)
 #  receive_job_alerts :boolean          default(FALSE)
-#  title              :string
 #  updated_at         :datetime         not null
 #  user_id            :integer
 #
