@@ -19,6 +19,7 @@
 #  from_salary        :string
 #  id                 :integer          not null, primary key
 #  number_of_openings :integer          default(1)
+#  payment_term       :integer
 #  posted_on          :datetime
 #  posted_to_slack    :boolean          default(FALSE)
 #  remote             :boolean          default(FALSE)

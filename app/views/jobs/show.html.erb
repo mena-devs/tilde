@@ -4,6 +4,7 @@
     <div class="row clearfix">
       <div class="col-md-8 col-xs-8 nopadding">
         <h1><%= @job.title.humanize %></h1>
+        <h2><%= @job.company_name.humanize %> <%= " - #{@job.location_name}" if @job.country %></h2>
       </div>
 
       <div class="col-md-4 col-xs-4 nopadding fright">
@@ -68,7 +69,6 @@
             <!-- Entry Content
               ============================================= -->
             <div class="entry-content notopmargin">
-              <h3><%= @job.company_name.humanize %></h3>
 
               <ul style='margin-left: 26px'>
                 <li>

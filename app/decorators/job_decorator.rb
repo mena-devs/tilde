@@ -21,7 +21,8 @@ class JobDecorator < ApplicationDecorator
       formatted_salary += ActionController::Base.helpers.number_to_currency(object.from_salary, precision: 0)
     end
 
-    formatted_salary += '/per year'
+    object.payment_term.blank? ? formatted_salary += "/per year" : formatted_salary += "/#{object.payment_term.gsub('_', ' ')}"
+
 
     return formatted_salary
   end

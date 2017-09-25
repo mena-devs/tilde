@@ -19,6 +19,7 @@
 #  from_salary        :string
 #  id                 :integer          not null, primary key
 #  number_of_openings :integer          default(1)
+#  payment_term       :integer
 #  posted_on          :datetime
 #  posted_to_slack    :boolean          default(FALSE)
 #  remote             :boolean          default(FALSE)
@@ -92,6 +93,7 @@ class Job < ApplicationRecord
   validates :experience, presence: true
   validates :from_salary, presence: true
   validates :currency, presence: true, :if => Proc.new { |j| !j.from_salary.blank? }
+  validates :payment_term, presence: true, :if => Proc.new { |j| !j.to_salary.blank? }
 
   validates :external_link, url: true
   validates :apply_email, email: true
@@ -103,16 +105,20 @@ class Job < ApplicationRecord
   enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
   enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
   enum education: [ :unspecified, :high_school_or_equivalent, :certification, :bachelor_degree, :master_degree, :doctorate, :professional ]
+  enum payment_term: [ :per_hour, :per_day, :per_month, :per_year, :per_contract ]
 
   friendly_id :custom_identifier
 
   def location_name
-    country = ISO3166::Country[self.location]
-    if country
-      country.translations[I18n.locale.to_s] || country.name
-    else
-      ''
+    country_name = nil
+
+    if self.country
+      country = ISO3166::Country[self.country]
+
+      country_name = country.translations[I18n.locale.to_s] || country.name
     end
+
+    country_name
   end
 
   def notify_subscribers

@@ -64,13 +64,19 @@
 
     <div class="col-md-2">
       <div class="input-group">
-        <%= f.text_field :from_salary, label: 'Starting salary', placeholder: "amount per annum" %>
+        <%= f.number_field :from_salary, label: 'Starting salary', placeholder: 'Enter amount', help: 'Base salary' %>
       </div>
     </div> <!-- salary range -->
 
     <div class="col-md-2">
       <div class="input-group">
-        <%= f.text_field :to_salary, label: 'To salary', placeholder: "amount per annum" %>
+        <%= f.number_field :to_salary, label: 'To salary', placeholder: 'Enter amount', help: 'Set only if salary is a range' %>
+      </div>
+    </div> <!-- salary range -->
+
+    <div class="col-md-2">
+      <div class="input-group">
+        <%= f.select :payment_term, Job.payment_terms.keys.map { |w| [w.humanize, w] }, {label: 'Payment term', include_blank: 'Select term', selected: @job.payment_term } %>
       </div>
     </div> <!-- salary range -->
 

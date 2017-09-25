@@ -101,6 +101,6 @@ class JobsController < ApplicationController
                                   :custom_identifier, :posted_to_slack,
                                   :company_name, :apply_email, :employment_type,
                                   :experience, :from_salary, :country, :remote,
-                                  :to_salary, :currency)
+                                  :to_salary, :currency, :payment_term)
     end
 end

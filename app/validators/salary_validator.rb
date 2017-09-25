@@ -4,6 +4,10 @@ class SalaryValidator < ActiveModel::EachValidator
   end
 
   def valid_salary_fields?(record)
-    record.to_salary && record.to_salary >= record.from_salary
+    if !record.to_salary.blank?
+      record.to_salary && record.to_salary >= record.from_salary
+    else
+      record.to_salary
+    end
   end
 end

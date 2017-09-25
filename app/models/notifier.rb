@@ -29,8 +29,18 @@ class Notifier
                         "short": true
                     },
                     {
+                        "title": "Country",
+                        "value": job.location_name,
+                        "short": true
+                    },
+                    {
                         "title": "Expected salary",
                         "value": job.salary_to_s,
+                        "short": true
+                    },
+                    {
+                        "title": "Email to apply",
+                        "value": job.apply_email,
                         "short": true
                     },
                     {
