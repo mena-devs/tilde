@@ -10,7 +10,7 @@ class Notifier
 
   def self.post_job_to_slack(job_id)
     @notifier = Notifier.get_notifier
-    job = Job.find(job_id)
+    job = Job.find(job_id).decorate
 
     message = {
         "attachments": [
@@ -30,7 +30,7 @@ class Notifier
                     },
                     {
                         "title": "Expected salary",
-                        "value": job.from_salary + job.currency + '/year',
+                        "value": job.salary_to_s,
                         "short": true
                     },
                     {
