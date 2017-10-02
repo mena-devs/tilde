@@ -8,7 +8,7 @@ class JobsController < ApplicationController
     @jobs = Job.approved
 
     if user_signed_in?
-      @jobs += Job.user_jobs(current_user)
+      @jobs = Job.user_jobs(current_user) | @jobs
     end
 
     @jobs = @jobs.sort_by(&:updated_at).reverse
