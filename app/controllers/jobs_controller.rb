@@ -5,7 +5,13 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
-    @jobs = Job.approved.order(updated_at: :desc).page(params[:page])
+    @jobs = Job.approved
+
+    if user_signed_in?
+      @jobs += Job.user_jobs(current_user)
+    end
+
+    @jobs = @jobs.order(updated_at: :desc).page(params[:page])
   end
 
   # GET /list-jobs-admin
