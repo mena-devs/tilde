@@ -25,7 +25,15 @@
       <div class="form-group">
         <%= f.label :country, 'Country', class: 'control-label' %>
         <%= f.country_select(:country,
-                            { include_blank: 'Select country', selected: @job.country }, { class: 'form-control' }) %>
+                             { priority_countries: ['Lebanon',
+                                                    'Egypt',
+                                                    'Jordan',
+                                                    'Saudi Arabia',
+                                                    'Syria',
+                                                    'United Arab Emirates'],
+                               include_blank: 'Select country',
+                               selected: @job.country },
+                            { class: 'form-control' }) %>
       </div>
 
     </div>
@@ -56,18 +64,29 @@
 
     <div class="col-md-2">
       <div class="input-group">
-        <%= f.text_field :from_salary, label: 'Starting salary', placeholder: "amount per annum" %>
+        <%= f.number_field :from_salary, label: 'Starting salary', placeholder: 'Enter amount', help: 'Base salary' %>
       </div>
     </div> <!-- salary range -->
 
     <div class="col-md-2">
       <div class="input-group">
-        <%= f.text_field :to_salary, label: 'To salary', placeholder: "amount per annum" %>
+        <%= f.number_field :to_salary, label: 'To salary', placeholder: 'Enter amount', help: 'Set only if salary is a range' %>
+      </div>
+    </div> <!-- salary range -->
+
+    <div class="col-md-2">
+      <div class="input-group">
+        <%= f.select :payment_term, Job.payment_terms.keys.map { |w| [w.humanize, w] }, {label: 'Payment term', include_blank: 'Select term', selected: @job.payment_term } %>
       </div>
     </div> <!-- salary range -->
 
     <div class="col-md-3">
-      <%= f.select :currency, Job.all_currencies.map { |obj| [obj[:title], obj[:code]] }, { label: 'Currency', include_blank: 'Select currency', selected: @job.currency } %>
+      <%= f.select :currency, Job.all_currencies.map { |obj| [obj[:title], obj[:code]] },
+                          {
+                            label: 'Currency',
+                            include_blank: 'Select currency',
+                            selected: @job.currency
+                          } %>
     </div> <!-- nb of positions -->
 
   </div>

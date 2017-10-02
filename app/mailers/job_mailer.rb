@@ -29,7 +29,7 @@ class JobMailer < ApplicationMailer
   end
 
   def notify_subscriber(job_id, subscriber_id)
-    @job = Job.find(job_id)
+    @job = Job.find(job_id).decorate
     @subscriber = User.find(subscriber_id)
 
     subject = "A new job has been posted on MENAdevs.com"

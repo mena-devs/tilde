@@ -1,5 +1,5 @@
 <p>
-  Hello <%= @job.user.first_name.humanize %>,
+  Hello <%= @subscriber.first_name.humanize %>,
 </p>
 
 <p>
@@ -19,6 +19,10 @@
 
   <li>
     Experience: <%= @job.experience.try(:humanize) %>
+  </li>
+
+  <li>
+    Salary: <%= @job.salary_to_s %>
   </li>
 
   <li>

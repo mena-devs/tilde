@@ -9,8 +9,8 @@
       raw: sudo apt-get -y install python-simplejson
     - user:
         name: deploy
-        password: 'deploy'
-        comment: "User for deployment"
+        password: deploy
+        comment: "User used to deploy and run code"
         group: admin
   roles:
       - role: geerlingguy.ruby
@@ -68,6 +68,9 @@
         name: postgresql
         state: started
         enabled: yes
+
+    - name: Start PostgrSQL server on boot
+      raw: sudo update-rc.d postgresql enable
 
     - name: Create PostgreSQL DBs
       become: yes

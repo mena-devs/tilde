@@ -65,6 +65,10 @@ Run the `bin/setup` script. This script will:
 [redis]:http://redis.io
 [Homebrew]:http://brew.sh
 
+### Emails in development environment
+
+To test sent out emails during development, navigate to `localhost:3000/letter_opener` to check individual sent emails.
+
 ## Git workflow
 
 For contributions, please follow the following [git workflow](GIT-WORKFLOW.md)
