@@ -11,7 +11,9 @@ class JobsController < ApplicationController
       @jobs += Job.user_jobs(current_user)
     end
 
-    @jobs = @jobs.order(updated_at: :desc).page(params[:page])
+    @jobs = @jobs.sort_by(&:updated_at).reverse
+
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
   end
 
   # GET /list-jobs-admin
