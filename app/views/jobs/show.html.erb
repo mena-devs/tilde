@@ -121,15 +121,17 @@
 
       <!-- Sidebar
           ============================================= -->
-      <div class="sidebar nobottommargin col_last clearfix">
-        <div class="sidebar-widgets-wrap fright">
-          <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright" do %>
-            <%= fa_icon("inbox") %>
-            Tell a friend
-          <% end %>
-        </div>
+      <% if @job.approved? %>
+        <div class="sidebar nobottommargin col_last clearfix">
+          <div class="sidebar-widgets-wrap fright">
+            <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright" do %>
+              <%= fa_icon("inbox") %>
+              Tell a friend
+            <% end %>
+          </div>
 
-      </div>
+        </div>
+      <% end %>
       <!-- .sidebar end -->
     </div>
   </div>
