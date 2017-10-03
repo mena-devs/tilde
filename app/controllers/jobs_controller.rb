@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
-  before_action :set_job, only: [:show, :edit, :update, :destroy, :approve, :take_down, :publish]
+  before_action :set_job, only: [:show, :edit, :update, :destroy,
+                                 :pre_approve, :approve, :take_down, :publish]
   # devise authentication required to access jobs
   before_action :authenticate_user!, :except => [:new, :index, :show]
 
@@ -29,19 +30,15 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    if (current_user != @job.user || !current_user.admin?)
-      redirect_to @job, error: 'Not authorised'
-    end
   end
 
   # POST /jobs
   def create
     @job = Job.new(job_params)
     @job.user = current_user
-    @job.post_online
 
     if @job.save
-      redirect_to @job, notice: 'Job post was successfully created and is awaiting approval before it appears live.'
+      redirect_to @job, notice: 'Job post was successfully created.'
     else
       render :new
     end
@@ -50,7 +47,17 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   def update
     if @job.update(job_params)
+      @job.request_edit!
       redirect_to @job, notice: 'Job post was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  # PATCH/PUT /jobs/1/pre_approve
+  def pre_approve
+    if @job.request_approval!
+      redirect_to @job, notice: 'Job post was successfully submitted for approval before made public.'
     else
       render :edit
     end
@@ -101,6 +108,7 @@ class JobsController < ApplicationController
                                   :custom_identifier, :posted_to_slack,
                                   :company_name, :apply_email, :employment_type,
                                   :experience, :from_salary, :country, :remote,
-                                  :to_salary, :currency, :payment_term)
+                                  :to_salary, :currency, :payment_term,
+                                  :education, :number_of_openings)
     end
 end

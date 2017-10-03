@@ -50,10 +50,14 @@ class Job < ApplicationRecord
     state :edited
     state :disabled
 
-    event :post_online do
+    event :request_edit do
+      transitions :from => [:under_review, :edited, :approved], :to => :draft
+    end
+
+    event :request_approval do
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
       success do
-        # inform admin that there is a job post to be approved
+        # inform admins that there is a job post to be approved
         JobMailer.new_job(self).deliver
       end
     end

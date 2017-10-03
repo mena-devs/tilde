@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :jobs do
     member do
+      put :pre_approve
       put :approve
       put :take_down
       put :publish

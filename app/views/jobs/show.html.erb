@@ -11,8 +11,19 @@
         <% if (user_signed_in? && current_user.id == @job.user_id) %>
 
           <% if (@job.draft? || @job.under_review? || current_user.admin?) %>
+            <% if @job.draft? %>
+              <%= link_to "Submit for approval", pre_approve_job_path(@job), class: "button button-3d notopmargin fright button-blue", method: :put %>
+            <% elsif @job.under_review? %>
+              <div class="button button-3d notopmargin fright button-blue">
+                Awaiting approval
+              </div>
+            <% end %>
             <%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright" %>
-          <% elsif @job.approved? && !current_user.admin? %>
+          <% elsif @job.approved? && current_user.admin? %>
+            <div class="button button-3d notopmargin fright button-blue">
+              Approved
+            </div>
+
             <%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
           <% end %>
         <% end %>
@@ -112,7 +123,7 @@
           ============================================= -->
       <div class="sidebar nobottommargin col_last clearfix">
         <div class="sidebar-widgets-wrap fright">
-          <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua" do %>
+          <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright" do %>
             <%= fa_icon("inbox") %>
             Tell a friend
           <% end %>
