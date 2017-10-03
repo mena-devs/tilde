@@ -6,7 +6,7 @@ class JobMailer < ApplicationMailer
 
     subject = "[MENAdevs] Someone posted a new job"
 
-    mail to: @job.user.email,
+    mail to: AppSettings.admin_email,
          subject: subject
   end
 

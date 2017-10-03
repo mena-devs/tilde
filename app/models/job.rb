@@ -113,6 +113,8 @@ class Job < ApplicationRecord
 
   friendly_id :custom_identifier
 
+  scope :user_jobs, -> (user) { where(user_id: user.id) }
+
   def location_name
     country_name = nil
 
