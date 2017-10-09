@@ -4,7 +4,7 @@
     <div class="row clearfix">
       <div class="col-md-8 col-xs-8 nopadding">
         <h1><%= @job.title %></h1>
-        <h2><%= @job.company_name %> <%= " - #{@job.location_name}" if @job.country %></h2>
+        <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
       </div>
 
       <div class="col-md-4 col-xs-4 nopadding fright">
@@ -67,7 +67,7 @@
               <li>
                 <i class="icon-calendar3"></i>
                 Posted on:
-                <%= @job.posted_on.strftime('%A %e %B %Y ') %>
+                <%= posted_date(@job) %>
               </li>
               <li>
                 <i class="icon-user"></i>

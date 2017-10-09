@@ -69,6 +69,7 @@ class Job < ApplicationRecord
         # inform job ower that their job post is online
         JobMailer.job_published(self.id).deliver
         notify_subscribers
+        set_dates
         Notifier.post_job_to_slack(self.id)
       end
     end
@@ -104,7 +105,6 @@ class Job < ApplicationRecord
   validates :to_salary, salary: true
 
   before_validation :generate_unique_id, on: :create
-  before_create :set_dates
 
   enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
   enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
@@ -116,12 +116,12 @@ class Job < ApplicationRecord
   scope :user_jobs, -> (user) { where(user_id: user.id) }
 
   def location_name
-    country_name = nil
+    country_name = ""
 
-    if self.country
-      country = ISO3166::Country[self.country]
+    unless country.blank?
+      country_str = ISO3166::Country[country]
 
-      country_name = country.translations[I18n.locale.to_s] || country.name
+      country_name = country_str.translations[I18n.locale.to_s] || country_str.name
     end
 
     country_name
