@@ -133,6 +133,10 @@ class Job < ApplicationRecord
     end
   end
 
+  def repost_job_to_slack
+    Notifier.post_job_to_slack(self.id)
+  end
+
   def self.all_currencies
     [
       {
