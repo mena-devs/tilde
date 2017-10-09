@@ -55,7 +55,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   def update
     if @job.update(job_params)
-      @job.request_edit!
+      @job.request_edit! unless @job.draft?
       redirect_to @job, notice: 'Job post was successfully updated.'
     else
       render :edit
