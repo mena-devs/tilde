@@ -15,12 +15,12 @@ class Notifier
     message = {
         "attachments": [
             {
-                "fallback": ":briefcase: #{job.title.titleize}",
-                "text": ":briefcase: #{job.title.titleize}",
+                "fallback": ":briefcase: #{job.title}",
+                "text": ":briefcase: #{job.title}",
                 "fields": [
                     {
                         "title": "Company",
-                        "value": job.company_name.titleize,
+                        "value": job.company_name,
                         "short": true
                     },
                     {
