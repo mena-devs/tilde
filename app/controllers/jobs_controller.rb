@@ -12,7 +12,7 @@ class JobsController < ApplicationController
       @jobs = Job.user_jobs(current_user) | @jobs
     end
 
-    @jobs = @jobs.sort_by(&:posted_on).reverse
+    @jobs = @jobs.sort_by {|job| job.posted_on unless job.posted_on.blank? }.reverse
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
   end
