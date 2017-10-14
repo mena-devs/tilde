@@ -167,6 +167,7 @@ class Job < ApplicationRecord
     def set_dates
       self.posted_on = Time.now.utc
       self.expires_on = Time.now.utc + 1.month
+      save
     end
 
     def generate_unique_id
