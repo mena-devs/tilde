@@ -8,9 +8,7 @@ class JobsController < ApplicationController
   def index
     @page_title       = 'Job board'
     @page_description = 'Technical jobs posted on MENA devs'
-    @page_keywords    = 'MENA, developers, lebanon, CTO, technical manager, \
-                        computer science, computer, software, community, online\
-                        jobs, technical jobs'
+    @page_keywords    = AppSettings.meta_tags_keywords
 
     @jobs = Job.approved
 
