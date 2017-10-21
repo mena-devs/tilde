@@ -37,9 +37,7 @@ class JobsController < ApplicationController
   def show
     @page_title       = @job.title
     @page_description = @job.title + ' at ' + @job.company_name
-    @page_keywords    = 'MENA, developers, CTO, technical manager,
-                        computer science, computer, software, community, online
-                        jobs, technical jobs'
+    @page_keywords    = AppSettings.meta_tags_keywords
   end
 
   # GET /jobs/new
