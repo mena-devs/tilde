@@ -21,13 +21,11 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <%# Specifies the default name of home screen bookmark in iOS 6+ %>
-    <meta name='apple-mobile-web-app-title' content='MENAdevs'>
+    <meta name='apple-mobile-web-app-title' content='<%= AppSettings.application_name %>'>
 
-    <title>
-      <%= strip_tags(yield(:title)) + ' – ' if content_for?(:title) %>
-      MENAdevs.com
-    </title>
+    <%= display_meta_tags site: AppSettings.application_name %>
   </head>
+
   <body class="stretched no-transition">
 
     <%= yield %>

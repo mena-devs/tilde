@@ -248,6 +248,8 @@ GEM
     mailgun-ruby (1.1.5)
       rest-client (~> 2.0)
     marco-polo (1.2.1)
+    meta-tags (2.6.0)
+      actionpack (>= 3.2.0, < 5.3)
     metaclass (0.0.4)
     method_source (0.8.2)
     mime-types (3.1)
@@ -500,6 +502,7 @@ DEPENDENCIES
   mail (>= 2.6.3)
   mailgun-ruby (~> 1.1.2)
   marco-polo
+  meta-tags
   minitest-capybara
   minitest-reporters
   mocha
@@ -534,4 +537,4 @@ DEPENDENCIES
   xray-rails (>= 0.1.18)
 
 BUNDLED WITH
-   1.15.4
+   1.16.0.pre.3

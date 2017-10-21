@@ -6,6 +6,12 @@ class JobsController < ApplicationController
 
   # GET /jobs
   def index
+    @page_title       = 'Job board'
+    @page_description = 'Technical jobs posted on MENA devs'
+    @page_keywords    = 'MENA, developers, lebanon, CTO, technical manager, \
+                        computer science, computer, software, community, online\
+                        jobs, technical jobs'
+
     @jobs = Job.approved
 
     if user_signed_in?
@@ -29,6 +35,11 @@ class JobsController < ApplicationController
 
   # GET /jobs/1
   def show
+    @page_title       = @job.title
+    @page_description = @job.title + ' at ' + @job.company_name
+    @page_keywords    = 'MENA, developers, CTO, technical manager,
+                        computer science, computer, software, community, online
+                        jobs, technical jobs'
   end
 
   # GET /jobs/new

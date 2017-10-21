@@ -65,7 +65,7 @@ class Job < ApplicationRecord
     event :publish do
       transitions :from => [:under_review, :disabled], :to => :approved
 
-      success do
+      after do
         # inform job ower that their job post is online
         JobMailer.job_published(self.id).deliver
         notify_subscribers
