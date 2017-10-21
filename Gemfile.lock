@@ -403,6 +403,8 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
+    sitemap_generator (6.0.0)
+      builder (~> 3.0)
     sixarm_ruby_unaccent (1.1.1)
     slack-notifier (2.1.0)
     slop (3.6.0)
@@ -525,6 +527,7 @@ DEPENDENCIES
   shoulda-matchers (>= 3.0.1)
   sidekiq (>= 4.2.0)
   simplecov
+  sitemap_generator
   slack-notifier
   spring
   spring-watcher-listen (~> 2.0.0)

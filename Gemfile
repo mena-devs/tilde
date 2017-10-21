@@ -67,6 +67,7 @@ group :development do
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
   gem 'simplecov', require: false
+  gem 'sitemap_generator'
   gem 'spring'
   gem 'sshkit', '~> 1.8', require: false
   gem 'spring-watcher-listen', '~> 2.0.0'
