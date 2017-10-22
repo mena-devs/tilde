@@ -10,13 +10,11 @@ class JobsController < ApplicationController
     @page_description = 'Technical jobs posted on MENA devs'
     @page_keywords    = AppSettings.meta_tags_keywords
 
-    @jobs = Job.approved
+    @jobs = Job.all_approved
 
     if user_signed_in?
       @jobs = Job.user_jobs(current_user) | @jobs
     end
-
-    @jobs = @jobs.sort_by {|job| job.posted_on unless job.posted_on.blank? }.reverse
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
   end

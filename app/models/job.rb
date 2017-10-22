@@ -113,7 +113,8 @@ class Job < ApplicationRecord
 
   friendly_id :custom_identifier
 
-  scope :user_jobs, -> (user) { where(user_id: user.id) }
+  scope :user_jobs, -> (user) { where(user_id: user.id).order(posted_on: :desc) }
+  scope :all_approved, -> { where(aasm_state: 'approved').order(posted_on: :desc) }
 
   def location_name
     country_name = ""
