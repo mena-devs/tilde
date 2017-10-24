@@ -31,9 +31,9 @@ class Profile < ApplicationRecord
   enum privacy_option: [ "Hidden", "Members only", "Open" ]
 
   def complete?
-    if (user.first_name.nil? ||
-        user.last_name.nil? ||
-        @location.blank?)
+    if (self.user.first_name.blank? ||
+        self.user.last_name.blank? ||
+        self.location.blank?)
       return false
     else
       return true
