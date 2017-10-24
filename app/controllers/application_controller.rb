@@ -11,6 +11,12 @@ class ApplicationController < ActionController::Base
     false
   end
 
+  def check_user_profile_complete
+    if user_signed_in && current_user.profile && !current_user.profile.complete?
+      redirect_to edit_user_profile_path(current_user), alert: 'Please update your profile'
+    end
+  end
+
   # if user did not fill his profile yet
   def after_sign_in_path_for(resource)
     sign_in_url = new_user_session_url
