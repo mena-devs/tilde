@@ -98,7 +98,7 @@ class Job < ApplicationRecord
   validates :experience, presence: true
   validates :from_salary, presence: true
   validates :currency, presence: true, :if => Proc.new { |j| !j.from_salary.blank? }
-  validates :payment_term, presence: true, :if => Proc.new { |j| !j.to_salary.blank? }
+  validates :payment_term, presence: true, :if => Proc.new { |j| !j.from_salary.blank? }
 
   validates :external_link, url: true
   validates :apply_email, email: true
