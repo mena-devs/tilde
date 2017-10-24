@@ -31,9 +31,10 @@
   <div class="form-group">
     <label class="control-label" for="profile_location">Location</label>
     <%= f.country_select("profile[location]",
-                         [@profile.location_name],
-                         { include_blank: 'Select' },
-                         { class: 'form-control' }) %>
+                         [@profile.location],
+                         { priority: ['LB'],
+                          selected: @profile.location },
+                          class: 'form-control') %>
   </div>
 
   <div class="form-group">
