@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_profile_complete
-    if user_signed_in && current_user.profile && !current_user.profile.complete?
+    if user_signed_in? && current_user.profile && !current_user.profile.complete?
       redirect_to edit_user_profile_path(current_user), alert: 'Please update your profile'
     end
   end
@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
     if current_user.profile.try(:complete?) && request.referer == sign_in_url
       super
-    elsif current_user.profile.nil?
+    elsif current_user.profile.blank?
       current_user.create_profile
       edit_user_profile_path(current_user)
     else
