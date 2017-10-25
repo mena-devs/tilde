@@ -102,7 +102,7 @@ class Job < ApplicationRecord
 
   validates :external_link, url: true
   validates :apply_email, email: true
-  validates :to_salary, to_salary: true
+  validates :to_salary, salary: true
 
   before_validation :generate_unique_id, on: :create
 
