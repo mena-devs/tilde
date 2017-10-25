@@ -29,11 +29,12 @@
                   label: "Biography" %>
 
   <div class="form-group">
+    <% location = @profile.location ||= 'LB' %>
     <label class="control-label" for="profile_location">Location</label>
     <%= f.country_select("profile[location]",
-                         [@profile.location],
+                         [location],
                          { priority: ['LB'],
-                          selected: @profile.location ||= 'LB' },
+                          selected: location },
                           class: 'form-control') %>
   </div>
 
