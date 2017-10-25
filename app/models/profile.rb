@@ -26,7 +26,7 @@
 class Profile < ApplicationRecord
   belongs_to :user
 
-  validates :nickname, uniqueness: {scope: :user_id, allow_blank: true}
+  validates_uniqueness_of :nickname
 
   enum privacy_option: [ "Hidden", "Members only", "Open" ]
 

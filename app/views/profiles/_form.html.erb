@@ -1,62 +1,66 @@
-<%= bootstrap_form_tag(url: user_profile_path(current_user), method: :put) do |f| %>
+<%= bootstrap_nested_form_for([@profile.user, @profile], inline_errors: true) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
   <div class="row job-form-buttons">
     <div class="col-md-12">
       <%= f.submit "Update profile", class: "button button-3d button button-rounded button-green pull-right" %>
     </div>
   </div>
 
-  <%= f.alert_message "Please review the problems below:" %>
-
-  <%= f.text_field "profile[user[first_name]]",
+  <%= f.text_field "user[first_name]",
                    value: @profile.user.first_name,
                    id: "profile_user_first_name",
                    label: "First name" %>
 
- <%= f.text_field "profile[user[last_name]]",
+ <%= f.text_field "user[last_name]",
                   value: @profile.user.last_name,
                   id: "profile_user_last_name",
                   label: "Last name" %>
 
-  <%= f.text_field "profile[nickname]",
+  <%= f.text_field "nickname",
                    value: @profile.nickname,
                    id: "profile_nickname",
                    label: "Nickname",
                    help: "Unique. Reserved for future use on menadevs.com" %>
 
-  <%= f.text_area "profile[biography]",
+  <%= f.text_area "biography",
                   rows: 5,
                   value: @profile.biography,
                   label: "Biography" %>
 
   <div class="form-group">
-    <% location = @profile.location ||= 'LB' %>
+    <% location = @profile.location ||= '' %>
     <label class="control-label" for="profile_location">Location</label>
-    <%= f.country_select("profile[location]",
-                         [location],
-                         { priority: ['LB'],
-                          selected: location },
-                          class: 'form-control') %>
+    <%= f.country_select("location",
+                         { priority_countries: ['LB', 'EG', 'JO', 'SA', 'SY', 'AE'],
+                           selected: location,
+                           include_blank: 'Select country',
+                           priority_countries_divider: "---------" },
+                        class: 'form-control') %>
   </div>
 
-  <div class="form-group">
-    <%= f.time_zone_select("profile[user[time_zone]]",
-                         [display_time_zone(@profile.user.try(:time_zone))],
-                         selected: true,
-                         class: 'form-control',
-                         label: 'Time Zone') %>
-  </div>
+  <%= f.fields_for :user do |user| %>
+    <div class="form-group">
+      <%= user.time_zone_select("time_zone",
+                           [display_time_zone(@profile.user.try(:time_zone))],
+                           selected: true,
+                           class: 'form-control',
+                           label: 'Time Zone') %>
+    </div>
+  <% end %>
 
-  <%= f.check_box "profile[receive_emails]",
+  <%= f.check_box "receive_emails",
                   value: @profile.receive_emails,
                   label: "Receive - general purpose - emails from MENAdevs?",
                   checked: @profile.receive_emails %>
 
-  <%= f.check_box "profile[receive_job_alerts]",
+  <%= f.check_box "receive_job_alerts",
                   value: @profile.receive_job_alerts,
                   label: "Receive - job alert - emails from MENAdevs?",
                   checked: @profile.receive_job_alerts %>
 
-  <%= f.select "profile[privacy_level]",
+  <%= f.select "privacy_level",
                 Profile.privacy_options,
                 :selected => @profile.privacy_level,
                 label: "Select profile privacy level",

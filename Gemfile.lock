@@ -275,6 +275,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.0.0)
     nenv (0.3.0)
+    nested_form (0.3.2)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
@@ -508,6 +509,7 @@ DEPENDENCIES
   minitest-capybara
   minitest-reporters
   mocha
+  nested_form
   omniauth-slack
   overcommit
   paranoia (~> 2.2)
