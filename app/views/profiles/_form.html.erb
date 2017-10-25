@@ -33,7 +33,7 @@
     <%= f.country_select("profile[location]",
                          [@profile.location],
                          { priority: ['LB'],
-                          selected: @profile.location },
+                          selected: @profile.location ||= 'LB' },
                           class: 'form-control') %>
   </div>
 

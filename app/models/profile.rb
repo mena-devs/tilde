@@ -49,7 +49,11 @@ class Profile < ApplicationRecord
   end
 
   def location_name
-    country = ISO3166::Country[location]
-    (country.translations[I18n.locale.to_s] || country.name) if country
+    unless location.blank?
+      country = ISO3166::Country[location]
+      (country.translations[I18n.locale.to_s] || country.name) if country
+    else
+      "Not set yet"
+    end
   end
 end
