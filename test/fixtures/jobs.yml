@@ -16,7 +16,7 @@
 #  experience         :integer
 #  expires_on         :datetime
 #  external_link      :string
-#  from_salary        :string
+#  from_salary        :integer
 #  id                 :integer          not null, primary key
 #  number_of_openings :integer          default(1)
 #  payment_term       :integer
@@ -24,7 +24,7 @@
 #  posted_to_slack    :boolean          default(FALSE)
 #  remote             :boolean          default(FALSE)
 #  title              :string
-#  to_salary          :string
+#  to_salary          :integer
 #  updated_at         :datetime         not null
 #  user_id            :integer
 #

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170925212904) do
+ActiveRecord::Schema.define(version: 20171103085618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,14 +88,14 @@ ActiveRecord::Schema.define(version: 20170925212904) do
     t.integer  "user_id"
     t.string   "company_name"
     t.string   "apply_email"
-    t.string   "to_salary"
+    t.integer  "to_salary"
     t.integer  "employment_type"
     t.integer  "number_of_openings", default: 1
     t.integer  "experience"
     t.datetime "deleted_at"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.string   "from_salary"
+    t.integer  "from_salary"
     t.string   "currency"
     t.string   "education"
     t.integer  "payment_term"
