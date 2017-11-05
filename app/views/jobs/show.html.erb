@@ -2,12 +2,12 @@
 
   <div class="container clearfix">
     <div class="row clearfix">
-      <div class="col-md-8 col-xs-8 nopadding">
+      <div class="col-md-8 col-xs-12">
         <h1><%= @job.title %></h1>
         <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
       </div>
 
-      <div class="col-md-4 col-xs-4 nopadding fright">
+      <div class="col-md-4 nopadding fright hidden-xs">
         <% if (user_signed_in? && current_user.id == @job.user_id) %>
 
           <% if (@job.draft? || @job.under_review? || current_user.admin?) %>
@@ -39,10 +39,16 @@
         <% end %>
 
         <% unless (user_signed_in? && current_user.id == @job.user_id) %>
-          <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright", target: '_blank' %>
+          <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: '_blank' %>
         <% end %>
       </div>
+
+      <!-- Mobile friendly interface -->
+      <div class="col-md-12 nopadding visible-xs">
+        <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d", target: '_blank' %>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -53,7 +59,7 @@
     <div class="container clearfix">
       <!-- Post Content
         ============================================= -->
-      <div class="postcontent nobottommargin clearfix">
+      <div class="postcontent nobottommargin">
 
         <div class="single-post nobottommargin">
 
@@ -109,10 +115,12 @@
                   </li>
                 <% end %>
               </ul>
-              <hr/>
-              <p>
-                <%= @job.description.html_safe %>
-              </p>
+              <% if !@job.description.blank? %>
+                <hr/>
+                <p>
+                  <%= @job.description.html_safe %>
+                </p>
+              <% end %>
             </div>
             <!-- .entry-content end -->
           </div>
@@ -122,7 +130,7 @@
       <!-- Sidebar
           ============================================= -->
       <% if @job.approved? %>
-        <div class="sidebar nobottommargin col_last clearfix">
+        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap fright">
             <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright" do %>
               <%= fa_icon("inbox") %>

@@ -1,4 +1,4 @@
-<div class="table-responsive bottommargin">
+<div class="table-responsive bottommargin hidden-xs">
 
   <table class="table table-striped">
     <thead>
@@ -16,3 +16,9 @@
     </tbody>
   </table>
 </div>
+
+<table class="table table-striped visible-xs">
+  <tbody>
+    <%= render partial: "job_responsive", collection: @jobs %>
+  </tbody>
+</table>

@@ -4,12 +4,12 @@
 
   <div class="container clearfix">
     <div class="row clearfix">
-      <div class="col-md-8 col-xs-8 nopadding">
+      <div class="col-md-8 col-xs-12">
         <h1>Job Board</h1>
-        <span>Browse all jobs posted on MENAdevs</span>
+        <span class='hidden-xs'>Browse all jobs posted on MENAdevs</span>
 			</div>
 
-      <div class="col-md-4 col-xs-4 nopadding">
+      <div class="col-md-4 hidden-xs">
         <%= link_to new_job_path, :class => "button button-3d notopmargin fright" do %>
           <%= fa_icon("plus", :text => "Post a Job") %>
         <% end %>
@@ -28,9 +28,12 @@
     <div class="container clearfix">
 
       <% if @jobs.blank? %>
+
         <div class="style-msg alertmsg">
           <div class="sb-msg"><i class="icon-warning-sign"></i>There are no jobs on MENAdevs at the moment</div>
         </div>
+        <br/>
+
       <% else %>
 
         <div class="row">
