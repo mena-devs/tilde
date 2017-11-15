@@ -37,7 +37,9 @@ Rails.application.routes.draw do
 
   get 'about', to: 'home#about'
   get 'contact', to: 'home#contact'
+  get 'contact-us', to: 'home#contact'
   get 'list-jobs-admin', to: 'jobs#list_jobs'
+  get 'events', to: 'home#events'
 
   # API resources
   namespace :api, defaults: {format: 'json'} do

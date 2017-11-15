@@ -17,4 +17,14 @@ class HomeController < ApplicationController
     @page_description = 'Contact MENA devs community'
     @page_keywords    = AppSettings.meta_tags_keywords
   end
+
+  def events
+    @page_title       = 'Events'
+    @page_description = 'Community events organised by MENA devs'
+    @page_keywords    = AppSettings.meta_tags_keywords
+
+    respond_to do |format|
+      format.html  # events.html.erb
+    end
+  end
 end
