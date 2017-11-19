@@ -6,6 +6,7 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
+    @users_count = User.count
     @users = User.order(:first_name, :last_name).page params[:page]
   end
 
