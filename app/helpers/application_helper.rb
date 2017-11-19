@@ -35,4 +35,12 @@ module ApplicationHelper
       fa_icon('times')
     end
   end
+
+  def directory_letters
+    letters = ('a'..'z').to_a.map.each do |letter|
+      link_to(letter.capitalize, directory_users_path(name: letter))
+    end
+    letters = letters.unshift(link_to("[All]", directory_users_path))
+    letters.join(', ').html_safe
+  end
 end
