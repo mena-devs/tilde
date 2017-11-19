@@ -37,9 +37,9 @@
                     <td width='5%'>
                       <%= image_tag(user.profile.try(:profile_picture), size: '50x50', class: 'img-thumbnail') %>
                     </td>
-                    <td>
+                    <td width='80%'>
                       <%= link_to directory_user_path(user) do %>
-                        <%= user.name %>
+                        <%= user.name %> | <%= user.email %>
                         <% if user_signed_in? && current_user == user %>
                           <div class="btn btn-xs btn-primary">
                             <%= fa_icon("check") %>
@@ -50,7 +50,7 @@
                       <br/>
                       <small><%= user.profile.biography %></small>
                     </td>
-                    <td>
+                    <td width='15%'>
                       <%= user.created_at.strftime('%A %e %B %Y ') %>
                     </td>
                   </tr>
