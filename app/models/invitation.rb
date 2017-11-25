@@ -63,6 +63,8 @@ class Invitation < ApplicationRecord
     end
   end
 
+  after_create :new_invite_notify_administrators
+
   belongs_to :user
 
   # TODO: DRY up boolean method
@@ -83,7 +85,6 @@ class Invitation < ApplicationRecord
   end
 
   def process_invitation
-    new_invite_notify_administrators
     process_invitation_on_slack
   end
 
