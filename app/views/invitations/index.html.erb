@@ -61,7 +61,8 @@
 
 <!-- Bootstrap Data Table Plugin -->
 <%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
-<!-- <script type="text/javascript" src="js/components/bs-datatable.js"></script> -->
+<%= stylesheet_link_tag('bs-datatable', media: 'all',
+												'data-turbolinks-track': false) %>
 
 <script>
 
