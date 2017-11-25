@@ -64,6 +64,7 @@ class User < ApplicationRecord
   after_save :prepare_profile
 
   scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
+  scope :verified, -> { where("confirmed_at IS NOT NULL")}
 
   def new_from_slack_oauth(user_info)
     self.provider   = user_info.provider
