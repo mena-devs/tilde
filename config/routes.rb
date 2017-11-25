@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :invitations do
     member do
       put :resend
+      put :approve
     end
   end
 
@@ -39,6 +40,7 @@ Rails.application.routes.draw do
   get 'contact', to: 'home#contact'
   get 'contact-us', to: 'home#contact'
   get 'list-jobs-admin', to: 'jobs#list_jobs'
+  get 'list-invitations-admin', to: 'invitations#list_invitations'
   get 'events', to: 'home#events'
 
   # API resources

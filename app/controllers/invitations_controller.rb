@@ -1,14 +1,24 @@
 class InvitationsController < ApplicationController
-  before_action :set_invitation, only: [:show, :edit, :update, :destroy, :resend]
+  before_action :set_invitation, only: [:show, :edit, :update, :destroy, :resend, :approve]
   # devise authentication required to access invitations
   before_action :authenticate_user!, unless: :api_request
   # GET /invitations
   def index
     if current_user.admin?
-      @invitations = Invitation.all.order(updated_at: :desc).page(params[:page])
+      @invitations = Invitation.all.order(created_at: :desc, updated_at: :desc).page(params[:page])
     else
       @invitations = Invitation.sent(current_user.id).order(updated_at: :desc).page(params[:page])
     end
+  end
+
+  # GET /list-invitations-admin
+  def list_invitations
+    @admin_invitations = Invitation.all.order(updated_at: :desc).page(params[:page])
+    if !current_user.admin?
+      flash[:notice] = "Not authorised"
+    end
+
+    render :admin_index
   end
 
   # GET /invitations/1
@@ -57,6 +67,15 @@ class InvitationsController < ApplicationController
       redirect_to invitations_path, notice: 'Invitation was resent.'
     else
       render :index
+    end
+  end
+
+  # PATCH/PUT /invitations/1/approve
+  def approve
+    if @invitation.send_invite!
+      redirect_to list_invitations_admin_path, notice: 'Invitation was approved.'
+    else
+      render :list_invitations
     end
   end
 

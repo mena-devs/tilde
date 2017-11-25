@@ -1,45 +1,86 @@
-<% provide(:title) do %>
-  Invitation #<%= @invitation.id %>
-<% end %>
+<!-- Document Wrapper
+============================================= -->
+<div id="wrapper" class="clearfix">
+<!-- Page Title
+============================================= -->
+  <section id="page-title">
 
-<table class="table table-bordered">
-  <tbody>
-    <tr>
-      <th class="col-sm-2">User</th>
-      <td><%= @invitation.user %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Invitee name</th>
-      <td><%= @invitation.invitee_name %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Invitee email</th>
-      <td><%= @invitation.invitee_email %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Invitee title</th>
-      <td><%= @invitation.invitee_title %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Invitee company</th>
-      <td><%= @invitation.invitee_company %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Invitee location</th>
-      <td><%= @invitation.invitee_location %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Delivered</th>
-      <td><%= @invitation.delivered %></td>
-    </tr>
-    <tr>
-      <th class="col-sm-2">Registered</th>
-      <td><%= @invitation.registered %></td>
-    </tr>
-  </tbody>
-</table>
+    <div class="container clearfix">
+      <div class="col-md-8 col-xs-12">
+				<h1>Invitee details</h1>
+			</div>
 
-<p>
-  <%= link_to "Edit", edit_invitation_path(@invitation), :class => "btn btn-primary" %>
-  <%= link_to "Back", invitations_path, :class => "btn btn-link" %>
-</p>
+			<div class="col-md-4 hidden-xs">
+				<%= link_to invitations_path, :class => "button button-3d notopmargin button-brown fright" do %>
+					<%= fa_icon("arrow-left", :text => "Back") %>
+				<% end %>
+			</div>
+    </div>
+
+  </section><!-- #page-title end -->
+
+  <!-- Content
+  ============================================= -->
+  <section id="content">
+
+    <div class="content-wrap">
+
+      <div class="container clearfix">
+
+        <div class="table-responsive">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th class="col-sm-2">Full name</th>
+                <td><%= @invitation.invitee_name %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Email address</th>
+                <td><%= @invitation.invitee_email %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Introduction</th>
+                <td><%= @invitation.invitee_introduction %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Title</th>
+                <td><%= @invitation.invitee_title %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Company</th>
+                <td><%= @invitation.invitee_company %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Location</th>
+                <td><%= @invitation.location_name %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Invitation sent?</th>
+                <td><%= @invitation.delivered %></td>
+              </tr>
+              <tr>
+                <th class="col-sm-2">Did the person register?</th>
+                <td><%= @invitation.registered %></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="row">
+            <div class="container">
+              <div class="col-md-6 col-xs-12 center">
+                <%= link_to approve_invitation_path(@invitation), :class => "button button-3d notopmargin button-green", method: :put do %>
+                  <%= fa_icon("check-square", :text => "Approve") %>
+                <% end %>
+              </div>
+              <div class="col-md-6 col-xs-12 center">
+                <%= link_to resend_invitation_path(@invitation), :class => "button button-3d notopmargin button-blue", method: :put do %>
+        					<%= fa_icon("refresh", :text => "Resend") %>
+        				<% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section><!-- #content end -->
+</div>
