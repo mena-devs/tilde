@@ -7,7 +7,7 @@ class MembersController < ApplicationController
   # GET /members
   def index
     @users_count = User.count
-    @users = User.order('created_at desc').page params[:page]
+    @users = User.verified.order('created_at desc').page(params[:page])
   end
 
   # GET /member/1
