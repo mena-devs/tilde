@@ -6,7 +6,16 @@
   <section id="page-title">
 
     <div class="container clearfix">
-      <h1>Sent Slack invitations</h1>
+			<div class="col-md-8 col-xs-12">
+				<h1>Slack Group sent invitations</h1>
+				<span class='hidden-xs'>Invitations sent to contacts to join MENAdevs Slack Group</span>
+			</div>
+
+			<div class="col-md-4 hidden-xs">
+				<%= link_to new_invitation_path, :class => "button button-3d notopmargin fright" do %>
+					<%= fa_icon("plus", :text => "Invite") %>
+				<% end %>
+			</div>
     </div>
 
   </section><!-- #page-title end -->
@@ -24,10 +33,6 @@
             <div class="style-msg alertmsg">
               <div class="sb-msg"><i class="icon-warning-sign"></i>You have sent 0 invitations</div>
             </div>
-
-            <div class="fright">
-              <%= link_to "Invite a friend or colleague", new_invitation_path, class: "button button-3d button-rounded button-aqua" %>
-            </div>
           <% else %>
             <table id="invitations-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
               <thead>
@@ -38,9 +43,7 @@
 									<th>State</th>
 									<th>Retries</th>
                   <th>Sent on</th>
-									<% if current_user.admin? %>
-										<th>&nbsp;</th>
-									<% end %>
+									<th>&nbsp;</th>
                 </tr>
               </thead>
               <tbody>

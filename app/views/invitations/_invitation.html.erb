@@ -1,7 +1,7 @@
 <tr>
   <td><%= invitation.invitee_name %></td>
   <td>
-    <%= invitation.invitee_email %>
+    <%= link_to(invitation.invitee_email, invitation) %>
     <% if invitation.invitee_email == current_user.email %>
       &nbsp;
       <%= fa_icon("check", text: "me") %>
@@ -10,12 +10,6 @@
   <td><%= invitation.invitee_location_name %></td>
   <td><%= invitation.aasm_state.humanize %></td>
   <td><%= invitation.retries %></td>
-  <td>
-    <%= invitation.updated_at.strftime("%d %b %Y") %>
-  </td>
-  <% if current_user.admin? %>
-    <td>
-        <%= link_to "Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put %>
-    </td>
-  <% end %>
+  <td><%= invitation.updated_at.strftime("%d %b %Y") %></td>
+  <td><%= link_to "Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put %></td>
 </tr>

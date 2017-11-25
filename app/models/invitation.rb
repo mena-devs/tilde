@@ -94,6 +94,15 @@ class Invitation < ApplicationRecord
     process_invitation_on_slack
   end
 
+  def location_name
+    unless invitee_location.blank?
+      country = ISO3166::Country[invitee_location]
+      (country.translations[I18n.locale.to_s] || country.name) if country
+    else
+      "Not set"
+    end
+  end
+
   private
     def new_invite_notify_administrators
       InvitationMailer.new_slack_invitation(self.id).deliver
