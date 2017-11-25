@@ -27,7 +27,7 @@ class MembersController < ApplicationController
 
     def is_admin
       unless user_signed_in? && current_user.admin?
-        redirect_to home_path, error: "You are not authorised"
+        redirect_to root_path, error: "You are not authorised"
       end
     end
 end
