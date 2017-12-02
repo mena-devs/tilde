@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy,
                                  :pre_approve, :approve, :take_down, :publish]
   # devise authentication required to access jobs
-  before_action :authenticate_user!, :except => [:new, :index, :show]
+  before_action :authenticate_user!, :except => [:index, :show]
   before_action :check_user_profile_complete, :except => [:new, :index, :show]
 
   # GET /jobs
