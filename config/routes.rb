@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'list-jobs-admin', to: 'jobs#list_jobs'
   get 'list-invitations-admin', to: 'invitations#list_invitations'
   get 'events', to: 'home#events'
+  get 'partners', to: 'home#partners'
 
   # API resources
   namespace :api, defaults: {format: 'json'} do
