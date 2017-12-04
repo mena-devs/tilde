@@ -29,7 +29,7 @@ class HomeController < ApplicationController
   end
 
   def partners
-    @page_title       = 'Communit Partners'
+    @page_title       = 'Community Partners'
     @page_description = 'Community partners listing'
     @page_keywords    = AppSettings.meta_tags_keywords
 
@@ -39,7 +39,7 @@ class HomeController < ApplicationController
   end
 
   def partner
-    @page_title       = 'Communit Partners'
+    @page_title       = 'Community Partners'
     @page_description = 'Community partner'
     @page_keywords    = AppSettings.meta_tags_keywords
 
