@@ -8,7 +8,7 @@ class HomeController < ApplicationController
 
   def index
     @page_title       = 'Homepage'
-    @page_description = 'Home of MENA devs'
+    @page_description = "Home of MENA devs. One of the largest online communities for developers in the MENA region. Join in if you're looking for software developers, CTO, technical expertise or to connect with mentors and community leaders."
     @page_keywords    = AppSettings.meta_tags_keywords
   end
 
