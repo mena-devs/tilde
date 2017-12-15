@@ -26,87 +26,177 @@
           <div class="clear"></div>
 
           <div class="row clearfix">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <!-- Work experience begins -->
 
-            <div class="col-md-12">
-
-              <div class="tabs tabs-bb clearfix ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs-profile">
-
-                <ul class="tab-nav clearfix">
-                  <li>
-                    <a href="#tab-account">
-                      <i class="icon-user2"></i>
-                      Account information</a>
-                  </li>
-                </ul>
-
-                <div class="tab-container">
-                  <div class="tab-content clearfix" id="tab-account">
-                    <table class="table">
-                      <tr>
-                        <td>
-                          <%= fa_icon('link') %>
-                          menadevs.com/profiles/<%= nickname(@profile) %>
-                        </td>
-
-                        <td>
-                          <%= fa_icon('envelope') %>
-                          <%= email(@profile) %>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td><%= fa_icon('globe') %>
-                          <%= @profile.location_name %></td>
-                        <td><%= fa_icon('clock-o') %>
-                          <%= @profile.user.time_zone.try(:titleize) %></td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <% if @profile.receive_emails? %>
-                            <%= fa_icon("check") %>
-                          <% else %>
-                            <%= fa_icon("close") %>
-                          <% end %>
-                          <span>Receive updates via emails from MENAdevs?</span>
-                        </td>
-
-                        <td>
-                          <% if @profile.receive_job_alerts %>
-                            <%= fa_icon("check") %>
-                          <% else %>
-                            <%= fa_icon("close") %>
-                          <% end %>
-                          <span>Receive job alerts via emails?</span>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>
-                          <% if @profile.user.connected_via_slack? %>
-                            <%= fa_icon("check") %>
-                          <% else %>
-                            <%= fa_icon("close") %>
-                          <% end %>
-                          Logged in using Slack credentials?
-                        </td>
-                        <td>
-                          <% if @profile.privacy_level == 0 %>
-                            <%= fa_icon("eye-slash", text: "Your profile is hidden") %>
-                          <% elsif @profile.privacy_level == 1 %>
-                            <%= fa_icon("adjust", text: "Your profile visible to members only") %>
-                          <% elsif @profile.privacy_level == 2 %>
-                            <%= fa_icon("eye", text: "Your profile is public") %>
-                          <% end %>
-                        </td>
-                      </tr>
-                    </table>
-
-                  </div>
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Experience</h3>
                 </div>
 
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <strong>Company name</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <strong>Title</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <strong>Years of experience</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                </div>
               </div>
 
+              <!-- Work experience ends -->
+
+              <!--  Contact details begins -->
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Contact details</h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= fa_icon('envelope') %>
+                      <strong>Email address</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                      <%= link_to email(@profile), "mailto:#{email(@profile)}" %>
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= fa_icon('globe') %>
+                      <strong>Location</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                      <%= @profile.location_name %>
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                      <%= fa_icon('clock-o') %>
+                      <strong>Timezone</strong>
+                    </div>
+
+                    <div class="col-md-9">
+                      <%= @profile.user.time_zone.try(:titleize) %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--  Contact details ends -->
+
+              <!-- Looking for begins -->
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">I am looking for</h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Looking for ends -->
+
+              <!-- Open for begins -->
+
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">I am open for</h3>
+                </div>
+
+                <div class="panel-body">
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+
+                  <br/>
+
+                  <div class="row">
+                    <div class="col-md-3">
+                    </div>
+
+                    <div class="col-md-9">
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Open for ends -->
             </div>
 
           </div>
@@ -117,22 +207,72 @@
 
         <div class="col-sm-3 clearfix">
 
-          <div class="list-group">
-            <%= link_to directory_user_path(@profile.user), class: "list-group-item clearfix" do %>
-              Preview
-              <%= fa_icon("eye", class: "pull-right") %>
-            <% end %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Modifications</h3>
+            </div>
 
-            <%= link_to edit_user_profile_path(@profile.user), class: "list-group-item clearfix" do %>
-              Edit your Profile
-              <%= fa_icon("user", class: "pull-right") %>
-            <% end %>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <%= link_to edit_user_profile_path(@profile.user) do %>
+                    Edit
+                    <%= fa_icon("user", class: "pull-right") %>
+                  <% end %>
 
-            <%= link_to new_user_password_path(@profile.user), class: "list-group-item clearfix" do %>
-              Change Password
-              <%= fa_icon("laptop", class: "pull-right") %>
-            <% end %>
+                  <hr/>
+
+                  <%= link_to directory_user_path(@profile.user) do %>
+                    Preview
+                    <%= fa_icon("eye", class: "pull-right") %>
+                  <% end %>
+
+                  <hr/>
+
+                  <%= link_to new_user_password_path(@profile.user) do %>
+                    Change Password
+                    <%= fa_icon("laptop", class: "pull-right") %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
+
+          <div class="panel panel-danger">
+            <div class="panel-heading">
+              <h3 class="panel-title">Account settings</h3>
+            </div>
+
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <p><strong>Privacy level is: </strong> &nbsp; <%= privacy_info_icon(@profile) %></p>
+
+                  <%= privacy_info_message(@profile) %>
+                </div>
+              </div>
+
+
+              <hr/>
+
+              <div class="row">
+
+                <div class="col-md-12">
+                  <p><strong>Email notifications:</strong></p>
+
+                  <p><strong>Events & marketing:</strong> <%= notification_message(@profile.receive_emails) %></p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <p><strong>Job alerts:</strong> <%= notification_message(@profile.receive_job_alerts) %></p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
 
       </div>
 
