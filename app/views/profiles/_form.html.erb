@@ -8,63 +8,84 @@
     </div>
   </div>
 
-  <%= f.text_field "user[first_name]",
-                   value: @profile.user.first_name,
-                   id: "profile_user_first_name",
-                   label: "First name" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field "user[first_name]",
+                       value: @profile.user.first_name,
+                       id: "profile_user_first_name",
+                       label: "First name" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.text_field "user[last_name]",
+                      value: @profile.user.last_name,
+                      id: "profile_user_last_name",
+                      label: "Last name" %>
+    </div>
+  </div>
 
- <%= f.text_field "user[last_name]",
-                  value: @profile.user.last_name,
-                  id: "profile_user_last_name",
-                  label: "Last name" %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field "nickname",
+                       value: @profile.nickname,
+                       id: "profile_nickname",
+                       label: "Nickname",
+                       help: "Unique. Reserved for future use on menadevs.com" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.select "privacy_level",
+                    Profile.privacy_options,
+                    :selected => @profile.privacy_level,
+                    label: "Select profile privacy level (For directory listing & search)",
+                    help: 'Hidden: no one can see your profile. Members only: Only members of MENAdevs.com can see your profile. Open: Publicly visible to visitors of MENAdevs.com' %>
+    </div>
+  </div>
 
-  <%= f.text_field "nickname",
-                   value: @profile.nickname,
-                   id: "profile_nickname",
-                   label: "Nickname",
-                   help: "Unique. Reserved for future use on menadevs.com" %>
+  <hr/>
 
   <%= f.text_area "biography",
                   rows: 5,
                   value: @profile.biography,
                   label: "Biography" %>
 
-  <div class="form-group">
-    <% location = @profile.location ||= '' %>
-    <label class="control-label" for="profile_location">Location</label>
-    <%= f.country_select("location",
-                         { priority_countries: ['LB', 'EG', 'JO', 'SA', 'SY', 'AE'],
-                           selected: location,
-                           include_blank: 'Select country',
-                           priority_countries_divider: "---------" },
-                        class: 'form-control') %>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <% location = @profile.location ||= '' %>
+        <label class="control-label" for="profile_location">Location</label>
+        <%= f.country_select("location",
+                             { priority_countries: ['LB', 'EG', 'JO', 'SA', 'SY', 'AE'],
+                               selected: location,
+                               include_blank: 'Select country',
+                               priority_countries_divider: "---------" },
+                            class: 'form-control') %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.fields_for :user do |user| %>
+        <div class="form-group">
+          <%= user.time_zone_select("time_zone",
+                               [display_time_zone(@profile.user.try(:time_zone))],
+                               selected: true,
+                               class: 'form-control',
+                               label: 'Time Zone') %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <%= f.fields_for :user do |user| %>
-    <div class="form-group">
-      <%= user.time_zone_select("time_zone",
-                           [display_time_zone(@profile.user.try(:time_zone))],
-                           selected: true,
-                           class: 'form-control',
-                           label: 'Time Zone') %>
-    </div>
-  <% end %>
+  <hr/>
 
+  <label class="control-label" for="">EMAIL Notifications</label>
   <%= f.check_box "receive_emails",
                   value: @profile.receive_emails,
-                  label: "Receive - general purpose - emails from MENAdevs?",
+                  label: "I want to receive general purpose, event and marketing emails",
                   checked: @profile.receive_emails %>
 
   <%= f.check_box "receive_job_alerts",
                   value: @profile.receive_job_alerts,
-                  label: "Receive - job alert - emails from MENAdevs?",
+                  label: "I want to receive job alerts by emails",
                   checked: @profile.receive_job_alerts %>
-
-  <%= f.select "privacy_level",
-                Profile.privacy_options,
-                :selected => @profile.privacy_level,
-                label: "Select profile privacy level",
-                help: 'Hidden: no one can see your profile. Members only: Only members of MENAdevs.com can see your profile. Open: Publicly visible to visitors of MENAdevs.com' %>
 
   <div class="row job-form-buttons">
     <div class="col-md-12">
