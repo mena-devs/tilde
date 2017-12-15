@@ -22,4 +22,32 @@ module ProfilesHelper
       profile.biography.html_safe
     end
   end
+
+  def privacy_info_icon(profile)
+    if @profile.privacy_level == 0
+      fa_icon("eye-slash", text: 'Hidden')
+    elsif @profile.privacy_level == 1
+      fa_icon("adjust", text: 'Members-only')
+    elsif @profile.privacy_level == 2
+      fa_icon("eye", text: 'Open')
+    end
+  end
+
+  def privacy_info_message(profile)
+    if @profile.privacy_level == 0
+      "Your profile is not visible to anyone"
+    elsif @profile.privacy_level == 1
+      "Your profile is visible to members of menadevs.com"
+    elsif @profile.privacy_level == 2
+      "Your profile is public & searchable"
+    end
+  end
+
+  def notification_message(notification)
+    if notification
+      fa_icon("check", text: "enabled")
+    else
+      fa_icon("close", text: "disabled")
+    end
+  end
 end
