@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   resources :members, only: [:index, :show]
 
   scope path: ':user_id', as: 'user' do
-    resource :profile
+    resource :profile do
+      get :reload_avatar
+    end
   end
 
   namespace :directory do

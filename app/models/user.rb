@@ -81,8 +81,8 @@ class User < ApplicationRecord
     self.password   = Devise.friendly_token[0,20]
 
     if self.valid?
-      self.build_profile(avatar_from_slack: user_info.info.image,
-                         biography: user_info.info.description)
+      user.build_profile(biography: user_info['user']['profile']['title'])
+      user.profile.download_avatar(user_info['user']['profile']['image_original'])
     end
 
     self.skip_confirmation! if self.new_record?
@@ -100,8 +100,8 @@ class User < ApplicationRecord
     user.password   = Devise.friendly_token[0,20]
 
     if user.valid?
-      user.build_profile(avatar_from_slack: user_info['user']['profile']['image_original'],
-                         biography: user_info['user']['profile']['title'])
+      user.build_profile(biography: user_info['user']['profile']['title'])
+      user.profile.download_avatar(user_info['user']['profile']['image_original'])
     end
 
     user

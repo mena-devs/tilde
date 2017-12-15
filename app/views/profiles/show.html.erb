@@ -12,7 +12,7 @@
 
           <div class="row clearfix">
             <div class="col-md-2">
-              <%= image_tag(@profile.profile_picture, class: 'alignleft img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 84px;') %>
+              <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
             </div>
 
             <div class="col-sm-10">
@@ -30,7 +30,7 @@
             <div class="col-md-10">
               <!-- Work experience begins -->
 
-              <div class="panel panel-info">
+              <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Experience</h3>
                 </div>
@@ -38,7 +38,7 @@
                 <div class="panel-body">
                   <div class="row">
                     <div class="col-md-3">
-                      <strong>Company name</strong>
+                      <strong>Company</strong>
                     </div>
 
                     <div class="col-md-9">
@@ -72,7 +72,7 @@
               <!-- Work experience ends -->
 
               <!--  Contact details begins -->
-              <div class="panel panel-info">
+              <div class="panel panel-default">
                 <div class="panel-heading">
                   <h3 class="panel-title">Contact details</h3>
                 </div>
@@ -120,9 +120,9 @@
 
               <!-- Looking for begins -->
 
-              <div class="panel panel-info">
+              <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">I am looking for</h3>
+                  <h3 class="panel-title">Looking for</h3>
                 </div>
 
                 <div class="panel-body">
@@ -160,9 +160,9 @@
 
               <!-- Open for begins -->
 
-              <div class="panel panel-info">
+              <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">I am open for</h3>
+                  <h3 class="panel-title">Open for</h3>
                 </div>
 
                 <div class="panel-body">
@@ -207,9 +207,9 @@
 
         <div class="col-sm-3 clearfix">
 
-          <div class="panel panel-default">
+          <div class="panel panel-danger">
             <div class="panel-heading">
-              <h3 class="panel-title">Modifications</h3>
+              <h3 class="panel-title">Account settings</h3>
             </div>
 
             <div class="panel-body">
@@ -240,7 +240,7 @@
 
           <div class="panel panel-danger">
             <div class="panel-heading">
-              <h3 class="panel-title">Account settings</h3>
+              <h3 class="panel-title">Profile settings</h3>
             </div>
 
             <div class="panel-body">

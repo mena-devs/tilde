@@ -4,7 +4,7 @@
 
 <div class="row">
   <div class="col-md-1">
-    <%= image_tag(@user.profile.profile_picture,
+    <%= image_tag(@user.profile.avatar.url(:thumb),
                   size: '100x100',
                   class: 'img-thumbnail') %>
   </div>

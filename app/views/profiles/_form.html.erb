@@ -1,10 +1,21 @@
-<%= bootstrap_nested_form_for([@profile.user, @profile], inline_errors: true) do |f| %>
+<%= bootstrap_nested_form_for([@profile.user, @profile], inline_errors: true, html: { multipart: true }) do |f| %>
 
   <%= f.alert_message "Please review the problems below:" %>
 
   <div class="row job-form-buttons">
     <div class="col-md-12">
-      <%= f.submit "Update profile", class: "button button-3d button button-rounded button-green pull-right" %>
+      <%= f.submit "Update profile", class: "button button-3d button-rounded button-green pull-right" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-2">
+      <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "Import from Slack", reload_avatar_user_profile_path(@profile), class: "button button-small button-rounded" %>
+      <hr/>
+      <%= f.file_field :avatar, label: "OR Upload from computer" %>
     </div>
   </div>
 
@@ -15,6 +26,7 @@
                        id: "profile_user_first_name",
                        label: "First name" %>
     </div>
+
     <div class="col-md-6">
       <%= f.text_field "user[last_name]",
                       value: @profile.user.last_name,

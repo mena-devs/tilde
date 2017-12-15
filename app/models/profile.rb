@@ -2,17 +2,23 @@
 #
 # Table name: profiles
 #
-#  avatar_from_slack  :string
-#  biography          :text
-#  created_at         :datetime         not null
-#  id                 :integer          not null, primary key
-#  location           :string
-#  nickname           :string
-#  privacy_level      :integer          default(0)
-#  receive_emails     :boolean          default(FALSE)
-#  receive_job_alerts :boolean          default(FALSE)
-#  updated_at         :datetime         not null
-#  user_id            :integer
+#  avatar_content_type          :string
+#  avatar_file_name             :string
+#  avatar_file_size             :integer
+#  avatar_from_slack            :string
+#  avatar_from_slack_imported   :boolean          default(FALSE)
+#  avatar_from_slack_updated_at :datetime
+#  avatar_updated_at            :datetime
+#  biography                    :text
+#  created_at                   :datetime         not null
+#  id                           :integer          not null, primary key
+#  location                     :string
+#  nickname                     :string
+#  privacy_level                :integer          default(0)
+#  receive_emails               :boolean          default(FALSE)
+#  receive_job_alerts           :boolean          default(FALSE)
+#  updated_at                   :datetime         not null
+#  user_id                      :integer
 #
 # Indexes
 #
@@ -30,6 +36,10 @@ class Profile < ApplicationRecord
 
   enum privacy_option: [ "Hidden", "Members only", "Open" ]
 
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "profile_picture_default.png"
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
+
   def complete?
     if (self.user.first_name.blank? ||
         self.user.last_name.blank? ||
@@ -41,11 +51,33 @@ class Profile < ApplicationRecord
   end
 
   def profile_picture
-    unless avatar_from_slack
+    if avatar_from_slack
       return 'profile_picture_default.png'
     end
+  end
 
-    avatar_from_slack
+  def reload_avatar_from_slack
+    if user.uid
+      user_info_from_slack = SlackApi.get_user_info(user.uid)
+      avatar_from_slack = user_info_from_slack['user']['profile']['image_original']
+      download_slack_avatar(user_info_from_slack['user']['profile']['image_original'])
+    else
+      avatar_from_slack = nil
+      avatar_from_slack_imported = false
+      save
+    end
+  end
+
+  def download_slack_avatar(avatar_from_slack_url)
+    self.avatar = URI.parse(avatar_from_slack_url).open
+
+    if self.valid?
+      avatar_from_slack_imported = true
+      avatar_from_slack_updated_at = Time.now
+      save
+    else
+      raise self.errors
+    end
   end
 
   def location_name
