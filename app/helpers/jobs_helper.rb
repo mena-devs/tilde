@@ -1,7 +1,11 @@
 module JobsHelper
   def job_creator_name(job)
     if job.user
-      job.user.try(:name)
+      if job.user.profile.privacy_level == 0
+        job.user.try(:name)
+      elsif (job.user.profile.privacy_level == 1 && user_signed_in?) || (job.user.profile.privacy_level == 2)
+        link_to(job.user.try(:name), directory_user_path(job.user))
+      end
     else
       "Not defined"
     end

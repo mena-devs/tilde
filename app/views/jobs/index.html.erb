@@ -59,7 +59,11 @@
 <script>
 
   $(document).ready(function() {
-    $('#jobs-datatable').dataTable();
+    $('#jobs-datatable').dataTable(
+      {
+        aaSorting: [[3, 'asc']]
+      }
+    );
   });
 
 </script>
