@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :set_profile, only: [:show, :edit, :update]
+  before_action :set_profile, only: [:show, :edit, :update, :reload_avatar]
   before_action :authenticate_user!
 
   # GET /profiles/1
@@ -39,7 +39,16 @@ class ProfilesController < ApplicationController
 
   def disconnect_slack
     if @profile.user.disconnect_slack
-      redirect_to @profile, notice: 'Disconnected your Slack account'
+      redirect_to user_profile_path(current_user), notice: 'Disconnected your Slack account'
+    else
+      render :edit
+    end
+  end
+
+
+  def reload_avatar
+    if @profile.reload_avatar_from_slack
+      redirect_to user_profile_path(current_user), notice: 'Updated profile picture from your Slack account'
     else
       render :edit
     end
@@ -55,7 +64,7 @@ class ProfilesController < ApplicationController
     def profile_params
       params.require(:profile).permit(:biography, :location, :receive_emails,
                                       :receive_job_alerts, :privacy_level,
-                                      :nickname,
+                                      :nickname, :avatar,
                                       user: [:time_zone, :first_name, :last_name])
     end
 end

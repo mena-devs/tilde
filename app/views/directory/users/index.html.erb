@@ -8,7 +8,7 @@
           <% if visible_profile?(user) %>
             <tr>
               <td width='5%'>
-                <%= image_tag(user.profile.profile_picture, size: '50x50', class: 'img-thumbnail') %>
+                <%= image_tag(user.profile.avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
               </td>
               <td>
                 <%= link_to directory_user_path(user) do %>

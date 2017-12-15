@@ -13,7 +13,8 @@
         comment: "User used to deploy and run code"
         group: admin
   roles:
-      - role: geerlingguy.ruby
+      - geerlingguy.ruby
+      - zerohacks.imagemagick
   tasks:
     - name: Add repository for PostgreSQL 9.6
       apt_repository: repo={{item}} state=present
