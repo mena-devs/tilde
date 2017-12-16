@@ -1,5 +1,7 @@
 # mena-devs
 
+[![Join the chat at https://gitter.im/mena-devs/tilde](https://badges.gitter.im/mena-devs/tilde.svg)](https://gitter.im/mena-devs/tilde?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 This is a Rails 5 app.
 
 ## Staging environment
