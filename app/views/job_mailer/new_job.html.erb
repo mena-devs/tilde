@@ -1,9 +1,43 @@
-Hello,
+<p>
+  Hello admin,
+</p>
 
-There is a new job posted online for your attention.
+<p>
+  A new job has been posted on the job board.
+</p>
 
-<%= job_url(@job) %>
+<h4>Job details</h4>
 
-Approve it so that it goes online
+<p>
+  <%= @job.title %> at <%= @job.company_name %>
+</p>
 
-<%= approve_job_url(@job) %>
+<ul>
+  <li>
+    Employment type: <%= @job.employment_type.try(:humanize) %>
+  </li>
+
+  <li>
+    Experience: <%= @job.experience.try(:humanize) %>
+  </li>
+
+  <li>
+    Salary: <%= @job.salary_to_s %>
+  </li>
+
+  <li>
+    Remote: <%= @job.remote? ? 'Yes' : 'No' %>
+  </li>
+</ul>
+
+<p>
+  <%= link_to 'Full details are found here', job_url(@job), class: "contact-link" %>
+</p>
+
+<p>
+  Please review and approve it if it fits the requirements:
+</p>
+
+<p>
+  <%= link_to "Approve", approve_job_url(@job), class: "contact-link" %>
+</p>
