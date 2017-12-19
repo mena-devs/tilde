@@ -70,4 +70,12 @@
     $('#invitations-datatable').dataTable();
   });
 
+	$(document).ready(function() {
+    $('#invitations-datatable').dataTable(
+      {
+        aaSorting: [[5, 'asc']]
+      }
+    );
+  });
+
 </script>
