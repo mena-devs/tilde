@@ -69,14 +69,16 @@ class Profile < ApplicationRecord
   end
 
   def download_slack_avatar(avatar_from_slack_url)
+    return true if avatar_from_slack_url.blank?
+
     self.avatar = URI.parse(avatar_from_slack_url).open
 
-    if self.valid?
+    begin
       avatar_from_slack_imported = true
       avatar_from_slack_updated_at = Time.now
       save
-    else
-      raise self.errors
+    rescue StandardError => e
+      logger.error("An error occured while importing an avatar from Slack: #{e}")
     end
   end
 
