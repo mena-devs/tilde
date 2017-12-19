@@ -42,7 +42,11 @@
 <script>
 
   $(document).ready(function() {
-    $('#admin-invitations-datatable').dataTable();
+    $('#admin-invitations-datatable').dataTable(
+      {
+        aaSorting: [[5, 'asc']]
+      }
+    );
   });
 
 </script>
