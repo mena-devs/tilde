@@ -3,11 +3,13 @@
 </p>
 
 <p>
-  A new job has been posted on <%= link_to 'MENAdevs.com', AppSettings.mail_domain, class: "contact-link" %>
+  There's a new job on <%= link_to 'menadevs.com', AppSettings.mail_domain, class: "contact-link" %> and we thought you might be interested in checking it out.
 </p>
 
-<h4>Job details</h4>
-
+<h4 style="text-align:center;">
+  Job details
+</h4>
+<hr>
 <p>
   <%= @job.title %> at <%= @job.company_name %>
 </p>
@@ -30,15 +32,15 @@
   </li>
 </ul>
 
-<p>
-  <%= link_to 'Full details are found here', job_url(@job), class: "contact-link" %>
+<p style="text-align: center">
+  <%= link_to 'Check out the full job details', job_url(@job), class: "contact-link" %>
 </p>
 
 <hr/>
 
-<p>
+<p style="text-align: center">
   <small>
-    You're receiving this email because you opted-in to receive job alert emails from <%= link_to 'MENAdevs.com', AppSettings.mail_domain, class: "contact-link" %>.
+    You're receiving this email because you opted-in to receive job alert emails from <%= link_to 'menadevs.com', AppSettings.mail_domain, class: "contact-link" %>.
     <br/>
     If you wish to opt-out, please update your email settings from the account settings section.
   </small>

@@ -403,7 +403,7 @@
 
                         <!-- // Begin Module: Standard Header Image \\ -->
                         <%= link_to AppSettings.application_host do %>
-                          <img src="https://<%= image_path('menadevs_logo.png') %>" style="max-width:150px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                          <img src="<%= image_path('menadevs_logo.png') %>" style="max-width:150px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
                         <% end %>
                         <!-- // End Module: Standard Header Image \\ -->
 
@@ -450,8 +450,9 @@
                           <tr>
                             <td colspan="2" valign="middle" id="social">
                               <div mc:edit="std_social">
-                                Copyrights &copy; <%= Time.zone.now.strftime("%Y") %> All Rights Reserved by MENAdevs<br>
-
+                                Copyrights &copy; <%= Time.zone.now.strftime("%Y") %> All Rights Reserved by MENAdevs
+                                <br>
+                                <br>
                                 <%= link_to('Code of Conduct',
                                             'https://github.com/mena-devs/code-of-conduct') %>
                               </div>

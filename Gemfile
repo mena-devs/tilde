@@ -59,6 +59,7 @@ group :development do
   gem 'capistrano-nc', require: false
   gem 'capistrano-lets-encrypt', require: false
   gem 'capistrano-rails', require: false
+  gem 'capistrano-sidekiq', require: false
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-livereload', require: false
   gem 'guard-minitest', require: false

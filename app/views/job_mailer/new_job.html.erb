@@ -6,8 +6,10 @@
   A new job has been posted on the job board.
 </p>
 
-<h4>Job details</h4>
-
+<h4 style="text-align:center;">
+  Job details
+</h4>
+<hr>
 <p>
   <%= @job.title %> at <%= @job.company_name %>
 </p>
@@ -30,14 +32,14 @@
   </li>
 </ul>
 
-<p>
-  <%= link_to 'Full details are found here', job_url(@job), class: "contact-link" %>
+<p style="text-align: center">
+  <%= link_to 'Check out the full job details', job_url(@job), class: "contact-link" %>
 </p>
-
+<hr>
 <p>
   Please review and approve it if it fits the requirements:
 </p>
 
-<p>
+<p style="text-align: center">
   <%= link_to "Approve", approve_job_url(@job), class: "contact-link" %>
 </p>
