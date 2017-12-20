@@ -38,9 +38,12 @@ module ApplicationHelper
 
   def directory_letters
     letters = ('a'..'z').to_a.map.each do |letter|
-      link_to(letter.capitalize, directory_users_path(name: letter))
+      link_to(directory_users_path(name: letter)) do
+        content_tag(:button, class: 'button button-directory button-3d button-mini button-rounded button-teal') do
+          letter.capitalize
+        end
+      end
     end
-    letters = letters.unshift(link_to("[All]", directory_users_path))
-    letters.join(', ').html_safe
+    letters.join('').html_safe
   end
 end

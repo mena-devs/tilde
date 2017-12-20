@@ -17,7 +17,7 @@ module ProfilesHelper
 
   def biography(profile)
     if profile.biography.blank?
-      "<strong>Please update your biography</strong>".html_safe
+      "<strong>Biography is not set</strong>".html_safe
     else
       profile.biography.html_safe
     end
