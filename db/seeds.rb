@@ -1,18 +1,26 @@
-# # Create users
-# user = User.new(first_name: "Constantine",
-#                 last_name: "Nicolaou",
-#                 email: "constantin.nicolaou@gmail.com",
-#                 admin: true,
-#                 password: "password",
-#                 password_confirmation: "password")
+# Create users
+
+privacy = ["Open", "Members only", "Hidden", "Open"]
+
+["one", "two", "three", "four"].each_with_index do |x, index|
+  user = User.new(first_name: "User",
+                  last_name: x,
+                  email: "user.#{x}@example.com",
+                  password: "password",
+                  password_confirmation: "password")
+  user.skip_confirmation!
+  user.save!
+  user.profile.privacy_level = Profile.privacy_options[privacy[index]]
+  user.profile.save
+end
+# user =
 #
-# user.skip_confirmation!
-# user.save!
+#
 #
 # profile = user.profile
-# profile.privacy_level = Profile.privacy_options["Open"]
+#
 # profile.save
-
+#
 # user_1 = User.new(first_name: "User",
 #                   last_name: "One",
 #                   email: "user.one@example.com",
@@ -21,12 +29,9 @@
 #
 # user_1.skip_confirmation!
 # user_1.save!
-# user_1.reload
-#
-# puts user_1.inspect
 #
 # profile = user_1.profile
-# profile.privacy_level = Profile.privacy_options["Open"]
+# profile.privacy_level = Profile.privacy_options["Members only"]
 # profile.save
 #
 # user_2 = User.new(first_name: "User",
@@ -37,12 +42,9 @@
 #
 # user_2.skip_confirmation!
 # user_2.save!
-# user_2.reload
-#
-# puts user_2.profile.inspect
 #
 # profile = user_2.profile
-# profile.privacy_level = Profile.privacy_options["Open"]
+# profile.privacy_level = Profile.privacy_options["Hidden"]
 # profile.save
 
 # Create jobs
