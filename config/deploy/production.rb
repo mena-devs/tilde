@@ -3,4 +3,4 @@ set :branch, ENV.fetch("CAPISTRANO_BRANCH", "master")
 
 server "menadevs.com",
        :user => 'root',
-       :roles => %w(app cron db web)
+       :roles => %w(app cron db web sidekiq)
