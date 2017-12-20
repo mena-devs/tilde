@@ -30,36 +30,6 @@
   <div class="content-wrap">
 
     <div class="container clearfix">
-<<<<<<< HEAD
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Name</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% @users.each do |user| %>
-                  <tr>
-                    <td width='5%'>
-<<<<<<< HEAD
-                      <%= image_tag(user.profile.try(:profile_picture), size: '50x50', class: 'img-thumbnail') %>
-=======
-                      <%= image_tag(user.profile.avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
->>>>>>> Enable directory browsing by alphabetical order
-                    </td>
-                    <td width='80%'>
-                      <%= link_to directory_user_path(user) do %>
-                        <%= user.name %>
-                        <% if user_signed_in? && current_user == user %>
-                          <div class="btn btn-xs btn-primary">
-                            <%= fa_icon("check") %>
-                            me
-                          </div>
-=======
-
 
       <% if @users.blank? %>
 
@@ -93,7 +63,6 @@
                               me
                             </div>
                           <% end %>
->>>>>>> Update members directory with navigation
                         <% end %>
                         <br/>
                         <small><%= user.profile.biography %></small>
