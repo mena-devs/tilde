@@ -2,7 +2,11 @@ class BufferApi
   attr_accessor :client
 
   def initialize
-    @client = Buffer::Client.new(AppSettings.buffer_access_token)
+    begin
+      @client = Buffer::Client.new(AppSettings.buffer_access_token)
+    rescue StandardError => e
+      logger.error("An error occured: #{e}")
+    end
   end
 
   def post_new_job(job_id)
