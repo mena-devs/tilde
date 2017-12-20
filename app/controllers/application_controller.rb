@@ -13,21 +13,7 @@ class ApplicationController < ActionController::Base
 
   def check_user_profile_complete
     if user_signed_in? && current_user.profile && !current_user.profile.complete?
-      redirect_to edit_user_profile_path(current_user), alert: 'Please update your profile'
-    end
-  end
-
-  # if user did not fill his profile yet
-  def after_sign_in_path_for(resource)
-    sign_in_url = new_user_session_url
-
-    if current_user.profile.try(:complete?) && request.referer == sign_in_url
-      super
-    elsif current_user.profile.blank?
-      current_user.create_profile
-      edit_user_profile_path(current_user)
-    else
-      stored_location_for(resource) || request.referer || root_path
+      redirect_to edit_user_profile_path(current_user), alert: 'Please complete your profile before proceeding any further'
     end
   end
 
