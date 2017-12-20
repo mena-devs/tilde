@@ -26,67 +26,124 @@
     <div class="content-wrap">
 
       <div class="container clearfix">
-        <h3>
-          <%= @invitation.user.name %> invited the following member:
-        </h3>
+        <p>
+          <strong><%= @invitation.user.name %></strong> invited the following member:
+        </p>
 
-        <div class="table-responsive">
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th class="col-sm-2">Full name</th>
-                <td><%= @invitation.invitee_name %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Email address</th>
-                <td><%= @invitation.invitee_email %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Introduction</th>
-                <td><%= @invitation.invitee_introduction %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Title</th>
-                <td><%= @invitation.invitee_title %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Company</th>
-                <td><%= @invitation.invitee_company %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Location</th>
-                <td><%= @invitation.location_name %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Invitation sent?</th>
-                <td><%= @invitation.delivered %></td>
-              </tr>
-              <tr>
-                <th class="col-sm-2">Did the person register?</th>
-                <td><%= @invitation.registered %></td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Full name:
+          </div>
 
-          <% if user_signed_in? && current_user.admin? %>
-            <div class="row">
-              <div class="container">
-                <div class="col-md-3"></div>
-                <div class="col-md-3 col-xs-12 center">
-                  <%= link_to approve_invitation_path(@invitation), :class => "button button-3d notopmargin button-green", method: :put do %>
-                    <%= fa_icon("check-square", :text => "Approve") %>
-                  <% end %>
-                </div>
-                <div class="col-md-3 col-xs-12 center">
-                  <%= link_to resend_invitation_path(@invitation), :class => "button button-3d notopmargin button-blue", method: :put do %>
-          					<%= fa_icon("refresh", :text => "Resend") %>
-          				<% end %>
-                </div>
-                <div class="col-md-3"></div>
-              </div>
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.invitee_name %>
             </div>
-          <% end %>
+          </div>
         </div>
+
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Email address:
+          </div>
+
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.invitee_email %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Introduction:
+          </div>
+
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.invitee_introduction %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Job title:
+          </div>
+
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.invitee_title %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Company name:
+          </div>
+
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.invitee_company %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row clearfix">
+          <div class="col-md-2">
+            Location:
+          </div>
+
+          <div class="col-md-10">
+            <div class="heading-block noborder">
+              <%= @invitation.location_name %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row clearfix">
+          <div class="col-md-4">
+            Was the invitation sent?
+          </div>
+
+          <div class="col-md-2">
+            <div class="heading-block noborder">
+              <%= @invitation.delivered? %>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            Did the person join the platform?
+          </div>
+
+          <div class="col-md-2">
+            <div class="heading-block noborder">
+              <%= @invitation.registered? %>
+            </div>
+          </div>
+        </div>
+
+        <!-- Admin actions begins -->
+        <% if user_signed_in? && current_user.admin? %>
+          <div class="row">
+            <div class="container">
+              <div class="col-md-3"></div>
+              <div class="col-md-3 col-xs-12 center">
+                <%= link_to approve_invitation_path(@invitation), :class => "button button-3d notopmargin button-green", method: :put do %>
+                  <%= fa_icon("check-square", :text => "Approve") %>
+                <% end %>
+              </div>
+              <div class="col-md-3 col-xs-12 center">
+                <%= link_to resend_invitation_path(@invitation), :class => "button button-3d notopmargin button-blue", method: :put do %>
+        					<%= fa_icon("refresh", :text => "Resend") %>
+        				<% end %>
+              </div>
+              <div class="col-md-3"></div>
+            </div>
+          </div>
+        <% end %>
+        <!-- Admin actions ends -->
       </div>
     </div>
   </section><!-- #content end -->
