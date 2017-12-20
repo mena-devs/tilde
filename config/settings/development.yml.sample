@@ -7,6 +7,7 @@ slack_token: ''
 slack_job_channel: ''
 slack_team_name: ''
 slack_team_id: ''
+buffer_access_token: ''
 
 mailgun_api_key: ''
 mailchimp_api_key: ''
