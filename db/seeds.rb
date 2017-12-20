@@ -1,18 +1,18 @@
 # Create users
 
-privacy = ["Open", "Members only", "Hidden", "Open"]
-
-["one", "two", "three", "four"].each_with_index do |x, index|
-  user = User.new(first_name: "User",
-                  last_name: x,
-                  email: "user.#{x}@example.com",
-                  password: "password",
-                  password_confirmation: "password")
-  user.skip_confirmation!
-  user.save!
-  user.profile.privacy_level = Profile.privacy_options[privacy[index]]
-  user.profile.save
-end
+# privacy = ["Open", "Members only", "Hidden", "Open"]
+#
+# ["one", "two", "three", "four"].each_with_index do |x, index|
+#   user = User.new(first_name: "User",
+#                   last_name: x,
+#                   email: "user.#{x}@example.com",
+#                   password: "password",
+#                   password_confirmation: "password")
+#   user.skip_confirmation!
+#   user.save!
+#   user.profile.privacy_level = Profile.privacy_options[privacy[index]]
+#   user.profile.save
+# end
 # user =
 #
 #
