@@ -1,9 +1,9 @@
 Sidekiq.configure_server do |config|
-  config.redis = { :namespace => "mena_devs_com" }
+  config.redis = { url: 'redis://localhost:6379/0', :namespace => "mena_devs_com" }
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { :namespace => "mena_devs_com" }
+  config.redis = { url: 'redis://localhost:6379/0', :namespace => "mena_devs_com" }
 end
 
 require "sidekiq/web"

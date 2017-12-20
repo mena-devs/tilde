@@ -67,10 +67,10 @@ class Job < ApplicationRecord
 
       after do
         # inform job ower that their job post is online
-        JobMailer.job_published(self.id).deliver
+        JobMailer.job_published(self.id).deliver_later
+        NotifierWorker.perform_async(self.id)
         notify_subscribers
         set_dates
-        Notifier.post_job_to_slack(self.id)
       end
     end
 
@@ -82,7 +82,7 @@ class Job < ApplicationRecord
       transitions :from => [:under_review, :edited, :approved], :to => :disabled
       after do
         # inform job ower that their job post was taken down
-        JobMailer.job_unpublished(self.id).deliver
+        JobMailer.job_unpublished(self.id).deliver_later
       end
     end
   end
@@ -130,7 +130,7 @@ class Job < ApplicationRecord
 
   def notify_subscribers
     User.job_alert_subscribers.each do |user|
-      JobMailer.notify_subscriber(self.id, user).deliver
+      JobMailer.notify_subscriber(self.id, user).deliver_later
     end
   end
 
