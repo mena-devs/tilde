@@ -8,6 +8,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap_form', '~> 2.3'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootscale', require: false
+gem 'buffer'
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'country_select'
