@@ -18,13 +18,6 @@
         <%= content_tag(:ul, class: 'dropdown-menu') do %>
 
           <%= content_tag(:li) do %>
-              <%= navbar_link_to('Directory',
-                                 directory_users_path,
-                                 :active_when => { controller: 'users',
-                                                   action: 'index'}) %>
-          <% end %>
-
-          <%= content_tag(:li) do %>
             <%= navbar_link_to('Members Directory',
                                directory_users_path,
                                :active_when => { controller: 'users',
