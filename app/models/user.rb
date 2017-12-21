@@ -66,6 +66,10 @@ class User < ApplicationRecord
   scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
   scope :verified, -> { where("confirmed_at IS NOT NULL")}
 
+  scope :open_profile, -> { joins(:profile).where('profiles.privacy_level = ?', Profile.privacy_options["Open"]) }
+
+  scope :members_profile, -> { joins(:profile).where('profiles.privacy_level = ? or profiles.privacy_level = ?', Profile.privacy_options["Members only"], Profile.privacy_options["Open"]) }
+
   def new_from_slack_oauth(user_info)
     self.provider   = user_info.provider
     self.uid        = user_info.uid

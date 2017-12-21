@@ -35,4 +35,15 @@ module ApplicationHelper
       fa_icon('times')
     end
   end
+
+  def directory_letters
+    letters = ('a'..'z').to_a.map.each do |letter|
+      link_to(directory_users_path(name: letter)) do
+        content_tag(:button, class: 'button button-directory button-3d button-mini button-rounded button-teal') do
+          letter.capitalize
+        end
+      end
+    end
+    letters.join('').html_safe
+  end
 end
