@@ -101,7 +101,7 @@ class User < ApplicationRecord
 
     if user.valid?
       user.build_profile(biography: user_info['user']['profile']['title'])
-      user.profile.download_avatar(user_info['user']['profile']['image_original'])
+      user.profile.download_slack_avatar(user_info['user']['profile']['image_original'])
     end
 
     user
