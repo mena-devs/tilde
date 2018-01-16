@@ -1,6 +1,16 @@
-# mena-devs
+[![Maintainability](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/maintainability)](https://codeclimate.com/github/mena-devs/tilde/maintainability)
 
-This is a Rails 5 app.
+[![Test Coverage](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/test_coverage)](https://codeclimate.com/github/mena-devs/tilde/test_coverage)
+
+# Tilde - for @MENAdevs
+
+Tilde is home for MENAdevs community and window to the outside world.
+
+What started as a community over a Slack group, needs a communication platform.
+
+Tilde is Open Source, contributors from the community are welcome to join and contribute back.
+
+If you have a feature request, please open a ticket.
 
 ## Staging environment
 
