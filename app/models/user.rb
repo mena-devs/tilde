@@ -71,40 +71,49 @@ class User < ApplicationRecord
   scope :members_profile, -> { joins(:profile).where('profiles.privacy_level = ? or profiles.privacy_level = ?', Profile.privacy_options["Members only"], Profile.privacy_options["Open"]) }
 
   def new_from_slack_oauth(user_info)
-    self.provider   = user_info.provider
-    self.uid        = user_info.uid
-    self.email      = user_info.info.email
-    self.first_name = user_info.info.first_name
-    self.last_name  = user_info.info.last_name
-    self.time_zone  = user_info.info.time_zone
-    self.auth_token = user_info.credentials.token
-    self.password   = Devise.friendly_token[0,20]
+    begin
+      self.provider     = user_info.provider
+      self.uid          = user_info.uid
+      self.email        = user_info.info.email
+      self.first_name   = user_info.info.first_name
+      self.last_name    = user_info.info.last_name
+      self.time_zone    = user_info.info.time_zone
+      self.auth_token   = user_info.credentials.token
+      self.password     = Devise.friendly_token[0,20]
+      self.confirmed_at = Time.now
 
-    if self.valid?
-      user.build_profile(biography: user_info['user']['profile']['title'])
-      user.profile.download_avatar(user_info['user']['profile']['image_original'])
+      if self.valid?
+        profile = self.build_profile(biography: user_info.info.description)
+        profile.download_slack_avatar(user_info.info.image)
+      end
+
+      return self
+    rescue Exception => e
+      logger.error("An error that has occured while intialising a user from Slack --")
+      logger.error(e)
     end
-
-    self.skip_confirmation! if self.new_record?
-
-    self
   end
 
   def self.new_from_slack_token(user_info)
-    user = User.new
-    user.uid        = user_info['user']['id']
-    user.email      = user_info['user']['profile']['email']
-    user.first_name = user_info['user']['profile']['first_name']
-    user.last_name  = user_info['user']['profile']['last_name']
-    user.time_zone  = user_info['user']['tz']
-    user.password   = Devise.friendly_token[0,20]
+    begin
+      user = User.new
+      user.uid        = user_info['user']['id']
+      user.email      = user_info['user']['profile']['email']
+      user.first_name = user_info['user']['profile']['first_name']
+      user.last_name  = user_info['user']['profile']['last_name']
+      user.time_zone  = user_info['user']['tz']
+      user.password   = Devise.friendly_token[0,20]
 
-    if user.valid?
-      user.build_profile(biography: user_info['user']['profile']['title'])
-      user.profile.download_slack_avatar(user_info['user']['profile']['image_original'])
+      if user.valid?
+        profile = user.build_profile(biography: user_info['user']['profile']['title'])
+        profile.download_slack_avatar(user_info['user']['profile']['image_original'])
+      end
+
+      return user
+    rescue Exception => e
+      logger.error("An error that has occured while creating a user from token --")
+      logger.error(e)
     end
-
-    user
   end
 
   def self.find_user_by_slack_uid(slack_uid)
@@ -121,8 +130,8 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    logger.info("Information returned from SLACK API")
-    logger.info(auth.inspect)
+    logger.debug("Information returned from SLACK API")
+    logger.debug(auth.inspect)
 
     if auth['info']['team_id'] != AppSettings.slack_team_id
       return false
@@ -130,22 +139,25 @@ class User < ApplicationRecord
 
     user = where(email: auth.info.email).first
 
-    if user
+    if !user.blank?
       begin
         user.update(provider: auth.provider,
                     uid: auth.uid,
                     auth_token: auth.credentials.token)
         user.skip_confirmation! if user.confirmed_at.blank?
       rescue Exception => e
-        logger.info(e)
+        logger.error("An error that has occured while signing in and updating existing user --")
+        logger.error(e)
       end
     else
       begin
         user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
           u.new_from_slack_oauth(auth)
         end
+        raise user.inspect
       rescue Exception => e
-        logger.info(e)
+        logger.error("An error that has occured while creating a new user --")
+        logger.error(e)
       end
     end
 
