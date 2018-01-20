@@ -22,7 +22,7 @@ class Directory::UsersController < ApplicationController
     if (@user.profile.privacy_level == 0 ||
           @user.profile.privacy_level == 1 && !user_signed_in?)
 
-        flash[:alert] = "Your profile is hidden"
+        flash[:alert] = "Profile is hidden"
     end
   end
 
