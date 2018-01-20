@@ -6,8 +6,8 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    @users_count = User.count
-    @users = User.verified.order('created_at desc').page(params[:page])
+    @users_count = User.unscoped.count
+    @users = User.verified.unscoped.order('created_at desc').page(params[:page])
   end
 
   # GET /member/1

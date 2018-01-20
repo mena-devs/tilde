@@ -2,6 +2,7 @@
 #
 # Table name: users
 #
+#  active                 :boolean          default(TRUE)
 #  admin                  :boolean          default(FALSE)
 #  auth_token             :string
 #  confirmation_sent_at   :datetime
@@ -70,6 +71,10 @@ class User < ApplicationRecord
 
   scope :members_profile, -> { joins(:profile).where('profiles.privacy_level = ? or profiles.privacy_level = ?', Profile.privacy_options["Members only"], Profile.privacy_options["Open"]) }
 
+  def self.default_scope
+    where(active: true)
+  end
+
   def new_from_slack_oauth(user_info)
     begin
       self.provider     = user_info.provider
@@ -83,7 +88,8 @@ class User < ApplicationRecord
       self.confirmed_at = Time.now
 
       if self.valid?
-        profile = self.build_profile(biography: user_info.info.description)
+        profile = self.build_profile(biography: user_info.info.description,
+                                    title: user_info.info.title)
         profile.download_slack_avatar(user_info.info.image)
       end
 
@@ -105,7 +111,8 @@ class User < ApplicationRecord
       user.password   = Devise.friendly_token[0,20]
 
       if user.valid?
-        profile = user.build_profile(biography: user_info['user']['profile']['title'])
+        profile = user.build_profile(biography: user_info['user']['profile']['description'],
+                                     title: user_info['user']['profile']['title'])
         profile.download_slack_avatar(user_info['user']['profile']['image_original'])
       end
 
@@ -117,7 +124,7 @@ class User < ApplicationRecord
   end
 
   def self.find_user_by_slack_uid(slack_uid)
-    user = where(uid: slack_uid).first
+    user = where(uid: slack_uid).unscoped.first
 
     if user.blank?
       user_info_from_slack = SlackApi.get_user_info(slack_uid)
@@ -130,31 +137,29 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    logger.debug("Information returned from SLACK API")
-    logger.debug(auth.inspect)
-
     if auth['info']['team_id'] != AppSettings.slack_team_id
       return false
     end
 
-    user = where(email: auth.info.email).first
+    user = where(email: auth.info.email).unscoped.first
 
     if !user.blank?
       begin
         user.update(provider: auth.provider,
                     uid: auth.uid,
-                    auth_token: auth.credentials.token)
-        user.skip_confirmation! if user.confirmed_at.blank?
+                    auth_token: auth.credentials.token,
+                    active: true,
+                    confirmed_at: Time.now)
       rescue Exception => e
         logger.error("An error that has occured while signing in and updating existing user --")
         logger.error(e)
       end
     else
       begin
-        user = where(provider: auth.provider, uid: auth.uid).first_or_create do |u|
+        user = where(provider: auth.provider, uid: auth.uid).unscoped.first_or_create do |u|
           u.new_from_slack_oauth(auth)
+          u.update(active: true)
         end
-        raise user.inspect
       rescue Exception => e
         logger.error("An error that has occured while creating a new user --")
         logger.error(e)
@@ -162,6 +167,30 @@ class User < ApplicationRecord
     end
 
     user
+  end
+
+  def self.update_user_from_slack(user_info)
+    unless User.unscoped.exists?(email: user_info['profile']['email'])
+      user = User.new(
+        uid: user_info['id'],
+        email: user_info['profile']['email'],
+        first_name: user_info['profile']['first_name'],
+        last_name: user_info['profile']['last_name'],
+        time_zone: user_info['tz'],
+        password: Devise.friendly_token[0,20],
+        confirmed_at: Time.now,
+        active: false
+      )
+
+      if user.valid?
+        profile = user.build_profile(biography: user_info['profile']['description'],
+                                     nickname: user_info['profile']['display_name'],
+                                     title: user_info['profile']['title'])
+        profile.download_slack_avatar(user_info['profile']['image_original'])
+
+        user.save
+      end
+    end
   end
 
   def name

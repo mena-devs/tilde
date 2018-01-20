@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # API access
-  before_filter :authenticate_with_token!, if: :api_request
+  before_action :authenticate_with_token!, if: :api_request
 
   def api_request
     if (request.original_url =~ /api\// || request.content_type =~ /application\/json/)

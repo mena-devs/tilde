@@ -17,6 +17,7 @@
 #  privacy_level                :integer          default(0)
 #  receive_emails               :boolean          default(FALSE)
 #  receive_job_alerts           :boolean          default(FALSE)
+#  title                        :string
 #  updated_at                   :datetime         not null
 #  user_id                      :integer
 #
@@ -26,10 +27,14 @@
 #
 # Foreign Keys
 #
-#  fk_rails_e424190865  (user_id => users.id)
+#  fk_rails_...  (user_id => users.id)
 #
 
 class Profile < ApplicationRecord
+  extend FriendlyId
+
+  friendly_id :nickname
+
   belongs_to :user
 
   validates_uniqueness_of :nickname, allow_blank: true

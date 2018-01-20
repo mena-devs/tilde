@@ -17,4 +17,12 @@ class SlackApi
 
     return json_hash
   end
+
+  def self.all_users
+    base_uri = 'https://slack.com/api/users.list'
+    api_response = HTTParty.get(base_uri, query: {token: AppSettings.slack_token})
+
+    json_hash = api_response.parsed_response
+    return json_hash
+  end
 end

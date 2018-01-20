@@ -54,6 +54,17 @@
 
   <hr/>
 
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.text_field "title",
+                         value: @profile.title,
+                         id: "profile_title",
+                         label: "Title" %>
+      </div>
+    </div>
+  </div>
+
   <%= f.text_area "biography",
                   rows: 5,
                   value: @profile.biography,

@@ -27,7 +27,7 @@
 #
 # Foreign Keys
 #
-#  fk_rails_7eae413fe6  (user_id => users.id)
+#  fk_rails_...  (user_id => users.id)
 #
 
 class CodeOfConductValidator < ActiveModel::Validator
