@@ -1,0 +1,31 @@
+# TinyMCE Options
+mode: "exact"
+theme: "modern"
+language: "<%= I18n.locale.to_s.split('-')[0].downcase %>"
+schema: "html5-strict"
+element_format: "html"
+resize: true
+paste_as_text: true
+menubar: false
+statusbar: false
+plugins:
+  - preview
+  - contextmenu
+  - paste
+  - directionality
+  - fullscreen
+  - nonbreaking
+  - advlist
+  - lists
+
+toolbar:
+  - formatselect | fontselect | fontsizeselect | bold | italic | underline | strikethrough | alignleft | aligncenter | alignjustify | alignright | bullist | numlist | outdent | indent
+
+setup :
+  function(ed) {
+    ed.on('init', function()
+    {
+      ed.execCommand("fontName", false, "Arial");
+      ed.execCommand("fontSize", false, "13px");
+    });
+  }
