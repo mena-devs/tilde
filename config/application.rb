@@ -22,6 +22,6 @@ module MenaDevsCom
     # config.eager_load_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
-    config.tinymce.install = :copy
+    config.tinymce.install = :compile
   end
 end

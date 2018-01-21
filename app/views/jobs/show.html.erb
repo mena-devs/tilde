@@ -29,7 +29,7 @@
         <% end %>
 
         <% if (user_signed_in? && current_user.admin?) %>
-          <% if @job.under_review? %>
+          <% if @job.under_review? || @job.draft? %>
             <%= button_to "Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
           <% elsif @job.approved? %>
             <%= button_to "Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
