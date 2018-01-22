@@ -1537,7 +1537,7 @@ body.no-superfish #primary-menu li:hover > {
     }
     > li.sub-menu {
       > a, &:hover > a {
-        background-image: url("icons/submenu.png");
+        background-image: url(asset-path('icons/submenu.png'));
         background-position: right center;
         background-repeat: no-repeat;
       }
@@ -1810,7 +1810,7 @@ body:not(.device-sm):not(.device-xs):not(.device-xxs) #primary-menu.style-2.cent
   }
   &.sub-title {
     > ul > li, &.style-2 > div > ul > li {
-      background: url("icons/menu-divider.png") no-repeat right center;
+      background: url(asset-path("icons/menu-divider.png")) no-repeat right center;
       margin-left: 1px;
     }
     ul li:first-child {
@@ -3254,7 +3254,7 @@ body.side-panel-open {
     pointer-events: auto;
   }
   &:not(.device-xxs):not(.device-xs):not(.device-sm) .body-overlay:hover {
-    cursor: url('icons/close.png') 15 15, default;
+    cursor: url(asset-path('icons/close.png')) 15 15, default;
   }
 }
 
@@ -3522,7 +3522,7 @@ body {
   top: 0;
   left: 0;
   z-index: 5;
-  background: transparent url('images/grid.png') repeat;
+  background: transparent url(asset-path('images/grid.png')) repeat;
   -webkit-backface-visibility: hidden;
 }
 
@@ -3533,7 +3533,7 @@ body {
   top: 0;
   left: 0;
   z-index: 5;
-  background: transparent url('images/grid.png') repeat;
+  background: transparent url(asset-path('images/grid.png')) repeat;
   -webkit-backface-visibility: hidden;
   z-index: 4;
   background-repeat: no-repeat !important;
@@ -4011,7 +4011,7 @@ body.stretched .container-fullwidth .breadcrumb {
     }
   }
   &.page-title-pattern {
-    background-image: url('images/pattern.png');
+    background-image: url(asset-path('pattern.png'));
     background-repeat: repeat;
     background-attachment: fixed;
   }
@@ -4031,7 +4031,7 @@ body.stretched .container-fullwidth .breadcrumb {
       font-size: 13px;
     }
     background-color: transparent;
-    background-image: url('images/parallax/parallax-bg.jpg');
+    background-image: url(asset-path('parallax/parallax-bg.jpg'));
     background-attachment: fixed;
     background-position: 50% 0;
     background-repeat: no-repeat;
@@ -9585,7 +9585,7 @@ body:not(.device-touch) {
   top: 0;
   left: 0;
   text-align: center;
-  background: rgba(0, 0, 0, 0.2) url('images/grid.png') repeat;
+  background: rgba(0, 0, 0, 0.2) url(asset-path('grid.png')) repeat;
   a {
     display: block;
     position: absolute;
@@ -9594,7 +9594,7 @@ body:not(.device-touch) {
     top: 0;
     left: 0;
     text-align: center;
-    background: rgba(0, 0, 0, 0.2) url('images/grid.png') repeat;
+    background: rgba(0, 0, 0, 0.2) url(asset-path('grid.png')) repeat;
     background: transparent;
   }
   img {
@@ -12164,7 +12164,7 @@ blockquote {
     top: 50%;
     margin-left: -32px;
     margin-top: -32px;
-    background: url("icons/play.png") no-repeat;
+    background: url(asset-path("icons/play.png")) no-repeat;
     cursor: pointer;
     z-index: 1;
     -webkit-backface-visibility: hidden;
@@ -12889,7 +12889,7 @@ label.error {
     }
   }
   &.title-dotted-border {
-    background: url('dotted.png') repeat-x center;
+    background: url(asset-path('dotted.png')) repeat-x center;
   }
 }
 
@@ -13770,12 +13770,12 @@ body:not(.device-touch) .tagcloud a {
   display: inline-block;
   padding: 0 3px 0 12px;
   display: block;
-  background: url("icons/widget-comment.png") left top no-repeat;
+  background: url(asset-path('icons/widget-comment.png')) left top no-repeat;
   padding: 4px 0 4px 20px;
 }
 
 .widget_nav_menu li a, .widget_links li a, .widget_meta li a, .widget_archive li a, .widget_recent_entries li a, .widget_categories li a, .widget_pages li a, .widget_rss li a, .widget_recent_comments li a {
-  background: url("icons/widget-link.png") left top no-repeat;
+  background: url(asset-path("icons/widget-link.png")) left top no-repeat;
   border: none !important;
   color: #444;
   font-size: 14px;
