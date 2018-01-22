@@ -65,6 +65,8 @@ class ProfilesController < ApplicationController
       params.require(:profile).permit(:biography, :location, :receive_emails,
                                       :receive_job_alerts, :privacy_level,
                                       :nickname, :avatar, :title,
+                                      :a_new_role, :collaborate_on_a_project, :freelance,
+                                      :to_mentor_someone, :being_mentored, :participate_at_events,
                                       user: [:time_zone, :first_name, :last_name])
     end
 end

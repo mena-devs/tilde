@@ -12,6 +12,7 @@
 #  biography                    :text
 #  created_at                   :datetime         not null
 #  id                           :integer          not null, primary key
+#  interests                    :string
 #  location                     :string
 #  nickname                     :string
 #  privacy_level                :integer          default(0)

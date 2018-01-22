@@ -12,6 +12,7 @@
 #  biography                    :text
 #  created_at                   :datetime         not null
 #  id                           :integer          not null, primary key
+#  interests                    :string
 #  location                     :string
 #  nickname                     :string
 #  privacy_level                :integer          default(0)
@@ -41,6 +42,8 @@ class Profile < ApplicationRecord
 
   enum privacy_option: [ "Hidden", "Members only", "Open" ]
 
+  store :interests, accessors: [ :a_new_role, :collaborate_on_a_project, :freelance, :to_mentor_someone, :being_mentored, :participate_at_events ], coder: JSON
+
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "profile_picture_default.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
@@ -56,9 +59,7 @@ class Profile < ApplicationRecord
   end
 
   def profile_picture
-    if avatar_from_slack
-      return 'profile_picture_default.png'
-    end
+    return 'profile_picture_default.png' if avatar_from_slack
   end
 
   def reload_avatar_from_slack
@@ -85,6 +86,10 @@ class Profile < ApplicationRecord
     rescue StandardError => e
       logger.error("An error occured while importing an avatar from Slack: #{e}")
     end
+  end
+
+  def active_interests
+    self.interests.select {|k, v| k if v == "1" }
   end
 
   def location_name

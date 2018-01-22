@@ -322,13 +322,13 @@ body.top-search-open .dark #header-wrap:not(.not-dark) #top-search a {
 
 .dark #primary-menu:not(.not-dark) ul ul > li.sub-menu {
   > a, &:hover > a {
-    background-image: url("../images/icons/submenu-dark.png");
+    background-image: url("icons/submenu-dark.png");
   }
 }
 
 #primary-menu.dark ul ul > li.sub-menu {
   > a, &:hover > a {
-    background-image: url("../images/icons/submenu-dark.png");
+    background-image: url("icons/submenu-dark.png");
   }
 }
 
@@ -1448,11 +1448,11 @@ body {
     }
   }
   .widget_recent_comments li {
-    background-image: url("../images/icons/widget-comment-dark.png");
+    background-image: url("icons/widget-comment-dark.png");
   }
   .widget_nav_menu li a, .widget_links li a, .widget_meta li a, .widget_archive li a, .widget_recent_comments li a, .widget_recent_entries li a, .widget_categories li a, .widget_pages li a, .widget_rss li a {
     color: #CCC;
-    background-image: url("../images/icons/widget-link-dark.png");
+    background-image: url("icons/widget-link-dark.png");
   }
   .widget_nav_menu li a:hover, .widget_links li a:hover, .widget_meta li a:hover, .widget_archive li a:hover, .widget_recent_comments li a:hover, .widget_recent_entries li a:hover, .widget_categories li a:hover, .widget_pages li a:hover, .widget_rss li a:hover {
     color: #AAA;
@@ -2288,7 +2288,7 @@ body {
     }
     > {
       ul > li.sub-menu > a, .container > ul > li.sub-menu > a {
-        background-image: url("../images/icons/submenu-dark.png");
+        background-image: url("icons/submenu-dark.png");
       }
     }
   }

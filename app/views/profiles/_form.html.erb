@@ -8,7 +8,13 @@
     </div>
   </div>
 
+  <div class="fancy-title title-dotted-border title-center">
+    <h2>Profile picture</h2>
+  </div>
+
+
   <div class="row">
+    <div class="col-md-4"></div>
     <div class="col-md-2">
       <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
     </div>
@@ -17,6 +23,13 @@
       <hr/>
       <%= f.file_field :avatar, label: "OR Upload from computer" %>
     </div>
+    <div class="col-md-3"></div>
+  </div>
+
+  <br/>
+
+  <div class="fancy-title title-dotted-border title-center">
+    <h2>Personal details</h2>
   </div>
 
   <div class="row">
@@ -52,24 +65,6 @@
     </div>
   </div>
 
-  <hr/>
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="form-group">
-        <%= f.text_field "title",
-                         value: @profile.title,
-                         id: "profile_title",
-                         label: "Title" %>
-      </div>
-    </div>
-  </div>
-
-  <%= f.text_area "biography",
-                  rows: 5,
-                  value: @profile.biography,
-                  label: "Biography" %>
-
   <div class="row">
     <div class="col-md-6">
       <div class="form-group">
@@ -97,7 +92,53 @@
     </div>
   </div>
 
-  <hr/>
+  <br/>
+
+  <div class="fancy-title title-dotted-border title-center">
+    <h2>Professional experience and interests</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <%= f.text_field "title",
+                         value: @profile.title,
+                         id: "profile_title",
+                         label: "Title" %>
+      </div>
+    </div>
+  </div>
+
+  <%= f.text_area "biography",
+                  rows: 5,
+                  value: @profile.biography,
+                  label: "Biography" %>
+
+  <div class="fancy-title title-bottom-border">
+    <h4>I am looking for</h4>
+  </div>
+
+  <div class="row">
+    <!-- Looking for begins -->
+      <div class="col-md-6">
+        <%= f.check_box(:a_new_role, label: 'New role') %>
+        <%= f.check_box(:collaborate_on_a_project, lable: 'Project based collaboration') %>
+        <%= f.check_box(:freelance, label: 'Freelance work') %>
+      </div>
+
+      <div class="col-md-6">
+        <%= f.check_box(:to_mentor_someone, label: 'To mentor') %>
+        <%= f.check_box(:being_mentored, label: 'A mentor') %>
+        <%= f.check_box(:participate_at_events, label: 'Participate at events') %>
+      </div>
+    <!-- Looking for ends -->
+  </div>
+
+  <br/>
+
+  <div class="fancy-title title-dotted-border title-center">
+    <h2>Notifications</h2>
+  </div>
 
   <label class="control-label" for="">EMAIL Notifications</label>
   <%= f.check_box "receive_emails",

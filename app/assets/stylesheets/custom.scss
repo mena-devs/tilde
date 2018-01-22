@@ -17,3 +17,12 @@
 .directory-padding {
   margin-top: 6px;
 }
+
+table.borderless td, table.borderless th{
+ border: none !important;
+}
+
+.interests-listing {
+  padding-left: 35px;
+  margin-bottom: 15px;
+}

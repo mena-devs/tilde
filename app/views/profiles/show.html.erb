@@ -18,7 +18,10 @@
             <div class="col-sm-10">
               <div class="heading-block noborder">
                 <h3><%= name(@profile) %></h3>
-                <span><%= biography(@profile) %></span>
+
+                <blockquote class="quote">
+    							<p><%= biography(@profile) %></p>
+    						</blockquote>
               </div>
             </div>
           </div>
@@ -29,174 +32,64 @@
             <div class="col-md-2"></div>
             <div class="col-md-10">
               <!-- Work experience begins -->
+              <div class="fancy-title title-bottom-border">
+  							<h4>Professional</h4>
+  						</div>
 
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Experience</h3>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <strong>Company</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                      <strong>Title</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                      <%= @profile.title %>
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                      <strong>Years of experience</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <table class="table borderless">
+                <tbody>
+                  <tr>
+                    <th width='25%'>Company</th>
+                    <td></td>
+                  </tr>
+                  <tr>
+                    <th>Title</th>
+                    <td><%= @profile.title %></td>
+                  </tr>
+                </tbody>
+              </table>
 
               <!-- Work experience ends -->
 
+              <br/>
+
               <!--  Contact details begins -->
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Contact details</h3>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                      <%= fa_icon('envelope') %>
-                      <strong>Email address</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                      <%= link_to email(@profile), "mailto:#{email(@profile)}" %>
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                      <%= fa_icon('globe') %>
-                      <strong>Location</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                      <%= @profile.location_name %>
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                      <%= fa_icon('clock-o') %>
-                      <strong>Timezone</strong>
-                    </div>
-
-                    <div class="col-md-9">
-                      <%= @profile.user.time_zone.try(:titleize) %>
-                    </div>
-                  </div>
-                </div>
+              <div class="fancy-title title-bottom-border">
+                <h4>Contact details</h4>
               </div>
+
+              <table class="table borderless">
+                <tbody>
+                  <tr>
+                    <th width='25%'>Email address</th>
+                    <td>
+                      <% if current_user %>
+                        <%= link_to email(@profile), "mailto:#{email(@profile)}" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td><%= @profile.location_name %></td>
+                  </tr>
+                </tbody>
+              </table>
               <!--  Contact details ends -->
 
-              <!-- Looking for begins -->
-
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Looking for</h3>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Looking for ends -->
+              <br/>
 
               <!-- Open for begins -->
-
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Open for</h3>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-
-                  <br/>
-
-                  <div class="row">
-                    <div class="col-md-3">
-                    </div>
-
-                    <div class="col-md-9">
-                    </div>
-                  </div>
-                </div>
+              <div class="fancy-title title-bottom-border">
+                <h4>Interested in</h4>
               </div>
 
+              <div class="row">
+                <div class="col-md-12 interests-listing">
+                  <% @profile.active_interests.each do |k, v| %>
+                    <p><%= fa_icon('check-square-o') %> <%= k.humanize.capitalize %></p>
+                  <% end %>
+                </div>
+              </div>
               <!-- Open for ends -->
             </div>
 
