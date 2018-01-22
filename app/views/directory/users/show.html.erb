@@ -12,17 +12,90 @@
 
           <div class="row clearfix">
             <div class="col-md-2">
-              <%= image_tag(@user.profile.avatar.url(:medium), class: 'alignleft img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 84px;') %>
+              <%= image_tag(@user.profile.avatar.url(:thumb), class: 'aligncenter img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
             </div>
 
             <div class="col-sm-10">
               <div class="heading-block noborder">
                 <h3><%= name(@user.profile) %></h3>
-                <span><%= biography(@user.profile) %></span>
+
+                <blockquote class="quote">
+    							<p><%= biography(@user.profile) %></p>
+    						</blockquote>
               </div>
             </div>
           </div>
+
+          <div class="clear"></div>
+
+          <div class="row clearfix">
+            <div class="col-md-2"></div>
+            <div class="col-md-10">
+              <!-- Work experience begins -->
+              <div class="fancy-title title-bottom-border">
+  							<h4>Professional</h4>
+  						</div>
+
+              <table class="table borderless">
+                <tbody>
+                  <tr>
+                    <th width='25%'>Company</th>
+                    <td>Not set</td>
+                  </tr>
+                  <tr>
+                    <th>Title</th>
+                    <td><%= @user.profile.title %></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Work experience ends -->
+
+              <br/>
+
+              <!--  Contact details begins -->
+              <div class="fancy-title title-bottom-border">
+                <h4>Contact details</h4>
+              </div>
+
+              <table class="table borderless">
+                <tbody>
+                  <tr>
+                    <th width='25%'>Email address</th>
+                    <td>
+                      Private
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Location</th>
+                    <td><%= @user.profile.location_name %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <!--  Contact details ends -->
+
+              <br/>
+
+              <!-- Open for begins -->
+              <div class="fancy-title title-bottom-border">
+                <h4>Interested in</h4>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12 interests-listing">
+                  <% @user.profile.active_interests.each do |k, v| %>
+                    <p><%= fa_icon('check-square-o') %> <%= k.humanize.capitalize %></p>
+                  <% end %>
+                </div>
+              </div>
+              <!-- Open for ends -->
+            </div>
+
+          </div>
+
         </div>
+
+      </div>
     </div>
   </div>
 </section>

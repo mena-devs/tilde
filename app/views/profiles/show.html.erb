@@ -12,7 +12,7 @@
 
           <div class="row clearfix">
             <div class="col-md-2">
-              <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-circle img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
+              <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
             </div>
 
             <div class="col-sm-10">
@@ -176,9 +176,3 @@
 
 </section>
 <!-- #content end -->
-
-<script>
-  jQuery("#tabs-profile").on("tabsactivate", function (event, ui) {
-    jQuery('.flexslider .slide').resize();
-  });
-</script>
