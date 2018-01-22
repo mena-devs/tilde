@@ -7,7 +7,6 @@ element_format: "html"
 resize: true
 paste_as_text: true
 menubar: false
-statusbar: false
 plugins:
   - preview
   - contextmenu
@@ -19,7 +18,7 @@ plugins:
   - lists
 
 toolbar:
-  - formatselect | fontselect | fontsizeselect | bold | italic | underline | strikethrough | alignleft | aligncenter | alignjustify | alignright | bullist | numlist | outdent | indent
+  - formatselect | fontselect | fontsizeselect | bold | italic | underline | strikethrough | alignleft | aligncenter | alignjustify | alignright | bullist | numlist | outdent | indent | removeformat
 
 setup :
   function(ed) {
