@@ -31,7 +31,7 @@ class ProfilesController < ApplicationController
     user_params = profile_params["user"]
     profile_data = profile_params.reject {|k,v| k == "user"}
     if @profile.update(profile_data) && @profile.user.update(user_params)
-      redirect_to user_profile_path(current_user), notice: 'Your profile was successfully updated.'
+      redirect_to user_profile_path(current_user.custom_identifier), notice: 'Your profile was successfully updated.'
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class ProfilesController < ApplicationController
 
   def disconnect_slack
     if @profile.user.disconnect_slack
-      redirect_to user_profile_path(current_user), notice: 'Disconnected your Slack account'
+      redirect_to edit_user_profile_path(current_user.custom_identifier), notice: 'Disconnected your Slack account'
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class ProfilesController < ApplicationController
 
   def reload_avatar
     if @profile.reload_avatar_from_slack
-      redirect_to user_profile_path(current_user), notice: 'Updated profile picture from your Slack account'
+      redirect_to edit_user_profile_path(current_user.custom_identifier), notice: 'Updated profile picture from your Slack account'
     else
       render :edit
     end

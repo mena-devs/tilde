@@ -19,7 +19,7 @@
       <%= image_tag(@profile.avatar.url(:thumb), class: 'aligncenter img-thumbnail notopmargin nobottommargin', style: 'max-width: 100px;') %>
     </div>
     <div class="col-md-3">
-      <%= link_to "Import from Slack", reload_avatar_user_profile_path(@profile), class: "button button-small button-rounded" %>
+      <%= link_to "Import from Slack", reload_avatar_user_profile_path(@profile.user.custom_identifier), class: "button button-small button-rounded" %>
       <hr/>
       <%= f.file_field :avatar, label: "OR Upload from computer" %>
     </div>

@@ -59,23 +59,32 @@ class Profile < ApplicationRecord
   end
 
   def reload_avatar_from_slack
-    if user.uid
-      user_info_from_slack = SlackApi.get_user_info(user.uid)
-      avatar_from_slack = user_info_from_slack['user']['profile']['image_original']
-      download_slack_avatar(user_info_from_slack['user']['profile']['image_original'])
-    else
+    if self.user.uid.blank?
       avatar_from_slack = nil
       avatar_from_slack_imported = false
       save
+    else
+      # Clear previous avatar data
+      self.avatar.clear
+
+      # Get user data from Slack
+      user_info_from_slack = SlackApi.get_user_info(user.uid)
+      avatar_from_slack = user_info_from_slack['user']['profile']['image_original']
+
+      # Download Slack profile picture from Slack CDN
+      download_slack_avatar(user_info_from_slack['user']['profile']['image_original'])
     end
   end
 
-  def download_slack_avatar(avatar_from_slack_url)
+  def download_slack_avatar(avatar_from_slack_url = nil)
     return true if avatar_from_slack_url.blank?
 
     self.avatar = URI.parse(avatar_from_slack_url).open
+    # Rename profile picture file from Slack
+    self.avatar_file_name = user.custom_identifier + "_slack_profile_picture"
 
     begin
+      # Flag avatar as imported from Slack
       avatar_from_slack_imported = true
       avatar_from_slack_updated_at = Time.now
       save
