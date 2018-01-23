@@ -144,25 +144,23 @@ class User < ApplicationRecord
     user = find_by_email(auth.info.email)
 
     if user.blank?
-      begin
-        user = where(provider: auth.provider, uid: auth.uid).unscoped.first_or_create do |u|
-          u.new_from_slack_oauth(auth)
-          u.update(active: true)
-        end
-      rescue Exception => e
-        logger.error("An error that has occured while creating a new user --")
-        logger.error(e)
+      user = User.where(provider: auth.provider, uid: auth.uid).first
+
+      logger.info(">>>> Found user #{user.inspect} <<<<") if user
+
+      if user.blank?
+        user = User.new_from_slack_oauth(auth)
+        user.provider = auth.provider
+        user.uid = auth.uid
+        user.active = true
+        user.save
+        logger.info(">>>> Created new user #{user.inspect} <<<<")
       end
     else
-      begin
-        user.update(provider: auth.provider,
-                    uid: auth.uid,
-                    auth_token: auth.credentials.token)
-        logger.info(">>>> User #{auth.info.email} logged in <<<<")
-      rescue Exception => e
-        logger.error("An error that has occured while signing in and updating existing user --")
-        logger.error(e)
-      end
+      user.update(provider: auth.provider,
+                  uid: auth.uid,
+                  auth_token: auth.credentials.token)
+      logger.info(">>>> User #{auth.info.email} logged in <<<<")
     end
 
     user
