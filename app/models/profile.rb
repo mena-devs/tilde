@@ -32,10 +32,6 @@
 #
 
 class Profile < ApplicationRecord
-  extend FriendlyId
-
-  friendly_id :nickname
-
   belongs_to :user
 
   validates_uniqueness_of :nickname, allow_blank: true
