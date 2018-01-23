@@ -6,7 +6,7 @@
     <div class="row clearfix">
       <div class="col-md-8 col-xs-12">
         <h1>Job Board</h1>
-        <span class='hidden-xs'>Browse all jobs posted on MENAdevs</span>
+        <span class='hidden-xs'>Technical and Software Development related jobs on MENAdevs</span>
 			</div>
 
       <div class="col-md-4 hidden-xs">
@@ -61,7 +61,7 @@
   $(document).ready(function() {
     $('#jobs-datatable').dataTable(
       {
-        aaSorting: [[3, 'desc']]
+        "ordering": false
       }
     );
   });
