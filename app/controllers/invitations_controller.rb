@@ -7,7 +7,7 @@ class InvitationsController < ApplicationController
     if current_user.admin?
       @invitations = Invitation.all.order(created_at: :desc, updated_at: :desc).page(params[:page])
     else
-      @invitations = Invitation.sent(current_user.id).order(updated_at: :desc).page(params[:page])
+      @invitations = Invitation.all_sent(current_user.id).order(updated_at: :desc).page(params[:page])
     end
   end
 

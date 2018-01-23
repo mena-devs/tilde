@@ -73,7 +73,7 @@ class Invitation < ApplicationRecord
   validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
   validates_with CodeOfConductValidator
 
-  scope :sent, ->(user_id) { where("user_id = ?", user_id) }
+  scope :all_sent, ->(user_id) { where("user_id = ?", user_id) }
 
   def invitee_location_name
     if self.invitee_location?
