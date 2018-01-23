@@ -141,7 +141,7 @@ class User < ApplicationRecord
       return false
     end
 
-    user = where(email: auth.info.email).unscoped.first
+    user = find_by_email(auth.info.email)
 
     if !user.blank?
       begin
@@ -150,6 +150,7 @@ class User < ApplicationRecord
                     auth_token: auth.credentials.token,
                     active: true,
                     confirmed_at: Time.now)
+        logger.info(">>>> User #{auth.info.email} logged in <<<<")
       rescue Exception => e
         logger.error("An error that has occured while signing in and updating existing user --")
         logger.error(e)
