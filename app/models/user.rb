@@ -89,7 +89,7 @@ class User < ApplicationRecord
 
       if self.valid?
         profile = self.build_profile(biography: user_info.info.description,
-                                    title: user_info.info.title)
+                                     title: user_info.info.title)
         profile.download_slack_avatar(user_info.info.image)
       end
 
@@ -124,7 +124,7 @@ class User < ApplicationRecord
   end
 
   def self.find_user_by_slack_uid(slack_uid)
-    user = where(uid: slack_uid).unscoped.first
+    user = find_by_uid(slack_uid)
 
     if user.blank?
       user_info_from_slack = SlackApi.get_user_info(slack_uid)
@@ -143,19 +143,7 @@ class User < ApplicationRecord
 
     user = find_by_email(auth.info.email)
 
-    if !user.blank?
-      begin
-        user.update(provider: auth.provider,
-                    uid: auth.uid,
-                    auth_token: auth.credentials.token,
-                    active: true,
-                    confirmed_at: Time.now)
-        logger.info(">>>> User #{auth.info.email} logged in <<<<")
-      rescue Exception => e
-        logger.error("An error that has occured while signing in and updating existing user --")
-        logger.error(e)
-      end
-    else
+    if user.blank?
       begin
         user = where(provider: auth.provider, uid: auth.uid).unscoped.first_or_create do |u|
           u.new_from_slack_oauth(auth)
@@ -163,6 +151,16 @@ class User < ApplicationRecord
         end
       rescue Exception => e
         logger.error("An error that has occured while creating a new user --")
+        logger.error(e)
+      end
+    else
+      begin
+        user.update(provider: auth.provider,
+                    uid: auth.uid,
+                    auth_token: auth.credentials.token)
+        logger.info(">>>> User #{auth.info.email} logged in <<<<")
+      rescue Exception => e
+        logger.error("An error that has occured while signing in and updating existing user --")
         logger.error(e)
       end
     end
