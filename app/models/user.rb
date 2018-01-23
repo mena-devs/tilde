@@ -149,7 +149,8 @@ class User < ApplicationRecord
       logger.info(">>>> Found user #{user.inspect} <<<<") if user
 
       if user.blank?
-        user = User.new_from_slack_oauth(auth)
+        user = User.new
+        user = user.new_from_slack_oauth(auth)
         user.provider = auth.provider
         user.uid = auth.uid
         user.active = true
