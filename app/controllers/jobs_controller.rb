@@ -8,7 +8,7 @@ class JobsController < ApplicationController
   # GET /jobs
   def index
     @page_title       = 'Job board'
-    @page_description = 'Technical jobs posted on MENA devs'
+    @page_description = 'Technical & software development jobs listed on MENAdevs'
     @page_keywords    = AppSettings.meta_tags_keywords
 
     @jobs = Job.all_approved
@@ -17,7 +17,7 @@ class JobsController < ApplicationController
       @jobs = Job.user_jobs(current_user) | @jobs
     end
 
-    @jobs = @jobs.sort_by(&:updated_at).reverse
+    @jobs = @jobs.sort_by(&:posted_on).reverse
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
   end
@@ -51,7 +51,10 @@ class JobsController < ApplicationController
   # POST /jobs
   def create
     @job = Job.new(job_params)
-    @job.user = current_user
+
+    if user_signed_in? && current_user.id
+      @job.user_id = current_user.id
+    end
 
     if @job.save
       redirect_to @job, notice: 'Job post was successfully created.'
