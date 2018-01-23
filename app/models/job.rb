@@ -115,6 +115,7 @@ class Job < ApplicationRecord
 
   scope :user_jobs, -> (user) { where(user_id: user.id) }
   scope :all_approved, -> { where(aasm_state: 'approved') }
+  scope :live, -> { where.not(:posted_on => nil) }
 
   def location_name
     country_name = ""
