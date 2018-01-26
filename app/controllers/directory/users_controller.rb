@@ -1,7 +1,7 @@
 class Directory::UsersController < ApplicationController
   before_action :set_user, only: [:show]
   # devise authentication required to access invitations
-  before_action :authenticate_user!, only: :show
+  # before_action :authenticate_user!, except: :show
 
   def index
     if user_signed_in?
