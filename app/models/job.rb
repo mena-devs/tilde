@@ -105,6 +105,7 @@ class Job < ApplicationRecord
   validates :to_salary, salary: true
 
   before_validation :generate_unique_id, on: :create
+  before_validation :strip_whitespace, on: [:create, :update]
 
   enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
   enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
@@ -174,5 +175,10 @@ class Job < ApplicationRecord
 
     def generate_unique_id
       self.custom_identifier = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s + "#{self.title}")[1..24]
+    end
+
+    def strip_whitespace
+      self.company_name = self.company_name.strip unless self.company_name.nil?
+      self.email = self.email.strip unless self.email.nil?
     end
 end
