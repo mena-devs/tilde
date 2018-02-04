@@ -179,6 +179,6 @@ class Job < ApplicationRecord
 
     def strip_whitespace
       self.company_name = self.company_name.strip unless self.company_name.nil?
-      self.email = self.email.strip unless self.email.nil?
+      self.apply_email = self.apply_email.strip unless self.apply_email.nil?
     end
 end
