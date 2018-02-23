@@ -13,14 +13,14 @@ class ApplicationController < ActionController::Base
 
   def check_user_profile_complete
     if user_signed_in? && current_user.profile && !current_user.profile.complete?
-      redirect_to edit_user_profile_path(current_user), alert: 'Please complete your profile before proceeding any further'
+      redirect_to edit_user_profile_path(current_user), alert: 'Please complete your profile before proceeding'
     end
   end
 
   private
     def current_user
       begin
-        @current_user ||= User.where(custom_identifier: session[:custom_identifier]) if session[:custom_identifier]
+        @current_user ||= User.find_by_custom_identifier(session[:custom_identifier]) if session[:custom_identifier]
       rescue ActiveRecord::RecordNotFound
         nil
       end
