@@ -63,7 +63,7 @@ class InvitationsController < ApplicationController
 
   # PATCH/PUT /invitations/1/resend
   def resend
-    if @invitation.resend_invitation
+    if current_user.admin? && @invitation.resend_invitation
       redirect_to invitations_path, notice: 'Invitation was resent.'
     else
       render :index

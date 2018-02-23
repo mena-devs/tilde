@@ -75,6 +75,10 @@ class Invitation < ApplicationRecord
 
   scope :all_sent, ->(user_id) { where("user_id = ?", user_id) }
 
+  def self.has_pending_invitation_to_join_slack(email)
+    where(invitee_email: email).exists?
+  end
+
   def invitee_location_name
     if self.invitee_location?
       country = ISO3166::Country[self.invitee_location]

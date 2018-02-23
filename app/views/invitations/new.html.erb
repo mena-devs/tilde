@@ -26,24 +26,23 @@
           <div class="style-msg alertmsg">
             <div class="sb-msg">
               <i class="icon-warning-sign"></i>
-              Admittance to MENAdevs Slack group is invitation only.
+              Admittance to MENAdevs Slack group is invitation only and is restrcited to an members with technical skills.
               <br/>
               If you wish to join or send an invitation for other people to join the group, please fill the following form with your contact details.
             </div>
           </div>
           <br/>
           <!-- /.alert alert-warning -->
-
-          <% if ((user_signed_in? && current_user.connected_via_slack?) || params.key?("tab-2")) %>
-            <% tab_1 = '' %>
-            <% tab_2 = 'active' %>
-          <% else %>
+          <% if (user_can_join_slack?) %>
             <% tab_1 = 'active' %>
             <% tab_2 = '' %>
+          <% else %>
+            <% tab_1 = '' %>
+            <% tab_2 = 'active' %>
           <% end %>
 
           <ul class="nav nav-tabs">
-            <% unless (user_signed_in? && current_user.connected_via_slack?) %>
+            <% if user_can_join_slack? %>
               <li role="presentation" class="<%= tab_1 %>">
                 <%= link_to "Apply to join", "#tab-1", data: { toggle: "tab"} %>
               </li>
@@ -54,7 +53,7 @@
           </ul>
 
           <div class="tab-content">
-            <% unless (user_signed_in? && current_user.connected_via_slack?) %>
+            <% if user_can_join_slack? %>
               <div class="tab-pane <%= tab_1 %>" id="tab-1">
                 <div class="row">
                   <div class="col-lg-12 col-md-12">

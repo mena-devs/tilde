@@ -43,7 +43,9 @@
 									<th>State</th>
 									<th>Retries</th>
                   <th>Sent on</th>
-									<th>&nbsp;</th>
+									<% if current_user.admin %>
+										<th>&nbsp;</th>
+									<% end %>
                 </tr>
               </thead>
               <tbody>

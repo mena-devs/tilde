@@ -28,6 +28,18 @@ module ApplicationHelper
     end
   end
 
+  def user_can_join_slack?
+    if user_signed_in?
+      # If the user isn't already connected via slack or
+      # sent an invitation to join that is pending or approved
+      if (current_user.connected_via_slack? || Invitation.has_pending_invitation_to_join_slack(current_user.email))
+        return false
+      end
+    end
+
+    return true
+  end
+
   def boolean_icon(objkt)
     if objkt
       fa_icon('check')
