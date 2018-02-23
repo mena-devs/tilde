@@ -3,6 +3,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     @user = User.from_omniauth(request.env["omniauth.auth"])
 
     if @user && @user.persisted?
+      session[:user_id] = @user.custom_identifier
       sign_in_and_redirect @user, :event => :authentication
     else
       # TODO: log errors generated from authenticating from omniauth
