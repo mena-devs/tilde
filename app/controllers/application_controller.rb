@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   # API access
   before_action :authenticate_with_token!, if: :api_request
 
+  def after_sign_in_path_for(resource)
+    session[:custom_identifier] = resource.custom_identifier
+    root_path
+  end
+
   def api_request
     if (request.original_url =~ /api\// || request.content_type =~ /application\/json/)
       return true
@@ -18,13 +23,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    # def current_user
-    #   begin
-    #     @current_user ||= User.find_by_custom_identifier(session[:custom_identifier]) if session[:custom_identifier]
-    #   rescue ActiveRecord::RecordNotFound
-    #     nil
-    #   end
-    # end
+    def current_user
+      begin
+        @current_user ||= User.find_by_custom_identifier(session[:custom_identifier]) if session[:custom_identifier]
+      rescue ActiveRecord::RecordNotFound
+        nil
+      end
+    end
 
     def authenticate_with_token!
       auth_token = params[:auth_token].presence
