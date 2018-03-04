@@ -542,10 +542,10 @@ DEPENDENCIES
   brakeman
   buffer
   bundler-audit (>= 0.5.0)
-  capistrano (~> 3.6)
+  capistrano (~> 3.10)
   capistrano-bundler (~> 1.2)
   capistrano-lets-encrypt
-  capistrano-mb (>= 0.22.2)
+  capistrano-mb (>= 0.33.0)
   capistrano-nc
   capistrano-rails
   capistrano-sidekiq

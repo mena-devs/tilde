@@ -47,15 +47,15 @@ group :production, :staging do
 end
 
 group :development do
-  gem 'annotate', '>= 2.5.0'
+  gem 'annotate', '>= 2.5.0', require: false
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'bundler-audit', '>= 0.5.0', require: false
-  gem 'capistrano', '~> 3.6', require: false
+  gem 'capistrano', '~> 3.10', require: false
   gem 'capistrano-bundler', '~> 1.2', require: false
-  gem 'capistrano-mb', '>= 0.22.2', require: false
+  gem 'capistrano-mb', '>= 0.33.0', require: false
   gem 'capistrano-nc', require: false
   gem 'capistrano-lets-encrypt', require: false
   gem 'capistrano-rails', require: false
