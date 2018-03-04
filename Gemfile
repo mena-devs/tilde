@@ -47,7 +47,7 @@ group :production, :staging do
 end
 
 group :development do
-  gem 'annotate', '>= 2.5.0', require: false
+  gem 'annotate', '>= 2.7.0', require: false
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'

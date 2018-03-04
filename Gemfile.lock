@@ -530,7 +530,7 @@ DEPENDENCIES
   aasm
   active_type (>= 0.3.2)
   activerecord-session_store
-  annotate (>= 2.5.0)
+  annotate (>= 2.7.0)
   autoprefixer-rails (>= 5.0.0.1)
   awesome_print
   bcrypt (~> 3.1.7)
