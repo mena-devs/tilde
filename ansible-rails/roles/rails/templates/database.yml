@@ -1,0 +1,9 @@
+production:
+  adapter: postgresql
+  encoding: utf8
+  database: {{ postgresql_db }}
+  username: {{ postgresql_username }}
+  password: {{ postgresql_password }}
+  host: localhost
+  min_messages: WARNING
+  pool: 5
