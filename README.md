@@ -12,10 +12,6 @@ Tilde is Open Source, contributors from the community are welcome to join and co
 
 If you have a feature request, please open a ticket.
 
-## Staging environment
-
-[https://staging.menadevs.com](https://staging.menadevs.com)
-
 ## Documentation
 
 This README describes the purpose of this repository and how to set up a development environment. Other sources of documentation are as follows:
@@ -34,7 +30,7 @@ Graphics and other resources are available on Dropbox using the following [link]
 
 This project requires:
 
-* Ruby 2.4.1, preferably managed using [rbenv][]
+* Ruby 2.5.0
 * PhantomJS (in order to use the [poltergeist][] gem)
 * PostgreSQL must be installed and accepting connections
 * [Redis][] must be installed and running on localhost with the default port
@@ -43,35 +39,20 @@ On a Mac, you can obtain all of the above packages using [Homebrew][].
 
 If you need help setting up a Ruby development environment, check out this [Rails OS X Setup Guide](https://mattbrictson.com/rails-osx-setup-guide).
 
-### Download vagrant box to use with project
+### Setup a local Vagrant box
 
-[Download link](http://bit.ly/2vhoTvS)
-
-1. Import the box by running the following command:
-
-`vagrant box add "ubuntu/xenial64" ~/path-to-vagrant-box`
-
-2. Run `vagrant up` and you should be able to access the box
+1. Download and Install `vagrant` (link)[https://www.vagrantup.com/downloads.html]
+2. Follow the instructions inside `(README.md)[ansible-rails/README.md]` under `ansible-rails` folder
+3. Run `vagrant up` (provisioning the application is part of running this step)
 
 ## Getting started
 
-### bin/setup
-
-Run the `bin/setup` script. This script will:
-
-* Check you have the required Ruby version
-* Install gems using Bundler
-* Create local copies of `.env` and `database.yml`
-* Create, migrate, and seed the database
-  1. `bin/rails db:create`
-  2. `bin/rails db:migrate`
-  3. `bin/rails db:seed`
-
 ### Run it!
 
-1. Run `bin/rake test` to make sure everything works.
-2. Run `bin/rails s` to start the Rails app.
-3. In a separate console, run `bundle exec sidekiq` to start the Sidekiq background job processor. (not necessary to run in development environment)
+1. Run `vagrant ssh` to log into your local development instance.
+2. Go to `cd /vagrantup`.
+3. Run `bin/rails server --bind=0.0.0.0` to start the Rails app.
+4. Head over to your browser and visit `http://192.168.33.11:3000` to browse the app.
 
 [rbenv]:https://github.com/sstephenson/rbenv
 [poltergeist]:https://github.com/teampoltergeist/poltergeist
