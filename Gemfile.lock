@@ -357,7 +357,7 @@ GEM
     overcommit (0.43.0)
       childprocess (~> 0.6, >= 0.6.3)
       iniparse (~> 1.4)
-    paperclip (5.0.0)
+    paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -580,7 +580,7 @@ DEPENDENCIES
   nested_form
   omniauth-slack
   overcommit
-  paperclip (~> 5.0.0)
+  paperclip (~> 5.2.0)
   paranoia (~> 2.2)
   pg (~> 0.18)
   pgcli-rails
