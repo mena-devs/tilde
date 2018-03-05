@@ -1,9 +1,10 @@
+redis_url = ENV.fetch("redis_url")
 Sidekiq.configure_server do |config|
-  config.redis = { url: 'redis://localhost:6379/0', :namespace => "mena_devs_com" }
+  config.redis = { url: "redis://#{redis_url}:6379/0", :namespace => "mena_devs_com" }
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { url: 'redis://localhost:6379/0', :namespace => "mena_devs_com" }
+  config.redis = { url: "redis://#{redis_url}:6379/0", :namespace => "mena_devs_com" }
 end
 
 require "sidekiq/web"
