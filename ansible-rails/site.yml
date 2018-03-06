@@ -4,7 +4,7 @@
 - name: Install Rails Server
   hosts: all
   # After initial provisioning, use vagrant instead of root
-  remote_user: root
+  remote_user: vagrant
   # remote_user: vagrant
   become: yes
   # become_method: sudo

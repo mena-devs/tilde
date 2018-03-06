@@ -97,6 +97,7 @@ class User < ApplicationRecord
     rescue Exception => e
       logger.error("An error that has occured while intialising a user from Slack --")
       logger.error(e)
+      raise e
     end
   end
 

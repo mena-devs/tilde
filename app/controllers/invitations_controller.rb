@@ -16,11 +16,12 @@ class InvitationsController < ApplicationController
   # GET /list-invitations-admin
   def list_invitations
     @admin_invitations = Invitation.all.order(updated_at: :desc).page(params[:page])
-    if !current_user.admin?
-      flash[:notice] = "Not authorised"
+
+    unless current_user.admin?
+      redirect_to root_path, error: "You are not authorised to access this resource" and return
     end
 
-    render :admin_index
+    render :template => 'invitations/admin_index'
   end
 
   # GET /invitations/1

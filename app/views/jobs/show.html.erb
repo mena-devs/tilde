@@ -115,10 +115,10 @@
                   </li>
                 <% end %>
               </ul>
-              <% if !@job.description.blank? %>
+              <% unless @job.description.blank? %>
                 <hr/>
                 <p>
-                  <%= @job.description.html_safe %>
+                  <%=raw @job.description.html_safe %>
                 </p>
               <% end %>
             </div>
