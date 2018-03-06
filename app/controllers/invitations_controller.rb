@@ -2,6 +2,8 @@ class InvitationsController < ApplicationController
   before_action :set_invitation, only: [:show, :edit, :update, :destroy, :resend, :approve]
   # devise authentication required to access invitations
   before_action :authenticate_user!, unless: :api_request
+  respond_to :html
+
   # GET /invitations
   def index
     if current_user.admin?
