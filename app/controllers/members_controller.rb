@@ -1,8 +1,8 @@
 class MembersController < ApplicationController
-  before_action :is_admin
-  before_action :set_user, only: [:show]
   # devise authentication required to access invitations
   before_action :authenticate_user!
+  before_action :is_admin
+  before_action :set_user, only: [:show]
 
   # GET /members
   def index
@@ -31,7 +31,7 @@ class MembersController < ApplicationController
 
     def is_admin
       unless user_signed_in? && current_user.admin?
-        redirect_to root_path, error: "You are not authorised"
+        redirect_to root_path, error: "You are not authorised to access this resource" and return
       end
     end
 end
