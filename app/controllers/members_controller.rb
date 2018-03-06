@@ -8,6 +8,10 @@ class MembersController < ApplicationController
   def index
     @users_count = User.unscoped.count
     @users = User.verified.unscoped.order('created_at desc').page(params[:page])
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   # GET /member/1
