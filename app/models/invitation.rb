@@ -71,6 +71,8 @@ class Invitation < ApplicationRecord
   validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
   validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
   validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
+  validates :invitee_email, email: true
+
   validates_with CodeOfConductValidator
 
   scope :all_sent, ->(user_id) { where("user_id = ?", user_id) }
