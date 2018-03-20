@@ -71,6 +71,8 @@ class User < ApplicationRecord
 
   scope :members_profile, -> { joins(:profile).where('profiles.privacy_level = ? or profiles.privacy_level = ?', Profile.privacy_options["Members only"], Profile.privacy_options["Open"]) }
 
+  store :email_reminders, accessors: [ :complete_profile ], coder: JSON
+
   def self.default_scope
     where(active: true)
   end
@@ -208,6 +210,20 @@ class User < ApplicationRecord
     self.provider = nil
     self.uid = nil
     self.auth_token = nil
+  end
+
+  def self.email_new_users_with_incomplete_profiles
+    verified.joins(:profile).where('users.first_name is NULL and users.last_name is NULL and profiles.location is NULL and users.created_at >= ?', 5.days.ago).each do |user|
+      UserMailer.complete_profile(self.custom_identifier).deliver
+      user.complete_profile = true
+      user.save
+    end
+  end
+
+  def self.delete_unverified_accounts
+    unscoped.where('confirmed_at IS NULL and unconfirmed_email IS NOT NULL and created_at >= ?', 3.days.ago).each do |user|
+      user.destroy
+    end
   end
 
   private

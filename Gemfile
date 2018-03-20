@@ -38,6 +38,7 @@ gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 4.2.0'
 gem 'slack-notifier'
 gem 'tinymce-rails'
+gem 'whenever', require: false
 
 group :production, :staging do
   gem 'exception_notification'
