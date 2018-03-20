@@ -214,7 +214,7 @@ class User < ApplicationRecord
 
   def self.email_new_users_with_incomplete_profiles
     verified.joins(:profile).where('users.first_name is NULL and users.last_name is NULL and profiles.location is NULL and users.created_at >= ?', 5.days.ago).each do |user|
-      UserMailer.complete_profile(self.custom_identifier).deliver
+      UserMailer.complete_profile(user.custom_identifier).deliver
       user.complete_profile = true
       user.save
     end
