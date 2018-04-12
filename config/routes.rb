@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :invitations, only: [:create]
-      resources :jobs, only: [:index, :show]
+      resources :jobs, :controller => :"jobs", only: [:index, :show]
     end
   end
 
