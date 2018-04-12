@@ -47,7 +47,7 @@ Rails.application.routes.draw do
   get 'partners', to: 'home#partners'
 
   # API resources
-  namespace :api, defaults: {format: 'json'} do
+  namespace :api do
     namespace :v1 do
       resources :invitations, only: [:create]
       resources :jobs, only: [:index, :show]
