@@ -5,7 +5,6 @@
   hosts: all
   # After initial provisioning, use vagrant instead of root
   remote_user: vagrant
-  # remote_user: vagrant
   become: yes
   # become_method: sudo
   gather_facts: no # don't gather facts because /usr/bin/python isn't set
@@ -19,12 +18,17 @@
   roles:
     - common
     - deploy-user
-    - geerlingguy.ruby
+    - { role: rvm_io.ruby,
+        tags: ruby,
+        rvm1_rubies: ['ruby-2.4.4'],
+        rvm1_user: 'vagrant'
+      }
     - geerlingguy.postgresql
     - nginx
     - rails
     - monit
     - memcached
     - redis
+    - hashbangcode.imagemagick
     # - certbot
     # - elasticsearch
