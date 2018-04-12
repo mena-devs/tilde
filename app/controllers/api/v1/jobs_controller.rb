@@ -6,6 +6,8 @@ module Api
       # devise authentication required to access invitations
       before_action :authenticate_user!, unless: :api_request
 
+      respond_to :json
+
       # GET /jobs
       def index
         approved_jobs = Job.all_approved
