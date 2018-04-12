@@ -20,7 +20,7 @@
     - deploy-user
     - { role: rvm_io.ruby,
         tags: ruby,
-        rvm1_rubies: ['ruby-2.4.4'],
+        rvm1_rubies: ['ruby-2.5.1'],
         rvm1_user: 'vagrant'
       }
     - geerlingguy.postgresql
