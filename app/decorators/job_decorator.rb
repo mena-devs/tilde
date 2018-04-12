@@ -23,7 +23,6 @@ class JobDecorator < ApplicationDecorator
 
     object.payment_term.blank? ? formatted_salary += "/per year" : formatted_salary += "/#{object.payment_term.gsub('_', ' ')}"
 
-
     return formatted_salary
   end
 end
