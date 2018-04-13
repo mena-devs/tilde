@@ -65,7 +65,7 @@
                           <% end %>
                         <% end %>
                         <br/>
-                        <small><%= user.profile.biography %></small>
+                        <small><%= truncate(user.profile.biography, length: 100, omission: '...') %></small>
                       </td>
                     </tr>
                 <% end %>
