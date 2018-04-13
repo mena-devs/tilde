@@ -38,14 +38,18 @@
 
               <table class="table borderless">
                 <tbody>
-                  <tr>
-                    <th width='25%'>Company</th>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <th>Title</th>
-                    <td><%= @profile.title %></td>
-                  </tr>
+                  <% unless @profile.company_name.blank? %>
+                    <tr>
+                      <th width='25%'>Company</th>
+                      <td><%= @profile.company_name %></td>
+                    </tr>
+                  <% end %>
+                  <% unless @profile.title.blank? %>
+                    <tr>
+                      <th>Title</th>
+                      <td><%= @profile.title %></td>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
 
@@ -72,25 +76,33 @@
                     <th>Location</th>
                     <td><%= @profile.location_name %></td>
                   </tr>
+                  <% unless @profile.twitter_handle.blank? %>
+                    <tr>
+                      <th>Twitter</th>
+                      <td><%= link_to("twitter.com/#{@profile.twitter_handle}", "https://twitter.com/#{@profile.twitter_handle}", target: '_blank') %></td>
+                    </tr>
+                  <% end %>
                 </tbody>
               </table>
               <!--  Contact details ends -->
 
               <br/>
 
-              <!-- Open for begins -->
-              <div class="fancy-title title-bottom-border">
-                <h4>Interested in</h4>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12 interests-listing">
-                  <% @profile.active_interests.each do |k, v| %>
-                    <p><%= fa_icon('check-square-o') %> <%= k.humanize.capitalize %></p>
-                  <% end %>
+              <% unless @profile.active_interests.blank? %>
+                <!-- Open for begins -->
+                <div class="fancy-title title-bottom-border">
+                  <h4>Interested in</h4>
                 </div>
-              </div>
-              <!-- Open for ends -->
+
+                <div class="row">
+                  <div class="col-md-12 interests-listing">
+                    <% @profile.active_interests.each do |k, v| %>
+                      <p><%= fa_icon('check-square-o') %> <%= k.humanize.capitalize %></p>
+                    <% end %>
+                  </div>
+                </div>
+                <!-- Open for ends -->
+              <% end %>
             </div>
 
           </div>

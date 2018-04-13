@@ -9,7 +9,7 @@
   </div>
 
   <div class="fancy-title title-dotted-border title-center">
-    <h2>Profile picture</h2>
+    <h2>Profile Picture</h2>
   </div>
 
 
@@ -29,7 +29,7 @@
   <br/>
 
   <div class="fancy-title title-dotted-border title-center">
-    <h2>Personal details</h2>
+    <h2>Personal Details</h2>
   </div>
 
   <div class="row">
@@ -56,6 +56,7 @@
                        label: "Nickname",
                        help: "Unique. Reserved for future use on menadevs.com" %>
     </div>
+
     <div class="col-md-6">
       <%= f.select "privacy_level",
                     Profile.privacy_options,
@@ -95,16 +96,25 @@
   <br/>
 
   <div class="fancy-title title-dotted-border title-center">
-    <h2>Professional experience and interests</h2>
+    <h2>Professional Experience and Interests</h2>
   </div>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <div class="form-group">
         <%= f.text_field "title",
                          value: @profile.title,
                          id: "profile_title",
                          label: "Title" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <%= f.text_field "company_name",
+                         value: @profile.company_name,
+                         id: "profile_company_name",
+                         label: "Company" %>
       </div>
     </div>
   </div>
@@ -150,6 +160,22 @@
                   value: @profile.receive_job_alerts,
                   label: "I want to receive job alerts by emails",
                   checked: @profile.receive_job_alerts %>
+
+  <br/>
+
+  <div class="fancy-title title-dotted-border title-center">
+    <h2>Social Media</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.text_field "twitter_handle",
+                       value: @profile.twitter_handle,
+                       id: "profile_twitter_handle",
+                       label: "Twitter",
+                       placeholder: "https://twitter.com/USERNAME" %>
+    </div>
+  </div>
 
   <div class="row job-form-buttons">
     <div class="col-md-12">

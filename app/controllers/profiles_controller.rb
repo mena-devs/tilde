@@ -67,6 +67,7 @@ class ProfilesController < ApplicationController
                                       :nickname, :avatar, :title,
                                       :a_new_role, :collaborate_on_a_project, :freelance,
                                       :to_mentor_someone, :being_mentored, :participate_at_events,
+                                      :company_name, :twitter_handle,
                                       user: [:time_zone, :first_name, :last_name])
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180320135643) do
+ActiveRecord::Schema.define(version: 20180413120514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,6 +122,8 @@ ActiveRecord::Schema.define(version: 20180320135643) do
     t.datetime "avatar_from_slack_updated_at"
     t.string   "title"
     t.string   "interests"
+    t.string   "company_name"
+    t.string   "twitter_handle"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
