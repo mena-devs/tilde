@@ -129,6 +129,7 @@ class JobsController < ApplicationController
                                   :company_name, :apply_email, :employment_type,
                                   :experience, :from_salary, :country, :remote,
                                   :to_salary, :currency, :payment_term,
-                                  :education, :number_of_openings)
+                                  :education, :number_of_openings,
+                                  :twitter_handle)
     end
 end

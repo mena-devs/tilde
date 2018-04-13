@@ -17,8 +17,6 @@
 
     <div class="col-md-6">
       <%= f.text_field :company_name %>
-
-      <%= f.text_field :apply_email, label: "Email to apply" %>
     </div>
 
     <div class="col-md-4">
@@ -35,12 +33,21 @@
                                selected: @job.country },
                             { class: 'form-control' }) %>
       </div>
-
     </div>
 
     <div class="col-md-2">
       <br/>
       <%= f.check_box :remote, label: "Remote job?" %>
+    </div>
+  </div>
+
+  <div class='row'>
+    <div class="col-md-6">
+      <%= f.text_field :apply_email, label: "Email to apply" %>
+    </div>
+
+    <div class="col-md-6">
+      <%= f.text_field :twitter_handle, label: "Twitter Account", placeholder: "Twitter Username (i.e. MENAdevs)" %>
     </div>
   </div>
 
