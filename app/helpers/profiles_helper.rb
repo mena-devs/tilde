@@ -15,6 +15,10 @@ module ProfilesHelper
     end
   end
 
+  def location(profile)
+    profile.location_name
+  end
+
   def biography(profile)
     if profile.biography.blank?
       "<strong>Biography is not set</strong>".html_safe

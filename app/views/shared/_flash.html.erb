@@ -1,13 +1,33 @@
 <%# Notice %>
 <% if flash[:notice].present? %>
-  <div class="style-msg successmsg">
-    <div class="sb-msg"><%= flash[:notice] %></div>
-  </div>
+  <section id="content">
+    <div class="content-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="style-msg successmsg">
+              <div class="sb-msg"><%= flash[:notice] %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>
 
 <%# Alert %>
 <% if flash[:alert].present? %>
-  <div class="style-msg errormsg">
-    <div class="sb-msg"><%= flash[:alert] %></div>
-  </div>
+  <section id="content">
+    <div class="content-wrap">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="style-msg errormsg">
+              <div class="sb-msg"><%= flash[:alert] %></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 <% end %>

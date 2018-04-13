@@ -1,0 +1,33 @@
+<% provide(:title) do %>
+  Partner #<%= @partner.id %>
+<% end %>
+
+<table class="table table-bordered">
+  <tbody>
+    <tr>
+      <th class="col-sm-2">Name</th>
+      <td><%= @partner.name %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Description</th>
+      <td><%= @partner.description %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">External link</th>
+      <td><%= @partner.external_link %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Email</th>
+      <td><%= @partner.email %></td>
+    </tr>
+    <tr>
+      <th class="col-sm-2">Active</th>
+      <td><%= @partner.active %></td>
+    </tr>
+  </tbody>
+</table>
+
+<p>
+  <%= link_to "Edit", edit_partner_path(@partner), :class => "btn btn-primary" %>
+  <%= link_to "Back", partners_path, :class => "btn btn-link" %>
+</p>

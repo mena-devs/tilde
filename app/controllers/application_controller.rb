@@ -22,6 +22,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_admin
+    unless user_signed_in? && current_user.admin?
+      redirect_to root_path, alert: "Not authorised"
+    end
+  end
+
   private
     def current_user
       begin

@@ -27,24 +27,4 @@ class HomeController < ApplicationController
       format.html  # events.html.erb
     end
   end
-
-  def partners
-    @page_title       = 'Community Partners'
-    @page_description = 'Community partners listing'
-    @page_keywords    = AppSettings.meta_tags_keywords
-
-    respond_to do |format|
-      format.html  # partners.html.erb
-    end
-  end
-
-  def partner
-    @page_title       = 'Community Partners'
-    @page_description = 'Community partner'
-    @page_keywords    = AppSettings.meta_tags_keywords
-
-    respond_to do |format|
-      format.html  # partner.html.erb
-    end
-  end
 end

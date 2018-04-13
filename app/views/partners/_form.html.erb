@@ -1,0 +1,15 @@
+<%= bootstrap_form_for(@partner, inline_errors: true, html: { multipart: true }) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <%= f.text_field :name %>
+  <%= f.text_field :description %>
+  <%= f.text_field :external_link %>
+  <%= f.text_field :email %>
+  <%= f.check_box :active %>
+  <%= f.file_field :picture %>
+
+  <%= f.primary %>
+  <%= link_to "Back", partners_path, :class => "btn btn-link" %>
+
+<% end %>
