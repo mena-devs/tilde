@@ -24,7 +24,7 @@ class PartnersController < ApplicationController
     @partner = Partner.new(partner_params)
 
     if @partner.save
-      redirect_to @partner, notice: 'Partner was successfully created.'
+      redirect_to partners_path, notice: 'Partner was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class PartnersController < ApplicationController
   # PATCH/PUT /partners/1
   def update
     if @partner.update(partner_params)
-      redirect_to @partner, notice: 'Partner was successfully updated.'
+      redirect_to partners_path, notice: 'Partner was successfully updated.'
     else
       render :edit
     end
