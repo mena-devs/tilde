@@ -48,7 +48,8 @@
               <div class="team-title">
                 <h4>Email</h4>
                 <span>
-                  <%= fa_icon('envelope') %> <%= link_to(@user.email, "mailto:#{@user.email}") %>
+                  <%# fa_icon('envelope') %> <%# link_to(@user.email, "mailto:#{@user.email}") %>
+                  Private
                 </span>
               </div>
             </div>
@@ -129,7 +130,6 @@
         </div>
       </div>
 
-
       <% unless @user.profile.active_interests.blank? %>
 
         <hr/>
@@ -158,10 +158,10 @@
           <% end %>
           <!-- Looking for ends -->
         </div>
-
-        <br/>
-        <br/>
       <% end %>
+
+      <br/>
+      <br/>
 
       <% unless @user.profile.twitter_handle.blank? %>
 
