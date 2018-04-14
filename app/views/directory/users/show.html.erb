@@ -151,8 +151,8 @@
           <% @user.profile.active_interests.each do |k, v| %>
             <div class="col-md-4">
               <div class="profile-padding">
-  							<input id="checkbox-10" class="checkbox-style" name="checkbox-10" checked="" type="checkbox">
-  							<label for="checkbox-10" class="checkbox-style-3-label"><%= k.humanize.capitalize %></label>
+  							<input id="checkbox-10" class="checkbox-style" name="checkbox-10" checked="" type="checkbox">&nbsp;
+  							<span class="checkbox-style-3-label"><%= k.humanize.capitalize %></span>
   						</div>
             </div>
           <% end %>
