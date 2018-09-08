@@ -5,3 +5,7 @@ end
 every 1.day do
   runner "User.delete_unverified_accounts"
 end
+
+every 1.day do
+  runner "Job.remove_expired_jobs"
+end
