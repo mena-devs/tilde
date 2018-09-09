@@ -166,7 +166,7 @@ class Job < ApplicationRecord
   end
 
   def self.remove_expired_jobs
-    Job.all_approved.each do |job|
+    Job.approved.each do |job|
       if (job.posted_on < 1.month.ago)
         job.take_down!
       end
