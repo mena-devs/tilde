@@ -13,7 +13,7 @@ module JobsHelper
     if job.approved?
       if in_words
         posted_date_str = time_ago_in_words(job.posted_on)
-      else
+      elsif !job.posted_on.blank?
         posted_date_str = job.posted_on.strftime('%A %e %B %Y ')
       end
     end
