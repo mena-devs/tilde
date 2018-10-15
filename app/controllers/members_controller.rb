@@ -6,7 +6,7 @@ class MembersController < ApplicationController
 
   # GET /members
   def index
-    users = User.verified
+    users = User.verified.joins(:profile)
     @users_count = users.count
     @users = users.order('created_at desc').page(params[:page])
 

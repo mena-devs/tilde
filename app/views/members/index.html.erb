@@ -32,29 +32,30 @@
             </thead>
             <tbody>
               <% @users.each do |user| %>
-                <% #if visible_profile?(user) %>
-                  <tr>
-                    <td width='5%'>
-                      <%= image_tag(user.profile.avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
-                    </td>
-                    <td width='80%'>
-                      <%= link_to directory_user_path(user) do %>
-                        <%= user.name %> | <%= user.email %>
-                        <% if user_signed_in? && current_user == user %>
-                          <div class="btn btn-xs btn-primary">
-                            <%= fa_icon("check") %>
-                            me
-                          </div>
-                        <% end %>
+                <tr>
+                  <td width='5%'>
+                    <% avatar = user.profile.try(:avatar) %>
+                    <% if avatar %>
+                      <%= image_tag(avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
+                    <% end %>
+                  </td>
+                  <td width='80%'>
+                    <%= link_to directory_user_path(user) do %>
+                      <%= user.name %> | <%= user.email %>
+                      <% if user_signed_in? && current_user == user %>
+                        <div class="btn btn-xs btn-primary">
+                          <%= fa_icon("check") %>
+                          me
+                        </div>
                       <% end %>
-                      <br/>
-                      <small><%= user.profile.biography %></small>
-                    </td>
-                    <td width='15%'>
-                      <%= user.created_at.strftime('%A %e %B %Y ') %>
-                    </td>
-                  </tr>
-                <%# end %>
+                    <% end %>
+                    <br/>
+                    <small><%= user.profile.biography %></small>
+                  </td>
+                  <td width='15%'>
+                    <%= user.created_at.strftime('%A %e %B %Y ') %>
+                  </td>
+                </tr>
               <% end %>
             </tbody>
           </table>
