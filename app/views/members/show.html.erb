@@ -2,6 +2,8 @@
   <%= @user.name.titleize %>
 <% end %>
 
+<%= content_for :flash %>
+
 <div class="row">
   <div class="col-md-1">
     <%= image_tag(@user.profile.avatar.url(:thumb),
