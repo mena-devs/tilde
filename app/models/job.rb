@@ -51,7 +51,7 @@ class Job < ApplicationRecord
     state :disabled
 
     event :request_edit do
-      transitions :from => [:under_review, :edited, :approved], :to => :draft
+      transitions :from => [:under_review, :edited, :approved, :disabled], :to => :draft
     end
 
     event :request_approval do
@@ -66,16 +66,18 @@ class Job < ApplicationRecord
       transitions :from => [:under_review, :disabled], :to => :approved
 
       after do
-        # inform job ower that their job post is online
-        JobMailer.job_published(self.id).deliver_later
-        NotifierWorker.perform_async(self.id)
-        notify_subscribers
-        set_dates
+        unless self.posted_to_slack?
+          # inform job ower that their job post is online
+          JobMailer.job_published(self.id).deliver_later
+          NotifierWorker.perform_async(self.id)
+          notify_subscribers
+          set_dates
+        end
       end
     end
 
     event :modify do
-      transitions :from => [:under_review, :approved], :to => :edited
+      transitions :from => [:under_review, :approved, :disabled], :to => :edited
     end
 
     event :take_down do

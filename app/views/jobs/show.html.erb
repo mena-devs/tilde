@@ -10,7 +10,7 @@
       <div class="col-md-4 nopadding fright hidden-xs">
         <% if (user_signed_in? && current_user.id == @job.user_id) %>
 
-          <% if (@job.draft? || @job.under_review? || current_user.admin?) %>
+          <% if (@job.draft? || @job.under_review? || @job.disabled? || current_user.admin?) %>
             <% if @job.draft? %>
               <%= link_to "Submit for approval", pre_approve_job_path(@job), class: "button button-3d notopmargin fright button-blue", method: :put %>
             <% elsif @job.under_review? %>
