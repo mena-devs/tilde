@@ -14,11 +14,11 @@ class JobDecorator < ApplicationDecorator
     return "" if object.from_salary.blank?
 
     if object.to_salary.blank? || object.from_salary == object.to_salary
-      formatted_salary = ActionController::Base.helpers.number_to_currency(object.from_salary, precision: 0)
+      formatted_salary = ActionController::Base.helpers.number_to_currency(object.from_salary, precision: 0, unit: object.currency)
     else
-      formatted_salary = ActionController::Base.helpers.number_to_currency(object.from_salary, precision: 0)
+      formatted_salary = ActionController::Base.helpers.number_to_currency(object.from_salary, precision: 0, unit: object.currency)
       formatted_salary += ' - '
-      formatted_salary += ActionController::Base.helpers.number_to_currency(object.to_salary, precision: 0)
+      formatted_salary += ActionController::Base.helpers.number_to_currency(object.to_salary, precision: 0, unit: object.currency)
     end
 
     object.payment_term.blank? ? formatted_salary += "/per year" : formatted_salary += "/#{object.payment_term.gsub('_', ' ')}"

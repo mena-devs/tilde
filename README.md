@@ -50,7 +50,7 @@ If you need help setting up a Ruby development environment, check out this [Rail
 ### Run it!
 
 1. Run `vagrant ssh` to log into your local development instance.
-2. Go to `cd /vagrantup`.
+2. Go to `cd /vagrant`.
 3. Run `bin/rails server --bind=0.0.0.0` to start the Rails app.
 4. Head over to your browser and visit `http://192.168.33.11:3000` to browse the app.
 

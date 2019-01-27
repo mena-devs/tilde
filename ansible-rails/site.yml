@@ -18,7 +18,7 @@
   roles:
     - common
     - deploy-user
-    - { role: rvm_io.ruby,
+    - { role: rvm.ruby,
         tags: ruby,
         rvm1_rubies: ['ruby-2.5.1'],
         rvm1_user: 'vagrant'
