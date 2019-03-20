@@ -6,6 +6,7 @@ schema: "html5-strict"
 element_format: "html"
 resize: true
 paste_as_text: true
+cleanup : true
 menubar: false
 plugins:
   - preview
