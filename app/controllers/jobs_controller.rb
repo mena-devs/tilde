@@ -47,7 +47,7 @@ class JobsController < ApplicationController
 
   # GET /jobs/1/edit
   def edit
-    if (!current_user.admin? || current_user != @job.user)
+    unless ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
       redirect_to @job, notice: 'You are not authorised to access this job post.'
     end
   end
