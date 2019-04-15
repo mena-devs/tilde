@@ -7,8 +7,6 @@ server "menadevs.com",
        :user => 'root',
        :roles => %w(app cron db web sidekiq)
 
-set :stage, :production
-
 # LETS_ENCRYPT CONFIG VALUES
 
 # Set the roles where the let's encrypt process should be started
@@ -53,7 +51,3 @@ set :lets_encrypt_local_output_path, "~/certs"
 # Set the minimum time that the cert should be valid
 # default value: 30
 set :lets_encrypt_days_valid, 15
-
-set :whenever_environment, ->{ fetch(:rails_env) }
-set :whenever_identifier,  ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
-set :whenever_command,     ->{ "cd #{fetch(:release_path)} && bundle exec whenever --update-crontab" }
