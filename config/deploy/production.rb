@@ -2,6 +2,7 @@ set :branch, ENV.fetch("CAPISTRANO_BRANCH", "master")
 set :mb_sidekiq_concurrency, 1
 
 set :deploy_to, "/home/rails"
+set :whenever_path, ->{ release_path }
 
 server "menadevs.com",
        :user => 'root',
@@ -51,3 +52,5 @@ set :lets_encrypt_local_output_path, "~/certs"
 # Set the minimum time that the cert should be valid
 # default value: 30
 set :lets_encrypt_days_valid, 15
+
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
