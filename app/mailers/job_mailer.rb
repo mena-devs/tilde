@@ -7,13 +7,14 @@ class JobMailer < ApplicationMailer
     subject = "MENAdevs - #{@job.user.try(:name)} posted a new job"
 
     mail to: AppSettings.admin_email,
+         reply_to: @job.user.email,
          subject: subject
   end
 
   def job_published(job_id)
     @job = Job.find(job_id).decorate
 
-    subject = "MENAdevs - Your job is now posted on the job board"
+    subject = "MENAdevs - Your job post is published on the job board"
 
     mail to: @job.user.email,
          subject: subject

@@ -48,8 +48,11 @@
               <div class="team-title">
                 <h4>Email</h4>
                 <span>
-                  <%# fa_icon('envelope') %> <%# link_to(@user.email, "mailto:#{@user.email}") %>
-                  Private
+                  <% if user_signed_in? and (current_user.email == @user.email or current_user.admin?) %>
+                    <%= fa_icon('envelope') %> <%= link_to(@user.email, "mailto:#{@user.email}") %>
+                  <% else %>
+                    Private
+                  <% end %>
                 </span>
               </div>
             </div>
