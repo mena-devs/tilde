@@ -2,40 +2,33 @@
 #
 # Table name: jobs
 #
-#  aasm_state         :string
-#  apply_email        :string
-#  company_name       :string
-#  country            :string
-#  created_at         :datetime         not null
-#  currency           :string
-#  custom_identifier  :string
-#  deleted_at         :datetime
-#  description        :text
-#  education          :string
-#  employment_type    :integer
-#  experience         :integer
-#  expires_on         :datetime
-#  external_link      :string
-#  from_salary        :integer
 #  id                 :integer          not null, primary key
-#  number_of_openings :integer          default(1)
-#  payment_term       :integer
-#  posted_on          :datetime
-#  posted_to_slack    :boolean          default(FALSE)
-#  remote             :boolean          default(FALSE)
+#  aasm_state         :string
 #  title              :string
-#  to_salary          :integer
-#  updated_at         :datetime         not null
+#  description        :text
+#  external_link      :string
+#  country            :string
+#  remote             :boolean          default(FALSE)
+#  custom_identifier  :string
+#  posted_on          :datetime
+#  expires_on         :datetime
+#  posted_to_slack    :boolean          default(FALSE)
 #  user_id            :integer
-#
-# Indexes
-#
-#  index_jobs_on_deleted_at  (deleted_at)
-#  index_jobs_on_user_id     (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
+#  company_name       :string
+#  apply_email        :string
+#  to_salary          :integer
+#  employment_type    :integer
+#  number_of_openings :integer          default(1)
+#  experience         :integer
+#  deleted_at         :datetime
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  from_salary        :integer
+#  currency           :string
+#  education          :string
+#  payment_term       :integer
+#  twitter_handle     :string
+#  slug               :string
 #
 
 require 'uri'
@@ -114,7 +107,7 @@ class Job < ApplicationRecord
   enum education: [ :unspecified, :high_school_or_equivalent, :certification, :bachelor_degree, :master_degree, :doctorate, :professional ]
   enum payment_term: [ :per_hour, :per_day, :per_month, :per_year, :per_contract ]
 
-  friendly_id :custom_identifier
+  friendly_id :title, use: :slugged
 
   scope :user_jobs, -> (user) { where(user_id: user.id) }
   scope :all_approved, -> { where(aasm_state: 'approved') }

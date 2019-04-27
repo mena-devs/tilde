@@ -2,20 +2,12 @@
 #
 # Table name: api_keys
 #
-#  access_token :string
-#  created_at   :datetime         not null
-#  enabled      :boolean          default(TRUE)
 #  id           :integer          not null, primary key
-#  updated_at   :datetime         not null
+#  access_token :string
 #  user_id      :integer
-#
-# Indexes
-#
-#  index_api_keys_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
+#  enabled      :boolean          default(TRUE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
 #
 
 class ApiKey < ApplicationRecord

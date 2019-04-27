@@ -2,33 +2,29 @@
 #
 # Table name: profiles
 #
-#  avatar_content_type          :string
-#  avatar_file_name             :string
-#  avatar_file_size             :integer
-#  avatar_from_slack            :string
-#  avatar_from_slack_imported   :boolean          default(FALSE)
-#  avatar_from_slack_updated_at :datetime
-#  avatar_updated_at            :datetime
-#  biography                    :text
-#  created_at                   :datetime         not null
 #  id                           :integer          not null, primary key
-#  interests                    :string
-#  location                     :string
+#  user_id                      :integer
 #  nickname                     :string
-#  privacy_level                :integer          default(0)
+#  location                     :string
 #  receive_emails               :boolean          default(FALSE)
 #  receive_job_alerts           :boolean          default(FALSE)
-#  title                        :string
+#  biography                    :text
+#  avatar_from_slack            :string
+#  privacy_level                :integer          default(0)
+#  created_at                   :datetime         not null
 #  updated_at                   :datetime         not null
-#  user_id                      :integer
-#
-# Indexes
-#
-#  index_profiles_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
+#  avatar_file_name             :string
+#  avatar_content_type          :string
+#  avatar_file_size             :integer
+#  avatar_updated_at            :datetime
+#  avatar_from_slack_imported   :boolean          default(FALSE)
+#  avatar_from_slack_updated_at :datetime
+#  title                        :string
+#  interests                    :string
+#  company_name                 :string
+#  twitter_handle               :string
+#  github_profile_link          :string
+#  stackoverflow_profile_link   :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

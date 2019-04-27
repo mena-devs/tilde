@@ -2,32 +2,24 @@
 #
 # Table name: invitations
 #
-#  aasm_state           :string
-#  code_of_conduct      :boolean          default(FALSE)
-#  created_at           :datetime         not null
-#  delivered            :boolean          default(FALSE)
 #  id                   :integer          not null, primary key
-#  invitee_company      :string
-#  invitee_email        :string
-#  invitee_introduction :text
-#  invitee_location     :string
-#  invitee_name         :string
-#  invitee_title        :string
-#  medium               :string
-#  member_application   :boolean          default(FALSE)
-#  registered           :boolean          default(FALSE)
-#  retries              :integer          default(0)
-#  slack_uid            :string
-#  updated_at           :datetime         not null
 #  user_id              :integer
-#
-# Indexes
-#
-#  index_invitations_on_user_id  (user_id)
-#
-# Foreign Keys
-#
-#  fk_rails_...  (user_id => users.id)
+#  invitee_name         :string
+#  invitee_email        :string
+#  invitee_title        :string
+#  invitee_company      :string
+#  invitee_location     :string
+#  invitee_introduction :text
+#  delivered            :boolean          default(FALSE)
+#  registered           :boolean          default(FALSE)
+#  code_of_conduct      :boolean          default(FALSE)
+#  member_application   :boolean          default(FALSE)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  slack_uid            :string
+#  medium               :string
+#  aasm_state           :string
+#  retries              :integer          default(0)
 #
 
 class CodeOfConductValidator < ActiveModel::Validator

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413164417) do
+ActiveRecord::Schema.define(version: 20190426162519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -100,7 +100,9 @@ ActiveRecord::Schema.define(version: 20180413164417) do
     t.string   "education"
     t.integer  "payment_term"
     t.string   "twitter_handle"
+    t.string   "slug"
     t.index ["deleted_at"], name: "index_jobs_on_deleted_at", using: :btree
+    t.index ["slug"], name: "index_jobs_on_slug", unique: true, using: :btree
     t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
 
@@ -139,6 +141,8 @@ ActiveRecord::Schema.define(version: 20180413164417) do
     t.string   "interests"
     t.string   "company_name"
     t.string   "twitter_handle"
+    t.string   "github_profile_link"
+    t.string   "stackoverflow_profile_link"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 
