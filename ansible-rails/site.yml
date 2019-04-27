@@ -4,6 +4,7 @@
 - name: Install Rails Server
   hosts: all
   # After initial provisioning, use vagrant instead of root
+  # remote_user: root
   remote_user: vagrant
   become: yes
   # become_method: sudo
@@ -15,6 +16,22 @@
       raw: apt-get install -qq python2.7 aptitude
     - name: set python 2.7 as default
       raw: update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+    - name: Create postgres user for tilde
+      become: yes
+      become_user: postgres
+      postgresql_user:
+        name: tilde
+        password: tilde
+        role_attr_flags: CREATEDB,SUPERUSER
+    - name: Ensure we have access from the new user
+      become: yes
+      become_user: postgres
+      postgresql_privs:
+        db: tilde
+        role: tilde
+        objs: ALL_IN_SCHEMA
+        privs: ALL
+        state: absent
   roles:
     - common
     - deploy-user
