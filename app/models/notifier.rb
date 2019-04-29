@@ -45,7 +45,7 @@ class Notifier
                     },
                     {
                         "title": "For more details, check out the following link:",
-                        "value": "#{AppSettings.application_host}/jobs/#{job.custom_identifier}?md=slack",
+                        "value": "#{AppSettings.application_host}/jobs/#{job.to_param}?md=slack",
                         "short": false
                     }
                 ],
