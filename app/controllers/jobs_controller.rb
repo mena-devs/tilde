@@ -122,7 +122,9 @@ class JobsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
-      @job = Job.where(custom_identifier: params[:id]).or(Job.where(slug: params[:id])).decorate.first
+      @job = Job.where(custom_identifier: params[:id]).or(Job.where(slug: params[:id]))
+      not_found if @job.blank?
+      @job = @job.decorate.first
     end
 
     # Only allow a trusted parameter "white list" through.
