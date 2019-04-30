@@ -76,25 +76,10 @@
           </div>
         </div>
 
-        <%= paginate @users %>
+        <div class="text-center">
+          <%= paginate @users %>
+        </div>
       <% end %>
     </div>
   </div>
 </section>
-
-<!-- Bootstrap Data Table Plugin -->
-<%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
-<%= stylesheet_link_tag('bs-datatable', media: 'all',
-												'data-turbolinks-track': false) %>
-
-<script>
-
-  $(document).ready(function() {
-    $('#members-directory').dataTable(
-      {
-        aaSorting: [[1, 'asc']]
-      }
-    );
-  });
-
-</script>
