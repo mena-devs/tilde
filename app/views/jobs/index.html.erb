@@ -54,19 +54,19 @@
 </section><!-- #content end -->
 
 <!-- Bootstrap Data Table Plugin -->
-<%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
-<%= stylesheet_link_tag('bs-datatable', media: 'all',
+<%# javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
+<%# stylesheet_link_tag('bs-datatable', media: 'all',
 												'data-turbolinks-track': false) %>
 
-<script>
+# <script>
 
-  $(document).ready(function() {
-    $('#jobs-datatable').dataTable(
-      {
-        "ordering": false,
-        "pageLength": 25
-      }
-    );
-  });
+#   $(document).ready(function() {
+#     $('#jobs-datatable').dataTable(
+#       {
+#         "ordering": false,
+#         "pageLength": 25
+#       }
+#     );
+#   });
 
-</script>
+# </script>
