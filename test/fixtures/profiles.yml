@@ -23,8 +23,6 @@
 #  interests                    :string
 #  company_name                 :string
 #  twitter_handle               :string
-#  github_profile_link          :string
-#  stackoverflow_profile_link   :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

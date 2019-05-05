@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: job_statistics
+#
+#  id         :integer          not null, primary key
+#  job_id     :integer
+#  user_id    :integer
+#  counter    :integer          default(1)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class JobStatistic < ApplicationRecord
     belongs_to :user
     belongs_to :job
