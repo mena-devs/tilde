@@ -1,4 +1,7 @@
 <tr class="cart_item">
+  <td>
+    <%= boolean_icon(admin_job.approved?) %>
+  </td>
 
   <td>
     <%= link_to admin_job.title, admin_job, class: 'link' %>
@@ -6,10 +9,6 @@
 
   <td>
     <%= admin_job.company_name %>
-  </td>
-
-  <td>
-    <%= boolean_icon(admin_job.approved?) %>
   </td>
 
   <td>
@@ -21,9 +20,13 @@
   </td>
 
   <td>
-    <% if (user_signed_in?) %>
+  <span class="label label-info"><%= admin_job.job_statistic.try(:counter) %></span>
+  </td>
+
+  <td>
+    <% if (user_signed_in? && current_user.admin?) %>
       <% if admin_job.draft? || admin_job.under_review? %>
-        <%= link_to "Edit Job", edit_job_path(admin_job), :class => "button button-3d button-mini button-rounded button-blue", target: '_blank' %>
+        <%= link_to("Edit Job", edit_job_path(admin_job), :class => "button button-3d button-mini button-rounded button-blue", target: '_blank') %>
       <% end %>
     <% end %>
   </td>

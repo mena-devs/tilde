@@ -4,15 +4,8 @@
 
   <div class="container clearfix">
     <div class="row clearfix">
-      <div class="col-md-8 col-xs-8 nopadding">
-        <h1>Job Board</h1>
-        <span>Browse all jobs posted on MENAdevs</span>
-      </div>
-
-      <div class="col-md-4 col-xs-4 nopadding">
-        <%= link_to new_job_path, :class => "button button-3d notopmargin fright" do %>
-          <%= fa_icon("plus", :text => "Post a Job") %>
-        <% end %>
+      <div class="col-md-12 col-xs-12 nopadding">
+        <h1>Job Board - Admin view</h1>
       </div>
     </div>
   </div>
@@ -41,7 +34,9 @@
           </div>
         </div>
 
-        <%= paginate @admin_jobs %>
+        <div class="text-center">
+          <%= paginate @admin_jobs %>
+        </div>
       <% end %>
 
     </div>

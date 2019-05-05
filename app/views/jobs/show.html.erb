@@ -12,40 +12,40 @@
 
           <% if (@job.draft? || @job.under_review? || @job.disabled? || current_user.admin?) %>
             <% if @job.draft? %>
-              <%= link_to "Submit for approval", pre_approve_job_path(@job), class: "button button-3d notopmargin fright button-blue", method: :put %>
+              <%= link_to("Submit for approval", pre_approve_job_path(@job), class: "button button-3d notopmargin fright button-blue", method: :put) %>
             <% elsif @job.under_review? %>
               <div class="button button-3d notopmargin fright button-blue">
                 Awaiting approval
               </div>
             <% end %>
             <%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright" %>
-          <% elsif @job.approved? && current_user.admin? %>
+          <% elsif (@job.approved? && current_user.admin?) %>
             <div class="button button-3d notopmargin fright button-blue">
               Approved
             </div>
 
-            <%= button_to "Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+            <%= button_to("Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
           <% end %>
         <% end %>
 
         <% if (user_signed_in? && current_user.admin?) %>
-          <% if @job.under_review? || @job.draft? %>
-            <%= button_to "Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+          <% if (@job.under_review? || @job.draft?) %>
+            <%= button_to("Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
           <% elsif @job.approved? %>
-            <%= button_to "Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+            <%= button_to("Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
           <% elsif @job.disabled? %>
-            <%= button_to "Publish (as admin)", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put %>
+            <%= button_to("Publish (as admin)", publish_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
           <% end %>
         <% end %>
 
         <% unless (user_signed_in? && current_user.id == @job.user_id) %>
-          <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: '_blank' %>
+          <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: "_blank") %>
         <% end %>
       </div>
 
       <!-- Mobile friendly interface -->
       <div class="col-md-12 nopadding visible-xs">
-        <%= link_to "Visit page to apply", @job.external_link, class: "button button-3d", target: '_blank' %>
+        <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d", target: "_blank") %>
       </div>
     </div>
 
