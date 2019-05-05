@@ -140,28 +140,28 @@
             <% end %>
           </div>
         </div>
+      <% end %>
+      
+      <% if (user_signed_in? && current_user.admin?) %>
+        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
+          <div class="sidebar-widgets-wrap">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">Status</h3>
+              </div>
 
-        <% if (user_signed_in? && current_user.admin?) %>
-          <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-            <div class="sidebar-widgets-wrap">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Status</h3>
-                </div>
-
-                <div class="panel-body">
-                  <div class="row">
-                    <div class="col-lg-12">
-                      <div class="alert alert-success text-center" role="alert"><%= @job.aasm_state.to_s.titleize %></div>
-                    </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="alert alert-success text-center" role="alert"><%= @job.aasm_state.to_s.titleize %></div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        <% end %>
+        </div>
       <% end %>
-      
+
       <% if (user_signed_in? && (@job.user_id == current_user.id || current_user.admin?)) %>
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
