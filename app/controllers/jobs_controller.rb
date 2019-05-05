@@ -27,7 +27,7 @@ class JobsController < ApplicationController
   def list_jobs
     @admin_jobs = Job.all.order(updated_at: :desc).page(params[:page])
 
-    if is_admin?
+    if user_signed_in? && current_user.admin?
       flash[:notice] = "Not authorised"
     end
 
