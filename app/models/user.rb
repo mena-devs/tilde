@@ -52,6 +52,7 @@ class User < ApplicationRecord
   has_one :profile, :dependent => :destroy
   has_many :jobs, :dependent => :destroy
   has_many :api_keys, :dependent => :destroy
+  has_many :job_statistic
 
   after_create :prepare_profile
   after_save :prepare_profile

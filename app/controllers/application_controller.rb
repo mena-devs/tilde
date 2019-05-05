@@ -28,6 +28,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_is_admin?
+    (user_signed_in? && current_user.admin?)
+  end
+
+  def can_log_stats?(job)
+    (job.approved? && (user_signed_in? && !current_user.admin?))
+  end
+
+  def can_see_stats?(job)
+    (user_signed_in? && (job.user_id == current_user.id || current_user.admin?) )
+  end
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   rescue

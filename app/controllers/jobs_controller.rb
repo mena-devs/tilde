@@ -2,7 +2,7 @@ class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy,
                                  :pre_approve, :approve, :take_down, :publish]
   # devise authentication required to access jobs
-  before_action :authenticate_user!, :except => [:index, :show]
+  before_action :authenticate_user!, :except => [:index, :show, :list_jobs]
   before_action :check_user_profile_complete, :except => [:index, :show]
 
   # GET /jobs
@@ -26,7 +26,8 @@ class JobsController < ApplicationController
   # GET /list-jobs-admin
   def list_jobs
     @admin_jobs = Job.all.order(updated_at: :desc).page(params[:page])
-    if !current_user.admin?
+
+    if is_admin?
       flash[:notice] = "Not authorised"
     end
 
@@ -38,6 +39,14 @@ class JobsController < ApplicationController
     @page_title       = @job.title
     @page_description = @job.title + ' at ' + @job.company_name
     @page_keywords    = AppSettings.meta_tags_keywords
+
+    if can_log_stats?(@job)
+      JobStatistic.increment(@job.id, current_user.id)
+    end
+
+    if can_see_stats?(@job)
+      @job_statistics = JobStatistic.where(job_id: @job.id).order(counter: :desc)
+    end
   end
 
   # GET /jobs/new
@@ -56,7 +65,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
 
-    if user_signed_in? && current_user.id
+    if user_signed_in?
       @job.user_id = current_user.id
     end
 
@@ -71,6 +80,7 @@ class JobsController < ApplicationController
   def update
     if @job.update(job_params)
       @job.request_edit! unless @job.draft?
+
       redirect_to @job, notice: 'Job post was successfully updated.'
     else
       render :edit

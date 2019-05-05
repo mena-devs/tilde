@@ -3,7 +3,7 @@
 </p>
 
 <p>
-  There's a new job on <%= link_to 'menadevs.com', AppSettings.mail_domain, class: "contact-link" %> and we thought you might be interested in checking it out.
+  There's a new job on <%= link_to(AppSettings.application_name, AppSettings.mail_domain, class: "contact-link") %> and we thought you might be interested in checking it out.
 </p>
 
 <h4 style="text-align:center;">
@@ -40,7 +40,7 @@
 
 <p style="text-align: center">
   <small>
-    You're receiving this email because you opted-in to receive job alert emails from <%= link_to 'menadevs.com', AppSettings.mail_domain, class: "contact-link" %>.
+    You're receiving this email because you opted-in to receive job alert emails from <%= link_to(AppSettings.application_name, AppSettings.mail_domain, class: "contact-link") %>.
     <br/>
     If you wish to opt-out, please update your email settings from the account settings section.
   </small>
