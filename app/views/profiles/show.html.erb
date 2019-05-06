@@ -152,12 +152,11 @@
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-12">
-                  <p><strong>Privacy level is: </strong> &nbsp; <%= privacy_info_icon(@profile) %></p>
+                  <p><strong>Privacy level: </strong> &nbsp; <%= privacy_info_icon(@profile) %></p>
 
                   <%= privacy_info_message(@profile) %>
                 </div>
               </div>
-
 
               <hr/>
 
@@ -166,13 +165,18 @@
                 <div class="col-md-12">
                   <p><strong>Email notifications:</strong></p>
 
-                  <p><strong>Events & marketing:</strong> <%= notification_message(@profile.receive_emails) %></p>
+                  <p style="padding-left:8px">
+                    News, updates and events: <%= notification_message(@profile.receive_emails) %>
+                  </p>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-12">
-                  <p><strong>Job alerts:</strong> <%= notification_message(@profile.receive_job_alerts) %></p>
+                  <p><strong>Job alerts:</strong></p>
+                  <p style="padding-left:8px">
+                    <%= @profile.receive_job_alerts_frequency %>
+                  </p>
                 </div>
               </div>
 

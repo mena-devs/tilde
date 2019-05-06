@@ -49,9 +49,9 @@ module ProfilesHelper
 
   def notification_message(notification)
     if notification
-      fa_icon("check", text: "enabled")
+      fa_icon("check")
     else
-      fa_icon("close", text: "disabled")
+      fa_icon("close")
     end
   end
 end

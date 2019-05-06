@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190505204851) do
+ActiveRecord::Schema.define(version: 20190506161119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,6 +151,7 @@ ActiveRecord::Schema.define(version: 20190505204851) do
     t.string   "interests"
     t.string   "company_name"
     t.string   "twitter_handle"
+    t.integer  "receive_job_alerts_frequency", default: 0
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
 

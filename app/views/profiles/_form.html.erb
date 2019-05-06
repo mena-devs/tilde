@@ -147,19 +147,27 @@
   <br/>
 
   <div class="fancy-title title-dotted-border title-center">
-    <h2>Notifications</h2>
+    <h2>Email Notifications</h2>
   </div>
 
-  <label class="control-label" for="">EMAIL Notifications</label>
-  <%= f.check_box "receive_emails",
-                  value: @profile.receive_emails,
-                  label: "I want to receive general purpose, event and marketing emails",
-                  checked: @profile.receive_emails %>
+  <div class="row">
+    <!-- Looking for begins -->
+      <div class="col-md-6">
+        <%= f.check_box "receive_emails",
+                        value: @profile.receive_emails,
+                        label: "Receive emails on news, updates and events",
+                        checked: @profile.receive_emails %>
+      </div>
 
-  <%= f.check_box "receive_job_alerts",
-                  value: @profile.receive_job_alerts,
-                  label: "I want to receive job alerts by emails",
-                  checked: @profile.receive_job_alerts %>
+      <div class="col-md-6">
+      <%= f.select "receive_job_alerts_frequency",
+                    Profile.job_alerts_frequencies,
+                    :selected => @profile.receive_job_alerts_frequency,
+                    label: "Receive job alert emails",
+                    help: "None. Instant: as soon as a job is published. Daily digest: 1 email per day." %>
+      </div>
+    <!-- Looking for ends -->
+  </div>
 
   <br/>
 

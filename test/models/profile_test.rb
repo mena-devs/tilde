@@ -23,6 +23,7 @@
 #  interests                    :string
 #  company_name                 :string
 #  twitter_handle               :string
+#  receive_job_alerts_frequency :integer          default("None")
 #
 
 require 'test_helper'

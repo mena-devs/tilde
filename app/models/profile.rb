@@ -23,6 +23,7 @@
 #  interests                    :string
 #  company_name                 :string
 #  twitter_handle               :string
+#  receive_job_alerts_frequency :integer          default("None")
 #
 
 class Profile < ApplicationRecord
@@ -31,6 +32,8 @@ class Profile < ApplicationRecord
   validates_uniqueness_of :nickname, allow_blank: true
 
   enum privacy_option: [ "Hidden", "Members only", "Open" ]
+
+  enum job_alerts_frequency: ["None", "Instant", "Daily digest"]
 
   store :interests, accessors: [ :a_new_role, :collaborate_on_a_project, :freelance, :to_mentor_someone, :being_mentored, :participate_at_events ], coder: JSON
 
