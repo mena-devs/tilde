@@ -29,11 +29,21 @@ class JobMailer < ApplicationMailer
          subject: subject
   end
 
-  def notify_subscriber(job_id, subscriber_id)
+  def notify_job_alert_instant_subscriber(job_id, subscriber_id)
     @job = Job.find(job_id).decorate
     @subscriber = User.find(subscriber_id)
 
-    subject = "MENAdevs - A new job is available online"
+    subject = "MENAdevs - A new job is posted on the job board"
+
+    mail to: @subscriber.email,
+         subject: subject
+  end
+
+  def notify_job_alert_daily_digest_subscriber(jobs, subscriber_id)
+    @jobs = jobs
+    @subscriber = User.find(subscriber_id)
+
+    subject = "MENAdevs - New jobs for #{Date.today}"
 
     mail to: @subscriber.email,
          subject: subject

@@ -63,7 +63,7 @@ class Job < ApplicationRecord
           # inform job owner that their job post is online
           JobMailer.job_published(self.id).deliver_later
           NotifierWorker.perform_async(self.id)
-          notify_subscribers
+          notify_instant_subscribers
           set_dates
         end
       end
@@ -113,6 +113,7 @@ class Job < ApplicationRecord
   scope :user_jobs, -> (user) { where(user_id: user.id) }
   scope :all_approved, -> { where(aasm_state: 'approved') }
   scope :live, -> { where.not(:posted_on => nil) }
+  scope :posted_today, -> { where("posted_on >= ?", Time.now.beginning_of_day).order("posted_on desc") }
 
   def location_name
     country_name = ""
@@ -126,9 +127,19 @@ class Job < ApplicationRecord
     country_name
   end
 
-  def notify_subscribers
-    User.job_alert_subscribers.each do |user|
-      JobMailer.notify_subscriber(self.id, user).deliver_later
+  def notify_instant_subscribers
+    User.job_alert_instant_subscribers.each do |user|
+      JobMailer.notify_job_alert_instant_subscriber(self.id, user).deliver_later
+    end
+  end
+
+  def self.notify_daily_digest_subscribers
+    jobs = Job.posted_today
+
+    unless jobs.blank?
+      User.job_alert_daily_digest_subscribers.each do |user|
+        JobMailer.notify_job_alert_daily_digest_subscriber(jobs, user).deliver_later
+      end
     end
   end
 

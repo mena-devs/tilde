@@ -175,7 +175,7 @@
                 <div class="col-md-12">
                   <p><strong>Job alerts:</strong></p>
                   <p style="padding-left:8px">
-                    <%= @profile.receive_job_alerts_frequency %>
+                    <%= Profile.job_alerts_frequencies.key(@profile.receive_job_alerts_frequency) %>
                   </p>
                 </div>
               </div>

@@ -135,7 +135,6 @@ ActiveRecord::Schema.define(version: 20190506161119) do
     t.string   "nickname"
     t.string   "location"
     t.boolean  "receive_emails",               default: false
-    t.boolean  "receive_job_alerts",           default: false
     t.text     "biography"
     t.string   "avatar_from_slack"
     t.integer  "privacy_level",                default: 0

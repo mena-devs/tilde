@@ -57,7 +57,9 @@ class User < ApplicationRecord
   after_create :prepare_profile
   after_save :prepare_profile
 
-  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
+  scope :job_alert_instant_subscribers, -> { joins(:profile).where("profiles.receive_job_alerts_frequency = ?", Profile.job_alerts_frequencies["Instant"]) }
+  scope :job_alert_daily_digest_subscribers, -> { joins(:profile).where("profiles.receive_job_alerts_frequency = ?", Profile.job_alerts_frequencies["Daily digest"]) }
+  
   scope :verified, -> { where("confirmed_at IS NOT NULL")}
 
   scope :open_profile, -> { joins(:profile).where('profiles.privacy_level = ?', Profile.privacy_options["Open"]) }

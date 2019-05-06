@@ -1,0 +1,50 @@
+<p>
+  Hello <%= @subscriber.first_name.humanize %>,
+</p>
+
+<p>
+  Today, <%= pluralize("job", @jobs.size) %> was posted on <%= AppSettings.application_name %> job board.
+</p>
+
+<% @jobs.each do |job| %>
+
+  <h4 style="text-align:center;">
+    Job details
+  </h4>
+  <hr>
+  <p>
+    <%= job.title %> at <%= job.company_name %>
+  </p>
+
+  <ul>
+    <li>
+      Employment type: <%= job.employment_type.try(:humanize) %>
+    </li>
+
+    <li>
+      Experience: <%= job.experience.try(:humanize) %>
+    </li>
+
+    <li>
+      Salary: <%= job.salary_to_s %>
+    </li>
+
+    <li>
+      Remote: <%= job.remote? ? 'Yes' : 'No' %>
+    </li>
+  </ul>
+
+  <p style="text-align: center">
+    <%= link_to 'Check out the full job details', job_url(job), class: "contact-link" %>
+  </p>
+
+  <hr/>
+<% end %>
+
+<p style="text-align: center">
+  <small>
+    You're receiving this email because you opted-in to receive job alert emails from <%= link_to(AppSettings.application_name, AppSettings.mail_domain, class: "contact-link") %>.
+    <br/>
+    If you wish to opt-out, please update your email settings from the account settings section.
+  </small>
+</p>
