@@ -57,7 +57,11 @@ class ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = User.friendly.find(params[:user_id]).profile
+      if current_user.custom_identifier == params[:user_id]
+        @profile = User.friendly.find(params[:user_id]).profile
+      else
+        redirect_to root_url, notice: 'You are not authorised to access this profile.' and return
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
