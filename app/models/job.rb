@@ -86,7 +86,7 @@ class Job < ApplicationRecord
   acts_as_paranoid
 
   belongs_to :user
-  has_one :job_statistic, :dependent => :destroy
+  has_many :job_statistics, :dependent => :destroy
 
   validates :company_name, presence: true
   validates :title, presence: true

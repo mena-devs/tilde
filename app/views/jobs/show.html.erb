@@ -168,12 +168,12 @@
             <div class="panel panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">Statistics</h3>
-                Who has viewed this job
+                <small>Who, from MENAdevs.com members, has viewed this job post</small>
               </div>
 
               <div class="panel-body">
                 <% @job_statistics.each do |job_statistic| %>
-                  <%= link_to(job_statistic.user.name, directory_user_path(job_statistic.user)) %> - <%= job_statistic.counter %> <%= fa_icon("eye") %>
+                  <%= link_to(job_statistic.user.name, directory_user_path(job_statistic.user)) %> - <%= job_statistic.counter %> <%= fa_icon("eye") %><br/>
                 <% end %>
               </div>
             </div>
