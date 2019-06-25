@@ -15,7 +15,13 @@ class BufferApi
     tweet_text = "#{job.company_name.titleize} is looking to hire a #{job.title}"
     tweet_text += " in ##{job.location_name}" unless job.location_name.blank?
     tweet_text += ". More information here https://#{AppSettings.application_host}/jobs/#{job.to_param}"
-    tweet_text += (" " + job.twitter_handle) unless job.twitter_handle.blank?
+    if !job.twitter_handle.blank?
+      if job.twitter_handle.start_with?('@')
+        tweet_text += (" " + job.twitter_handle)
+      else
+        tweet_text += (" @" + job.twitter_handle)
+      end
+    end
 
     return tweet_text
   end
