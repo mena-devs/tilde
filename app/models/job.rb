@@ -62,8 +62,8 @@ class Job < ApplicationRecord
         unless self.posted_to_slack?
           # inform job owner that their job post is online
           JobMailer.job_published(self.id).deliver_later
-          #NotifierWorker.perform_async(self.id)
-          #notify_subscribers
+          NotifierWorker.perform_async(self.id)
+          notify_subscribers
           set_dates
         end
       end
