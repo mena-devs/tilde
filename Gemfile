@@ -34,13 +34,13 @@ gem 'paranoia', '~> 2.2'
 gem 'paperclip', '~> 5.2.0'
 gem 'pg', '~> 0.18'
 gem 'pgcli-rails'
-gem 'rails', '5.1'
+gem 'rails', '~> 5.1.6'
 gem 'redis-namespace'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
-gem 'sidekiq', '>= 4.2.0'
+gem 'sidekiq', '>= 5.2.0'
 gem 'slack-notifier'
-gem 'tinymce-rails', '4.9.2'
+gem 'tinymce-rails', '>= 4.9.2'
 gem 'whenever', require: false
 
 group :production, :staging do

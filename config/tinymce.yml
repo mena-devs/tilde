@@ -1,10 +1,10 @@
 # TinyMCE Options
 mode: "exact"
-theme: "modern"
 language: "<%= I18n.locale.to_s.split('-')[0].downcase %>"
 schema: "html5-strict"
 element_format: "html"
 resize: true
+height: 500
 paste_as_text: true
 cleanup : true
 menubar: false
@@ -25,7 +25,7 @@ setup :
   function(ed) {
     ed.on('init', function()
     {
-      ed.execCommand("fontName", false, "Arial");
-      ed.execCommand("fontSize", false, "13px");
+      ed.execCommand("fontName", true, "Arial");
+      ed.execCommand("fontSize", true, "14");
     });
   }
