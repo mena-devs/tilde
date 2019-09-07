@@ -163,8 +163,16 @@ class Job < ApplicationRecord
 
   def self.remove_expired_jobs
     Job.approved.each do |job|
-      if (!job.posted_on.blank? && job.posted_on < 1.month.ago)
+      if (!job.posted_on.blank? && job.posted_on > 1.month.ago)
         job.take_down!
+      end
+    end
+  end
+
+  def self.publish_valid_jobs
+    Job.disabled.each do |job|
+      if (job.posted_on < 1.month.ago)
+        job.publish!
       end
     end
   end
