@@ -2,7 +2,7 @@
 #
 # Table name: api_keys
 #
-#  id           :integer          not null, primary key
+#  id           :bigint           not null, primary key
 #  access_token :string
 #  user_id      :integer
 #  enabled      :boolean          default(TRUE)

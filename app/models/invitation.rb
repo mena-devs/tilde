@@ -2,7 +2,7 @@
 #
 # Table name: invitations
 #
-#  id                   :integer          not null, primary key
+#  id                   :bigint           not null, primary key
 #  user_id              :integer
 #  invitee_name         :string
 #  invitee_email        :string

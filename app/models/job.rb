@@ -2,7 +2,7 @@
 #
 # Table name: jobs
 #
-#  id                 :integer          not null, primary key
+#  id                 :bigint           not null, primary key
 #  aasm_state         :string
 #  title              :string
 #  description        :text

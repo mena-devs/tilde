@@ -2,7 +2,7 @@
 #
 # Table name: invitations
 #
-#  id                   :integer          not null, primary key
+#  id                   :bigint           not null, primary key
 #  user_id              :integer
 #  invitee_name         :string
 #  invitee_email        :string
@@ -26,20 +26,20 @@
 
 one:
   user: one
-  invitee_name: MyString
-  invitee_email: MyString
-  invitee_title: MyString
-  invitee_company: MyString
-  invitee_location: MyString
+  invitee_name: "User One"
+  invitee_email: "one@example.com"
+  invitee_title: "Software Developer"
+  invitee_company: "MENAdevs"
+  invitee_location: "Lebanon"
   delivered: false
   registered: false
 
 two:
   user: two
-  invitee_name: MyString
-  invitee_email: MyString
-  invitee_title: MyString
-  invitee_company: MyString
-  invitee_location: MyString
+  invitee_name: "User Two"
+  invitee_email: "two@example.com"
+  invitee_title: "Software Developer"
+  invitee_company: "MENAdevs"
+  invitee_location: "Lebanon"
   delivered: false
   registered: false
