@@ -162,18 +162,12 @@ class Job < ApplicationRecord
   end
 
   def self.remove_expired_jobs
-    Job.approved.each do |job|
-      if (!job.posted_on.blank? && job.posted_on > 1.month.ago)
-        job.take_down!
-      end
-    end
-  end
+    date = Date.today
+    start_date = date
+    end_date = date.months_ago(1)
 
-  def self.publish_valid_jobs
-    Job.disabled.each do |job|
-      if (job.posted_on < 1.month.ago)
-        job.publish!
-      end
+    Job.approved.where(:posted_on => start_date..end_date).each do |job|
+      job.take_down!
     end
   end
 
