@@ -51,7 +51,7 @@ class Job < ApplicationRecord
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
       success do
         # inform admins that there is a job post to be approved
-        JobMailer.new_job(self).deliver
+        JobMailer.new_job(self.id).deliver
       end
     end
 
