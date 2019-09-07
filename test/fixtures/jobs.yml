@@ -31,38 +31,40 @@
 #  slug               :string
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  title: MyString
+  title: "Software Developer"
   description: MyText
-  job_location: MyString
-  custom_identifier: MyString
+  country: "Lebanon"
+  custom_identifier: "qiuwoieuur8723643"
   posted_on: 2017-01-04 00:14:38
   expires_on: 2017-01-04 00:14:38
-  state: false
-  approved: false
+  aasm_state: :under_review
   posted_to_slack: false
   user: one
   company_name: MyString
-  apply_email: MyString
-  job_type: 1
-  level: 1
-  paid: false
+  apply_email: one@example.com
+  employment_type: 1
+  from_salary: 1500
+  to_salary: 2000
+  currency: 'usd'
+  payment_term: 2
+  experience: 1
 
 two:
-  title: MyString
+  title: "CTO"
   description: MyText
-  job_location: MyString
-  custom_identifier: MyString
+  country: "Lebanon"
+  custom_identifier: "sjhdgkjsdhflgjhsfdghlsdf"
   posted_on: 2017-01-04 00:14:38
   expires_on: 2017-01-04 00:14:38
-  state: false
-  approved: false
-  posted_to_slack: false
+  aasm_state: :approved
+  posted_to_slack: true
   user: two
   company_name: MyString
-  apply_email: MyString
-  job_type: 1
-  level: 1
-  paid: false
+  apply_email: two@example.com
+  employment_type: 1
+  from_salary: 1000
+  to_salary: 1500
+  currency: 'usd'
+  payment_term: 2
+  experience: 2

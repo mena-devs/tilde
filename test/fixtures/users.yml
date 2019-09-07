@@ -37,8 +37,12 @@
 # model remove the '{}' from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  email: one@example.com
+  created_at: <%= 1.day.ago.to_s(:db) %>
+  updated_at: <%= 1.day.ago.to_s(:db) %>
+
+two:
+  email: two@example.com
+  created_at: <%= 1.day.ago.to_s(:db) %>
+  updated_at: <%= 1.day.ago.to_s(:db) %>
