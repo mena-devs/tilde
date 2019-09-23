@@ -128,7 +128,7 @@ class Job < ApplicationRecord
 
   def notify_subscribers
     User.job_alert_subscribers.each do |user|
-      JobMailer.notify_subscriber(self.id, user).deliver_later
+      JobMailer.notify_subscriber(self.id, user.id).deliver_later
     end
   end
 
