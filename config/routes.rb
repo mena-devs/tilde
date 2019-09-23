@@ -37,6 +37,7 @@ Rails.application.routes.draw do
                 omniauth_callbacks: 'users/omniauth_callbacks'
               }
 
+  require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq' # monitoring console
 
   get 'about', to: 'home#about'
