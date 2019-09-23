@@ -74,7 +74,6 @@ group :development do
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
-  gem 'simplecov', require: false
   gem 'sitemap_generator'
   gem 'spring'
   gem 'sshkit', '~> 1.8', require: false
@@ -94,4 +93,5 @@ group :test do
   gem 'poltergeist'
   gem 'shoulda-context'
   gem 'shoulda-matchers', '>= 3.0.1'
+  gem 'simplecov', require: false
 end
