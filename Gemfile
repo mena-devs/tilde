@@ -54,7 +54,7 @@ end
 group :development, :test do
   gem 'database_cleaner'
   gem 'rspec-rails', '~> 3.5'
-  gem 'factory_bot'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -97,5 +97,6 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
   gem 'simplecov', require: false
 end

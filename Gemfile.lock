@@ -217,6 +217,9 @@ GEM
     execjs (2.7.0)
     factory_bot (5.1.0)
       activesupport (>= 4.2.0)
+    factory_bot_rails (5.1.0)
+      factory_bot (~> 5.1.0)
+      railties (>= 4.2.0)
     faker (2.4.0)
       i18n (~> 1.6.0)
     faraday (0.15.4)
@@ -483,6 +486,8 @@ GEM
       childprocess (>= 0.5, < 3.0)
       rubyzip (~> 1.2, >= 1.2.2)
     shellany (0.0.1)
+    shoulda-matchers (4.1.2)
+      activesupport (>= 4.2.0)
     sidekiq (6.0.0)
       connection_pool (>= 2.2.2)
       rack (>= 2.0.0)
@@ -584,7 +589,7 @@ DEPENDENCIES
   dotenv-rails (>= 2.0.0)
   draper
   exception_notification
-  factory_bot
+  factory_bot_rails
   faker
   fast_jsonapi
   font-awesome-rails
@@ -623,6 +628,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   secure_headers (~> 3.0)
   selenium-webdriver
+  shoulda-matchers
   sidekiq (>= 5.2.0)
   simplecov
   sitemap_generator
