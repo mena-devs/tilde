@@ -40,14 +40,21 @@ gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 5.2.0'
 gem 'slack-notifier'
+
 gem 'tinymce-rails', '>= 4.9.2'
 gem 'whenever', require: false
 
-group :production, :staging do
+group :production do
   gem 'exception_notification'
   gem 'postmark-rails'
   gem 'unicorn'
   gem 'unicorn-worker-killer'
+end
+
+group :development, :test do
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot'
 end
 
 group :development do
@@ -70,7 +77,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'overcommit', require: false
-  gem 'puma', '~> 3.0'
+  gem 'puma', '~> 3.10'
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
@@ -86,12 +93,9 @@ end
 group :test do
   gem 'capybara'
   gem 'connection_pool'
+  gem 'guard-rspec'
+  gem 'faker'
   gem 'launchy'
-  gem 'minitest-capybara'
-  gem 'minitest-reporters'
-  gem 'mocha'
-  gem 'poltergeist'
-  gem 'shoulda-context'
-  gem 'shoulda-matchers', '>= 3.0.1'
+  gem 'selenium-webdriver'
   gem 'simplecov', require: false
 end

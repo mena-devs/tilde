@@ -1,9 +1,9 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (5.0.5)
+    aasm (5.0.6)
       concurrent-ruby (~> 1.0)
-    acme-client (2.0.3)
+    acme-client (2.0.4)
       faraday (~> 0.9, >= 0.9.1)
     actioncable (5.1.7)
       actionpack (= 5.1.7)
@@ -54,18 +54,17 @@ GEM
       i18n (>= 0.7, < 2)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.7.0)
+      public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.3.4)
       sshkit (>= 1.6.1, != 1.7.0)
     annotate (2.7.5)
       activerecord (>= 3.2, < 7.0)
       rake (>= 10.4, < 13.0)
-    ansi (1.5.0)
     api-pagination (4.8.2)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (9.6.1)
+    autoprefixer-rails (9.6.1.1)
       execjs
     awesome_print (1.8.0)
     bcrypt (3.1.13)
@@ -116,7 +115,7 @@ GEM
     capistrano-sidekiq (1.0.2)
       capistrano (>= 3.9.0)
       sidekiq (>= 3.4)
-    capybara (3.28.0)
+    capybara (3.29.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -128,7 +127,6 @@ GEM
       rake (< 13.0)
     chronic (0.10.2)
     climate_control (0.2.0)
-    cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.2)
@@ -154,14 +152,16 @@ GEM
       countries (~> 3.0)
       sort_alphabetical (~> 1.0)
     crass (1.0.4)
+    database_cleaner (1.7.0)
     debug_inspector (0.0.3)
     deep_merge (1.2.1)
-    devise (4.6.2)
+    devise (4.7.1)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 6.0)
+      railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    diff-lcs (1.3)
     docile (1.3.2)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -190,7 +190,7 @@ GEM
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.2)
       dry-equalizer (~> 0.2)
-    dry-schema (1.3.3)
+    dry-schema (1.3.4)
       concurrent-ruby (~> 1.0)
       dry-configurable (~> 0.8, >= 0.8.3)
       dry-core (~> 0.4)
@@ -215,6 +215,10 @@ GEM
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
     execjs (2.7.0)
+    factory_bot (5.1.0)
+      activesupport (>= 4.2.0)
+    faker (2.4.0)
+      i18n (~> 1.6.0)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
@@ -234,7 +238,7 @@ GEM
       multi_json (>= 1.11.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    guard (2.15.0)
+    guard (2.15.1)
       formatador (>= 0.2.4)
       listen (>= 2.7, < 4.0)
       lumberjack (>= 1.0.12, < 2.0)
@@ -252,11 +256,15 @@ GEM
     guard-minitest (2.4.6)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    guard-rspec (4.7.3)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     hashie (3.6.0)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
     http_parser.rb (0.6.0)
-    httparty (0.17.0)
+    httparty (0.17.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     i18n (1.6.0)
@@ -308,30 +316,18 @@ GEM
     mailgun-ruby (1.1.11)
       rest-client (~> 2.0.2)
     marco-polo (1.2.1)
-    meta-tags (2.11.1)
+    meta-tags (2.12.0)
       actionpack (>= 3.2.0, < 6.1)
-    metaclass (0.0.4)
     method_source (0.9.2)
-    mime-types (3.2.2)
+    mime-types (3.3)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2019.0331)
+    mime-types-data (3.2019.0904)
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     mini_racer (0.2.6)
       libv8 (>= 6.9.411)
-    minitest (5.11.3)
-    minitest-capybara (0.9.0)
-      capybara
-      minitest (~> 5.0)
-      rake
-    minitest-reporters (1.3.8)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
-    mocha (1.9.0)
-      metaclass (~> 0.0.1)
+    minitest (5.12.0)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -341,7 +337,7 @@ GEM
       net-ssh (>= 2.6.5, < 6.0.0)
     net-ssh (5.2.0)
     netrc (0.11.0)
-    nio4r (2.4.0)
+    nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.3)
@@ -374,15 +370,11 @@ GEM
     parallel (1.17.0)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
-    parser (2.6.3.0)
+    parser (2.6.4.1)
       ast (~> 2.4.0)
     pg (0.21.0)
     pgcli-rails (0.4.0)
       railties (>= 4.2.0)
-    poltergeist (1.18.1)
-      capybara (>= 2.1, < 4)
-      cliver (~> 0.3.1)
-      websocket-driver (>= 0.2.0)
     postmark (1.15.0)
       json
     postmark-rails (0.19.0)
@@ -391,12 +383,12 @@ GEM
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
-    public_suffix (3.1.1)
+    public_suffix (4.0.1)
     puma (3.12.1)
     rack (2.0.7)
     rack-livereload (0.3.17)
       rack
-    rack-protection (2.0.5)
+    rack-protection (2.0.7)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -429,7 +421,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
-    redis (4.1.2)
+    redis (4.1.3)
     redis-namespace (1.6.0)
       redis (>= 3.0.4)
     regexp_parser (1.6.0)
@@ -442,6 +434,27 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rspec (3.8.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+    rspec-core (3.8.2)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.4)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.2)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -450,6 +463,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
+    rubyzip (1.2.4)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -461,21 +475,20 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
-    sassc (2.0.1)
+    sassc (2.2.1)
       ffi (~> 1.9)
-      rake
     secure_headers (3.7.3)
       useragent
+    selenium-webdriver (3.142.4)
+      childprocess (>= 0.5, < 3.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     shellany (0.0.1)
-    shoulda-context (1.2.2)
-    shoulda-matchers (4.1.2)
-      activesupport (>= 4.2.0)
-    sidekiq (5.2.7)
-      connection_pool (~> 2.2, >= 2.2.2)
-      rack (>= 1.5.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 5)
-    simplecov (0.17.0)
+    sidekiq (6.0.0)
+      connection_pool (>= 2.2.2)
+      rack (>= 2.0.0)
+      rack-protection (>= 2.0.0)
+      redis (>= 4.1.0)
+    simplecov (0.17.1)
       docile (~> 1.1)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
@@ -504,8 +517,8 @@ GEM
     terminal-notifier-guard (1.7.0)
     thor (0.20.3)
     thread_safe (0.3.6)
-    tilt (2.0.9)
-    tinymce-rails (5.0.13)
+    tilt (2.0.10)
+    tinymce-rails (5.0.15)
       railties (>= 3.1.1)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
@@ -566,10 +579,13 @@ DEPENDENCIES
   config
   connection_pool
   country_select
+  database_cleaner
   devise
   dotenv-rails (>= 2.0.0)
   draper
   exception_notification
+  factory_bot
+  faker
   fast_jsonapi
   font-awesome-rails
   friendly_id (~> 5.1.0)
@@ -577,6 +593,7 @@ DEPENDENCIES
   guard (>= 2.2.2)
   guard-livereload
   guard-minitest
+  guard-rspec
   httparty
   jquery-rails
   kaminari
@@ -588,9 +605,6 @@ DEPENDENCIES
   marco-polo
   meta-tags
   mini_racer
-  minitest-capybara
-  minitest-reporters
-  mocha
   nested_form
   omniauth-slack
   overcommit
@@ -598,18 +612,17 @@ DEPENDENCIES
   paranoia (~> 2.2)
   pg (~> 0.18)
   pgcli-rails
-  poltergeist
   postmark-rails
-  puma (~> 3.0)
+  puma (~> 3.10)
   rack-livereload
   rails (~> 5.1.6)
   rb-fsevent
   redis-namespace
+  rspec-rails (~> 3.5)
   rubocop
   sass-rails (~> 5.0)
   secure_headers (~> 3.0)
-  shoulda-context
-  shoulda-matchers (>= 3.0.1)
+  selenium-webdriver
   sidekiq (>= 5.2.0)
   simplecov
   sitemap_generator

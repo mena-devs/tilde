@@ -8,18 +8,12 @@ Bundler.require(*Rails.groups)
 
 module MenaDevsCom
   class Application < Rails::Application
+    # Initialize configuration defaults for originally generated Rails version.
+    config.load_defaults 5.1
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
-
-    # Bootscale needs this to prevent stale cache
-    initializer :regenerate_require_cache, :before => :load_environment_config do
-      Bootscale.regenerate
-    end
-
-    # Ensure non-standard paths are eager-loaded in production
-    # (these paths are also autoloaded in development mode)
-    # config.eager_load_paths += %W(#{config.root}/lib)
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.tinymce.install = :compile
