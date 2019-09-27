@@ -7,13 +7,14 @@ RSpec.describe "Invitations", type: :request do
 
   describe "GET /invitations" do
     before(:each) do
-      @invitation = create(:invitation)
+      @invitation = create(:invitation, user: user)
       sign_in user
     end
 
     it "should list all invitations" do
       get invitations_path
       expect(response).to have_http_status(200)
+      expect(response.body).to include(@invitation.invitee_name)
     end
   end
 end
