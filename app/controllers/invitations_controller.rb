@@ -6,10 +6,12 @@ class InvitationsController < ApplicationController
 
   # GET /invitations
   def index
-    if current_user.admin?
+    if current_user && current_user.admin?
       @invitations = Invitation.all.order(created_at: :desc, updated_at: :desc).page(params[:page])
-    else
+    elsif current_user
       @invitations = Invitation.all_sent(current_user.id).order(updated_at: :desc).page(params[:page])
+    else
+      @invitations = []
     end
   end
 

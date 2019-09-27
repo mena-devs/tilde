@@ -34,6 +34,8 @@
 class User < ApplicationRecord
   extend FriendlyId
 
+  attr_writer :login
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -217,6 +219,10 @@ class User < ApplicationRecord
     unscoped.where('confirmed_at IS NULL and unconfirmed_email IS NOT NULL and created_at >= ?', 3.days.ago).each do |user|
       user.destroy
     end
+  end
+
+  def login
+    @login || self.email || self.custom_identifier
   end
 
   private
