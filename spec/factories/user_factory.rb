@@ -19,7 +19,7 @@ FactoryBot.define do
     auth_token             { '' }
     first_name             { 'user' }
     last_name              { 'one' }
-    time_zone              { 'AMS' }
+    time_zone              { 'Amsterdam' }
     admin                  { false }
     sequence(:custom_identifier) { |n| "user-#{n}" }
     created_at             { Time.now }
