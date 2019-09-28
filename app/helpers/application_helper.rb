@@ -1,4 +1,13 @@
 module ApplicationHelper
+  def flash_class(level)
+    case level
+        when :notice then "style-msg successmsg"
+        when :success then "style-msg successmsg"
+        when :error then "style-msg errormsg"
+        when :alert then "style-msg errormsg"
+    end
+  end
+
   def is_user_a_slack_member?(member)
     if member
       'Slack group member'

@@ -64,6 +64,7 @@ RSpec.configure do |config|
 
   config.include RequestSpecHelper, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include Capybara::DSL
 end
 
 Shoulda::Matchers.configure do |config|

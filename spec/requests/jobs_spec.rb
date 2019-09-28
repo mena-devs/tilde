@@ -38,5 +38,44 @@ RSpec.describe "Jobs", type: :request do
       expect(response).to have_http_status(302)
       expect(response.header['location']).to include('/profile/edit')
     end
+
+    it "should validate required fields" do
+      sign_in user
+      visit new_job_path
+
+      fill_in 'Job title', with: 'Test Title'
+      fill_in 'URL to apply to job',  with: 'https://example.com/jobs/1'
+      fill_in 'Description',  with: 'Lorem ipsum'
+
+      click_on 'Save and continue'
+      expect(page).to have_content('Please review the problems below')
+      expect(page).to have_content('Company name can\'t be blank')
+      expect(page).to have_content('Employment type can\'t be blank')
+      expect(page).to have_content('Experience can\'t be blank')
+      expect(page).to have_content('From salary can\'t be blank')
+    end
+
+    it "should save job if all required fields are filled" do
+      sign_in user
+      visit new_job_path
+
+      fill_in 'Job title', with: 'Test Title'
+      fill_in 'URL to apply to job',  with: 'https://example.com/jobs/1'
+      fill_in 'Description',  with: 'Lorem ipsum'
+      fill_in 'Company name',  with: 'Company name'
+      select('Part time', :from => 'Employment type')
+      select('Associate', :from => 'Experience')
+      fill_in 'Starting salary',  with: '1000'
+      select('Per month', :from => 'Payment term')
+      select('United States Dollar (USD)', :from => 'Currency')
+
+      click_on 'Save and continue'
+      
+      expect(page).to have_content('Job post was successfully created.')
+
+      expect(page).to have_content('Test Title')
+      
+      expect(page).to have_content('By: ' + user.name)
+    end
   end
 end

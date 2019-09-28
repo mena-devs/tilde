@@ -1,30 +1,14 @@
-<%# Notice %>
-<%# if flash[:notice].present? %>
+<% if flash && (flash[:notice].present? || flash[:error].present?) %>
   <section id="content">
     <div class="content-wrap">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="style-msg successmsg">
-              <div class="sb-msg"><%= flash[:notice] %></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-<%# end %>
-
-<%# Alert %>
-<% if flash[:alert].present? %>
-  <section id="content">
-    <div class="content-wrap">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="style-msg errormsg">
-              <div class="sb-msg"><%= flash[:alert] %></div>
-            </div>
+            <% flash.each do |key, value| %>
+              <div class="<%= flash_class(key) %>">
+                <div class="sb-msg"><%= value %></div>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
