@@ -76,6 +76,29 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content('Test Title')
       
       expect(page).to have_content('By: ' + user.name)
+    
+      expect(page).to have_content('Submit for approval')
+      expect(page).to have_content('Edit')
+    end
+  end
+
+  describe "GET /jobs/show" do
+    before do
+      @profile = create(:profile, user: user)
+      @job = create(:job, user: user, aasm_state: 'draft')
+    end
+    
+    it "should allow submitting a draft job for approval" do
+      sign_in user
+      visit(job_path(@job))
+
+      expect(page).to have_content(@job.title)
+
+      click_on 'Submit for approval'
+      
+      expect(page).to have_content('Job post was successfully submitted for approval before made public.')
+      expect(page).to have_content('By: ' + user.name)
+      expect(page).to have_content('Statistics')
     end
   end
 end
