@@ -145,4 +145,30 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content(member.name)
     end
   end
+
+  describe "POST /jobs/:id/approve" do
+    before do
+      @pending_job = create(:job, user: user, aasm_state: 'under_review')
+      @profile = create(:profile, user: admin)
+    end
+    
+    it "should allow admin to approve pending job" do
+      sign_in admin
+      visit(job_path(@pending_job))
+      
+      # Stub notifier method
+      allow(NotifierWorker).to receive(:perform_async).and_return(true)
+      
+      expect(page).to have_content(@pending_job.title)
+      # not approved yet
+      expect(page).to_not have_content('Tell a friend')
+      
+      click_on('Approve (as admin)', match: :first)
+
+      expect(page).to have_content('The job is now live.')
+      expect(page).to have_button('Take down (as admin)')
+      expect(page).to have_content('Tell a friend')
+      expect(page).to have_content('Statistics')
+    end
+  end
 end
