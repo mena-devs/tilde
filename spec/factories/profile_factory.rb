@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :profile do
     user
-    nickname                          { 'kewl perzon' }
+    sequence(:nickname)               { |n| "kewl-perzon-#{n}" }
     location                          { 'LB' }
     receive_emails                    { false }
     receive_job_alerts                { false }
