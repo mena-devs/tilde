@@ -4,7 +4,9 @@ RSpec.describe "Jobs", type: :request do
   include Devise::Test::IntegrationHelpers
 
   let(:user) { create(:user) }
+  let(:admin) { create(:user, admin: true) }
   let(:user_without_profile) { create(:user) }
+  let(:member) { create(:user) }
 
   describe "GET /jobs" do
     before(:each) do
@@ -99,6 +101,48 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content('Job post was successfully submitted for approval before made public.')
       expect(page).to have_content('By: ' + user.name)
       expect(page).to have_content('Statistics')
+    end
+  end
+
+  describe "GET /jobs/show" do
+    before do
+      @job = create(:job, user: user)
+    end
+    
+    it "should allow anonymous viewing of a job" do
+      visit(job_path(@job))
+
+      expect(page).to have_content(@job.title)
+      expect(page).to have_content('Tell a friend')
+      expect(page).to_not have_content('Statistics')
+    end
+
+    it "should log statistics for logged in members" do
+      assert @job.job_statistics.count, 0
+      sign_in member
+      visit(job_path(@job))
+      
+      expect(page).to have_content(@job.title)
+      expect(page).to_not have_content('Statistics')
+      assert @job.job_statistics.count, 1
+    end
+
+    it "should show job statistics to Job Owner" do
+      sign_in user
+      visit(job_path(@job))
+      
+      expect(page).to have_content(@job.title)
+      expect(page).to have_content('Statistics')
+      expect(page).to have_content(member.name)
+    end
+
+    it "should show job statistics to ADMINS" do
+      sign_in admin
+      visit(job_path(@job))
+      
+      expect(page).to have_content(@job.title)
+      expect(page).to have_content('Statistics')
+      expect(page).to have_content(member.name)
     end
   end
 end
