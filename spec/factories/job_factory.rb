@@ -14,7 +14,7 @@ FactoryBot.define do
     external_link                 { 'https://example.com/job' }
     country                       { 'lb' }
     remote                        { false }
-    sequence(:custom_identifier)  { |n| "job-listing-#{n}" }
+    custom_identifier             { '' }
     posted_on                     { Time.now }
     expires_on                    { Time.now }
     posted_to_slack               { false }
@@ -33,6 +33,6 @@ FactoryBot.define do
     education                     { 'professional' }
     payment_term                  { 'per_month' }
     twitter_handle                { '@twitter' }
-    sequence(:slug)               { |n| "job-#{n}" }
+    slug                          { '' }
   end
 end
