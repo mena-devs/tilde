@@ -51,12 +51,6 @@ group :production do
   gem 'unicorn-worker-killer'
 end
 
-group :development, :test do
-  gem 'database_cleaner'
-  gem 'rspec-rails', '~> 3.5'
-  gem 'factory_bot_rails'
-end
-
 group :development do
   gem 'annotate', '>= 2.7.0', require: false
   gem 'awesome_print'
@@ -100,4 +94,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
+end
+
+group :development, :test do
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_bot_rails'
 end

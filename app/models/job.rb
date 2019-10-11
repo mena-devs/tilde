@@ -51,7 +51,7 @@ class Job < ApplicationRecord
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
       success do
         # inform admins that there is a job post to be approved
-        JobMailer.new_job(self.id).deliver
+        JobMailer.new_job(self.id).deliver_later
       end
     end
 
@@ -93,8 +93,8 @@ class Job < ApplicationRecord
   validates :employment_type, presence: true
   validates :experience, presence: true
   validates :from_salary, presence: true
-  validates :currency, presence: true, :if => Proc.new { |j| !j.from_salary.blank? }
-  validates :payment_term, presence: true, :if => Proc.new { |j| !j.from_salary.blank? }
+  validates :currency, presence: true, :if => Proc.new { |j| j.salary_is_set? }
+  validates :payment_term, presence: true, :if => Proc.new { |j| j.salary_is_set? }
 
   validates :external_link, url: true
   validates :apply_email, email: true
@@ -113,6 +113,10 @@ class Job < ApplicationRecord
   scope :user_jobs, -> (user) { where(user_id: user.id) }
   scope :all_approved, -> { where(aasm_state: 'approved') }
   scope :live, -> { where.not(:posted_on => nil) }
+
+  def salary_is_set?
+    self.from_salary.blank? ? false : true
+  end
 
   def location_name
     country_name = ""

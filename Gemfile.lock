@@ -445,6 +445,8 @@ GEM
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
       rspec-mocks (~> 3.8.0)
+    rspec-collection_matchers (1.2.0)
+      rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.8.2)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.4)
@@ -628,6 +630,7 @@ DEPENDENCIES
   rails-controller-testing
   rb-fsevent
   redis-namespace
+  rspec-collection_matchers
   rspec-rails (~> 3.5)
   rubocop
   sass-rails (~> 5.0)

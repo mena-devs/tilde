@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :job do
-    aasm_state                    { 'approved' }
+    aasm_state                    { 'draft' }
     sequence(:title)              { |n| "title-#{n}" }
     description                   { 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
                                       Nunc pretium non ex nec dignissim. Vivamus in malesuada ante. \
