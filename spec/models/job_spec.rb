@@ -40,24 +40,6 @@ RSpec.describe Job, type: :model do
     it { should validate_presence_of :title }
     it { should validate_presence_of :employment_type }
     it { should validate_presence_of :experience }
-
-    # context "from_salary is set" do
-    #   before do
-    #     job.from_salary = 1000
-    #     job.to_salary = 1100
-    #     job.save
-    #   end
-
-    #   it { should validate_presence_of :currency }
-    #   it { should validate_presence_of :payment_term }
-    # end
-
-    # context "from_salary is not set" do
-    #   before { job.from_salary = nil }
-
-    #   it { should_not validate_presence_of :currency }
-    #   it { should_not validate_presence_of :payment_term }
-    # end
   end
 
   describe "State transitions" do
@@ -107,6 +89,14 @@ RSpec.describe Job, type: :model do
 
     it 'should raise an error on invalid transition' do
       expect { approved_job.request_approval! }.to raise_error(AASM::InvalidTransition, /cannot transition from/)
+    end
+  end
+
+  describe "find country" do
+    let(:job) { create(:job, country: 'LB') }
+
+    it "should return a valid country name" do
+      expect(job.location_name).to eq('Lebanon')
     end
   end
 end
