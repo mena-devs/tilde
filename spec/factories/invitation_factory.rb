@@ -9,7 +9,7 @@ FactoryBot.define do
     invitee_introduction { 'lorem ipsum' }
     delivered            { false }
     registered           { false }
-    code_of_conduct      { true }
+    code_of_conduct      { false }
     member_application   { true }
     created_at           { Time.now }
     updated_at           { Time.now }

@@ -59,10 +59,9 @@ class Invitation < ApplicationRecord
 
   belongs_to :user
 
-  # TODO: DRY up boolean method
-  validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
-  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
-  validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
+  validates :invitee_email, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
+  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.invitee_is_member? }
+  validates :invitee_name, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
   validates :invitee_email, email: true
 
   validates_with CodeOfConductValidator
@@ -71,6 +70,10 @@ class Invitation < ApplicationRecord
 
   def self.has_pending_invitation_to_join_slack(email)
     where(invitee_email: email).exists?
+  end
+
+  def invitee_is_member?
+    member_application == true
   end
 
   def invitee_location_name
@@ -103,11 +106,11 @@ class Invitation < ApplicationRecord
 
   private
     def new_invite_notify_administrators
-      InvitationMailer.new_slack_invitation(self.id).deliver
+      InvitationMailer.new_slack_invitation(self.id).deliver_later
     end
 
     def resend_invite_notify_administrators
-      InvitationMailer.resend_slack_invitation(self.id).deliver
+      InvitationMailer.resend_slack_invitation(self.id).deliver_later
     end
 
     def process_invitation_on_slack

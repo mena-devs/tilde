@@ -7,7 +7,7 @@ RSpec.describe "Invitations", type: :request do
 
   describe "GET /invitations" do
     before(:each) do
-      @invitation = create(:invitation, user: user)
+      @invitation = create(:invitation, user: user, code_of_conduct: true)
       sign_in user
     end
 
