@@ -10,8 +10,8 @@ RSpec.describe "Jobs", type: :request do
 
   describe "GET /jobs" do
     before(:each) do
-      @job = create(:job, user: user)
-      @unpublished_job = create(:job, user: user, aasm_state: 'draft')
+      @job = create(:job, user: user, aasm_state: 'approved')
+      @unpublished_job = create(:job, user: user)
     end
 
     it "should list all published jobs" do
@@ -106,7 +106,7 @@ RSpec.describe "Jobs", type: :request do
 
   describe "GET /jobs/show" do
     before do
-      @job = create(:job, user: user)
+      @job = create(:job, user: user, aasm_state: 'approved')
     end
     
     it "should allow anonymous viewing of a job" do

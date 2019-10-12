@@ -32,7 +32,7 @@ FactoryBot.define do
     currency                      { 'USD' }
     education                     { 'professional' }
     payment_term                  { 'per_month' }
-    twitter_handle                { '@twitter' }
-    slug                          { '' }
+    twitter_handle                { '@MENAdevs' }
+    sequence(:slug)               { |n| "job-title-#{n}" }
   end
 end
