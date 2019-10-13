@@ -58,9 +58,7 @@ class Profile < ApplicationRecord
 
   def reload_avatar_from_slack
     if self.user.uid.blank?
-      avatar_from_slack = nil
-      avatar_from_slack_imported = false
-      save
+      update(avatar_from_slack: "", avatar_from_slack_imported: false)
     else
       # Clear previous avatar data
       self.avatar.clear

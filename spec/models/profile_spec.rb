@@ -41,6 +41,31 @@ RSpec.describe Profile, type: :model do
     end
   end
 
+  describe "#reload_avatar_from_slack" do
+    let(:incomplete_user) { create(:user, uid: "") }
+    let(:incomplete_profile) { create(:profile, user: incomplete_user) }
+    let(:profile) { create(:profile) }
+
+    it "should clear avatar from Slack fields if user is not Slack member" do
+      expect(incomplete_profile.avatar_from_slack).to eq('my_profile_picture.png')
+      expect(incomplete_profile.avatar_from_slack_imported).to eq(true)
+      
+      expect(incomplete_profile.reload_avatar_from_slack).to be(true)
+
+      expect(incomplete_profile.avatar_from_slack).to eq('')
+      expect(incomplete_profile.avatar_from_slack_imported).to eq(false)
+    end
+
+    it "should import user's avatar from Slack if user is a Slack member" do
+    end
+  end
+
+  describe "#download_slack_avatar" do
+    let(:profile) { create(:profile) }
+
+
+  end
+
   describe "#location_name" do
     let(:profile) { create(:profile) }
 
