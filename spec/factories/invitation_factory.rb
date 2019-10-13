@@ -5,7 +5,7 @@ FactoryBot.define do
     sequence(:invitee_email) { |n| "user-#{n}@example.com" }
     invitee_title        { 'Mr' }
     invitee_company      { 'NASA' }
-    invitee_location     { 'LB' }
+    invitee_location     { 'FR' }
     invitee_introduction { 'lorem ipsum' }
     delivered            { false }
     registered           { false }
@@ -15,7 +15,7 @@ FactoryBot.define do
     updated_at           { Time.now }
     slack_uid            { 'ajshasd' }
     medium               { '' }
-    aasm_state           { '' }
+    aasm_state           { 'not_sent' }
     retries              { 0 }
   end
 end

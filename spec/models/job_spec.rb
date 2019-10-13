@@ -92,11 +92,16 @@ RSpec.describe Job, type: :model do
     end
   end
 
-  describe "find country" do
-    let(:job) { create(:job, country: 'LB') }
+  describe "#location_name" do
+    let(:job) { create(:job, country: 'FR') }
 
     it "should return a valid country name" do
-      expect(job.location_name).to eq('Lebanon')
+      expect(job.location_name).to eq('France')
+    end
+
+    it "should return an empty string if invalid country" do
+      job.update(country: '')
+      expect(job.location_name).to eq('')
     end
   end
 end

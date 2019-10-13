@@ -76,15 +76,6 @@ class Invitation < ApplicationRecord
     member_application == true
   end
 
-  def invitee_location_name
-    if self.invitee_location?
-      country = ISO3166::Country[self.invitee_location]
-      country.translations[I18n.locale.to_s] || country.name
-    else
-      'Lebanon'
-    end
-  end
-
   def process_invitation
     process_invitation_on_slack
   end
@@ -96,12 +87,14 @@ class Invitation < ApplicationRecord
   end
 
   def location_name
+    country_name = "Not set"
+
     unless invitee_location.blank?
       country = ISO3166::Country[invitee_location]
-      (country.translations[I18n.locale.to_s] || country.name) if country
-    else
-      "Not set"
+      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
     end
+
+    country_name
   end
 
   private
