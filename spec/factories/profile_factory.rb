@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :profile do
     user
     sequence(:nickname)               { |n| "kewl-perzon-#{n}" }
-    location                          { 'LB' }
+    location                          { 'FR' }
     receive_emails                    { false }
     receive_job_alerts                { false }
     biography                         { 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. \

@@ -49,7 +49,11 @@ class Profile < ApplicationRecord
   end
 
   def profile_picture
-    return 'profile_picture_default.png' if avatar_from_slack
+    if avatar_from_slack.blank?
+      return 'profile_picture_default.png'
+    else
+      return avatar_from_slack
+    end
   end
 
   def reload_avatar_from_slack
@@ -92,11 +96,13 @@ class Profile < ApplicationRecord
   end
 
   def location_name
+    country_name = "Not set"
+
     unless location.blank?
       country = ISO3166::Country[location]
-      (country.translations[I18n.locale.to_s] || country.name) if country
-    else
-      "Not set yet"
+      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
     end
+
+    country_name
   end
 end
