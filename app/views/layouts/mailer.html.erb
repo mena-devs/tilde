@@ -402,8 +402,8 @@
                       <td class="headerContent" id="social">
 
                         <!-- // Begin Module: Standard Header Image \\ -->
-                        <%= link_to(AppSettings.application_host)do %>
-                          <img src="<%= AppSettings.application_host %>/public/menadevs_logo.png" style="max-width:150px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" mc:allowdesigner mc:allowtext />
+                        <%= link_to(AppSettings.application_host) do %>
+                          <%= image_tag('menadevs_logo.png', style: "max-width:150px;", id: "headerImage campaign-icon",  options: "mc:label='header_image' mc:edit='header_image' mc:allowdesigner mc:allowtext") %>
                         <% end %>
                         <!-- // End Module: Standard Header Image \\ -->
 

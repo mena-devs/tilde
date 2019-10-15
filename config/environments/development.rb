@@ -32,8 +32,9 @@ Rails.application.configure do
   # Ensure mailer works in development.
   config.action_mailer.delivery_method = :letter_opener_web
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'localhost',
-                                               port: 3000 }
+  config.action_mailer.default_url_options = { host: AppSettings.application_host,
+                                               port: 3000,
+                                               protocol: 'http' }
   config.action_mailer.asset_host = AppSettings.application_host
 
   config.action_mailer.perform_caching = false
