@@ -1,1 +1,0 @@
-User.email_notifications("MENA Devs Build Night #4 - get your tickets now!")
