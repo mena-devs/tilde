@@ -219,6 +219,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.email_notifications(subject)
+    User.job_alert_subscribers.each do |user|
+      NotificationsMailer.announcement(user.id, subject).deliver_later
+    end
+  end
+
   private
     def generate_unique_user_id
       self.custom_identifier = Digest::SHA1.hexdigest(Time.now.to_s + rand(12341234).to_s + "#{self.email}")[1..24]
