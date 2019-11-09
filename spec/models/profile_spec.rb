@@ -57,13 +57,24 @@ RSpec.describe Profile, type: :model do
     end
 
     it "should import user's avatar from Slack if user is a Slack member" do
+      slack_user_info = file_fixture("slack_user_info.json").read
+      slack_user_image = file_fixture("slack_profile_picture.png")
+      json = JSON.parse(slack_user_info)
+
+      allow(SlackApi).to receive(:get_user_info).and_return(json)
+      allow(profile).to receive(:download_slack_avatar).and_return(true)
+      expect(profile.reload_avatar_from_slack).to be(true)
     end
   end
 
   describe "#download_slack_avatar" do
     let(:profile) { create(:profile) }
 
-
+    it "should import user's avatar from Slack if user is a Slack member" do
+      slack_user_image = file_fixture("slack_profile_picture.png")
+      allow(URI).to receive(:parse).with(anything()).and_return(slack_user_image)
+      expect(profile.download_slack_avatar).to be(true)
+    end
   end
 
   describe "#location_name" do
@@ -76,6 +87,18 @@ RSpec.describe Profile, type: :model do
     it "should return an empty string if invalid country" do
       profile.update(location: '')
       expect(profile.location_name).to eq('Not set')
+    end
+  end
+
+  describe "#active_interests" do
+    let(:profile) { create(:profile) }
+
+    it "should return a list of active interests" do
+      expect(profile.active_interests).to eq({"collaborate_on_a_project"=>"1", "to_mentor_someone"=>"1"})
+    end
+
+    it "should return a list of all interests" do
+      expect(profile.interests).to eq({"a_new_role"=>"0", "collaborate_on_a_project"=>"1", "freelance"=>"0", "to_mentor_someone"=>"1"})
     end
   end
 end

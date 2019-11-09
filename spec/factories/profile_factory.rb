@@ -20,7 +20,7 @@ FactoryBot.define do
     avatar_from_slack_imported        { true }
     avatar_from_slack_updated_at      { Time.now }
     sequence(:title)                  { |n| "job-listing-#{n}" }
-    interests                         { 'collaborate_on_a_project, freelance' }
+    interests                         { { "a_new_role"=>"0", "collaborate_on_a_project"=>"1", "freelance"=>"0", "to_mentor_someone"=>"1" } }
     sequence(:company_name)           { |n| "company-name-#{n}" }
     twitter_handle                    { 'twitter' }
   end

@@ -68,7 +68,7 @@ class Profile < ApplicationRecord
       avatar_from_slack = user_info_from_slack['user']['profile']['image_original']
 
       # Download Slack profile picture from Slack CDN
-      download_slack_avatar(user_info_from_slack['user']['profile']['image_original'])
+      download_slack_avatar(avatar_from_slack)
     end
   end
 
