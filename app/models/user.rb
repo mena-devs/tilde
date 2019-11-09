@@ -92,7 +92,7 @@ class User < ApplicationRecord
 
       return self
     rescue Exception => e
-      logger.error("An error that has occured while intialising a user from Slack --")
+      logger.error("An error has occured while intialising a user from Slack")
       logger.error(e)
       raise e
     end
@@ -144,8 +144,6 @@ class User < ApplicationRecord
     if user.blank?
       user = User.where(provider: auth.provider, uid: auth.uid).first
 
-      logger.info(">>>> Found user #{user.inspect} <<<<") if user
-
       if user.blank?
         user = User.new
         user = user.new_from_slack_oauth(auth)
@@ -153,13 +151,11 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.active = true
         user.save
-        logger.info(">>>> Created new user #{user.inspect} <<<<")
       end
     else
       user.update(provider: auth.provider,
                   uid: auth.uid,
                   auth_token: auth.credentials.token)
-      logger.info(">>>> User #{auth.info.email} logged in <<<<")
     end
 
     user
