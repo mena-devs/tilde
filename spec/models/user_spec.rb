@@ -26,8 +26,10 @@ RSpec.describe User, type: :model do
 
   describe "New user from Slack" do
     it "should create a user from Slack" do
+      allow(AppSettings).to receive(:slack_team_id).and_return(1234)
+
       info_hash = OmniAuth::AuthHash::InfoHash.new( { uid: 12344, provider: 'slack',
-                                                      info: { team_id: 'T03B400RJ',
+                                                      info: { team_id: AppSettings.slack_team_id,
                                                               email: 'user@example.com',
                                                               first_name: 'user',
                                                               last_name: 'one',
@@ -44,8 +46,10 @@ RSpec.describe User, type: :model do
 
   describe "New user from OAuth" do
     it "should instantiate a user from an incoming hash" do
+      allow(AppSettings).to receive(:slack_team_id).and_return(1234)
+
       info_hash = OmniAuth::AuthHash::InfoHash.new( { uid: 12344, provider: 'slack',
-                                                      info: { team_id: 'T03B400RJ',
+                                                      info: { team_id: AppSettings.slack_team_id,
                                                               email: 'user@example.com',
                                                               first_name: 'user',
                                                               last_name: 'one',
