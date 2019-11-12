@@ -92,8 +92,7 @@ class User < ApplicationRecord
 
       return self
     rescue Exception => e
-      logger.error("An error has occured while intialising a user from Slack")
-      logger.error(e)
+      logger.error("An error has occured while intialising a user from Slack: {e}")
       raise e
     end
   end
@@ -116,8 +115,8 @@ class User < ApplicationRecord
 
       return user
     rescue Exception => e
-      logger.error("An error that has occured while creating a user from token --")
-      logger.error(e)
+      logger.error("An error that has occured while creating a user from token: {e}")
+      raise e
     end
   end
 

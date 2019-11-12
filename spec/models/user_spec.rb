@@ -72,6 +72,30 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "#new_from_slack_token" do
+    before do
+      slack_user_info = file_fixture("slack_user_info.json").read
+      @slack_user_info = JSON.parse(slack_user_info)
+    end
+
+    it "should instantiate a valid user from an incoming hash" do
+      expect_any_instance_of(Profile).to receive(:download_slack_avatar).and_return(true)
+      user = User.new_from_slack_token(@slack_user_info)
+      expect(user).to be_a_kind_of(User)
+      expect(user.profile).to be_a_kind_of(Profile)
+      expect(user.valid?).to be(true)
+    end
+
+    it "should instantiate an invalid user from an incoming hash" do
+      @slack_user_info['user']['profile']['email'] = 'asdfasdfasd'
+
+      user = User.new_from_slack_token(@slack_user_info)
+      expect(user).to be_a_kind_of(User)
+      expect(user.profile).to be(nil)
+      expect(user.valid?).to be(false)
+    end
+  end
+
   describe "#find_user_by_slack_uid" do
     let(:user) { create(:user)}
 

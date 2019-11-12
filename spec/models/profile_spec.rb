@@ -73,7 +73,13 @@ RSpec.describe Profile, type: :model do
     it "should import user's avatar from Slack if user is a Slack member" do
       slack_user_image = file_fixture("slack_profile_picture.png")
       allow(URI).to receive(:parse).with(anything()).and_return(slack_user_image)
-      expect(profile.download_slack_avatar).to be(true)
+      expect(profile.download_slack_avatar('https://api.slack.com')).to be(true)
+      expect(profile.avatar_from_slack_imported).to be(true)
+      expect(profile.avatar_from_slack_updated_at).not_to be(nil)
+    end
+
+    it "should return false if avatar URL is missing" do
+      expect(profile.download_slack_avatar('')).to be(false)
     end
   end
 
