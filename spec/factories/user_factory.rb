@@ -15,7 +15,7 @@ FactoryBot.define do
     confirmation_sent_at   { '' }
     unconfirmed_email      { '' }
     provider               { '' }
-    uid                    { 'user-01' }
+    sequence(:uid)         { |n| "#{n}" }
     auth_token             { '' }
     first_name             { 'user' }
     last_name              { 'one' }

@@ -179,10 +179,12 @@ class User < ApplicationRecord
                                      nickname: user_info['profile']['display_name'],
                                      title: user_info['profile']['title'])
         profile.download_slack_avatar(user_info['profile']['image_original'])
-
-        user.save
       end
+
+      return user.save
     end
+    
+    return false
   end
 
   def name

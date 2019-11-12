@@ -24,43 +24,6 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#from_omniauth" do
-    before do
-      allow(AppSettings).to receive(:slack_team_id).and_return(1234)
-      @info_hash = OmniAuth::AuthHash::InfoHash.new( { uid: 12344, provider: 'slack',
-                                                      info: { team_id: AppSettings.slack_team_id,
-                                                              email: 'user@example.com',
-                                                              first_name: 'user',
-                                                              last_name: 'one',
-                                                              time_zone: 'Europe/Amsterdam'
-                                                            },
-                                                      credentials: { token: 'asdasdsdsdads'} } )
-    end
-
-    let(:existing_user) { create(:user)}
-
-    it "should create a new user from Slack" do
-      expect {
-        @user = User.from_omniauth(@info_hash)
-      }.to change {
-        User.count
-      }.by (1)
-
-      expect(@user).to be_a_kind_of(User)
-      expect(@user.email).to eq('user@example.com')
-      expect(@user.active).to be(true)
-    end
-
-    it "should reload existing user from database" do
-      @info_hash[:info][:email] = existing_user.email
-      expect {
-        User.from_omniauth(@info_hash)
-      }.to_not change {
-        User.count
-      }
-    end
-  end
-
   describe "#new_from_slack_oauth" do
     before do
       allow(AppSettings).to receive(:slack_team_id).and_return(1234)
@@ -106,6 +69,97 @@ RSpec.describe User, type: :model do
       expect(user.new_from_slack_oauth(info_hash)).to be_a_kind_of(User)
       expect(user).to_not be_valid
       expect(user.profile).to be_nil
+    end
+  end
+
+  describe "#find_user_by_slack_uid" do
+    let(:user) { create(:user)}
+
+    before do
+      allow(AppSettings).to receive(:slack_team_id).and_return(1234)
+    end
+
+    it "should return user object if found" do
+      expect(User.find_user_by_slack_uid(user.uid)).to be_a_kind_of(User)
+    end
+
+    it "should instantiate a user if Slack ID is not found" do
+      info_hash = OmniAuth::AuthHash::InfoHash.new( { uid: 12344, provider: 'slack',
+      info: { team_id: AppSettings.slack_team_id,
+              email: 'userbluemoon',
+              first_name: 'user',
+              last_name: 'one',
+              time_zone: 'Europe/Amsterdam'
+            },
+      credentials: { token: 'asdasdsdsdads'} } )
+
+      allow(SlackApi).to receive(:get_user_info).and_return(info_hash)
+
+      expect {
+        @user = User.find_user_by_slack_uid(user.uid)
+      }.to change {
+        User.count
+      }.by (1)
+
+      expect(@user.confirmed?).to be(true)
+    end
+  end
+
+  describe "#from_omniauth" do
+    before do
+      allow(AppSettings).to receive(:slack_team_id).and_return(1234)
+      @info_hash = OmniAuth::AuthHash::InfoHash.new( { uid: 12344, provider: 'slack',
+                                                      info: { team_id: AppSettings.slack_team_id,
+                                                              email: 'user@example.com',
+                                                              first_name: 'user',
+                                                              last_name: 'one',
+                                                              time_zone: 'Europe/Amsterdam'
+                                                            },
+                                                      credentials: { token: 'asdasdsdsdads'} } )
+    end
+
+    let(:existing_user) { create(:user)}
+
+    it "should create a new user from Slack" do
+      expect {
+        @user = User.from_omniauth(@info_hash)
+      }.to change {
+        User.count
+      }.by (1)
+
+      expect(@user).to be_a_kind_of(User)
+      expect(@user.email).to eq('user@example.com')
+      expect(@user.active).to be(true)
+    end
+
+    it "should reload existing user from database" do
+      @info_hash[:info][:email] = existing_user.email
+      expect {
+        User.from_omniauth(@info_hash)
+      }.to_not change {
+        User.count
+      }
+    end
+  end
+
+  describe "#update_user_from_slack" do
+    before do
+      slack_user_info = file_fixture("slack_user_info.json").read
+      @slack_user_info = JSON.parse(slack_user_info)["user"]
+    end
+
+    let(:existing_user) { create(:user) }
+
+    it "should create a new user from Slack information" do
+      expect_any_instance_of(Profile).to receive(:download_slack_avatar).and_return(true)
+
+      expect(User.update_user_from_slack(@slack_user_info)).to be(true)
+    end
+
+    it "should not create a new user" do
+      @slack_user_info["profile"]["email"] = existing_user.email
+
+      expect(User.update_user_from_slack(@slack_user_info)).to be(false)
     end
   end
 end
