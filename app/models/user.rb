@@ -188,7 +188,7 @@ class User < ApplicationRecord
   end
 
   def name
-    if self.first_name.nil? && self.last_name.nil?
+    if self.first_name.blank? && self.last_name.blank?
       return ""
     else
       self.first_name + ' ' + self.last_name
