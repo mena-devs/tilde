@@ -70,9 +70,9 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
-    annotate (3.0.2)
+    annotate (3.0.3)
       activerecord (>= 3.2, < 7.0)
-      rake (>= 10.4, < 13.0)
+      rake (>= 10.4, < 14.0)
     api-pagination (4.8.2)
     arel (8.0.0)
     ast (2.4.0)
@@ -234,7 +234,7 @@ GEM
       faraday (>= 0.7.4, < 1.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
-    ffi (1.11.1)
+    ffi (1.11.2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     formatador (0.2.5)
@@ -334,7 +334,7 @@ GEM
     mimemagic (0.3.3)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    mini_racer (0.2.6)
+    mini_racer (0.2.8)
       libv8 (>= 6.9.411)
     minitest (5.13.0)
     multi_json (1.14.1)
@@ -430,7 +430,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (3.0.0)
     raindrops (0.19.0)
-    rake (12.3.3)
+    rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.0)
       ffi (~> 1.0)
@@ -635,7 +635,7 @@ DEPENDENCIES
   rails-controller-testing
   rb-fsevent
   redis-namespace
-  rspec-rails (~> 3.5)
+  rspec-rails (~> 3.9)
   rubocop
   sass-rails (~> 5.0)
   secure_headers (~> 3.0)

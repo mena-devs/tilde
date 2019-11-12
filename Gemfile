@@ -99,6 +99,6 @@ end
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.9'
   gem 'factory_bot_rails'
 end
