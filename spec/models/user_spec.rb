@@ -162,4 +162,12 @@ RSpec.describe User, type: :model do
       expect(User.update_user_from_slack(@slack_user_info)).to be(false)
     end
   end
+
+  describe "#name" do
+    let(:user_invalid_name) { create(:user, first_name: '') }
+
+    it "should return empty if not assigned" do
+      expect(user_invalid_name.name).to eql("")
+    end
+  end
 end
