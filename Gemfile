@@ -70,7 +70,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'overcommit', require: false
-  gem 'puma', '~> 3.0'
+  gem 'puma', '~> 3.12'
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
