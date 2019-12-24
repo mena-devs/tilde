@@ -39,3 +39,6 @@
 /config/deploy/*
 
 /provision/*.retry
+
+# Coverage
+coverage

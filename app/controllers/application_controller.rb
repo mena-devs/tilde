@@ -51,13 +51,14 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    def current_user
-      begin
-        @current_user ||= User.find_by_custom_identifier(session[:custom_identifier]) if session[:custom_identifier]
-      rescue ActiveRecord::RecordNotFound
-        nil
-      end
-    end
+    # def current_user
+    #   begin
+    #     puts @current_user.inspect
+    #     @current_user ||= User.find_by_custom_identifier(session[:custom_identifier]) if session[:custom_identifier]
+    #   rescue ActiveRecord::RecordNotFound
+    #     nil
+    #   end
+    # end
 
     def authenticate_with_token!
       auth_token = params[:auth_token].presence

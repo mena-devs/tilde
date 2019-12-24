@@ -7,7 +7,7 @@
       <%= fa_icon("check", text: "me") %>
     <% end %>
   </td>
-  <td><%= invitation.invitee_location_name %></td>
+  <td><%= invitation.location_name %></td>
   <td><%= display_invitation_state(invitation) %></td>
   <td><%= invitation.retries %></td>
   <td><%= invitation.updated_at.strftime("%d %b %Y") %></td>

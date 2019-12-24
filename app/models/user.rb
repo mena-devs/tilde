@@ -34,6 +34,8 @@
 class User < ApplicationRecord
   extend FriendlyId
 
+  attr_writer :login
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -90,8 +92,7 @@ class User < ApplicationRecord
 
       return self
     rescue Exception => e
-      logger.error("An error that has occured while intialising a user from Slack --")
-      logger.error(e)
+      logger.error("An error has occured while intialising a user from Slack: {e}")
       raise e
     end
   end
@@ -114,8 +115,8 @@ class User < ApplicationRecord
 
       return user
     rescue Exception => e
-      logger.error("An error that has occured while creating a user from token --")
-      logger.error(e)
+      logger.error("An error that has occured while creating a user from token: {e}")
+      raise e
     end
   end
 
@@ -142,8 +143,6 @@ class User < ApplicationRecord
     if user.blank?
       user = User.where(provider: auth.provider, uid: auth.uid).first
 
-      logger.info(">>>> Found user #{user.inspect} <<<<") if user
-
       if user.blank?
         user = User.new
         user = user.new_from_slack_oauth(auth)
@@ -151,13 +150,11 @@ class User < ApplicationRecord
         user.uid = auth.uid
         user.active = true
         user.save
-        logger.info(">>>> Created new user #{user.inspect} <<<<")
       end
     else
       user.update(provider: auth.provider,
                   uid: auth.uid,
                   auth_token: auth.credentials.token)
-      logger.info(">>>> User #{auth.info.email} logged in <<<<")
     end
 
     user
@@ -181,14 +178,16 @@ class User < ApplicationRecord
                                      nickname: user_info['profile']['display_name'],
                                      title: user_info['profile']['title'])
         profile.download_slack_avatar(user_info['profile']['image_original'])
-
-        user.save
       end
+
+      return user.save
     end
+    
+    return false
   end
 
   def name
-    if self.first_name.nil? && self.last_name.nil?
+    if self.first_name.blank? && self.last_name.blank?
       return ""
     else
       self.first_name + ' ' + self.last_name

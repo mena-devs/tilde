@@ -70,7 +70,7 @@ class JobsController < ApplicationController
     end
 
     if @job.save
-      redirect_to @job, notice: 'Job post was successfully created.'
+      redirect_to(@job, notice: 'Job post was successfully created.')
     else
       render :new
     end

@@ -59,10 +59,9 @@ class Invitation < ApplicationRecord
 
   belongs_to :user
 
-  # TODO: DRY up boolean method
-  validates :invitee_email, presence: true, unless: Proc.new { |member| member.member_application == true }
-  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.member_application == true }
-  validates :invitee_name, presence: true, unless: Proc.new { |member| member.member_application == true }
+  validates :invitee_email, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
+  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.invitee_is_member? }
+  validates :invitee_name, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
   validates :invitee_email, email: true
 
   validates_with CodeOfConductValidator
@@ -73,13 +72,8 @@ class Invitation < ApplicationRecord
     where(invitee_email: email).exists?
   end
 
-  def invitee_location_name
-    if self.invitee_location?
-      country = ISO3166::Country[self.invitee_location]
-      country.translations[I18n.locale.to_s] || country.name
-    else
-      'Lebanon'
-    end
+  def invitee_is_member?
+    member_application == true
   end
 
   def process_invitation
@@ -93,21 +87,23 @@ class Invitation < ApplicationRecord
   end
 
   def location_name
+    country_name = "Not set"
+
     unless invitee_location.blank?
       country = ISO3166::Country[invitee_location]
-      (country.translations[I18n.locale.to_s] || country.name) if country
-    else
-      "Not set"
+      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
     end
+
+    country_name
   end
 
   private
     def new_invite_notify_administrators
-      InvitationMailer.new_slack_invitation(self.id).deliver
+      InvitationMailer.new_slack_invitation(self.id).deliver_later
     end
 
     def resend_invite_notify_administrators
-      InvitationMailer.resend_slack_invitation(self.id).deliver
+      InvitationMailer.resend_slack_invitation(self.id).deliver_later
     end
 
     def process_invitation_on_slack

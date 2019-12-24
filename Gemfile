@@ -6,7 +6,7 @@ gem 'activerecord-session_store'
 gem 'api-pagination'
 gem 'autoprefixer-rails', '>= 9.0.0.0'
 gem 'bcrypt', '~> 3.1.7'
-gem 'bootstrap_form', '~> 2.3'
+gem 'bootstrap_form', '~> 2.7'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootscale', require: false
 gem 'buffer'
@@ -16,6 +16,7 @@ gem 'country_select'
 gem 'devise', '>= 4.7.1'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'draper'
+gem 'erubis'
 gem 'fast_jsonapi'
 gem 'font-awesome-rails'
 gem 'friendly_id', '~> 5.1.0'
@@ -32,7 +33,7 @@ gem 'nested_form'
 gem 'omniauth-slack'
 gem 'paranoia', '~> 2.2'
 gem 'paperclip', '~> 5.2.0'
-gem 'pg', '~> 0.18'
+gem 'pg'
 gem 'pgcli-rails'
 gem 'rails', '~> 5.1.6'
 gem 'redis-namespace'
@@ -40,10 +41,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 5.2.0'
 gem 'slack-notifier'
+
 gem 'tinymce-rails', '>= 4.9.2'
 gem 'whenever', require: false
 
-group :production, :staging do
+group :production do
   gem 'exception_notification'
   gem 'postmark-rails'
   gem 'unicorn'
@@ -74,7 +76,6 @@ group :development do
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
-  gem 'simplecov', require: false
   gem 'sitemap_generator'
   gem 'spring'
   gem 'sshkit', '~> 1.8', require: false
@@ -87,11 +88,17 @@ end
 group :test do
   gem 'capybara'
   gem 'connection_pool'
+  gem 'guard-rspec'
+  gem 'faker'
   gem 'launchy'
-  gem 'minitest-capybara'
-  gem 'minitest-reporters'
-  gem 'mocha'
-  gem 'poltergeist'
-  gem 'shoulda-context'
-  gem 'shoulda-matchers', '>= 3.0.1'
+  gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
+  gem 'simplecov', require: false
+end
+
+group :development, :test do
+  gem 'database_cleaner'
+  gem 'rspec-rails', '~> 3.9'
+  gem 'factory_bot_rails'
 end

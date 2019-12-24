@@ -49,14 +49,16 @@ class Profile < ApplicationRecord
   end
 
   def profile_picture
-    return 'profile_picture_default.png' if avatar_from_slack
+    if avatar_from_slack.blank?
+      return 'profile_picture_default.png'
+    else
+      return avatar_from_slack
+    end
   end
 
   def reload_avatar_from_slack
     if self.user.uid.blank?
-      avatar_from_slack = nil
-      avatar_from_slack_imported = false
-      save
+      update(avatar_from_slack: "", avatar_from_slack_imported: false)
     else
       # Clear previous avatar data
       self.avatar.clear
@@ -66,12 +68,12 @@ class Profile < ApplicationRecord
       avatar_from_slack = user_info_from_slack['user']['profile']['image_original']
 
       # Download Slack profile picture from Slack CDN
-      download_slack_avatar(user_info_from_slack['user']['profile']['image_original'])
+      download_slack_avatar(avatar_from_slack)
     end
   end
 
   def download_slack_avatar(avatar_from_slack_url = nil)
-    return true if avatar_from_slack_url.blank?
+    return false if avatar_from_slack_url.blank?
 
     self.avatar = URI.parse(avatar_from_slack_url).open
     # Rename profile picture file from Slack
@@ -79,9 +81,9 @@ class Profile < ApplicationRecord
 
     begin
       # Flag avatar as imported from Slack
-      avatar_from_slack_imported = true
-      avatar_from_slack_updated_at = Time.now
-      save
+      self.avatar_from_slack_imported = true
+      self.avatar_from_slack_updated_at = Time.now
+      self.save
     rescue StandardError => e
       logger.error("An error occured while importing an avatar from Slack: #{e}")
     end
@@ -92,11 +94,13 @@ class Profile < ApplicationRecord
   end
 
   def location_name
+    country_name = "Not set"
+
     unless location.blank?
       country = ISO3166::Country[location]
-      (country.translations[I18n.locale.to_s] || country.name) if country
-    else
-      "Not set yet"
+      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
     end
+
+    country_name
   end
 end
