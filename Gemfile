@@ -13,7 +13,7 @@ gem 'buffer'
 gem 'coffee-rails', '~> 4.2'
 gem 'config'
 gem 'country_select'
-gem 'devise', git: 'https://github.com/plataformatec/devise.git', branch: 'master'
+gem 'devise', '>= 4.7.1'
 gem 'dotenv-rails', '>= 2.0.0'
 gem 'draper'
 gem 'erubis'
@@ -72,7 +72,7 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'overcommit', require: false
-  gem 'puma', '~> 3.10'
+  gem 'puma', '>= 3.12.2'
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
