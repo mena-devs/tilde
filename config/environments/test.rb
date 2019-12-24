@@ -34,6 +34,11 @@ Rails.application.configure do
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
 
+  # Ensure mailer works in test
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "192.168.33.11:3000" }
+  config.action_mailer.asset_host = "http://192.168.33.11:3000"
+
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
 

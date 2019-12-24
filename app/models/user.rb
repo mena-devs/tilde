@@ -218,8 +218,10 @@ class User < ApplicationRecord
     end
   end
 
-  def login
-    @login || self.email || self.custom_identifier
+  def self.email_notifications(subject)
+    User.job_alert_subscribers.each do |user|
+      NotificationsMailer.announcement(user.id, subject).deliver_later
+    end
   end
 
   private
