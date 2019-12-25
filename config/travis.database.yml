@@ -1,0 +1,9 @@
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: tilde_test
+  username: postgres
+  password: 
+  host: localhost
+  min_messages: WARNING
+  pool: 5

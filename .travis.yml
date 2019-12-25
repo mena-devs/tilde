@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.6.5
+env:
+  - DB=postgresql
+before_script:
+  - cp config/travis.database.yml config/database.yml
+  - psql -c 'create database tilde_test' -U postgres
