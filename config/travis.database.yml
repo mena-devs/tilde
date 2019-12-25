@@ -1,9 +1,9 @@
-test:
-  adapter: postgresql
-  encoding: utf8
-  database: tilde_test
-  username: postgres
-  password: 
-  host: localhost
-  min_messages: WARNING
+defaults: &defaults
   pool: 5
+  timeout: 5000
+  host: localhost
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
+
+test:
+  <<: *defaults
