@@ -41,6 +41,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 5.2.0'
 gem 'slack-notifier'
+gem 'sqlite3'
 
 gem 'tinymce-rails', '>= 4.9.2'
 gem 'whenever', require: false
