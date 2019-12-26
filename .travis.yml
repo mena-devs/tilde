@@ -4,8 +4,9 @@ rvm:
 services:
   - postgresql
 script:
-  - RAILS_ENV=test bundle exec rails db:migrate --trace
-  - bundle exec rails db:test:prepare
+  - bin/rails db:environment:set RAILS_ENV=test
+  - bin/rails db:test:prepare
+  - bin/rails db:migrate --trace RAILS_ENV=test
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/travis.database.yml config/database.yml
