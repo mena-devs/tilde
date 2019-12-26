@@ -11,4 +11,5 @@ script:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/travis.database.yml config/database.yml
+  - cp config/settings/test.yml.example config/settings/test.yml
   - cp example.env .env

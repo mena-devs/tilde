@@ -1,26 +1,34 @@
-application_host: ''
+application_name: 'MENAdevs'
+application_host: 'localhost'
 slack_web_hook_url: ''
 slack_app_client_id: ''
 slack_app_client_secret: ''
-slack_app_scopes: ''
+slack_app_scopes: 'users:read users:read.email'
 slack_token: ''
 slack_job_channel: ''
-slack_team_name: ''
+slack_team_name: 'mena developers'
 slack_team_id: ''
+buffer_access_token: ''
 
 mailgun_api_key: ''
 mailchimp_api_key: ''
-mail_host: ''
-mail_port: ''
-mail_domain: ''
-mail_username: ''
+mail_host: 'smtp.sparkpostmail.com'
+mail_port: '587'
+mail_domain: 'menadevs.com'
+mail_username: 'SMTP_Injection'
 mail_password: ''
-app_email: ''
-admin_email: ''
+app_email: 'email@example.com'
+admin_email: 'email@example.com'
 
 google_analytics_code: ''
 
 developers_emails:
   - email@example.com
 
-sender_email: email@example.com
+sender_email: 'email@example.com'
+
+meta_tags_keywords: 'web developer, mobile developer, software engineer,
+                    technical director, CIO, software developer,
+                    back-end developer, front-end developer,
+                    technical project manager, CTO, jobs, freelance,
+                    online community, lebanon, UAE, Egypt, Jordan, Syria'
