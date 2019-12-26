@@ -1,9 +1,3 @@
-defaults: &defaults
-  pool: 5
-  timeout: 5000
-  host: localhost
-  adapter: sqlite3
-  database: db/<%= Rails.env %>.sqlite3
-
 test:
-  <<: *defaults
+  adapter: postgresql
+  database: travis_ci_test

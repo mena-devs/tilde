@@ -5,6 +5,6 @@ if !AppSettings.slack_app_client_id.blank? && !AppSettings.slack_app_client_secr
              AppSettings.slack_app_client_secret,
              scope: AppSettings.slack_app_scopes
   end
-else
+elsif Rails.env.production? || Rails.env.development?
   raise Exception.new("Please configure /config/settings/*.yml with correct values")
 end

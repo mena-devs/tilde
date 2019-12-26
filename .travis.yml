@@ -1,7 +1,11 @@
 language: ruby
 rvm:
   - 2.6.5
-env:
-  - DB=sqlite
+services:
+  - postgresql
+script:
+  - RAILS_ENV=test bundle exec rails db:migrate --trace
+  - bundle exec rails db:test:prepare
 before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
   - cp config/travis.database.yml config/database.yml
