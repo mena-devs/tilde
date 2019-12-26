@@ -10,7 +10,7 @@ script:
   - bin/rails db:environment:set RAILS_ENV=test
   - bin/rails db:test:prepare
   - bin/rails db:migrate --trace RAILS_ENV=test
-  - bundle exec rails spec
+  - bundle exec rspec --format doc
 cache: bundler
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
