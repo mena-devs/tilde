@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mena-devs/tilde.svg?branch=master)](https://travis-ci.org/mena-devs/tilde)
+
 [![Maintainability](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/maintainability)](https://codeclimate.com/github/mena-devs/tilde/maintainability)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/test_coverage)](https://codeclimate.com/github/mena-devs/tilde/test_coverage)
