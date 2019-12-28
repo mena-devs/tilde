@@ -1,7 +1,6 @@
 env:
   global:
     - CC_TEST_REPORTER_ID=c27f6e57b2bc42a15a967b56709a9534b0da9d7c41f766e9dec73c1cda667323
-    - CI_NODE_TOTAL=5
 language: ruby
 rvm:
   - 2.6.5
@@ -9,7 +8,10 @@ services:
   - postgresql
 addons:
   postgresql: "10"
-bundler_args: --jobs=2
+before_install:
+  - nvm install                         # Install node version from .nvmrc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
 script:
   - bin/rails db:environment:set RAILS_ENV=test
   - bin/rails db:test:prepare
@@ -21,9 +23,8 @@ before_script:
   - cp config/travis.database.yml config/database.yml
   - cp config/settings/test.yml.sample config/settings/test.yml
   - cp example.env .env
-  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
-  - chmod +x ./cc-test-reporter
-  - ./cc-test-reporter before-build
 after_script:
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter format-coverage -t simplecov -o ./coverage/codeclimate.$CI_NODE_INDEX.json ./coverage/spec/.resultset.json; fi
-  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter sum-coverage --output - --parts $CI_NODE_TOTAL coverage/codeclimate.*.json | ./cc-test-reporter upload-coverage --input -; fi
+  - ./cc-test-reporter format-coverage -t simplecov -o coverage/codeclimate.backend.json coverage/backend/.resultset.json # Format backend coverage
+  - ./cc-test-reporter format-coverage -t lcov -o coverage/codeclimate.frontend.json coverage/frontend/lcov.info  # Format frontend coverage
+  - ./cc-test-reporter sum-coverage coverage/codeclimate.*.json -p 2                  # Sum both coverage parts into coverage/codeclimate.json
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi  # Upload coverage/codeclimate.json
