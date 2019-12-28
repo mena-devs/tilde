@@ -24,15 +24,11 @@ This README describes the purpose of this repository and how to set up a develop
 
 You can find our objectives and a preliminary set of features on the following [Google Docs link](https://docs.google.com/document/d/1Qmyx_wfw-gard0VMcBCzu8TG42cSIHbGze7eQ0GAvw0/edit?usp=sharing)
 
-## Resources
-
-Graphics and other resources are available on Dropbox using the following [link](https://www.dropbox.com/sh/2z1p8y2cux8yzea/AAAhDFbkcOs5Gf2vgIB15aKra?dl=0)
-
 ## Prerequisites
 
 This project requires:
 
-* Ruby 2.5.0
+* Ruby 2.6.5
 * PhantomJS (in order to use the [poltergeist][] gem)
 * PostgreSQL must be installed and accepting connections
 * [Redis][] must be installed and running on localhost with the default port
@@ -41,20 +37,21 @@ On a Mac, you can obtain all of the above packages using [Homebrew][].
 
 If you need help setting up a Ruby development environment, check out this [Rails OS X Setup Guide](https://mattbrictson.com/rails-osx-setup-guide).
 
-### Setup a local Vagrant box
-
-1. Download and Install `vagrant` (link)[https://www.vagrantup.com/downloads.html]
-2. Follow the instructions inside `(README.md)[ansible-rails/README.md]` under `ansible-rails` folder
-3. Run `vagrant up` (provisioning the application is part of running this step)
-
 ## Getting started
 
 ### Run it!
 
-1. Run `vagrant ssh` to log into your local development instance.
-2. Go to `cd /vagrant`.
-3. Run `bin/rails server --bind=0.0.0.0` to start the Rails app.
-4. Head over to your browser and visit `http://192.168.33.11:3000` to browse the app.
+**Make sure you have PostgreSQL and Redis servers running locally**
+
+1. Install bundler: `gem install bundler`
+2. Download the application: `git clone git@github.com:mena-devs/tilde.git`
+3. Copy local configuration files and pupulate them with your values:
+  - `cp config/database.example.yml config/database.yml`
+  - `cp config/settings/development.yml.sample config/settings/development.yml`
+  - `cp example.env .env`
+4. Install libraries: `cd tilde && bundle install`
+5. Run `bin/rails server` to start a local application server
+6. Navigate to `localhost:3000` to view the application in your browser
 
 [rbenv]:https://github.com/sstephenson/rbenv
 [poltergeist]:https://github.com/teampoltergeist/poltergeist
