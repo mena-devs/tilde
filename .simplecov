@@ -6,4 +6,3 @@ SimpleCov.start("rails") do
 end
 # TODO: Change line below to 90
 SimpleCov.minimum_coverage(50)
-SimpleCov.use_merging(false)
