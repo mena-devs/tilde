@@ -1,6 +1,7 @@
 env:
   global:
     - CC_TEST_REPORTER_ID=c27f6e57b2bc42a15a967b56709a9534b0da9d7c41f766e9dec73c1cda667323
+    - CI_NODE_TOTAL=5
 language: ruby
 rvm:
   - 2.6.5
@@ -24,4 +25,5 @@ before_script:
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
 after_script:
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter format-coverage -t simplecov -o ./coverage/codeclimate.$CI_NODE_INDEX.json ./coverage/spec/.resultset.json; fi
+  - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter sum-coverage --output - --parts $CI_NODE_TOTAL coverage/codeclimate.*.json | ./cc-test-reporter upload-coverage --input -; fi
