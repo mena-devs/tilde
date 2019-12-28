@@ -9,7 +9,6 @@ services:
 addons:
   postgresql: "10"
 before_install:
-  - nvm install                         # Install node version from .nvmrc
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
 script:
