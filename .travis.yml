@@ -24,5 +24,5 @@ before_script:
   - cp example.env .env
 after_script:
   - ./cc-test-reporter format-coverage -t simplecov coverage/.resultset.json # Format coverage
-  - ./cc-test-reporter sum-coverage coverage/codeclimate.json -p 2                  # Sum both coverage parts into coverage/codeclimate.json
+  - ./cc-test-reporter sum-coverage coverage/codeclimate.json                # Sum both coverage parts into coverage/codeclimate.json
   - if [[ "$TRAVIS_TEST_RESULT" == 0 ]]; then ./cc-test-reporter upload-coverage; fi  # Upload coverage/codeclimate.json
