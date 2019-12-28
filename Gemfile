@@ -40,6 +40,7 @@ gem 'redis-namespace'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.0'
 gem 'sidekiq', '>= 5.2.0'
+gem 'simplecov', '0.16.1'
 gem 'slack-notifier'
 
 gem 'tinymce-rails', '>= 4.9.2'
@@ -94,7 +95,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
-  gem 'simplecov', '0.16.1', require: false
 end
 
 group :development, :test do
