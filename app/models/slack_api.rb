@@ -5,6 +5,9 @@ class SlackApi
                                                   user: slack_uid})
 
     json_hash = api_response.parsed_response
+
+    puts json_hash.inspect
+
     return json_hash
   end
 
