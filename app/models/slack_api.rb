@@ -4,11 +4,7 @@ class SlackApi
     api_response = HTTParty.get(base_uri, query: {token: AppSettings.slack_token,
                                                   user: slack_uid})
 
-    json_hash = api_response.parsed_response
-
-    puts json_hash.inspect
-
-    return json_hash
+    return api_response.parsed_response
   end
 
   def self.send_invitation(email)
