@@ -4,9 +4,6 @@ module Api
       skip_before_action :verify_authenticity_token
       respond_to :json
 
-      # devise authentication required to access invitations
-      before_action :authenticate_user!, unless: :api_request
-
       # POST /invitations
       def create
         @invitation = Invitation.where(invitee_email: invitation_params[:invitee_email]).first
@@ -15,7 +12,7 @@ module Api
           @invitation.resend_invite!
 
           render status: :found, json: { status: 302 }.to_json and return
-        else
+        elsif @invitation.nil?
           @invitation = Invitation.new(invitation_params)
           @invitation.medium = 'api'
           @invitation.code_of_conduct = true
@@ -32,6 +29,9 @@ module Api
             render status: 422,
                    json: { message: @invitation.errors } and return
           end
+        else
+          render status: 500,
+                 json: { message: "An error has occured" } and return
         end
       end
 
