@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/mena-devs/tilde.svg?branch=master)](https://travis-ci.org/mena-devs/tilde)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/maintainability)](https://codeclimate.com/github/mena-devs/tilde/maintainability)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_shield)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/test_coverage)](https://codeclimate.com/github/mena-devs/tilde/test_coverage)
 
@@ -65,3 +66,7 @@ To test sent out emails during development, navigate to `localhost:3000/letter_o
 ## Git workflow
 
 For contributions, please follow the following [git workflow](GIT-WORKFLOW.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_large)
