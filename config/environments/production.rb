@@ -104,7 +104,8 @@ Rails.application.configure do
     :host => AppSettings.mail_domain,
     :protocol => "http"
   }
-  config.action_mailer.asset_host = AppSettings.application_host   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.asset_host = AppSettings.application_host
+  config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address: AppSettings.mail_host,
     port: AppSettings.mail_port,
@@ -112,6 +113,7 @@ Rails.application.configure do
     user_name: AppSettings.mail_username,
     password: AppSettings.mail_password
   }
+  
   Rails.application.config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix => "[#{Rails.env}] ",
