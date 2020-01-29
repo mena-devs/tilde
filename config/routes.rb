@@ -36,7 +36,8 @@ Rails.application.routes.draw do
               controllers: {
                 omniauth_callbacks: 'users/omniauth_callbacks'
               }
-
+  
+  require "admin_constraint"
   constraints AdminConstraint.new do
     mount Sidekiq::Web => '/admin/sidekiq'
   end
