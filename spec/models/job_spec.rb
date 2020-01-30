@@ -105,4 +105,18 @@ RSpec.describe Job, type: :model do
       expect(job.location_name).to eq('')
     end
   end
+
+  describe "Job#remove_expired_jobs" do
+    let!(:approved_job_00) { create(:job, aasm_state: :approved, posted_on: (Date.today - 3.months)) }
+    let!(:approved_job_01) { create(:job, aasm_state: :approved, posted_on: (Date.today - 45.days)) }
+    let!(:approved_job_02) { create(:job, aasm_state: :approved) }
+
+    it "should unpublish live jobs that are older than 1 month" do
+      expect(Job.approved.count).to eq(3)
+
+      Job.remove_expired_jobs
+
+      expect(Job.approved.count).to eq(1)
+    end
+  end
 end
