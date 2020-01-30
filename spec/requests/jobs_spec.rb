@@ -150,6 +150,9 @@ RSpec.describe "Jobs", type: :request do
     before do
       @pending_job = create(:job, user: user, aasm_state: 'under_review')
       @profile = create(:profile, user: admin)
+
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
     end
     
     it "should allow admin to approve pending job" do
