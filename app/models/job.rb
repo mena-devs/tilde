@@ -187,8 +187,18 @@ class Job < ApplicationRecord
     date = Date.today
     start_date = date
     end_date = date.months_ago(1)
+    expired_jobs = Job.approved.where(:posted_on => start_date..end_date)
 
-    Job.approved.where(:posted_on => start_date..end_date).each do |job|
+    if expired_jobs.blank?
+      oldest_approved_job = Job.approved.where('posted_on < ?', end_date).order(posted_on: :asc).first
+      
+      if oldest_approved_job
+        end_date = oldest_approved_job.posted_on
+        expired_jobs = Job.approved.where(:posted_on => start_date..end_date)
+      end
+    end
+
+    expired_jobs.each do |job|
       job.take_down!
     end
   end
