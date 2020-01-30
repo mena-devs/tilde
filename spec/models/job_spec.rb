@@ -44,7 +44,8 @@ RSpec.describe Job, type: :model do
 
   describe "State transitions" do
     let(:draft_job) { create(:job) }
-    let(:approved_job) { create(:job, aasm_state: :under_review) }
+    let(:under_review_job) { create(:job, aasm_state: :under_review) }
+    let(:approved_job) { create(:job, aasm_state: :approved) }
 
     before do
       ActiveJob::Base.queue_adapter = :test
@@ -63,20 +64,20 @@ RSpec.describe Job, type: :model do
     end
 
     it 'should publish live' do
-      allow(NotifierWorker).to receive(:perform_async).and_return(true)
-      allow(approved_job).to receive(:notify_subscribers).and_return(true)
-      allow(approved_job).to receive(:set_dates).and_return(true)
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(under_review_job).to receive(:set_dates).and_return(true)
 
       expect {
-        expect(approved_job.publish!).to be(true)
+        expect(under_review_job.publish!).to be(true)
       }.to have_enqueued_job.on_queue('mailers')
 
-      expect(approved_job.aasm_state).to eq('approved')
+      expect(under_review_job.aasm_state).to eq('approved')
     end
 
     it 'should modify a job' do
-      expect(approved_job.modify!).to be(true)
-      expect(approved_job.aasm_state).to eq('edited')
+      expect(under_review_job.modify!).to be(true)
+      expect(under_review_job.aasm_state).to eq('edited')
     end
 
     it 'should unpublish a job' do

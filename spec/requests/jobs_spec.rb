@@ -156,9 +156,6 @@ RSpec.describe "Jobs", type: :request do
       sign_in admin
       visit(job_path(@pending_job))
       
-      # Stub notifier method
-      allow(NotifierWorker).to receive(:perform_async).and_return(true)
-      
       expect(page).to have_content(@pending_job.title)
       # not approved yet
       expect(page).to_not have_content('Tell a friend')

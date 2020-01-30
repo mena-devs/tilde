@@ -50,8 +50,7 @@ class Job < ApplicationRecord
     event :request_approval do
       transitions :from => [:draft, :edited, :disabled], :to => :under_review
       success do
-        # inform admins that there is a job post to be approved
-        JobMailer.new_job(self.id).deliver_later
+        email_notification_job_submitted
       end
     end
 
@@ -60,10 +59,9 @@ class Job < ApplicationRecord
 
       after do
         unless self.posted_to_slack?
-          # inform job owner that their job post is online
-          JobMailer.job_published(self.id).deliver_later
-          NotifierWorker.perform_async(self.id)
-          notify_subscribers
+          email_notification_job_published
+          slack_and_buffer_notification_job_published
+          email_notification_to_subscribed_members
           set_dates
         end
       end
@@ -76,8 +74,7 @@ class Job < ApplicationRecord
     event :take_down do
       transitions :from => [:under_review, :edited, :approved], :to => :disabled
       after do
-        # inform job ower that their job post was taken down
-        JobMailer.job_unpublished(self.id).deliver_later
+        email_notification_job_unpublished
       end
     end
   end
@@ -130,14 +127,35 @@ class Job < ApplicationRecord
     country_name
   end
 
-  def notify_subscribers
+  def slack_and_buffer_notification_job_published
+    SlackNotifierWorker.perform_async(self.id)
+    self.update(posted_to_slack: true)
+    BufferNotifierWorker.perform_async(self.id)
+  end
+
+  def email_notification_job_submitted
+    # inform admins that there is a job post to be approved
+    JobMailer.new_job(self.id).deliver_later
+  end
+
+  def email_notification_job_published
+    # inform job owner that their job post is online
+    JobMailer.job_published(self.id).deliver_later
+  end
+
+  def email_notification_job_unpublished
+    # inform job ower that their job post was taken down
+    JobMailer.job_unpublished(self.id).deliver_later
+  end
+
+  def email_notification_to_subscribed_members
     User.job_alert_subscribers.each do |user|
       JobMailer.notify_subscriber(self.id, user.id).deliver_later
     end
   end
 
   def repost_job_to_slack
-    Notifier.post_job_to_slack(self.id)
+    SlackNotifierWorker.perform_async(self.id)
   end
 
   def self.all_currencies
