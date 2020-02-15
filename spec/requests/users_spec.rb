@@ -3,9 +3,42 @@ require 'rails_helper'
 RSpec.describe "Users", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let(:user) { create(:user) }
+  let(:user) { create(:user, password: 'password') }
   let(:open_profile_member) { create(:user, first_name: 'georges', last_name: 'groot') }
   let(:member) { create(:user, first_name: 'alexander', last_name: 'adam') }
+
+  describe "GET /users/sign_in" do
+    before do
+      visit new_user_session_path
+      click_on('Personal Email')
+
+      expect(page).to have_content('Login with your email')
+      expect(page).to have_content('Email')
+      expect(page).to have_content('Password')
+    end
+
+    it "should login successfully using email and password" do
+      fill_in 'Email', with: user.email
+      fill_in 'Password',  with: 'password'
+
+      click_on('Log in')
+
+      expect(page).to have_content("My profile")
+      expect(page).to have_content("Logout")
+    end
+
+    it "should not allow login if email does not exist" do
+      fill_in 'Email', with: 'something@example.com'
+      fill_in 'Password',  with: 'password'
+
+      click_on('Log in')
+
+      save_and_open_page
+
+      # expect(page).to have_content("My profile")
+      # expect(page).to have_content("Logout")
+    end
+  end
 
   describe "GET /directory/users" do
     before do
