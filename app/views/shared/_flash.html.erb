@@ -1,4 +1,4 @@
-<% if flash && (flash[:notice].present? || flash[:error].present?) %>
+<% if flash && flash.keys.any? %>
   <section id="content">
     <div class="content-wrap">
       <div class="container">

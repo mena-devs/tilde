@@ -2,8 +2,8 @@
 ============================================= -->
 <section id="page-title">
 
-  <div class="container clearfix">
-    <h1>Login</h1>
+  <div class="container clearfix center">
+    <h1>Use ONE of the below login options</h1>
   </div>
 
 </section>
@@ -12,61 +12,43 @@
 <!-- Content
 ============================================= -->
 <section id="content">
-
   <div class="content-wrap">
-
     <div class="container clearfix">
 
-      <div class="tabs divcenter clearfix" id="tab-login-email" style="max-width: 500px;">
+      <div class="col-sm-12 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body" style="padding: 40px;">
+            <h3>Slack credentials</h3>
 
-        <ul class="tab-nav tab-nav2 center clearfix">
-          <li class="inline-block">
-            <a href="#tab-login-slack">Slack Credentials</a>
-          </li>
-          <li class="inline-block">
-            <a href="#tab-login-email">Personal Email</a>
-          </li>
-        </ul>
-
-        <div class="tab-container">
-
-          <div class="tab-content clearfix" id="tab-login-slack">
-            <div class="panel panel-default">
-              <div class="panel-body" style="padding: 40px;">
-                <h3>Login with Slack credentials</h3>
-                <p>
-                  <strong>If you are a member of MENAdevs Slack group only</strong>
-                </p>
-
-                <div class="col_full center">
-                  <%= render "devise/shared/omniauthable" %>
-                </div>
+            <div class="col_full">
+              <div class="well well-sm">
+                Use ONLY if you are a member of MENA devs Slack group
               </div>
             </div>
-          </div>
 
-          <div class="tab-content clearfix" id="tab-login-email">
-            <div class="panel panel-default">
-              <div class="panel-body" style="padding: 40px;">
-                <h3>Login with your email</h3>
-
-                <div class="col_full">
-                  <%= render "form" %>
-                </div>
-
-                <div class="col_full">
-                  <%= render "devise/shared/links" %>
-                </div>
-              </div>
+            <div class="col_full center">
+              <%= render "devise/shared/omniauthable" %>
             </div>
           </div>
-
         </div>
-
       </div>
 
-    </div>
+      <div class="col-sm-12 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body" style="padding: 40px;">
+            <h3>Personal email and password</h3>
 
+            <div class="col_full">
+              <%= render "form" %>
+            </div>
+
+            <div class="col_full">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
 </section>

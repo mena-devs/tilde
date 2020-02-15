@@ -10,9 +10,8 @@ RSpec.describe "Users", type: :request do
   describe "GET /users/sign_in" do
     before do
       visit new_user_session_path
-      click_on('Personal Email')
 
-      expect(page).to have_content('Login with your email')
+      expect(page).to have_content('Personal email and password')
       expect(page).to have_content('Email')
       expect(page).to have_content('Password')
     end
@@ -33,10 +32,8 @@ RSpec.describe "Users", type: :request do
 
       click_on('Log in')
 
-      save_and_open_page
-
-      # expect(page).to have_content("My profile")
-      # expect(page).to have_content("Logout")
+      expect(page).to have_content('Email')
+      expect(page).to have_content('Password')
     end
   end
 
