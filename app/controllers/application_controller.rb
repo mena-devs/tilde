@@ -66,7 +66,7 @@ class ApplicationController < ActionController::Base
         sign_in @user
       else
         render status: :unauthorized,
-               nothing: true
+               json: {"ok": false, "error": "unauthorized"}
       end
     end
 end
