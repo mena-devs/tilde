@@ -54,13 +54,6 @@ class JobsController < ApplicationController
     @job = Job.new
   end
 
-  # GET /jobs/1/edit
-  def edit
-    unless ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
-      redirect_to @job, notice: 'You are not authorised to access this job post.'
-    end
-  end
-
   # POST /jobs
   def create
     @job = Job.new(job_params)
@@ -73,6 +66,13 @@ class JobsController < ApplicationController
       redirect_to(@job, notice: 'Job post was successfully created.')
     else
       render :new
+    end
+  end
+
+  # GET /jobs/1/edit
+  def edit
+    unless ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
+      redirect_to @job, notice: 'You are not authorised to access this job post.'
     end
   end
 
@@ -90,7 +90,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/pre_approve
   def pre_approve
     if @job.request_approval!
-      redirect_to @job, notice: 'Job post was successfully submitted for approval before made public.'
+      redirect_to @job, notice: 'The job post was successfully submitted for approval before made public.'
     else
       render :edit
     end
@@ -108,25 +108,10 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/take_down
   def take_down
     if @job.take_down!
-      redirect_to @job, error: 'The job is no longer published.'
+      redirect_to @job, notice: 'The job is no longer published.'
     else
       render :edit
     end
-  end
-
-  # PATCH/PUT /jobs/1/publish
-  def publish
-    if @job.publish!
-      redirect_to @job, notice: 'The job is now live.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /jobs/1
-  def destroy
-    @job.destroy
-    redirect_to jobs_url, error: 'The job was successfully removed.'
   end
 
   private

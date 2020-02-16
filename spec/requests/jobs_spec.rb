@@ -86,26 +86,6 @@ RSpec.describe "Jobs", type: :request do
 
   describe "GET /jobs/show" do
     before do
-      @profile = create(:profile, user: user)
-      @job = create(:job, user: user, aasm_state: 'draft')
-    end
-    
-    it "should allow submitting a draft job for approval" do
-      sign_in user
-      visit(job_path(@job))
-
-      expect(page).to have_content(@job.title)
-
-      click_on 'Submit for approval'
-      
-      expect(page).to have_content('Job post was successfully submitted for approval before made public.')
-      expect(page).to have_content('By: ' + user.name)
-      expect(page).to have_content('Statistics')
-    end
-  end
-
-  describe "GET /jobs/show" do
-    before do
       @job = create(:job, user: user, aasm_state: 'approved')
     end
     
@@ -146,6 +126,31 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
+  describe "POST /jobs/:id/pre_approve" do
+    before do
+      @draft_job = create(:job, user: user, aasm_state: 'draft')
+      @profile = create(:profile, user: user)
+
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
+    end
+    
+    it "should allow user to submit job for approval" do
+      sign_in user
+      visit(job_path(@draft_job))
+      
+      expect(page).to have_content(@draft_job.title)
+      expect(page).to_not have_content('Tell a friend')
+      expect(page).to have_content('Edit')
+
+      click_on('Submit for approval', match: :first)
+
+      expect(page).to have_content('Awaiting approval')
+      expect(page).to have_content('The job post was successfully submitted for approval before made public.')
+      expect(page).to_not have_content('Tell a friend')
+    end
+  end
+
   describe "POST /jobs/:id/approve" do
     before do
       @pending_job = create(:job, user: user, aasm_state: 'under_review')
@@ -169,6 +174,44 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_button('Take down (as admin)')
       expect(page).to have_content('Tell a friend')
       expect(page).to have_content('Statistics')
+    end
+
+    it "should not allow anyone to approve pending job" do
+      sign_in user
+      visit(job_path(@pending_job))
+      
+      expect(page).to have_content(@pending_job.title)
+      # not approved yet
+      expect(page).to_not have_content('Tell a friend')
+      expect(page).to have_content('Awaiting approval')
+      expect(page).to have_content('Edit')
+
+      expect(page).to_not have_content('Approve (as admin)')
+    end
+  end
+
+  describe "POST /jobs/:id/take_down" do
+    before do
+      @approved_job = create(:job, user: user, aasm_state: 'approved')
+      @profile = create(:profile, user: admin)
+
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
+    end
+    
+    it "should allow admin to take approved job offline" do
+      sign_in admin
+      visit(job_path(@approved_job))
+
+      expect(page).to have_content(@approved_job.title)
+      expect(page).to have_content('Tell a friend')
+      expect(page).to have_content('Statistics')
+
+      click_on('Take down (as admin)', match: :first)
+
+      expect(page).to have_content('The job is no longer published.')
+      expect(page).to have_button('Approve (as admin)')
+      expect(page).to_not have_content('Tell a friend')
     end
   end
 end

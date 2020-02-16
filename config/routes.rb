@@ -9,7 +9,6 @@ Rails.application.routes.draw do
       put :pre_approve
       put :approve
       put :take_down
-      put :publish
     end
   end
 
