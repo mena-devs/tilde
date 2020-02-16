@@ -126,7 +126,7 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
-  describe "POST /jobs/:id/pre_approve" do
+  describe "PUT /jobs/:id/pre_approve" do
     before do
       @draft_job = create(:job, user: user, aasm_state: 'draft')
       @profile = create(:profile, user: user)
@@ -151,7 +151,7 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
-  describe "POST /jobs/:id/approve" do
+  describe "PUT /jobs/:id/approve" do
     before do
       @pending_job = create(:job, user: user, aasm_state: 'under_review')
       @profile = create(:profile, user: admin)
@@ -190,7 +190,7 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
-  describe "POST /jobs/:id/take_down" do
+  describe "PUT /jobs/:id/take_down" do
     before do
       @approved_job = create(:job, user: user, aasm_state: 'approved')
       @profile = create(:profile, user: admin)
@@ -212,6 +212,30 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content('The job is no longer published.')
       expect(page).to have_button('Approve (as admin)')
       expect(page).to_not have_content('Tell a friend')
+    end
+  end
+
+  describe "PUT /jobs/:id/feedback" do
+    before do
+      @offline_job = create(:job, user: user, aasm_state: 'disabled')
+      @profile = create(:profile, user: user)
+
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
+    end
+    
+    it "should allow job owner to leave feedback on the job" do
+      sign_in user
+      visit(feedback_job_path(@offline_job))
+
+      expect(page).to have_content(@offline_job.title)
+      expect(page).to have_content('Was this job closed because the position was filled?')
+
+      choose('Yes')
+
+      click_on('Update', match: :first)
+
+      expect(page).to have_content('Job post was successfully updated.')
     end
   end
 end

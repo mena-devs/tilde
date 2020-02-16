@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy,
-                                 :pre_approve, :approve, :take_down, :publish]
+                                 :pre_approve, :approve, :take_down, :feedback]
   # devise authentication required to access jobs
   before_action :authenticate_user!, :except => [:index, :show, :list_jobs]
   before_action :check_user_profile_complete, :except => [:index, :show]
@@ -114,6 +114,11 @@ class JobsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /jobs/1/feedback
+  def feedback
+    render :feedback
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_job
@@ -130,6 +135,6 @@ class JobsController < ApplicationController
                                   :experience, :from_salary, :country, :remote,
                                   :to_salary, :currency, :payment_term,
                                   :education, :number_of_openings,
-                                  :twitter_handle)
+                                  :twitter_handle, :hired)
     end
 end

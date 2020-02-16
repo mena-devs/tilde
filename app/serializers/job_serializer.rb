@@ -29,6 +29,7 @@
 #  payment_term       :integer
 #  twitter_handle     :string
 #  slug               :string
+#  hired              :boolean          default(FALSE)
 #
 
 class JobSerializer
