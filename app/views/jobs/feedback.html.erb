@@ -1,0 +1,43 @@
+<section id="page-title">
+
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-12">
+        <h1><%= @job.title %></h1>
+        <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<%= render("shared/flash") %>
+
+<section id="content" style="margin-bottom: 0px;">
+
+  <div class="content-wrap">
+    <% if (user_signed_in? && current_user.id == @job.user_id) %>
+
+    <% if (@job.approved? || @job.disabled?) %>
+
+      <%= bootstrap_form_for(@job, inline_errors: true) do |f| %>
+        
+          <div class="row job-form-buttons center">
+            <div class="col-md-12">
+              <h3>Was this job closed because the position was filled?</h3>
+
+              <%= f.form_group :hired do %>
+                <%= f.radio_button :hired, 0, label: "No" %>
+                <%= f.radio_button :hired, 1, label: "Yes" %>
+              <% end %>
+
+              <%= f.submit "Update", class: "button button-3d button button-rounded button-green" %>
+            </div>  <!-- /.col-md-12 -->
+          </div>  <!-- /.job-form-buttons -->
+
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+</section>
