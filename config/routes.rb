@@ -28,14 +28,14 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :directory do
-    resources :users, only: [:index, :show]
-  end
-
   devise_for :users,
               controllers: {
                 omniauth_callbacks: 'users/omniauth_callbacks'
               }
+
+  namespace :directory do
+    resources :users, only: [:index, :show]
+  end
   
   require "admin_constraint"
   constraints AdminConstraint.new do

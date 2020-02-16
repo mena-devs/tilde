@@ -9,12 +9,12 @@
 
         <div class="btn-toolbar directory-padding">
           <div class="btn-group">
-            <%= directory_letters %>
             <%= link_to(directory_users_path) do %>
               <%= content_tag(:button, class: 'button button-directory button-3d button-mini button-rounded button-teal') do %>
                 ALL
               <% end %>
             <% end %>
+            <%= directory_letters %>
           </div>
         </div>
 			</div>
@@ -35,10 +35,10 @@
 
       <% if @users.blank? %>
 
-        <div class="style-msg alertmsg">
-          <div class="sb-msg"><i class="icon-warning-sign"></i>There are no members found</div>
+        <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <i class="icon-warning-sign"></i>There are no MENAdevs public members found
         </div>
-        <br/>
 
       <% else %>
         <div class="row">

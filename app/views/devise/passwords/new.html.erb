@@ -1,16 +1,49 @@
-<h2>Forgot your password?</h2>
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+  <div class="container clearfix center">
+    <h1>Forgot your password?</h1>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+</section>
+<!-- #page-title end -->
 
-<%= render "devise/shared/links" %>
+<!-- Content
+============================================= -->
+<section id="content">
+  <div class="content-wrap">
+    <div class="container clearfix">
+
+      <div class="col-md-3"></div>
+      <div class="col-sm-12 col-md-6">
+        <div class="panel panel-default">
+          <div class="panel-body" style="padding: 40px;">
+            <h3>Type your email address</h3>
+            
+            <div class="col_full">
+              <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+                <%= render('devise/shared/error_messages') %>
+                
+                <div class="field">
+                  <%= f.email_field :email, autofocus: true %>
+                </div>
+              
+                <div class="actions center">
+                  <%= f.submit "Send me reset password instructions", class: "button button-3d button button-rounded button-green" %>
+                </div>
+              <% end %>
+            </div>
+
+            <div class="col_full">
+              <%= render "devise/shared/links" %>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+</section>
+<!-- #content end -->

@@ -1,10 +1,10 @@
 module ApplicationHelper
   def flash_class(level)
     case level
-        when :notice then "style-msg successmsg"
-        when :success then "style-msg successmsg"
-        when :error then "style-msg errormsg"
-        when :alert then "style-msg errormsg"
+      when ('notice' || :notice) then "style-msg successmsg"
+      when ('success' || :success) then "style-msg successmsg"
+      when ('error' || :error) then "style-msg errormsg"
+      when ('alert' || :alert) then "style-msg errormsg"
     end
   end
 

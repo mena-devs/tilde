@@ -1,6 +1,8 @@
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= render('devise/shared/error_messages') %>
+
   <div class="field">
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email %>
   </div>
 
   <div class="field">
@@ -14,6 +16,6 @@
   <% end -%>
 
   <div class="actions center">
-    <%= f.submit "Log in", :class => "button button-3d button button-rounded button-green" %>
+    <%= f.submit "Log in", class: "button button-3d button button-rounded button-green" %>
   </div>
 <% end %>
