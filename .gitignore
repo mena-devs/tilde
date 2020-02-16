@@ -42,3 +42,8 @@
 
 # Coverage
 coverage
+
+# Database
+db/test.sqlite3
+db/archive/*
+db/backup/*
