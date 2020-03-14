@@ -48,15 +48,15 @@ module JobsHelper
 
     if job.online?
       status += 'is online'
-      alert_class = 'alert-success'
+      alert_class = 'alert alert-success text-center'
     elsif job.disabled?
       status += 'has expired'
-      alert_class = 'alert-danger'
+      alert_class = 'alert alert-danger text-center'
     else
       status += 'is ' + job.aasm_state.to_s.humanize(capitalize: false)
-      alert_class = 'alert-warning'
+      alert_class = 'alert alert-warning text-center'
     end
-
-    return "<div class='alert #{alert_class} text-center' role='alert'>#{status}</div>"
+    
+    return content_tag(:div, status, class: alert_class, role: 'alert')
   end
 end
