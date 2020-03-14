@@ -1,0 +1,11 @@
+<% if job.offline? %>
+    <%= link_to("Delete", job_path(job), class: "button button-3d notopmargin button-red fright", method: 'delete') %>
+    <%= link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright") %>
+
+  <% if @job.draft? %>
+    <br/>
+    <%= link_to("Submit for approval", pre_approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: 'put') %>
+  <% end %>
+<% elsif job.online? %>
+  <%= link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright") %>
+<% end %>
