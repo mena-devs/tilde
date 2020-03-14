@@ -61,26 +61,31 @@ module JobsHelper
   end
 
   def owner_job_actions(job)
-    html_snippet = ""
+    html_builder = ""
+
     if job.offline?
-      html_snippet += link_to("Delete", job_path(job), class: "button button-3d notopmargin button-red fright", method: :delete)
-      html_snippet += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
+      html_builder += link_to("Delete", job_path(job), class: "button button-3d notopmargin button-red fright", method: :delete)
+      html_builder += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
 
       if @job.draft?
-        html_snippet += '<br/>' + link_to("Submit for approval", pre_approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
+        html_builder += '<br/>' + link_to("Submit for approval", pre_approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
       end
     elsif job.online?
-      html_snippet += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
+      html_builder += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
     end
 
-    return html_snippet
+    return html_builder.html_safe
   end
 
   def admin_job_actions(job)
+    link_builder = ""
+
     if job.under_review?
-      return link_to("Approve", approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
+      link_builder = link_to("Approve", approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
     elsif job.online?
-      return link_to("Take down", take_down_job_path(job), class: "button button-3d notopmargin fright button-red", method: :put)
+      link_builder = link_to("Take down", take_down_job_path(job), class: "button button-3d notopmargin fright button-red", method: :put)
     end
+
+    return link_builder.html_safe
   end
 end
