@@ -50,7 +50,7 @@ RSpec.describe "Jobs", type: :request do
       fill_in 'Description',  with: 'Lorem ipsum'
 
       click_on 'Save and continue'
-      expect(page).to have_content('Please review the problems below')
+      expect(page).to have_content('Please review the problems below:')
       expect(page).to have_content('Company name can\'t be blank')
       expect(page).to have_content('Employment type can\'t be blank')
       expect(page).to have_content('Experience can\'t be blank')
@@ -81,6 +81,7 @@ RSpec.describe "Jobs", type: :request do
     
       expect(page).to have_content('Submit for approval')
       expect(page).to have_content('Edit')
+      expect(page).to have_content('Delete')
     end
   end
 
@@ -126,6 +127,44 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
+  describe "DELETE /jobs/1" do
+    before do
+      @job = create(:job, user: user, aasm_state: 'draft')
+      user.profile.update(location: 'LB')
+    end
+
+    it "should not allow admin to delete a job" do
+      sign_in admin
+      visit(job_path(@job))
+      
+      expect(page).to have_content(@job.title)
+
+      expect(page).to_not have_content('Delete')
+    end
+
+    it "should allow job owner to delete their job" do
+      sign_in user
+      visit(job_path(@job))
+      
+      expect(page).to have_content(@job.title)
+      expect(page).to have_content('Delete')
+
+      click_on('Delete', match: :first)
+
+      expect(page).to have_content('Job Board')
+      # expect(page).to have_content('Job post was successfully deleted.')
+    end
+
+    it "should allow job owner to delete job from listing" do
+      sign_in user
+      visit(jobs_path)
+      
+      expect(page).to have_content(@job.title)
+      expect(page).to have_content('Edit')
+      expect(page).to have_content('Delete')
+    end
+  end
+
   describe "PUT /jobs/:id/pre_approve" do
     before do
       @draft_job = create(:job, user: user, aasm_state: 'draft')
@@ -145,7 +184,7 @@ RSpec.describe "Jobs", type: :request do
 
       click_on('Submit for approval', match: :first)
 
-      expect(page).to have_content('Awaiting approval')
+      expect(page).to have_content('Job is under review')
       expect(page).to have_content('The job post was successfully submitted for approval before made public.')
       expect(page).to_not have_content('Tell a friend')
     end
@@ -168,10 +207,10 @@ RSpec.describe "Jobs", type: :request do
       # not approved yet
       expect(page).to_not have_content('Tell a friend')
       
-      click_on('Approve (as admin)', match: :first)
+      click_on('Approve', match: :first)
 
       expect(page).to have_content('The job is now live.')
-      expect(page).to have_button('Take down (as admin)')
+      expect(page).to have_content('Take down')
       expect(page).to have_content('Tell a friend')
       expect(page).to have_content('Statistics')
     end
@@ -183,10 +222,10 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content(@pending_job.title)
       # not approved yet
       expect(page).to_not have_content('Tell a friend')
-      expect(page).to have_content('Awaiting approval')
+      expect(page).to have_content('Job is under review')
       expect(page).to have_content('Edit')
 
-      expect(page).to_not have_content('Approve (as admin)')
+      expect(page).to_not have_content('Approve')
     end
   end
 
@@ -207,10 +246,9 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content('Tell a friend')
       expect(page).to have_content('Statistics')
 
-      click_on('Take down (as admin)', match: :first)
+      click_on('Take down', match: :first)
 
       expect(page).to have_content('The job is no longer published.')
-      expect(page).to have_button('Approve (as admin)')
       expect(page).to_not have_content('Tell a friend')
     end
   end

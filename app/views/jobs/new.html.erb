@@ -28,13 +28,13 @@
           <div class="style-msg alertmsg">
             <div class="sb-msg">
               <i class="icon-warning-sign"></i>
-              Approved job posts on <%= link_to AppSettings.application_host, AppSettings.application_host %> are distributed via: <strong>email</strong> to all subscribed members, <strong>Slack announcement</strong> and on our <strong>Twitter</strong> account.<br/>
+              Approved job posts on <%= (link_to AppSettings.application_host, AppSettings.application_host) %> are distributed via: <strong>email</strong> to all subscribed members, <strong>Slack announcement</strong> and on our <strong>Twitter</strong> account.<br/>
               Job posts expire after <strong>1 month</strong> from the date of approval.
             </div>
           </div>
           <br/>
           <!-- /.alert alert-warning -->
-          <%= render "form" %>
+          <%= render("form") %>
         </div>
       </div>
 

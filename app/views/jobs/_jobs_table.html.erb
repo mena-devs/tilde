@@ -3,22 +3,22 @@
   <table class="table table-striped" id="jobs-datatable">
     <thead>
       <tr>
-      <th>Title</th>
-      <th>Company</th>
-      <th>Posted by</th>
-      <th>Posted online</th>
-      <th>&nbsp;</th>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Posted by</th>
+        <th>Posted online</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
 
     <tbody>
-      <%= render partial: "job", collection: @jobs %>
+      <%= render(partial: "job", collection: @jobs) %>
     </tbody>
   </table>
 </div>
 
 <table class="table table-striped visible-xs">
   <tbody>
-    <%= render partial: "job_responsive", collection: @jobs %>
+    <%= render(partial: "job_responsive", collection: @jobs) %>
   </tbody>
 </table>

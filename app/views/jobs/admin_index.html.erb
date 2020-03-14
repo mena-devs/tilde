@@ -30,12 +30,12 @@
 
         <div class="row">
           <div class="col-md-12">
-            <%= render "admin_jobs_table", locals: { admin_jobs: @admin_jobs } %>
+            <%= render("admin_jobs_table", locals: { admin_jobs: @admin_jobs }) %>
           </div>
         </div>
 
         <div class="text-center">
-          <%= paginate @admin_jobs %>
+          <%= paginate(@admin_jobs) %>
         </div>
       <% end %>
 

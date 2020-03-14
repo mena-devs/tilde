@@ -27,10 +27,6 @@ class JobsController < ApplicationController
   def list_jobs
     @admin_jobs = Job.all.order(updated_at: :desc).page(params[:page])
 
-    if user_signed_in? && current_user.admin?
-      flash[:notice] = "Not authorised"
-    end
-
     render :admin_index
   end
 
@@ -72,7 +68,7 @@ class JobsController < ApplicationController
   # GET /jobs/1/edit
   def edit
     unless ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
-      redirect_to @job, notice: 'You are not authorised to access this job post.'
+      redirect_to(@job, notice: 'You are not authorised to access this job post.')
     end
   end
 
@@ -81,16 +77,26 @@ class JobsController < ApplicationController
     if @job.update(job_params)
       @job.request_edit! unless @job.draft?
 
-      redirect_to @job, notice: 'Job post was successfully updated.'
+      redirect_to(@job, notice: 'Job post was successfully updated.')
     else
       render :edit
+    end
+  end
+
+  # DELETE /jobs/1
+  def destroy
+    if ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
+      @job.delete
+      redirect_to('/jobs', notice: 'Job post was successfully deleted.')
+    else
+      render @job, notice: 'You are not authorised to access this job post.'
     end
   end
 
   # PATCH/PUT /jobs/1/pre_approve
   def pre_approve
     if @job.request_approval!
-      redirect_to @job, notice: 'The job post was successfully submitted for approval before made public.'
+      redirect_to(@job, notice: 'The job post was successfully submitted for approval before made public.')
     else
       render :edit
     end
@@ -99,7 +105,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/approve
   def approve
     if @job.publish!
-      redirect_to @job, notice: 'The job is now live.'
+      redirect_to(@job, notice: 'The job is now live.')
     else
       render :edit
     end
@@ -108,7 +114,7 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1/take_down
   def take_down
     if @job.take_down!
-      redirect_to @job, notice: 'The job is no longer published.'
+      redirect_to(@job, notice: 'The job is no longer published.')
     else
       render :edit
     end
