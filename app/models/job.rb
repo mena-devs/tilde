@@ -112,6 +112,14 @@ class Job < ApplicationRecord
   scope :all_approved, -> { where(aasm_state: 'approved') }
   scope :live, -> { where.not(:posted_on => nil) }
 
+  def offline?
+    (self.draft? || self.under_review? || self.disabled?) ? true : false
+  end
+
+  def online?
+    self.approved?
+  end
+
   def salary_is_set?
     self.from_salary.blank? ? false : true
   end

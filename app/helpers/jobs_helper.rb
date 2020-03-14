@@ -34,4 +34,53 @@ module JobsHelper
 
     return lc_str
   end
+
+  def authorised_job_owner?(job)
+    (user_signed_in? && job.user_id == current_user.id)
+  end
+
+  def authorised_admin?
+    (user_signed_in? && current_user.admin?)
+  end
+
+  def job_status(job)
+    status = 'Job '
+
+    if job.online?
+      status += 'is online'
+      alert_class = 'alert-success'
+    elsif job.disabled?
+      status += 'has expired'
+      alert_class = 'alert-danger'
+    else
+      status += 'is ' + job.aasm_state.to_s.humanize(capitalize: false)
+      alert_class = 'alert-warning'
+    end
+
+    return "<div class='alert #{alert_class} text-center' role='alert'>#{status}</div>"
+  end
+
+  def owner_job_actions(job)
+    html_snippet = ""
+    if job.offline?
+      html_snippet += link_to("Delete", job_path(job), class: "button button-3d notopmargin button-red fright", method: :delete)
+      html_snippet += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
+
+      if @job.draft?
+        html_snippet += '<br/>' + link_to("Submit for approval", pre_approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
+      end
+    elsif job.online?
+      html_snippet += link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright")
+    end
+
+    return html_snippet
+  end
+
+  def admin_job_actions(job)
+    if job.under_review?
+      return link_to("Approve", approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: :put)
+    elsif job.online?
+      return link_to("Take down", take_down_job_path(job), class: "button button-3d notopmargin fright button-red", method: :put)
+    end
+  end
 end

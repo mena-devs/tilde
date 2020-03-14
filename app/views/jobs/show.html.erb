@@ -8,35 +8,9 @@
       </div>
 
       <div class="col-md-4 nopadding fright hidden-xs">
-        <% if (user_signed_in? && current_user.id == @job.user_id) %>
-
-          <% if (@job.draft? || @job.under_review? || @job.disabled? || current_user.admin?) %>
-            <% if @job.draft? %>
-              <%= link_to("Submit for approval", pre_approve_job_path(@job), class: "button button-3d notopmargin fright button-blue", method: :put) %>
-            <% elsif @job.under_review? %>
-              <div class="button button-3d notopmargin fright button-blue">
-                Awaiting approval
-              </div>
-            <% end %>
-            <%= link_to "Edit", edit_job_path(@job), class: "button button-3d notopmargin fright" %>
-          <% elsif (@job.approved? && current_user.admin?) %>
-            <div class="button button-3d notopmargin fright button-blue">
-              Approved
-            </div>
-
-            <%= button_to("Take down", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
-          <% end %>
-        <% end %>
-
-        <% if (user_signed_in? && current_user.admin?) %>
-          <% if (@job.under_review? || @job.draft? || @job.disabled?) %>
-            <%= button_to("Approve (as admin)", approve_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
-          <% elsif @job.approved? %>
-            <%= button_to("Take down (as admin)", take_down_job_path(@job), class: "button button-3d notopmargin fright", method: :put) %>
-          <% end %>
-        <% end %>
-
-        <% unless (user_signed_in? && current_user.id == @job.user_id) %>
+        <% if authorised_job_owner?(@job) %>
+            <%= owner_job_actions(@job).html_safe %>
+        <% else %>
           <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: "_blank") %>
         <% end %>
       </div>
@@ -129,29 +103,30 @@
 
       <!-- Sidebar
           ============================================= -->
-      <% if @job.approved? %>
+      <% if @job.online? %>
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap fright">
-            <%= link_to "mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright" do %>
+            <%= link_to("mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright") do %>
               <%= fa_icon("inbox") %>
               Tell a friend
             <% end %>
           </div>
         </div>
       <% end %>
-      
-      <% if (user_signed_in? && current_user.admin?) %>
+
+      <% if authorised_admin? %>
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title">Status</h3>
+                <h3 class="panel-title">Dashboard actions</h3>
               </div>
 
               <div class="panel-body">
                 <div class="row">
+                  <!-- Display admin actions -->
                   <div class="col-lg-12">
-                    <div class="alert alert-success text-center" role="alert"><%= @job.aasm_state.to_s.titleize %></div>
+                    <%= admin_job_actions(@job) %>
                   </div>
                 </div>
               </div>
@@ -160,13 +135,30 @@
         </div>
       <% end %>
 
-      <% if (user_signed_in? && (@job.user_id == current_user.id || current_user.admin?)) %>
+      <% if (authorised_job_owner?(@job) || authorised_admin?) %>
+        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
+          <div class="sidebar-widgets-wrap">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Status</h3>
+                <small>(Only visible to job owner)</small>
+              </div>
+
+              <div class="panel-body">
+                <%= job_status(@job).html_safe %>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
             <div class="panel panel-info">
               <div class="panel-heading">
                 <h3 class="panel-title">Statistics</h3>
                 <small>Who has viewed this job post?</small>
+                <br/>
+                <small>(Only visible to job owner)</small>
               </div>
 
               <div class="panel-body">
