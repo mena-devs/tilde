@@ -9,7 +9,7 @@
 
       <div class="col-md-4 nopadding fright hidden-xs">
         <% if authorised_job_owner?(@job) %>
-            <%= owner_job_actions(@job) %>
+            <%= render('owner_job_actions', job: @job) %>
         <% else %>
           <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: "_blank") %>
         <% end %>
@@ -126,7 +126,7 @@
                 <div class="row">
                   <!-- Display admin actions -->
                   <div class="col-lg-12">
-                    <%= admin_job_actions(@job) %>
+                    <%= render('admin_job_actions', job: @job) %>
                   </div>
                 </div>
               </div>

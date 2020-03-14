@@ -152,6 +152,7 @@ RSpec.describe "Jobs", type: :request do
       click_on('Delete', match: :first)
 
       expect(page).to have_content('Job Board')
+      # FIXME: Investigate why flash does not show in tests
       # expect(page).to have_content('Job post was successfully deleted.')
     end
 
