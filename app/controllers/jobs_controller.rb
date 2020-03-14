@@ -87,6 +87,12 @@ class JobsController < ApplicationController
     end
   end
 
+  # DELETE /jobs/1
+  def destroy
+    @job.delete
+    redirect_to jobs_url, notice: 'Job post was successfully updated.'
+  end
+
   # PATCH/PUT /jobs/1/pre_approve
   def pre_approve
     if @job.request_approval!
