@@ -163,9 +163,11 @@
 
               <div class="panel-body">
                 <% if @job_statistics.size > 0 %> 
-                  <% @job_statistics.each do |job_statistic| %>
-                    <%= link_to(job_statistic.user.name, directory_user_path(job_statistic.user)) %> - <%= job_statistic.counter %> <%= fa_icon("eye") %><br/>
-                  <% end %>
+                  <ul>
+                    <% @job_statistics.each do |job_statistic| %>
+                      <li><%= link_to(visitor_name(job_statistic.user), directory_user_path(job_statistic.user)) %> - <%= job_statistic.counter %> <%= fa_icon("eye") %></li>
+                    <% end %>
+                  </ul>
                 <% else %>
                     No views yet
                 <% end %>

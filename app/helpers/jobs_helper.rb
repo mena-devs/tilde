@@ -59,4 +59,12 @@ module JobsHelper
     
     return content_tag(:div, status, class: alert_class, role: 'alert')
   end
+
+  def visitor_name(user)
+    if user.profile.complete?
+      user.name
+    else
+      'Anonymous'
+    end
+  end
 end
