@@ -229,10 +229,10 @@ GEM
       railties (>= 4.2.0)
     faker (2.10.2)
       i18n (>= 1.6, < 2)
-    faraday (1.0.0)
+    faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
-    faraday_middleware (1.0.0.rc1)
-      faraday (~> 1.0)
+    faraday_middleware (0.14.0)
+      faraday (>= 0.7.4, < 1.0)
     fast_jsonapi (1.5)
       activesupport (>= 4.2)
     ffi (1.12.2)
@@ -648,7 +648,7 @@ DEPENDENCIES
   pg
   pgcli-rails
   postmark-rails
-  puma (>= 3.12.2)
+  puma
   rack-livereload
   rails (~> 5.1.6)
   rails-controller-testing

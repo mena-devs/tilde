@@ -4,8 +4,11 @@
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
 #
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
-threads threads_count, threads_count
+
+bind "http://127.0.0.1:3000"
+
+workers 2
+threads 8, 16
 
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
@@ -51,6 +54,3 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 #   ActiveRecord::Base.establish_connection if defined?(ActiveRecord)
 # end
 #
-
-# Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
