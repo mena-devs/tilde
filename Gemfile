@@ -35,6 +35,7 @@ gem 'paranoia', '~> 2.2'
 gem 'paperclip', '~> 5.2.0'
 gem 'pg'
 gem 'pgcli-rails'
+gem 'puma'
 gem 'rails', '~> 5.1.6'
 gem 'redis-namespace'
 gem 'rspec-core'
@@ -75,7 +76,6 @@ group :development do
   gem 'letter_opener_web'
   gem 'listen', '~> 3.0.5'
   gem 'overcommit', require: false
-  gem 'puma'
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
   gem 'rubocop', require: false
