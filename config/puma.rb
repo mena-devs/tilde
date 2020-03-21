@@ -1,20 +1,12 @@
-threads_count = ENV.fetch("RAILS_MAX_THREADS") { 5 }
+workers Integer(ENV['WEB_CONCURRENCY'] || 2)
+threads_count = Integer(ENV['RAILS_MAX_THREADS'] || 5)
 threads threads_count, threads_count
 
-# Default to production
-rails_env = ENV['RAILS_ENV'] || "production"
-environment rails_env
+preload_app!
 
-port ENV.fetch("PORT") { 3000 }
-
-# Allow puma to be restarted by `rails restart` command.
-plugin :tmp_restart
-
-# Change to match your CPU core count
-workers 1
-
-# Min and Max threads per worker
-threads 1, 6
+rackup      DefaultRackup
+port        ENV['PORT']     || 3000
+environment ENV['RACK_ENV'] || 'development'
 
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
@@ -30,7 +22,9 @@ activate_control_app "unix://#{app_dir}/pumactl.sock"
 prune_bundler
 
 on_worker_boot do
-  require "active_record"
-  ActiveRecord::Base.connection.disconnect! rescue ActiveRecord::ConnectionNotEstablished
-  ActiveRecord::Base.establish_connection(YAML.load_file("#{app_dir}/config/database.yml")[rails_env])
+  ActiveRecord::Base.establish_connection
+
+  if defined?(Resque)
+    Resque.redis = ENV["<redis-uri>"] || "redis://127.0.0.1:6379"
+ end
 end
