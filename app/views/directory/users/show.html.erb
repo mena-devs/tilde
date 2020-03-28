@@ -161,10 +161,10 @@
           <% end %>
           <!-- Looking for ends -->
         </div>
-      <% end %>
 
-      <br/>
-      <br/>
+        <br/>
+        <br/>
+      <% end %>
 
       <% unless @user.profile.twitter_handle.blank? %>
 
@@ -189,9 +189,87 @@
 
         <br/>
         <br/>
-
       <% end %>
 
+      <% if current_user.admin? %>
+
+        <div class="alert alert-info" role="alert">
+          <h4>Details for Admins</h4>
+
+          <div class="row">
+            <div class="col-md-2">
+              Active
+            </div>
+            <div class="col-md-10">
+              <%= @user.active %>
+            </div>
+
+            <div class="col-md-2">
+              Profile complete?
+            </div>
+            <div class="col-md-10">
+              <%= @user.profile.complete? %>
+            </div>
+
+            <div class="col-md-2">
+              Created at
+            </div>
+            <div class="col-md-10">
+              <%= @user.created_at %> (<%= time_ago_in_words(@user.created_at) %>)
+            </div>
+
+            <div class="col-md-2">
+              Confirmed at
+            </div>
+            <div class="col-md-10">
+              <%= @user.confirmed_at %> (<%= time_ago_in_words(@user.confirmed_at) %>)
+            </div>
+
+            <div class="col-md-2">
+              Updated at
+            </div>
+            <div class="col-md-10">
+              <%= @user.updated_at %> (<%= time_ago_in_words(@user.updated_at) %>)
+            </div>
+
+            <div class="col-md-2">
+              Last signed in
+            </div>
+            <div class="col-md-10">
+              <%= @user.last_sign_in_at %> (<%= time_ago_in_words(@user.last_sign_in_at) %>)
+            </div>
+
+            <div class="col-md-2">
+              Sign in count
+            </div>
+            <div class="col-md-10">
+              <%= @user.sign_in_count %>
+            </div>
+
+
+            <div class="col-md-2">
+              Last sign in IP
+            </div>
+            <div class="col-md-10">
+              <%= @user.last_sign_in_ip %>
+            </div>
+
+            <div class="col-md-2">
+              Provider
+            </div>
+            <div class="col-md-10">
+              <%= @user.provider %>
+            </div>
+
+            <div class="col-md-2">
+              Time zone
+            </div>
+            <div class="col-md-10">
+              <%= @user.time_zone %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </section>
