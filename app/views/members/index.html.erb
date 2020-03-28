@@ -5,7 +5,7 @@
   <div class="container clearfix">
     <div class="row clearfix">
       <div class="col-md-8 col-xs-12">
-        <h1>Platform users</h1>
+        <h1>Platform users - Admin view</h1>
         <span class='hidden-xs'><%= pluralize(@users_count, 'Member') %></span>
 			</div>
     </div>
@@ -29,7 +29,11 @@
               <tr>
                 <th>Name</th>
                 <th></th>
+                <th>Profile</th>
+                <th>Provider</th>
                 <th>Join date</th>
+                <th>Signed in last</th>
+                <th>Sign in count</th>
               </tr>
             </thead>
             <tbody>
@@ -38,21 +42,29 @@
                   <td width='5%'>
                     <%= image_tag(user.profile.avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
                   </td>
-                  <td width='80%'>
+                  <td width='50%'>
                     <%= link_to directory_user_path(user) do %>
-                      <%= user.name %> | <%= user.email %>
-                      <% if user_signed_in? && current_user == user %>
-                        <div class="btn btn-xs btn-primary">
-                          <%= fa_icon("check") %>
-                          me
-                        </div>
-                      <% end %>
+                      <%= display_user_name(user) %>
                     <% end %>
                     <br/>
-                    <small><%= user.profile.biography %></small>
+                    <%= user.email %>
+                    <br/>
+                    <small><%= display_user_description(user.profile.biography) %></small>
                   </td>
-                  <td width='15%'>
-                    <%= user.created_at.strftime('%A %e %B %Y ') %>
+                  <td>
+                    <%= complete_profile(user.profile.complete?) %>
+                  </td>
+                  <td>
+                    <%= display_provider(user.provider) %>
+                  </td>
+                  <td>
+                    <%= user.created_at.try(:strftime, '%a %e %b %Y') %>
+                  </td>
+                  <td>
+                    <%= user.last_sign_in_at.try(:strftime, '%a %e %b %Y, %H:%m:%S') %>
+                  </td>
+                  <td>
+                    <%= user.sign_in_count %>
                   </td>
                 </tr>
               <% end %>
