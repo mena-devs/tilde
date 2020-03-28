@@ -5,7 +5,7 @@
   <div class="container clearfix">
     <div class="row clearfix">
       <div class="col-md-8 col-xs-8 nopadding">
-        <h1>Sent invitations [ADMIN]</h1>
+        <h1>Sent invitations - Admin view</h1>
         <span>Browse all invitations sent on MENAdevs</span>
       </div>
     </div>
@@ -26,7 +26,9 @@
       <% if @admin_invitations %>
         <%= render "admin_invitations_table", locals: { admin_invitations: @admin_invitations } %>
 
-        <%= paginate @admin_invitations %>
+        <div class="text-center">
+          <%= paginate @admin_invitations %>
+        </div>
       <% end %>
 
     </div>
@@ -34,21 +36,3 @@
   </div>
 
 </section><!-- #content end -->
-
-
-<!-- Bootstrap Data Table Plugin -->
-<%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
-<%= stylesheet_link_tag('bs-datatable', media: 'all',
-												'data-turbolinks-track': false) %>
-
-<script>
-
-  $(document).ready(function() {
-    $('#admin-invitations-datatable').dataTable(
-      {
-        aaSorting: [[5, 'desc']]
-      }
-    );
-  });
-
-</script>
