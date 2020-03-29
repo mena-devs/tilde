@@ -8,7 +8,7 @@ rackup      DefaultRackup
 port        ENV['PORT']     || 3000
 environment ENV['RACK_ENV'] || 'production'
 
-app_dir = File.expand_path("../..", __FILE__)
+app_dir = File.expand_path("../../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
 bind  "unix://#{app_dir}/tmp/puma.sock"
 pidfile "#{app_dir}/tmp/puma.pid"
