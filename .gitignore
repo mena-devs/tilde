@@ -64,3 +64,6 @@ jenkins-ci.sh
 /.tomo/
 /.vagrant/
 *.pem
+/provisioning/
+/ansible-rails/
+Vagrantfile

@@ -1,3 +1,0 @@
----
-- include: certbot.yml
-  when: nginx_https_enabled is defined and nginx_https_enabled == true
