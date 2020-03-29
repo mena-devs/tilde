@@ -1,84 +1,64 @@
-<!-- Document Wrapper
-	============================================= -->
-	<div id="wrapper" class="clearfix">
-  <!-- Page Title
-  ============================================= -->
-  <section id="page-title">
+<!-- Page Title
+============================================= -->
+<section id="page-title">
 
-    <div class="container clearfix">
-			<div class="col-md-8 col-xs-12">
-				<h1>Slack Group sent invitations</h1>
-				<span class='hidden-xs'>Invitations sent to contacts to join MENAdevs Slack Group</span>
-			</div>
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-8 col-xs-12 nopadding">
+        <h1>Slack Group invitations</h1>
+        <span class='hidden-xs'>Invitations sent to your contacts</span>
+      </div>
 
-			<div class="col-md-4 hidden-xs">
-				<%= link_to new_invitation_path, :class => "button button-3d notopmargin fright" do %>
-					<%= fa_icon("plus", :text => "Invite") %>
-				<% end %>
-			</div>
-    </div>
-
-  </section><!-- #page-title end -->
-
-  <%= content_for :flash %>
-
-  <!-- Content
-  ============================================= -->
-  <section id="content">
-
-    <div class="content-wrap">
-
-      <div class="container clearfix">
-
-        <div class="table-responsive">
-          <% if @invitations.blank? %>
-
-            <div class="alert alert-info alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <i class="icon-warning-sign"></i>You have sent 0 invitations
-            </div>
-
-          <% else %>
-            <table id="invitations-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Email</th>
-                  <th>Location</th>
-									<th>State</th>
-									<th>Retries</th>
-                  <th>Sent on</th>
-									<% if current_user.admin %>
-										<th>&nbsp;</th>
-									<% end %>
-                </tr>
-              </thead>
-              <tbody>
-                <%= render partial: "invitation", collection: @invitations %>
-
-                <%= paginate @invitations %>
-              </tbody>
-            </table>
-          <% end %>
-        </div>
+      <div class="col-md-4 hidden-xs">
+        <%= link_to new_invitation_path, :class => "button button-3d notopmargin fright" do %>
+          <%= fa_icon("plus", :text => "New invitation") %>
+        <% end %>
       </div>
     </div>
-  </section><!-- #content end -->
-</div>
+  </div>
 
-<!-- Bootstrap Data Table Plugin -->
-<%= javascript_include_tag "components/bs-datatable.js", "data-turbolinks-track" => false  %>
-<%= stylesheet_link_tag('bs-datatable', media: 'all',
-												'data-turbolinks-track': false) %>
+</section><!-- #page-title end -->
 
-<script>
+<%= content_for :flash %>
 
-	$(document).ready(function() {
-    $('#invitations-datatable').dataTable(
-      {
-        aaSorting: [[5, 'desc']]
-      }
-    );
-  });
+<!-- Content
+============================================= -->
+<section id="content">
 
-</script>
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <div class="table-responsive">
+        <% if @invitations.blank? %>
+
+          <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <i class="icon-warning-sign"></i>You have sent 0 invitations
+          </div>
+
+        <% else %>
+          <table id="invitations-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>State</th>
+                <% if authorised_admin? %>
+                  <th>&nbsp;</th>
+                <% end %>
+                <th>&nbsp;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%= render partial: "invitation", collection: @invitations %>
+            </tbody>
+          </table>
+        <% end %>
+      </div>
+      <div class="center">
+        <%= paginate @invitations %>
+      </div>
+    </div>
+  </div>
+</section><!-- #content end -->

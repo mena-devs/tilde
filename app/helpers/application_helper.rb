@@ -67,4 +67,8 @@ module ApplicationHelper
     end
     letters.join('').html_safe
   end
+
+  def authorised_admin?
+    (user_signed_in? && current_user.admin?)
+  end
 end

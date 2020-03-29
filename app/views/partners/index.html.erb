@@ -8,7 +8,7 @@
         <h1>Partners</h1>
 			</div>
 
-      <% if user_signed_in? && current_user.admin? %>
+      <% if authorised_admin? %>
         <div class="col-md-4 hidden-xs">
           <%= link_to new_partner_path, :class => "button button-3d notopmargin fright" do %>
             <%= fa_icon("plus", :text => "Add a new Partner") %>
@@ -66,7 +66,7 @@
 
                 <hr/>
 
-                <% if user_signed_in? && current_user.admin? %>
+                <% if authorised_admin? %>
                   <%= link_to "Edit", edit_partner_path(partner), :class => "btn btn-primary" %> <%= link_to 'Delete', partner, method: :delete, data: {confirm: "Are you sure you want to delete this partner?"}, :class => "btn btn-danger" %>
                 <% end %>
               </div>

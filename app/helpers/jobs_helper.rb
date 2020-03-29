@@ -39,10 +39,6 @@ module JobsHelper
     (user_signed_in? && job.user_id == current_user.id)
   end
 
-  def authorised_admin?
-    (user_signed_in? && current_user.admin?)
-  end
-
   def job_status(job)
     status = 'Job '
 
