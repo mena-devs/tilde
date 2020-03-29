@@ -6,18 +6,18 @@ preload_app!
 
 rackup      DefaultRackup
 port        ENV['PORT']     || 3000
-environment ENV['RACK_ENV'] || 'development'
+environment ENV['RACK_ENV'] || 'production'
 
 app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
-bind  "unix://#{app_dir}/puma.sock"
-pidfile "#{app_dir}/puma.pid"
-state_path "#{app_dir}/puma.state"
+bind  "unix://#{app_dir}/tmp/puma.sock"
+pidfile "#{app_dir}/tmp/puma.pid"
+state_path "#{app_dir}/tmp/puma.state"
 directory "#{app_dir}/"
 
-stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
+stdout_redirect "#{app_dir}/log/puma_server.stdout.log", "#{app_dir}/log/puma_server.stderr.log", true
 
-activate_control_app "unix://#{app_dir}/pumactl.sock"
+activate_control_app "unix://#{app_dir}/tmp/pumactl.sock"
 
 prune_bundler
 

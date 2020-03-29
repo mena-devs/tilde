@@ -24,6 +24,7 @@
 
 # Ignore results of `rake assets:precompile`.
 /public/assets/
+/public/system/
 
 # Never check passwords into source control!
 /config/database.yml
@@ -38,12 +39,28 @@
 /config/deploy.rb
 /config/deploy/*
 
+/config/tinymce.yml.sample
+/config/travis.database.yml
+/config/unicorn.rb.example
+
 /provision/*.retry
 
 # Coverage
-coverage
+/coverage/
+
+# Continuous Integration
+jenkins-ci.sh
 
 # Database
-db/test.sqlite3
-db/archive/*
-db/backup/*
+/db/test.sqlite3
+/db/archive/*
+/db/backup/*
+
+# Custom
+/server_setup/
+/lets_encrypt/
+/node_modules/
+/doc/
+/.tomo/
+/.vagrant/
+*.pem
