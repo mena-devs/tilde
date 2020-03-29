@@ -1,9 +1,9 @@
 <tr>
   <td><%= admin_invitation.invitee_name %></td>
   <td><%= admin_invitation.invitee_email %></td>
-  <td><%= admin_invitation.location_name %></td>
   <td><%= admin_invitation.aasm_state.humanize %></td>
   <td><%= admin_invitation.retries %></td>
   <td><%= admin_invitation.updated_at.strftime("%d %b %Y") %></td>
+  <td><%= link_to("Resend", resend_invitation_path(admin_invitation), class: "button button-3d button-mini button-rounded button-red", method: :put) %></td>
   <td><%= link_to("View", admin_invitation, class: "button button-3d button-mini button-rounded button-green") %></td>
 </tr>

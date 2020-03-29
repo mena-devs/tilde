@@ -7,11 +7,10 @@
       <%= fa_icon("check", text: "me") %>
     <% end %>
   </td>
-  <td><%= invitation.location_name %></td>
   <td><%= display_invitation_state(invitation) %></td>
-  <td><%= invitation.retries %></td>
-  <td><%= invitation.updated_at.strftime("%d %b %Y") %></td>
-  <% if current_user.admin %>
-    <td><%= link_to "Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put %></td>
+  
+  <% if authorised_admin? %>
+    <td><%= link_to("Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put) %></td>
   <% end %>
+  <td><%= link_to("View", invitation, class: "button button-3d button-mini button-rounded button-green") %></td>
 </tr>

@@ -191,7 +191,7 @@
         <br/>
       <% end %>
 
-      <% if user_signed_in? && current_user.admin? %>
+      <% if authorised_admin? %>
 
         <div class="alert alert-info" role="alert">
           <h4>Details for Admins</h4>
