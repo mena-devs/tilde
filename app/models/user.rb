@@ -59,7 +59,9 @@ class User < ApplicationRecord
   after_create :prepare_profile
   after_save :prepare_profile
 
-  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
+  scope :news_subscribers, -> { joins(:profile).where('profiles.receive_emails IS TRUE') }
+  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts IS TRUE') }
+  
   scope :verified, -> { where("confirmed_at IS NOT NULL")}
   
   scope :admins, -> { where("admin is TRUE")}
@@ -235,9 +237,11 @@ class User < ApplicationRecord
       csv << attributes
 
       all.each do |user|
-        csv << attributes.map{ |attr| user.send(attr) }
+        csv << attributes.map { |attr| user.send(attr) }
       end
     end
+
+    csv
   end
 
   private

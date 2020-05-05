@@ -21,19 +21,19 @@ class MembersController < ApplicationController
 
   # GET /members/news-email-subscribers.csv
   def news_email_subscribers
-    subscribers = User.verified.joins(:profile).where('profiles.receive_emails = TRUE').order('users.first_name', 'users.last_name')
+    news_subscribers = verified_users.news_subscribers
     
     respond_to do |format|
-      format.csv { send_data subscribers.to_csv, filename: "menadevs-tilde-news-email-subscribers-#{DateTime.now.strftime("%Y_%m_%d_%H%M%S")}.csv" }
+      format.csv { send_data news_subscribers.to_csv, filename: "menadevs-tilde-news-email-subscribers-#{DateTime.now.strftime("%Y_%m_%d_%H%M%S")}.csv" }
     end
   end
 
   # GET /members/jobs-email-subscribers.csv
   def jobs_email_subscribers
-    subscribers = User.verified.joins(:profile).where('profiles.receive_job_alerts = TRUE').order('users.first_name', 'users.last_name')
+    jobs_subscribers = verified_users.job_alert_subscribers
     
     respond_to do |format|
-      format.csv { send_data subscribers.to_csv, filename: "menadevs-tilde-jobs-email-subscribers-#{DateTime.now.strftime("%Y_%m_%d_%H%M%S")}.csv" }
+      format.csv { send_data jobs_subscribers.to_csv, filename: "menadevs-tilde-jobs-email-subscribers-#{DateTime.now.strftime("%Y_%m_%d_%H%M%S")}.csv" }
     end
   end
 
@@ -41,6 +41,10 @@ class MembersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.friendly.find(user_params[:id])
+    end
+
+    def verified_users
+      @subscribers = User.verified.order("users.first_name", "users.last_name")
     end
 
     # Only allow a trusted parameter "white list" through.

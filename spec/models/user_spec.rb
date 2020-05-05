@@ -233,6 +233,19 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe "self#to_csv" do
+    let(:user_1) { create(:user, email: "user_one@example.com") }
+    let(:user_2) { create(:user) }
+
+    it "should return a string" do
+      expect([user_1, user_2].to_csv).to be_kind_of(String)
+    end
+
+    it "should return objects with name and email as attributes only" do
+      expect([user_1, user_2].to_csv).to eq("#{user_1},#{user_2}\n")
+    end
+  end
+
   describe "#connected_via_slack?" do
     let(:slack_user) { create(:user, provider: 'slack', uid: '1234') }
     let(:user) { create(:user, provider: 'facebook', uid: '') }
