@@ -105,7 +105,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :members, only: [:index, :show]
+  resources :members do
+    collection do
+      get :news_email_subscribers
+      get :jobs_email_subscribers
+    end
+  end
 
   scope path: ':user_id', as: 'user' do
     resource :profile do
@@ -127,12 +132,17 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/admin/sidekiq'
   end
 
+  namespace :private do
+    resource :dashboard, only: [:show]
+  end
+
   get 'about', to: 'home#about'
   get 'contact', to: 'home#contact'
   get 'contact-us', to: 'home#contact'
   get 'list-jobs-admin', to: 'jobs#list_jobs'
   get 'list-invitations-admin', to: 'invitations#list_invitations'
   get 'events', to: 'home#events'
+  get 'newsletter', to: 'home#newsletter'
 
   # API resources
   namespace :api do

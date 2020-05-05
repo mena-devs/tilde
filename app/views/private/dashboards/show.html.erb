@@ -1,0 +1,77 @@
+<!-- Page Title
+============================================= -->
+<section id="page-title">
+
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-12 col-xs-12">
+        <h1>Admin Dashboard</h1>
+
+        <div class="btn-toolbar directory-padding">
+          <div class="btn-group">
+          </div>
+        </div>
+			</div>
+    </div>
+  </div>
+
+</section><!-- #page-title end -->
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+    <div class="container clearfix">
+      <section id="section-about" class="page-section">
+        <div class="container clearfix">
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <%= image_tag('membership-card-100.png') %>
+
+                <div class="caption">
+                  <h3>Members</h3>
+                  <p>Total: <%= pluralize(@members, 'member') %></p>
+                  <p>Total verified members: <%= pluralize(@verified_members, 'member') %></p>
+                  <p>New members / TODAY: <%= pluralize(@today_new_members, 'member') %></p>
+                  <p>New verified members / TODAY: <%= pluralize(@today_verified_members, 'member') %></p>
+                  
+                  <%= link_to("View all members", members_path, class: "button button-3d button button-rounded") %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <%= image_tag('user-account-100.png') %>
+
+                <div class="caption">
+                  <h3>CSV Lists</h3>
+                  <p>Download CSV lists of MENA devs members who chose to receive emails</p>
+                  <%= link_to("News Email Subscribers", news_email_subscribers_members_path('csv'), class: "button button-3d button button-rounded") %>
+                  <%= link_to("Jobs Email Subscribers", jobs_email_subscribers_members_path('csv'), class: "button button-3d button button-rounded") %>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <%= image_tag('user-account-100.png') %>
+
+                <div class="caption">
+                  <h3>Administators</h3>
+                  <ol style="padding-left:20px;">
+                    <% @administrators.each do |administrator| %>
+                      <li><%= link_to(administrator.name, directory_user_path(administrator)) %></li>
+                    <% end %>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

@@ -27,4 +27,14 @@ class HomeController < ApplicationController
       format.html  # events.html.erb
     end
   end
+
+  def newsletter
+    @page_title       = 'Newsletter'
+    @page_description = 'Subscribe to MENA devs newsletter'
+    @page_keywords    = AppSettings.meta_tags_keywords
+
+    respond_to do |format|
+      format.html  # newsletter.html.erb
+    end
+  end
 end
