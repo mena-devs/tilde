@@ -59,8 +59,14 @@ class User < ApplicationRecord
   after_create :prepare_profile
   after_save :prepare_profile
 
-  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts = ?', true) }
+  scope :news_subscribers, -> { joins(:profile).where('profiles.receive_emails IS TRUE') }
+  scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts IS TRUE') }
+  
   scope :verified, -> { where("confirmed_at IS NOT NULL")}
+  
+  scope :admins, -> { where("admin is TRUE")}
+
+  scope :today, -> { where("created_at >= ?", 1.day.ago)}
 
   scope :open_profile, -> { joins(:profile).where('profiles.privacy_level = ?', Profile.privacy_options["Open"]) }
 
@@ -187,10 +193,10 @@ class User < ApplicationRecord
   end
 
   def name
-    if self.first_name.blank? && self.last_name.blank?
+    if first_name.blank? && last_name.blank?
       return ""
     else
-      self.first_name + ' ' + self.last_name
+      "#{first_name} #{last_name}"
     end
   end
 
@@ -222,6 +228,20 @@ class User < ApplicationRecord
     User.job_alert_subscribers.each do |user|
       NotificationsMailer.announcement(user.id, subject).deliver_later
     end
+  end
+
+  def self.to_csv
+    attributes = %w{name email}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      all.each do |user|
+        csv << attributes.map { |attr| user.send(attr) }
+      end
+    end
+
+    csv
   end
 
   private
