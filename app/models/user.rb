@@ -240,8 +240,6 @@ class User < ApplicationRecord
         csv << attributes.map { |attr| user.send(attr) }
       end
     end
-
-    csv
   end
 
   private
