@@ -9,6 +9,8 @@ slack_team_name: ''
 slack_team_id: ''
 buffer_access_token: ''
 
+recaptcha_client_key: ''
+
 mailgun_api_key: ''
 mailchimp_api_key: ''
 mail_host: ''
