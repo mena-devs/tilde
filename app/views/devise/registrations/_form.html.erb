@@ -7,8 +7,9 @@
 
   <div class="field">
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+      <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %>
+    <br />
     <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
@@ -16,7 +17,26 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <% unless Rails.env.test? %>
+    <br/>
+    <div class="g-recaptcha" data-callback="correctCaptcha" data-sitekey="<%= AppSettings.recaptcha_client_key %>"></div>
+    <br/>
+  <% end %>
+
   <div class="actions center">
     <%= f.submit "Join us", :class => "button button-3d button button-rounded button-green" %>
   </div>
+<% end %>
+
+<% unless Rails.env.test? %>
+  <script>
+    $("#new_user").each(function() {
+      $(this).find(':input[type="submit"]').prop('disabled', true);
+    });
+    function correctCaptcha() {
+      $("#new_user").each(function() {
+        $(this).find(':input[type="submit"]').prop('disabled', false);
+      });
+    }
+  </script>
 <% end %>
