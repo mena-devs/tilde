@@ -57,6 +57,19 @@ RSpec.configure do |config|
                   },
                 },
               },
+              meta: { type: 'object',
+                properties: {
+                  total: { type: 'integer' }
+                }
+              },
+              pagination: {
+                properties: {
+                  current_page: { type: 'integer' },
+                  last_page: { type: 'integer', nullable: true },
+                  next_page_url: { type: 'string', nullable: true },
+                  prev_page_url: { type: 'string', nullable: true },
+                }
+              }
             },
           },
         },
@@ -83,14 +96,6 @@ RSpec.configure do |config|
           variables: {
             defaultHost: {
               default: 'localhost:3000/api/v1/'
-            }
-          }
-        },
-        {
-          url: 'http://example.com:80/api/v1/',
-          variables: {
-            defaultHost: {
-              default: 'www.example.com:80/api/v1/'
             }
           }
         }
