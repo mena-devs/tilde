@@ -3,9 +3,6 @@ module Api
     class JobsController < ApplicationController
       skip_before_action :verify_authenticity_token
 
-      # devise authentication required to access invitations
-      before_action :authenticate_user!, unless: :api_request
-
       respond_to :json
 
       # GET /jobs
@@ -29,18 +26,20 @@ module Api
 
         options = { meta: { total: jobs.count } }
 
-        jobs_hash = JobSerializer.new(jobs, options).serializable_hash
+        jobs_hash = JobSerializer.new(jobs).serializable_hash
+        jobs_hash.merge!(options)
+        jobs_hash.merge!(pagination: pagination)
 
-        render json: { jobs: jobs_hash, pagination: pagination }
+        render json: jobs_hash
       end
 
-      # GET /jobs/:custom_identifier
+      # GET /jobs/:id
       def show
-        job = Job.friendly.where(params[:custom_identifier])
+        job = Job.friendly.where(custom_identifier: params[:id])
 
         job_hash = JobSerializer.new(job).serializable_hash
 
-        render json: { job: job_hash }
+        render json: job_hash
       end
     end
   end

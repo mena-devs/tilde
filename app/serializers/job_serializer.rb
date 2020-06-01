@@ -34,9 +34,7 @@
 
 class JobSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :custom_identifier, :title, :currency
-
-  belongs_to :user
+  attributes :title, :currency
 
   set_id :custom_identifier
 
@@ -52,6 +50,10 @@ class JobSerializer
   end
 
   attribute :description do |object|
-    "#{object.description.html_safe}"
+    "#{object.description}"
+  end
+
+  attribute :last_updated do |object|
+    "#{object.updated_at}"
   end
 end
