@@ -67,3 +67,4 @@ jenkins-ci.sh
 /provisioning/
 /ansible-rails/
 Vagrantfile
+/spec/support/api/*
