@@ -2,7 +2,7 @@
 #
 # Table name: profiles
 #
-#  id                           :bigint           not null, primary key
+#  id                           :integer          not null, primary key
 #  user_id                      :integer
 #  nickname                     :string
 #  location                     :string
