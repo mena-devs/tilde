@@ -8,6 +8,17 @@ module ApplicationHelper
     end
   end
 
+  def user_name(user)
+    name = user.try(:name)
+    if name.blank?
+      name = " - Not defined -"
+    else
+      name = name.titleize
+    end
+
+    link_to(name, directory_user_path(user))
+  end
+
   def is_user_a_slack_member?(member)
     if member
       'Slack group member'

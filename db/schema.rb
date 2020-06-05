@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200216191717) do
+ActiveRecord::Schema.define(version: 2020_06_05_215613) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "admins", force: :cascade do |t|
+  create_table "admins", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -32,16 +32,19 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "api_keys", force: :cascade do |t|
+  create_table "api_keys", id: :serial, force: :cascade do |t|
     t.string "access_token"
     t.integer "user_id"
     t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "deleted_at"
+    t.integer "access_type"
+    t.index ["deleted_at"], name: "index_api_keys_on_deleted_at"
     t.index ["user_id"], name: "index_api_keys_on_user_id"
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
+  create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
@@ -53,7 +56,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
-  create_table "invitations", force: :cascade do |t|
+  create_table "invitations", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "invitee_name"
     t.string "invitee_email"
@@ -74,7 +77,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
-  create_table "job_statistics", force: :cascade do |t|
+  create_table "job_statistics", id: :serial, force: :cascade do |t|
     t.integer "job_id"
     t.integer "user_id"
     t.integer "counter", default: 1
@@ -84,7 +87,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["user_id"], name: "index_job_statistics_on_user_id"
   end
 
-  create_table "jobs", force: :cascade do |t|
+  create_table "jobs", id: :serial, force: :cascade do |t|
     t.string "aasm_state"
     t.string "title"
     t.text "description"
@@ -117,7 +120,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
-  create_table "partners", force: :cascade do |t|
+  create_table "partners", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
     t.string "external_link"
@@ -131,7 +134,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.datetime "picture_updated_at"
   end
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "profiles", id: :serial, force: :cascade do |t|
     t.integer "user_id"
     t.string "nickname"
     t.string "location"
@@ -155,7 +158,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "sessions", id: :serial, force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
     t.datetime "created_at"
@@ -164,7 +167,7 @@ ActiveRecord::Schema.define(version: 20200216191717) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
