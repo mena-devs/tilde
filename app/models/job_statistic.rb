@@ -2,7 +2,7 @@
 #
 # Table name: job_statistics
 #
-#  id         :bigint           not null, primary key
+#  id         :integer          not null, primary key
 #  job_id     :integer
 #  user_id    :integer
 #  counter    :integer          default(1)
