@@ -1,0 +1,37 @@
+<tr class="cart_item">
+  <td>
+    <%= api_key.id %>
+  </td>
+
+  <td>
+    <%= link_to(user_name(api_key.user), directory_user_path(api_key.user)) %>
+  </td>
+
+  <td>
+    <%= api_key_status(api_key.enabled) %>
+  </td>
+
+  <td>
+    <%= link_to(api_key_button_status(api_key.enabled), update_state_private_api_key_path(api_key), class: "button button-3d button-mini button-rounded button-green", method: :put) %>
+  </td>
+
+  <td>
+    <%= api_key.access_type %>
+  </td>
+
+  <td>
+    <% if api_key.read_write? %>
+      <%= link_to("Change to Read", update_access_private_api_key_path(api_key), class: "button button-3d button-mini button-rounded button-blue", method: :put) %>
+    <% elsif api_key.read? %>
+      <%= link_to("Change to Read/Write", update_access_private_api_key_path(api_key), class: "button button-3d button-mini button-rounded button-red", method: :put) %>
+    <% end %>
+  </td>
+
+  <td>
+    <%= api_key.created_at.strftime("%d/%m/%Y %H:%M:%S") %>
+  </td>
+
+  <td>
+    <%= api_key.updated_at.strftime("%d/%m/%Y %H:%M:%S") %>
+  </td>
+</tr>
