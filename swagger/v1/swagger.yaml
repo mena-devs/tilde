@@ -1,0 +1,126 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/jobs":
+    get:
+      summary: All jobs
+      tags:
+      - Jobs
+      security:
+      - Bearer: []
+      parameters:
+      - name: page[number]
+        in: query
+        required: false
+        description: Allow navigation through a large set of objects
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Return published and approved jobs
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/jobs"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
+  "/api/v1/jobs/{id}":
+    get:
+      summary: Retrieves a job
+      tags:
+      - Job
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        description: ID of a job that you wish to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: job found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/jobs"
+components:
+  schemas:
+    errors_object:
+      type: object
+      properties:
+        errors:
+          "$ref": "#/components/schemas/errors_map"
+    errors_map:
+      type: object
+      additionalProperties:
+        type: array
+        items:
+          type: string
+    jobs:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  title:
+                    type: string
+                  currency:
+                    type: string
+                  salary:
+                    type: string
+                  creator_name:
+                    type: string
+                  description:
+                    type: string
+                  last_updated:
+                    type: string
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+        pagination:
+          properties:
+            current_page:
+              type: integer
+            last_page:
+              type: integer
+              nullable: true
+            next_page_url:
+              type: string
+              nullable: true
+            prev_page_url:
+              type: string
+              nullable: true
+  securitySchemes:
+    Bearer:
+      description: Authorization in the header
+      type: apiKey
+      name: Authorization
+      in: header
+servers:
+- url: https://menadevs.com/api/v1/
+  variables:
+    defaultHost:
+      default: www.menadevs.com/api/v1/
+- url: http://localhost:3000/api/v1/
+  variables:
+    defaultHost:
+      default: localhost:3000/api/v1/

@@ -12,7 +12,7 @@
 
 FactoryBot.define do
   factory :api_key do
-    access_token           { "" }
+    sequence(:access_token) { |n| "api-token-#{n}-random-{n-1}-hey" }
     user
     enabled                { true }
     created_at             { Time.now }

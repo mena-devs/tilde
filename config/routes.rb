@@ -84,10 +84,14 @@
 #               GET    /:id/attachments/:file(.:format) letter_opener_web/letters#attachment
 
 Rails.application.routes.draw do
-  resources :partners
+  mount Rswag::Api::Engine => 'api-docs'
+  mount Rswag::Ui::Engine => '/api/v1/api-docs/'
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end
+
+  resources :partners
 
   resources :jobs do
     member do
@@ -148,7 +152,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :invitations, only: [:create]
-      resources :jobs, :controller => :"jobs", only: [:index, :show]
+      resources :jobs, :controller => :jobs, only: [:index, :show]
     end
   end
 

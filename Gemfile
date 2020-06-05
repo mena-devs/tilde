@@ -38,8 +38,6 @@ gem 'pgcli-rails'
 gem 'puma'
 gem 'rails', '~> 5.2.4.2'
 gem 'redis-namespace'
-gem 'rspec-core'
-gem 'rswag'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.9'
 gem 'sidekiq', '>= 5.2.0'
@@ -63,13 +61,6 @@ group :development do
   gem 'binding_of_caller'
   gem 'brakeman', require: false
   gem 'bundler-audit', '>= 0.5.0', require: false
-  gem 'capistrano', '~> 3.10', require: false
-  gem 'capistrano-bundler', '~> 1.2', require: false
-  gem 'capistrano-mb', '>= 0.33.0', require: false
-  gem 'capistrano-nc', require: false
-  gem 'capistrano-lets-encrypt', require: false
-  gem 'capistrano-rails', require: false
-  gem 'capistrano-sidekiq', require: false
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-livereload', require: false
   gem 'guard-minitest', require: false
@@ -81,10 +72,7 @@ group :development do
   gem 'rubocop', require: false
   gem 'sitemap_generator'
   gem 'spring'
-  gem 'sshkit', '~> 1.8', require: false
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'terminal-notifier', require: false
-  gem 'terminal-notifier-guard', require: false
   gem 'xray-rails', '>= 0.1.18'
 end
 
@@ -101,6 +89,9 @@ end
 
 group :development, :test do
   gem 'database_cleaner'
-  gem 'rspec-rails', '~> 3.9'
+  gem 'json-schema'
   gem 'factory_bot_rails'
+  gem 'rspec-core'
+  gem 'rspec-rails', '~> 3.9'
+  gem 'rswag'
 end

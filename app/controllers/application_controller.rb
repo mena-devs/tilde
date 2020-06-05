@@ -54,6 +54,10 @@ class ApplicationController < ActionController::Base
     def authenticate_with_token!
       auth_token = params[:auth_token].presence
 
+      if auth_token.nil? && request.headers['Authorization'].present?
+        auth_token = request.headers['Authorization'].split(' ').last
+      end
+
       api_key = ApiKey.where(access_token: auth_token).first
 
       if (auth_token.blank? || api_key.blank?)
@@ -65,8 +69,10 @@ class ApplicationController < ActionController::Base
       if (@user && Devise.secure_compare(api_key.access_token, auth_token))
         sign_in @user
       else
-        render status: :unauthorized,
-               json: {"ok": false, "error": "unauthorized"}
+        respond_to do |format|
+          format.json { render status: :unauthorized, json: { "ok": false, "error": "unauthorized" } }
+          format.html { render status: :unauthorized, text: { "ok": false, "error": "unauthorized" } }
+        end
       end
     end
 end
