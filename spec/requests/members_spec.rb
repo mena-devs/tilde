@@ -40,38 +40,4 @@ RSpec.describe "Members", type: :request do
       end
     end
   end
-
-  describe "GET /show" do
-    describe "Admin login" do
-      before(:each) do
-        sign_in admin
-      end
-
-      it "should display member's details to admin" do
-        visit(member_path(user_1))
-
-        expect(page).to have_content(user_1.email)
-        expect(page).not_to have_content(user_2.email)
-        expect(page).not_to have_content(user_3.email)
-        expect(page).to have_content('My profile')
-        expect(page).to have_content('Logout')
-      end
-    end
-
-    describe "Regular user login" do
-      before(:each) do
-        sign_in user_1
-      end
-
-      it "should not allow displaying personal data to non-admin" do
-        visit(member_path(user_1))
-
-        expect(page).not_to have_content(user_1.email)
-        expect(page).not_to have_content(user_2.email)
-        expect(page).not_to have_content(user_3.email)
-        expect(page).to have_content('My profile')
-        expect(page).to have_content('Logout')
-      end
-    end
-  end
 end
