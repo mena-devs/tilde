@@ -19,7 +19,7 @@
 
 </section><!-- #page-title end -->
 
-<%= content_for :flash %>
+<%= render('shared/flash') %>
 
 <!-- Content
 ============================================= -->
@@ -51,7 +51,7 @@
               </tr>
             </thead>
             <tbody>
-              <%= render partial: "invitation", collection: @invitations %>
+              <%= render(partial: "invitation", collection: @invitations) %>
             </tbody>
           </table>
         <% end %>

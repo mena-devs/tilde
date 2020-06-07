@@ -42,6 +42,7 @@ class InvitationsController < ApplicationController
   # POST /invitations
   def create
     @invitation = Invitation.new(invitation_params)
+
     @invitation.user = current_user
     @invitation.medium = 'web'
 
@@ -51,7 +52,7 @@ class InvitationsController < ApplicationController
     end
 
     if @invitation.save
-      redirect_to root_path, notice: 'Your application was received and will be processed shortly.'
+      redirect_to invitations_path, notice: 'Your application was received and will be processed shortly.'
     else
       render :new
     end

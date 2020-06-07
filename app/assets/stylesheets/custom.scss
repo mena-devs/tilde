@@ -36,3 +36,19 @@ table.borderless td, table.borderless th{
   padding-left: 25px;
 }
 
+.tab-layout {
+  padding: 0px;
+  background-color: #fcfcfc;
+  min-height: 300px;
+  border-right: 1px solid #ddd;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.tab-internal {
+  padding: 40px;
+}
+
+.content-padding-bottom {
+  padding-bottom:50px;
+}
