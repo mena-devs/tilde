@@ -236,7 +236,9 @@
               Last signed in
             </div>
             <div class="col-md-10">
-              <%= @user.last_sign_in_at %> (<%= time_ago_in_words(@user.last_sign_in_at) %>)
+              <% if @user.last_sign_in_at %>
+                <%= @user.last_sign_in_at %> (<%= time_ago_in_words(@user.last_sign_in_at) %>)
+              <% end %>
             </div>
 
             <div class="col-md-2">

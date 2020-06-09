@@ -60,7 +60,7 @@ class Invitation < ApplicationRecord
   belongs_to :user
 
   validates :invitee_email, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
-  validates :invitee_email, uniqueness: true, unless: Proc.new { |member| member.invitee_is_member? }
+  validates :invitee_email, uniqueness: { message: "already exists" }, unless: Proc.new { |member| member.invitee_is_member? }
   validates :invitee_name, presence: true, unless: Proc.new { |member| member.invitee_is_member? }
   validates :invitee_email, email: true
 

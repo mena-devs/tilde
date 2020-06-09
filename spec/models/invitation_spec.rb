@@ -42,7 +42,6 @@ RSpec.describe Invitation, type: :model do
     end
 
     it { should validate_presence_of :invitee_email }
-    it { should validate_uniqueness_of :invitee_email }
     it { should validate_presence_of :invitee_name }
     
     describe '#email' do

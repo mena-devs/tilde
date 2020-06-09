@@ -13,7 +13,7 @@
 
   <%= f.text_area :description, rows: 6, class: 'tinymce' %>
 
-  <div class='row'>
+  <div class="row">
 
     <div class="col-md-6">
       <%= f.text_field :company_name %>
@@ -41,7 +41,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class="row">
     <div class="col-md-6">
       <%= f.text_field :apply_email, label: "Email to apply" %>
     </div>
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class="row">
 
     <div class="col-md-6">
       <%= f.select :employment_type, Job.employment_types.keys.map { |w| [w.humanize, w] }, {include_blank: 'Select employment type', selected: @job.employment_type} %>
@@ -67,7 +67,7 @@
     </div>
   </div>
 
-  <div class='row'>
+  <div class="row">
 
     <div class="col-md-2">
       <div class="input-group">

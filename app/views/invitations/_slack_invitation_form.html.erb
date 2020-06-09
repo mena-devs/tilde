@@ -1,0 +1,63 @@
+<%= bootstrap_form_for(@invitation) do |f| %>
+
+  <%= f.alert_message "Please review the problems below:" %>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= f.text_field :invitee_name, label: 'Full Name' %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= f.text_field :invitee_email, label: 'Email' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= f.text_field :invitee_title, label: 'Title' %>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <%= f.text_field :invitee_company, label: 'Company' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <div class="form-group">
+        <label class="control-label" for="invitation_invitee_location">Location</label>
+        <%= country_select("invitation",
+                           "invitee_location",
+                           { priority_countries: ['Lebanon',
+                                                  'Egypt',
+                                                  'Jordan',
+                                                  'Saudi Arabia',
+                                                  'Syria',
+                                                  'United Arab Emirates'],
+                             include_blank: 'Select country'
+                           },
+                           { class: 'form-control' }) %>
+      </div>
+    </div>
+  </div>
+  
+  <%= f.text_area :invitee_introduction, label: 'Write an introduction of the person that you are inviting', class: 'introduction-external', help: 'Hint: How would you introduce the person on MENAdevs Slack group' %>
+
+  <br/>
+
+  <div class="form-group">
+    <%= f.check_box :code_of_conduct, label: "I have read and agree with MENAdevs Code of Conduct" %>
+    <%= link_to 'Click to review Code of Conduct',
+                'https://github.com/mena-devs/code-of-conduct',
+                target: '_blank',
+                class: 'help-block' %>
+  </div>
+
+  <div class="row job-form-buttons">
+    <div class="col-md-12">
+      <%= f.submit "Send invitation",
+          class: "button button-3d button button-rounded button-green pull-right",
+          name: 'tab-2',
+          id: 'slack_invitation_form_button' %>
+    </div>
+  </div>
+
+<% end %>

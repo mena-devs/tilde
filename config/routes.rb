@@ -109,7 +109,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :members do
+  resources :members, except: [:show, :delete] do
     collection do
       get :news_email_subscribers
       get :jobs_email_subscribers

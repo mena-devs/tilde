@@ -15,10 +15,6 @@ class MembersController < ApplicationController
     end
   end
 
-  # GET /member/1
-  def show
-  end
-
   # GET /members/news-email-subscribers.csv
   def news_email_subscribers
     news_subscribers = verified_users.news_subscribers

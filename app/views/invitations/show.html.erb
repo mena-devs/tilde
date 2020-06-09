@@ -27,7 +27,7 @@
             <tbody>
               <tr>
                 <th width="40%">Who sent the invitation?</th>
-                <td><%= @invitation.user.name %></td>
+                <td><%= link_to(@invitation.user.name, directory_user_path(@invitation.user)) %></td>
               </tr>
               <tr>
                 <th>Updated on</th>

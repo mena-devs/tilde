@@ -2,18 +2,13 @@
 
   <%= f.alert_message "Please review the problems below:" %>
 
-  <%= f.text_field :invitee_company, label: 'Company' %>
-  <%= f.text_area :invitee_introduction, label: 'Write a brief introduction about yourself' %>
-  <div class="form-group">
-    <label class="control-label" for="invitation_invitee_location">Location</label>
-    <%= country_select("invitation",
-                       "invitee_location",
-                       { include_blank: 'Select' }, {class: 'form-control'}) %>
-  </div>
+  <%= f.text_area :invitee_introduction, label: 'Tell us about yourself', class: 'introduction-internal', help: 'Hint: How would you like to be introduced on MENAdevs Slack group' %>
+
+  <br/>
 
   <div class="form-group">
     <%= f.check_box :code_of_conduct, label: "I have read and agree with MENAdevs Code of Conduct" %>
-    <%= link_to 'Read here: Code of Conduct',
+    <%= link_to 'Click to review Code of Conduct',
                 'https://github.com/mena-devs/code-of-conduct',
                 target: '_blank',
                 class: 'help-block' %>
@@ -25,7 +20,8 @@
     <div class="col-md-12">
       <%= f.submit "Send invitation",
           class: "button button-3d button button-rounded button-green pull-right",
-          name: 'tab-1' %>
+          name: 'tab-1',
+          id: 'slack_apply_form_button' %>
     </div>
   </div>
 <% end %>
