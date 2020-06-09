@@ -37,6 +37,7 @@ gem 'pg'
 gem 'pgcli-rails'
 gem 'puma'
 gem 'rails', '~> 5.2.4.2'
+gem 'rswag'
 gem 'redis-namespace'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.9'
@@ -93,5 +94,4 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'rspec-core'
   gem 'rspec-rails', '~> 3.9'
-  gem 'rswag'
 end
