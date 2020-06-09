@@ -138,6 +138,12 @@ Rails.application.routes.draw do
 
   namespace :private do
     resource :dashboard, only: [:show]
+    resources :api_keys, only: [:index, :update] do
+      member do
+        put :update_state
+        put :update_access
+      end
+    end
   end
 
   get 'about', to: 'home#about'

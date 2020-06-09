@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
         auth_token = request.headers['Authorization'].split(' ').last
       end
 
-      api_key = ApiKey.where(access_token: auth_token).first
+      api_key = ApiKey.where(access_token: auth_token, enabled: true).first
 
       if (auth_token.blank? || api_key.blank?)
         @user = nil

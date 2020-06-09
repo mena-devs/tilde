@@ -1,0 +1,22 @@
+<div class="table-responsive bottommargin">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User</th>
+        <th>State</th>
+        <th>Update State</th>
+        <th>Access Type</th>
+        <th>Update Access Type</th>
+        <th>Created At</th>
+        <th>Updated At</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <%= render(partial: "api_key", collection: @api_keys) %>
+    </tbody>
+
+  </table>
+</div>

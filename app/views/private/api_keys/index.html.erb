@@ -1,0 +1,47 @@
+<!-- Page Title
+============================================= -->
+<section id="page-title">
+
+  <div class="container clearfix">
+    <div class="row clearfix">
+      <div class="col-md-12 col-xs-12 nopadding">
+        <h1>API Access Management</h1>
+        <h3>Admin view</h3>
+      </div>
+    </div>
+  </div>
+
+</section><!-- #page-title end -->
+
+<%= render('shared/flash') %>
+
+<!-- Content
+============================================= -->
+<section id="content">
+
+  <div class="content-wrap">
+
+    <div class="container clearfix">
+
+      <% if @api_keys.blank? %>
+        <div class="style-msg alertmsg">
+          <div class="sb-msg"><i class="icon-warning-sign"></i>There are no API Keys at the moment</div>
+        </div>
+      <% else %>
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= render("api_keys_table", locals: { api_keys: @api_keys }) %>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <%= paginate(@api_keys) %>
+        </div>
+      <% end %>
+
+    </div>
+
+  </div>
+
+</section><!-- #content end -->

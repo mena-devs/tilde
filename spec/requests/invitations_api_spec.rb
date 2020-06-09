@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe "Api::V1::Invitations", type: :request do
   include Devise::Test::IntegrationHelpers
 
-  let(:user) { create(:user) }
-  let(:api_key) { create(:api_key) }
+  let!(:user) { create(:user) }
+  let(:api_key) { create(:api_key, user: user) }
   let(:invitation) { create(:invitation, user: user, code_of_conduct: true) }
 
   describe "GET /api/v1/invitations" do
