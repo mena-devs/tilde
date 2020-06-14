@@ -72,6 +72,73 @@ RSpec.configure do |config|
               }
             },
           },
+          users: {
+            type: 'object',
+            properties: {
+              data: { type: 'array',
+                items: { type: 'object',
+                  properties: {
+                    id: { type: 'string'},
+                    attributes: { type: 'object',
+                      properties: {
+                                  first_name: { type: 'string', nullable: true },
+                                  last_name: { type: 'string', nullable: true },
+                                  email: { type: 'string' },
+                                  nickname: { type: 'string', nullable: true },
+                                  tilde_url: { type: 'string' },
+                                  location: { type: 'string', nullable: true },
+                                  biography: { type: 'string', nullable: true },
+                                  title: { type: 'string', nullable: true },
+                                  company_name: { type: 'string', nullable: true },
+                                  twitter_handle: { type: 'string', nullable: true },
+                                  confirmed: { type: 'boolean' },
+                                  confirmed_at: { type: 'string'},
+                                  last_updated: { type: 'string'}
+                                },
+                              },
+                  },
+                },
+              },
+              meta: { type: 'object',
+                properties: {
+                  total: { type: 'integer' }
+                }
+              },
+              pagination: {
+                properties: {
+                  current_page: { type: 'integer' },
+                  last_page: { type: 'integer', nullable: true },
+                  next_page_url: { type: 'string', nullable: true },
+                  prev_page_url: { type: 'string', nullable: true },
+                }
+              }
+            },
+          },
+          user: {
+            type: 'object',
+            properties: {
+              data: { type: 'object',
+                id: { type: 'string'},
+                attributes: { type: 'object',
+                  properties: {
+                              first_name: { type: 'string', nullable: true },
+                              last_name: { type: 'string', nullable: true },
+                              email: { type: 'string' },
+                              nickname: { type: 'string', nullable: true },
+                              tilde_url: { type: 'string' },
+                              location: { type: 'string', nullable: true },
+                              biography: { type: 'string', nullable: true },
+                              title: { type: 'string', nullable: true },
+                              company_name: { type: 'string', nullable: true },
+                              twitter_handle: { type: 'string', nullable: true },
+                              confirmed: { type: 'boolean' },
+                              confirmed_at: { type: 'string'},
+                              last_updated: { type: 'string'}
+                            },
+                          },
+              },
+            },
+          },
         },
         securitySchemes: {
           Bearer: {

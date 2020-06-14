@@ -17,18 +17,11 @@ module Api
           current_page = 1
         end
 
-        pagination = {
-          "current_page": current_page,
-          "last_page": total_pages,
-          "next_page_url": "#{AppSettings.application_host}/api/v1/jobs?page[number]=#{current_page+1}",
-          "prev_page_url": "#{AppSettings.application_host}/api/v1/jobs?page[number]=#{current_page-1}"
-        }
-
         options = { meta: { total: jobs.count } }
 
         jobs_hash = JobSerializer.new(jobs).serializable_hash
         jobs_hash.merge!(options)
-        jobs_hash.merge!(pagination: pagination)
+        jobs_hash.merge!(pagination: pagination_content('jobs', current_page, total_pages))
 
         render json: jobs_hash
       end

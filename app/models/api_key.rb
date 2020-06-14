@@ -9,7 +9,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  deleted_at   :datetime
-#  access_type  :string
+#  access_type  :integer
 #
 
 class ApiKey < ApplicationRecord

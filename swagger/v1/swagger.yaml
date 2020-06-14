@@ -53,6 +53,84 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/jobs"
+  "/api/v1/users":
+    get:
+      summary: All users
+      tags:
+      - Users
+      security:
+      - Bearer: []
+      parameters:
+      - name: page[number]
+        in: query
+        required: false
+        description: Allow navigation through a large set of objects
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Return verified users
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/users"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
+  "/api/v1/users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - User
+      security:
+      - Bearer: []
+      parameters:
+      - name: id
+        in: path
+        description: ID of a user that you wish to retrieve
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/user"
+        '404':
+          description: user not found
+          content: {}
+  "/api/v1/users/search":
+    get:
+      summary: Searches for a user using an incorrect query parameter
+      tags:
+      - User
+      security:
+      - Bearer: []
+      parameters:
+      - name: query
+        in: query
+        description: search query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: user found by first_name, last_name, email or title
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/users"
+        '404':
+          description: User not found
+          content: {}
+        '422':
+          description: Invalid request
+          content: {}
 components:
   schemas:
     errors_object:
@@ -109,6 +187,115 @@ components:
             prev_page_url:
               type: string
               nullable: true
+    users:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              attributes:
+                type: object
+                properties:
+                  first_name:
+                    type: string
+                    nullable: true
+                  last_name:
+                    type: string
+                    nullable: true
+                  email:
+                    type: string
+                  nickname:
+                    type: string
+                    nullable: true
+                  tilde_url:
+                    type: string
+                  location:
+                    type: string
+                    nullable: true
+                  biography:
+                    type: string
+                    nullable: true
+                  title:
+                    type: string
+                    nullable: true
+                  company_name:
+                    type: string
+                    nullable: true
+                  twitter_handle:
+                    type: string
+                    nullable: true
+                  confirmed:
+                    type: boolean
+                  confirmed_at:
+                    type: string
+                  last_updated:
+                    type: string
+        meta:
+          type: object
+          properties:
+            total:
+              type: integer
+        pagination:
+          properties:
+            current_page:
+              type: integer
+            last_page:
+              type: integer
+              nullable: true
+            next_page_url:
+              type: string
+              nullable: true
+            prev_page_url:
+              type: string
+              nullable: true
+    user:
+      type: object
+      properties:
+        data:
+          type: object
+          id:
+            type: string
+          attributes:
+            type: object
+            properties:
+              first_name:
+                type: string
+                nullable: true
+              last_name:
+                type: string
+                nullable: true
+              email:
+                type: string
+              nickname:
+                type: string
+                nullable: true
+              tilde_url:
+                type: string
+              location:
+                type: string
+                nullable: true
+              biography:
+                type: string
+                nullable: true
+              title:
+                type: string
+                nullable: true
+              company_name:
+                type: string
+                nullable: true
+              twitter_handle:
+                type: string
+                nullable: true
+              confirmed:
+                type: boolean
+              confirmed_at:
+                type: string
+              last_updated:
+                type: string
   securitySchemes:
     Bearer:
       description: Authorization in the header

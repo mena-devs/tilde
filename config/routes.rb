@@ -159,6 +159,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :invitations, only: [:create]
       resources :jobs, :controller => :jobs, only: [:index, :show]
+      resources :users, :controller => :users, only: [:index, :show] do
+        collection do
+          get :search
+        end
+      end
     end
   end
 
