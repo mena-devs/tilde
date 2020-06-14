@@ -192,6 +192,30 @@ class User < ApplicationRecord
     return false
   end
 
+  def self.search(params={})
+    return [] if params.blank?
+
+    query_params = ""
+
+    if params.has_key?(:first_name)
+      query_params =+ "first_name iLIKE '#{params[:first_name]}'"
+    end
+
+    if params.has_key?(:last_name)
+      query_params =+ "last_name iLIKE '#{params[:last_name]}'"
+    end
+
+    if params.has_key?(:email)
+      query_params =+ "email iLIKE '#{params[:email]}'"
+    end
+
+    if params.has_key?(:title)
+      query_params =+ "profiles.title iLIKE '#{params[:title]}'"
+    end
+
+    User.joins(:profile).where(query_params)
+  end
+
   def name
     if first_name.blank? && last_name.blank?
       return ""

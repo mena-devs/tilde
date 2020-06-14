@@ -50,6 +50,14 @@ class ApplicationController < ActionController::Base
     render file: "#{Rails.root}/public/404", status: :not_found
   end
 
+  def render_json_404
+    render status: 404, json: { message: "Record not found" }
+  end
+
+  def render_json_422
+    render status: 422, json: { message: "Invalid request" }
+  end
+
   private
     def authenticate_with_token!
       auth_token = params[:auth_token].presence
