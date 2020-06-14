@@ -21,18 +21,11 @@ module Api
           current_page = 1
         end
 
-        pagination = {
-          "current_page": current_page,
-          "last_page": total_pages,
-          "next_page_url": "#{AppSettings.application_host}/api/v1/users?page[number]=#{current_page+1}",
-          "prev_page_url": "#{AppSettings.application_host}/api/v1/users?page[number]=#{current_page-1}"
-        }
-
         options = { meta: { total: users_count } }
 
         users_hash = UserSerializer.new(users).serializable_hash
         users_hash.merge!(options)
-        users_hash.merge!(pagination: pagination)
+        users_hash.merge!(pagination: pagination_content('users', current_page, total_pages))
 
         render json: users_hash
       end

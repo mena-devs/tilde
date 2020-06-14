@@ -40,6 +40,17 @@ class ApplicationController < ActionController::Base
     (user_signed_in? && (job.user_id == current_user.id || current_user.admin?) )
   end
 
+  def pagination_content(name, current_page, total_pages)
+    pagination = {
+      "current_page": current_page,
+      "last_page": total_pages,
+      "next_page_url": "#{AppSettings.application_host}/api/v1/#{name}?page[number]=#{current_page+1}",
+      "prev_page_url": "#{AppSettings.application_host}/api/v1/#{name}?page[number]=#{current_page-1}"
+    }
+
+    return pagination
+  end
+
   def not_found
     raise ActionController::RoutingError.new('Not Found')
   rescue
