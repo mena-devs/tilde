@@ -6,15 +6,12 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
-  <% if !user_signed_in? %>
-
-    <div class="visible-lg-block">
-
-      <%= yield(:slider) %>
-
-    </div>
-
-  <% end %>
+  # TODO: Disable displaying slider for anonymous users
+  # <%# if(!user_signed_in?) %>
+  #   <div class="visible-lg-block">
+  #     <%# yield(:slider) %>
+  #   </div>
+  # <%# end %>
 
   <!-- Header
   ============================================= -->
