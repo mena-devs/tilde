@@ -6,12 +6,12 @@
 ============================================= -->
 <div id="wrapper" class="clearfix">
 
-  # TODO: Disable displaying slider for anonymous users
-  # <%# if(!user_signed_in?) %>
-  #   <div class="visible-lg-block">
-  #     <%# yield(:slider) %>
-  #   </div>
-  # <%# end %>
+  <!-- # TODO: Disable displaying slider for anonymous users -->
+  <!-- <%# if(!user_signed_in?) %>  -->
+  <!-- <div class="visible-lg-block">  -->
+  <!-- <%# yield(:slider) %>  -->
+  <!-- </div> -->
+  <!-- <%# end %> -->
 
   <!-- Header
   ============================================= -->
@@ -51,7 +51,7 @@
 
       <%= render("shared/footer") %>
 
-    <div>
+      <div>
 
   </footer>
 
@@ -60,13 +60,13 @@
 <div id="gotoTop" class="icon-angle-up"></div>
 
 <% if Rails.env.production? %>
-  <%= render("shared/analytics") %>
+<%= render("shared/analytics") %>
 <% end %>
 
 <%= content_for :javascript do %>
-  <%= javascript_include_async_tag('plugins.js',
+<%= javascript_include_async_tag('plugins.js',
                                     'data-turbolinks-track': false) %>
-  <%= javascript_include_async_tag('functions.js',
+<%= javascript_include_async_tag('functions.js',
                                     'data-turbolinks-track': false) %>
 <% end %>
 
