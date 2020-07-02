@@ -3,7 +3,7 @@
 <section id="page-title">
 
   <div class="container clearfix center">
-    <h1>Resend unlock instructions</h1>
+    <h1>Change your password</h1>
   </div>
 
 </section>
@@ -19,18 +19,28 @@
       <div class="col-sm-12 col-md-6">
         <div class="panel panel-default">
           <div class="panel-body" style="padding: 40px;">
-            <h3>Type your email address</h3>
+            <h3>Type your new password</h3>
             
             <div class="col_full">
-              <%= bootstrap_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f| %>
+              <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+                <%= f.hidden_field(:reset_password_token) %>
                 <%= render('devise/shared/error_messages') %>
-                
+
                 <div class="field">
-                  <%= f.email_field :email, autofocus: true %>
+                  <%= f.label :password, "New password" %><br />
+                  <% if @minimum_password_length %>
+                    <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+                  <% end %>
+                  <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+                </div>
+              
+                <div class="field">
+                  <%= f.label :password_confirmation, "Confirm new password" %><br />
+                  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
                 </div>
               
                 <div class="actions center">
-                  <%= f.submit "Resend unlock instructions", class: "button button-3d button button-rounded button-green" %>
+                  <%= f.submit "Change my password", class: "button button-3d button button-rounded button-green" %>
                 </div>
               <% end %>
             </div>
