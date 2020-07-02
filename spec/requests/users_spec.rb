@@ -37,6 +37,119 @@ RSpec.describe "Users", type: :request do
       expect(page).to have_content('Password')
     end
   end
+  
+  # /users/password/new
+  describe "GET /users/password/new" do
+    before do
+      visit new_user_password_path
+
+      expect(page).to have_content('Forgot your password?')
+      expect(page).to have_content('Type your email address')
+      expect(page).to have_content('Email')
+    end
+
+    it "should not allow to submit form without valid email" do
+      click_on('Send me reset password instructions')
+
+      expect(page).to have_content("1 error prohibited this user from being saved")
+      expect(page).to have_content("Email can't be blank")
+    end
+
+    it "should submit a form to request password reset for an account" do
+      fill_in 'Email', with: user.email
+
+      click_on('Send me reset password instructions')
+
+      expect(page).to have_content("Use ONE of the login options below to login")
+      expect(page).to have_content("MENAdevs Slack credentials")
+      expect(page).to have_content("Personal email and password")
+    end
+  end
+
+  # /users/password/edit?reset_password_token=
+  describe "GET /users/password/edit" do
+    it "should not allow reset of password if the password is not matching" do
+      visit edit_user_password_path(reset_password_token: user.reset_password_token)
+      
+      expect(page).to have_content('Change your password')
+      expect(page).to have_content('Type your new password')
+      expect(page).to have_content('Password')
+      expect(page).to have_content('Password confirmation')
+
+      click_on('Change my password')
+
+      expect(page).to have_content("1 error prohibited this user from being saved")
+      expect(page).to have_content("Reset password token is invalid")
+    end
+
+    it "should not allow reset password if the token is not valid" do
+      visit edit_user_password_path(reset_password_token: user.reset_password_token)
+      
+      expect(page).to have_content('Change your password')
+      expect(page).to have_content('Type your new password')
+      expect(page).to have_content('Password')
+      expect(page).to have_content('Password confirmation')
+
+      fill_in 'Password', with: 'opensource'
+      fill_in 'Password confirmation', with: 'opensource'
+
+      click_on('Change my password')
+
+      expect(page).to have_content("Reset password token is invalid")
+    end
+
+    it "should successfully reset password for an account" do
+      reset_password_token = user.send_reset_password_instructions
+
+      user.reset_password_sent_at = Time.now
+      user.save
+
+      visit edit_user_password_path(reset_password_token: reset_password_token)
+      
+      expect(page).to have_content('Change your password')
+      expect(page).to have_content('Type your new password')
+      expect(page).to have_content('Password')
+      expect(page).to have_content('Password confirmation')
+
+      fill_in 'Password', with: 'OpenSource'
+      fill_in 'Password confirmation', with: 'OpenSource'
+
+      click_on('Change my password')
+      
+      expect(page).to have_content("We are MENA Devs")
+      expect(page).to have_content("one of the largest active online communities in the MENA region")
+    end
+  end
+
+  describe "GET /users/sign_in" do
+    before do
+      visit new_user_session_path
+
+      expect(page).to have_content('Personal email and password')
+      expect(page).to have_content('Email')
+      expect(page).to have_content('Password')
+    end
+
+    it "should login successfully using email and password" do
+      fill_in 'Email', with: user.email
+      fill_in 'Password',  with: 'password'
+
+      click_on('Log in')
+
+      expect(page).to have_content("My profile")
+      expect(page).to have_content("Logout")
+    end
+
+    it "should not allow login if email does not exist" do
+      fill_in 'Email', with: 'something@example.com'
+      fill_in 'Password',  with: 'password'
+
+      click_on('Log in')
+
+      expect(page).to have_content('Email')
+      expect(page).to have_content('Password')
+    end
+  end
 
   describe "GET /directory/users" do
     before do

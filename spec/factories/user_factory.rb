@@ -35,7 +35,7 @@ FactoryBot.define do
   factory :user do
     sequence(:email)       { |n| "user-#{n}@example.com" }
     password               { '12345678' }
-    sequence(:reset_password_token) { |n| "random-#{n}-reset-password-{n-1}-hey" }
+    sequence(:reset_password_token) { |n| "#{n}-#{n}-#{n+1}-#{n-1}" }
     reset_password_sent_at { '' }
     remember_created_at    { '' }
     sign_in_count          { 0 }
