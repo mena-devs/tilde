@@ -4,6 +4,12 @@ module Api
       skip_before_action :verify_authenticity_token
       respond_to :json
 
+      # GET /invitations
+      def index
+        render status: 200,
+               json: { message: 'all invitations' } and return
+      end
+
       # POST /invitations
       def create
         @invitation = Invitation.where(invitee_email: invitation_params[:invitee_email]).first
@@ -17,9 +23,8 @@ module Api
           @invitation.medium = 'api'
           @invitation.code_of_conduct = true
 
-          if user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
-            @invitation.user = user
-          end
+          user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
+          @invitation.user = user if user
 
           if @invitation.save
             @invitation.send_invite!
@@ -36,11 +41,11 @@ module Api
       end
 
       private
-        # Only allow a trusted parameter "white list" through.
+        # Only allow a trusted parameter "allowed list" through.
         def invitation_params
           params.require(:invitation).permit(:slack_uid, :invitee_name,
                                              :invitee_email, :invitee_title,
-                                             :invitee_company)
+                                             :invitee_company, :invitation)
         end
     end
   end
