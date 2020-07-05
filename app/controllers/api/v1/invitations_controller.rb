@@ -17,8 +17,8 @@ module Api
         if @invitation
           @invitation.resend_invite!
 
-          render status: 302, 
-                 json: { message: "Found existing invitation. Invitation was resent." } and return
+          response_details = { status: 302, 
+                               json: { message: "Found existing invitation. Invitation was resent." } }
         elsif @invitation.nil?
           @invitation = Invitation.new(invitation_params)
           @invitation.medium = 'api'
@@ -29,22 +29,24 @@ module Api
             @invitation.user = user if user
           else
             render status: 405,
-                   json: { message: "Invalid input" } and return
+                                 json: { message: "Invalid input" } and return
           end
 
           if @invitation.save
             @invitation.send_invite!
 
-            render status: :created, 
-                   json: { message: "Created" } and return
+            response_details = { status: :created, 
+                                 json: { message: "Created" } }
           else
-            render status: 422,
-                   json: { message: @invitation.errors } and return
+            response_details = { status: 422,
+                                 json: { message: @invitation.errors } }
           end
         else
-          render status: 500,
-                 json: { message: "An error has occured" } and return
+          response_details = { status: 500,
+                               json: { message: "An error has occured" } }
         end
+        
+        render response_details and return
       end
 
       private
