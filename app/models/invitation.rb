@@ -31,7 +31,7 @@ class CodeOfConductValidator < ActiveModel::Validator
 end
 
 class Invitation < ApplicationRecord
-  include AASM
+  include AASM, CountryName
 
   aasm do
     state :not_sent, :initial => true
@@ -87,14 +87,7 @@ class Invitation < ApplicationRecord
   end
 
   def location_name
-    country_name = "Not set"
-
-    unless invitee_location.blank?
-      country = ISO3166::Country[invitee_location]
-      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
-    end
-
-    country_name
+    country_name(invitee_location)
   end
 
   private

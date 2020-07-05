@@ -136,7 +136,7 @@ RSpec.describe Job, type: :model do
 
     it "should return an empty string if invalid country" do
       job.update(country: '')
-      expect(job.location_name).to eq('')
+      expect(job.location_name).to eq('Not set')
     end
   end
 
