@@ -16,34 +16,27 @@ module Api
 
         if @invitation
           @invitation.resend_invite!
-
-          response_details = { status: 302, 
-                               json: { message: "Found existing invitation. Invitation was resent." } }
+          response_details = { status: 302, json: { message: "Found existing invitation. Invitation was resent." } }
         elsif @invitation.nil?
-          @invitation = Invitation.new(invitation_params)
-          @invitation.medium = 'api'
-          @invitation.code_of_conduct = true
+          invitation_custom_params = invitation_params
+          invitation_custom_params.merge!({medium: 'api', code_of_conduct: true})
+          @invitation = Invitation.new(invitation_custom_params)
 
           if (invitation_params.has_key?(:slack_uid) && !invitation_params[:slack_uid].blank?)
             user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
             @invitation.user = user if user
           else
-            render status: 405,
-                                 json: { message: "Invalid input" } and return
+            render status: 405, json: { message: "Invalid input" } and return
           end
 
           if @invitation.save
             @invitation.send_invite!
-
-            response_details = { status: :created, 
-                                 json: { message: "Created" } }
+            response_details = { status: :created, json: { message: "Created a new invitation." } }
           else
-            response_details = { status: 422,
-                                 json: { message: @invitation.errors } }
+            response_details = { status: 422, json: { message: @invitation.errors } }
           end
         else
-          response_details = { status: 500,
-                               json: { message: "An error has occured" } }
+          response_details = { status: 500, json: { message: "An error has occured." } }
         end
         
         render response_details and return
