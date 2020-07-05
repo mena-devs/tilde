@@ -17,19 +17,26 @@ module Api
         if @invitation
           @invitation.resend_invite!
 
-          render status: :found, json: { status: 302 }.to_json and return
+          render status: 302, 
+                 json: { message: "Found existing invitation. Invitation was resent." } and return
         elsif @invitation.nil?
           @invitation = Invitation.new(invitation_params)
           @invitation.medium = 'api'
           @invitation.code_of_conduct = true
 
-          user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
-          @invitation.user = user if user
+          if (invitation_params.has_key?(:slack_uid) && !invitation_params[:slack_uid].blank?)
+            user = User.find_user_by_slack_uid(invitation_params[:slack_uid])
+            @invitation.user = user if user
+          else
+            render status: 405,
+                   json: { message: "Invalid input" } and return
+          end
 
           if @invitation.save
             @invitation.send_invite!
 
-            render status: :created, json: { status: 201 }.to_json and return
+            render status: :created, 
+                   json: { message: "Created" } and return
           else
             render status: 422,
                    json: { message: @invitation.errors } and return

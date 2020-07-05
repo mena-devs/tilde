@@ -18,6 +18,15 @@ paths:
         '201':
           description: Creates a new invitation
           content: {}
+        '302':
+          description: Resend an existing invitation
+          content: {}
+        '422':
+          description: invalid parameters
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
         '401':
           description: unauthorized
           content:
