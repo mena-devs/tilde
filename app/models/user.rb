@@ -127,6 +127,7 @@ class User < ApplicationRecord
   end
 
   def self.find_user_by_slack_uid(slack_uid)
+    return false if slack_uid.blank?
     user = find_by_uid(slack_uid)
 
     if user.blank?

@@ -35,7 +35,7 @@
 require 'uri'
 
 class Job < ApplicationRecord
-  include AASM
+  include AASM, CountryName
 
   aasm do
     state :draft, :initial => true
@@ -125,15 +125,7 @@ class Job < ApplicationRecord
   end
 
   def location_name
-    country_name = ""
-
-    unless country.blank?
-      country_str = ISO3166::Country[country]
-
-      country_name = country_str.translations[I18n.locale.to_s] || country_str.name
-    end
-
-    country_name
+    country_name(country)
   end
 
   def slack_and_buffer_notification_job_published

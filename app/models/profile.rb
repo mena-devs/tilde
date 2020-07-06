@@ -26,6 +26,8 @@
 #
 
 class Profile < ApplicationRecord
+  include CountryName
+
   belongs_to :user
 
   validates_uniqueness_of :nickname, allow_blank: true
@@ -94,13 +96,6 @@ class Profile < ApplicationRecord
   end
 
   def location_name
-    country_name = "Not set"
-
-    unless location.blank?
-      country = ISO3166::Country[location]
-      country_name = (country.translations[I18n.locale.to_s] || country.name) if country
-    end
-
-    country_name
+    country_name(location)
   end
 end

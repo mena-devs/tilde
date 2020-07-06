@@ -1,9 +1,59 @@
 ---
-openapi: 3.0.1
+swagger: 3.0.1
 info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/invitations":
+    post:
+      summary: Invitation
+      tags:
+      - Invitations
+      description: Create a new invitation to join Slack Group
+      operationId: createNewInvitation
+      security:
+      - Bearer: []
+      parameters: []
+      responses:
+        '201':
+          description: Creates a new invitation
+          content: {}
+        '302':
+          description: Resend an existing invitation
+          content: {}
+        '422':
+          description: invalid parameters
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
+        '401':
+          description: unauthorized
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
+        '405':
+          description: invalid input
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/errors_object"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/invitation"
+    get:
+      summary: Invitation
+      tags:
+      - Invitations
+      security:
+      - Bearer: []
+      responses:
+        '200':
+          description: Retrieve invitations
+          content: {}
   "/api/v1/jobs":
     get:
       summary: All jobs
@@ -296,6 +346,25 @@ components:
                 type: string
               last_updated:
                 type: string
+    invitation:
+      type: object
+      properties:
+        invitation:
+          type: object
+          properties:
+            invitee_title:
+              type: string
+            invitee_name:
+              type: string
+            invitee_email:
+              type: string
+            slack_uid:
+              type: string
+            invitee_company:
+              type: string
+          required:
+          - invitee_email
+          - invitee_name
   securitySchemes:
     Bearer:
       description: Authorization in the header

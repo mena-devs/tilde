@@ -16,7 +16,7 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.yaml' => {
-      openapi: '3.0.1',
+      swagger: '3.0.1',
       info: {
         title: 'API V1',
         version: 'v1'
@@ -136,6 +136,22 @@ RSpec.configure do |config|
                               last_updated: { type: 'string'}
                             },
                           },
+              },
+            },
+          },
+          invitation: {
+            type: 'object',
+            properties: {
+              invitation: {
+                type: :object,
+                properties: {
+                  invitee_title: { type: :string },
+                  invitee_name: { type: :string },
+                  invitee_email: { type: :string },
+                  slack_uid: { type: :string },
+                  invitee_company: { type: :string }
+                },
+                required: ['invitee_email', 'invitee_name' ]
               },
             },
           },

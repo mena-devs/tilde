@@ -129,7 +129,7 @@ RSpec.describe 'api/users', type: :request do
         schema schema '$ref' => '#/components/schemas/users'
 
         let!(:user) { create(:user) }
-        let!(:member) { create(:user) }
+        let!(:member) { create(:user, last_name: 'bluezone') }
         let!(:api_key) { create(:api_key, user: user) }
         let!("query[last_name]") { member.last_name }
         let(:Authorization) { 'Bearer ' + api_key.access_token }

@@ -157,7 +157,7 @@ Rails.application.routes.draw do
   # API resources
   namespace :api do
     namespace :v1 do
-      resources :invitations, only: [:create]
+      resources :invitations, only: [:index, :create]
       resources :jobs, :controller => :jobs, only: [:index, :show]
       resources :users, :controller => :users, only: [:index, :show] do
         collection do
