@@ -15,10 +15,17 @@ RSpec.describe "Jobs", type: :request do
     end
 
     it "should list all published jobs" do
+      jobs = []
+      (1..11).each do
+        jobs << create(:job, user: user, aasm_state: 'approved')
+      end
+
       get jobs_path
       expect(response).to have_http_status(200)
       expect(response.body).to include(@job.title)
       expect(response.body).to_not include(@unpublished_job.title)
+      expect(response.body).to include(jobs[2].title)
+      expect(response.body).to include(jobs[9].title)
     end
   end
 

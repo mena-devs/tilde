@@ -35,8 +35,6 @@ module Api
           else
             response_details = { status: 422, json: { message: @invitation.errors } }
           end
-        else
-          response_details = { status: 500, json: { message: "An error has occured." } }
         end
         
         render response_details and return

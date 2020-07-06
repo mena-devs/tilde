@@ -23,7 +23,7 @@ module Api
         jobs_hash.merge!(options)
         jobs_hash.merge!(pagination: pagination_content('jobs', current_page, total_pages))
 
-        render json: jobs_hash
+        render status: 200, json: jobs_hash and return
       end
 
       # GET /jobs/:id
@@ -32,7 +32,7 @@ module Api
 
         job_hash = JobSerializer.new(job).serializable_hash
 
-        render json: job_hash
+        render status: 200, json: job_hash and return
       end
     end
   end
