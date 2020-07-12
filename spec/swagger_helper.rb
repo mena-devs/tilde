@@ -15,8 +15,8 @@ RSpec.configure do |config|
   # document below. You can override this behavior by adding a swagger_doc tag to the
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
-    'v1/swagger.yaml' => {
-      swagger: '3.0.1',
+    'v1/open_api.yaml' => {
+      openapi: '3.0.1',
       info: {
         title: 'API V1',
         version: 'v1'
@@ -118,25 +118,26 @@ RSpec.configure do |config|
             type: 'object',
             properties: {
               data: { type: 'object',
-                id: { type: 'string'},
-                attributes: { type: 'object',
-                  properties: {
-                              first_name: { type: 'string', nullable: true },
-                              last_name: { type: 'string', nullable: true },
-                              email: { type: 'string' },
-                              nickname: { type: 'string', nullable: true },
-                              tilde_url: { type: 'string' },
-                              location: { type: 'string', nullable: true },
-                              biography: { type: 'string', nullable: true },
-                              title: { type: 'string', nullable: true },
-                              company_name: { type: 'string', nullable: true },
-                              twitter_handle: { type: 'string', nullable: true },
-                              confirmed: { type: 'boolean' },
-                              confirmed_at: { type: 'string'},
-                              last_updated: { type: 'string'}
-                            },
-                          },
-              },
+                      properties: { id: { type: 'string'},
+                                    attributes: { type: 'object',
+                                      properties: {
+                                                  first_name: { type: 'string', nullable: true },
+                                                  last_name: { type: 'string', nullable: true },
+                                                  email: { type: 'string' },
+                                                  nickname: { type: 'string', nullable: true },
+                                                  tilde_url: { type: 'string' },
+                                                  location: { type: 'string', nullable: true },
+                                                  biography: { type: 'string', nullable: true },
+                                                  title: { type: 'string', nullable: true },
+                                                  company_name: { type: 'string', nullable: true },
+                                                  twitter_handle: { type: 'string', nullable: true },
+                                                  confirmed: { type: 'boolean' },
+                                                  confirmed_at: { type: 'string'},
+                                                  last_updated: { type: 'string'}
+                                                },
+                                              },
+                                  },
+                      },
             },
           },
           invitation: {
