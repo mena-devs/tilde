@@ -53,6 +53,10 @@ class Invitation < ApplicationRecord
         resend_invitation
       end
     end
+
+    event :accept do
+      transitions :from => [:sent, :resent, :revoked], :to => :accepted
+    end
   end
 
   after_create :new_invite_notify_administrators
@@ -67,6 +71,7 @@ class Invitation < ApplicationRecord
   validates_with CodeOfConductValidator
 
   scope :all_sent, ->(user_id) { where("user_id = ?", user_id) }
+  scope :pending, ->{ where(aasm_state: ['sent', 'resent']) }
 
   def self.has_pending_invitation_to_join_slack(email)
     where(invitee_email: email).exists?
@@ -88,6 +93,16 @@ class Invitation < ApplicationRecord
 
   def location_name
     country_name(invitee_location)
+  end
+
+  def self.update_invitations_statuses
+    Invitation.pending.each do |invitation|
+      if User.find_by_email(invitation.invitee_email)
+        invitation.accept!
+        invitation.toggle(:registered)
+        invitation.save
+      end
+    end
   end
 
   private
