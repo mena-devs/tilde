@@ -24,6 +24,10 @@
   </td>
 
   <td>
+    <%= admin_job.hired? %>
+  </td>
+
+  <td>
     <% if (authorised_admin? && admin_job.offline?) %>
       <%= link_to("Edit", edit_job_path(admin_job), class: "button button-3d button-mini button-rounded button-blue") %>
       <%= link_to("Delete", job_path(admin_job), class: "button button-3d button-mini button-rounded button-red", method: 'delete') %>

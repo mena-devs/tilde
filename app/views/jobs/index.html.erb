@@ -30,7 +30,7 @@
     <div class="container clearfix">
 
       <% if user_signed_in? %>
-        <div class="content-maring-left">
+        <div>
           <span>Filter jobs</span> &nbsp;
           <%= link_to(jobs_path) do %>
             <%= content_tag(:button, class: display_button_filter_class(params)) do %>

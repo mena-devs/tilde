@@ -13,16 +13,8 @@ class JobsController < ApplicationController
 
     @jobs = Job.approved
 
-    if user_signed_in? && params.has_key?(:state)
-      user_jobs = Job.user_jobs(current_user)
-
-      if params[:state] == 'user'
-        @jobs = user_jobs
-      elsif params[:state] == 'draft'
-        @jobs = user_jobs.user_draft
-      elsif params[:state] == 'expired'
-        @jobs = user_jobs.user_expired
-      end
+    if (user_signed_in? && params.has_key?(:state))
+      filter_by_params
     end
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
@@ -136,6 +128,19 @@ class JobsController < ApplicationController
       @job = Job.where(custom_identifier: params[:id]).or(Job.where(slug: params[:id]))
       not_found if @job.blank?
       @job = @job.decorate.first
+    end
+
+    def filter_by_params
+      user_jobs = Job.user_jobs(current_user)
+      state_params = params[:state]
+
+      if state_params == 'user'
+        @jobs = user_jobs
+      elsif state_params == 'draft'
+        @jobs = user_jobs.user_draft
+      elsif state_params == 'expired'
+        @jobs = user_jobs.user_expired
+      end
     end
 
     # Only allow a trusted parameter "white list" through.
