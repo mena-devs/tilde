@@ -13,17 +13,15 @@ class JobsController < ApplicationController
 
     @jobs = Job.approved
 
-    if user_signed_in?
-      if params.has_key?(:state)
-        user_jobs = Job.user_jobs(current_user)
+    if user_signed_in? && params.has_key?(:state)
+      user_jobs = Job.user_jobs(current_user)
 
-        if params[:state] == 'user'
-          @jobs = user_jobs
-        elsif params[:state] == 'draft'
-          @jobs = user_jobs.user_draft
-        elsif params[:state] == 'expired'
-          @jobs = user_jobs.user_expired
-        end
+      if params[:state] == 'user'
+        @jobs = user_jobs
+      elsif params[:state] == 'draft'
+        @jobs = user_jobs.user_draft
+      elsif params[:state] == 'expired'
+        @jobs = user_jobs.user_expired
       end
     end
 
