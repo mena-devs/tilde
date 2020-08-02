@@ -109,7 +109,9 @@ class Job < ApplicationRecord
   friendly_id :title, use: :slugged
 
   scope :user_jobs, -> (user) { where(user_id: user.id) }
-  scope :all_approved, -> { where(aasm_state: 'approved') }
+  scope :approved, -> { where(aasm_state: 'approved') }
+  scope :user_draft, -> { where(aasm_state: ['draft', 'under_review', 'edited']) }
+  scope :user_expired, -> { where(aasm_state: 'disabled') }
   scope :live, -> { where.not(:posted_on => nil) }
 
   def offline?

@@ -7,10 +7,10 @@ module Api
 
       # GET /jobs
       def index
-        approved_jobs = Job.all_approved
+        approved_jobs = Job.approved
         if params[:page] && params[:page][:number]
           jobs = approved_jobs.paginate(page: params[:page][:number], per_page: 10)
-          total_pages = (Job.all_approved.count / 10).ceil
+          total_pages = (Job.approved.count / 10).ceil
           current_page = params[:page][:number]
         else
           jobs = approved_jobs

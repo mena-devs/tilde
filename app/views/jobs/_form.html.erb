@@ -8,8 +8,8 @@
     </div>  <!-- /.col-md-12 -->
   </div>  <!-- /.job-form-buttons -->
 
-  <%= f.text_field :title, label: 'Job title', help: 'Only job title without seniority or location (i.e. Full Stack Developer)' %>
-  <%= f.text_field :external_link, label: 'URL to apply to job', help: 'If the job is posted somewhere else, please provide the URL' %>
+  <%= f.text_field :title, label: 'Job title', help: 'Enter the job title without seniority or location (i.e. Full Stack Developer)' %>
+  <%= f.text_field :external_link, label: 'URL to apply to job', help: 'Enter full URL (i.e. https://example.com/jobs/full-stack-developer)' %>
 
   <%= f.text_area :description, rows: 6, class: 'tinymce' %>
 
@@ -19,7 +19,7 @@
       <%= f.text_field :company_name %>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
       <div class="form-group">
         <%= f.label :country, 'Country', class: 'control-label' %>
         <%= f.country_select(:country,
@@ -35,9 +35,8 @@
       </div>
     </div>
 
-    <div class="col-md-2">
-      <br/>
-      <%= f.check_box :remote, label: "Remote job?" %>
+    <div class="col-md-3" style="padding-top:25px;">
+      <%= f.check_box :remote, label: "Is the job remote?" %>
     </div>
   </div>
 
@@ -85,7 +84,7 @@
       <div class="input-group">
         <%= f.select :payment_term, Job.payment_terms.keys.map { |w| [w.humanize, w] }, {label: 'Payment term', include_blank: 'Select term', selected: @job.payment_term } %>
       </div>
-    </div> <!-- salary range -->
+    </div> <!-- payment term -->
 
     <div class="col-md-3">
       <%= f.select :currency, Job.all_currencies.map { |obj| [obj[:title], obj[:code]] },
@@ -94,7 +93,11 @@
                             include_blank: 'Select currency',
                             selected: @job.currency
                           } %>
-    </div> <!-- nb of positions -->
+    </div> <!-- currency -->
+
+    <div class="col-md-3" style="padding-top:25px;">
+      <%= f.check_box :equity, label: "Do you offer equity or stock options?" %>
+    </div> <!-- equity -->
 
   </div>
 
