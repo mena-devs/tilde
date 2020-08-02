@@ -30,6 +30,7 @@
 #  twitter_handle     :string
 #  slug               :string
 #  hired              :boolean          default(FALSE)
+#  equity             :boolean
 #
 
 class JobSerializer
