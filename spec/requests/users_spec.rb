@@ -158,16 +158,16 @@ RSpec.describe "Users", type: :request do
     end
 
     it "should list members with OPEN profiles" do
-      visit directory_users_path
-      click_on('G', match: :first)
+      visit(directory_users_path)
+      click_button('G')
 
       expect(page).to have_content('Members Directory')
       expect(page).to have_content(open_profile_member.name)
     end
 
     it "should list members with members only and OPEN profiles" do
-      sign_in user
-      visit directory_users_path
+      sign_in(user)
+      visit(directory_users_path)
       click_on('ALL', match: :first)
 
       expect(page).to have_content('Members Directory')

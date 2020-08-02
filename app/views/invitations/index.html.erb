@@ -40,8 +40,9 @@
 
         <div class="row">
           <div class="col-md-12">
-            
-            <div style="padding-bottom: 25px">
+
+            <div>
+              <span>Filter invitations</span> &nbsp;
               <%= link_to(invitations_path) do %>
                 <%= content_tag(:button, class: display_button_filter_class(params)) do %>
                   All invitations
@@ -60,6 +61,7 @@
                 <% end %>
               <% end %>
             </div>
+            <hr/><!-- Filter jobs helper -->
 
             <div class="table-responsive bottommargin">
               <table class="table table-striped">

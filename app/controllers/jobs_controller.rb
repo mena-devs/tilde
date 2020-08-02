@@ -11,14 +11,11 @@ class JobsController < ApplicationController
     @page_description = 'Technical & software development jobs listed on MENAdevs'
     @page_keywords    = AppSettings.meta_tags_keywords
 
-    @jobs = Job.all_approved.live
+    @jobs = Job.approved
 
-    if user_signed_in?
-      @jobs = Job.user_jobs(current_user) | @jobs
+    if (user_signed_in? && params.has_key?(:state))
+      filter_by_params
     end
-
-    jobs  = @jobs.partition { |job| job.posted_on.blank? }
-    @jobs = (jobs.last.sort_by(&:updated_at) + jobs.first).reverse
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
   end
@@ -87,7 +84,7 @@ class JobsController < ApplicationController
   def destroy
     if ((user_signed_in? && current_user.id == @job.user_id) || current_user.admin?)
       @job.delete
-      redirect_to('/jobs', notice: 'Job post was successfully deleted.')
+      redirect_to(jobs_path, notice: 'Job post was successfully deleted.')
     else
       render @job, notice: 'You are not authorised to access this job post.'
     end
@@ -133,6 +130,19 @@ class JobsController < ApplicationController
       @job = @job.decorate.first
     end
 
+    def filter_by_params
+      user_jobs = Job.user_jobs(current_user)
+      state_params = params[:state]
+
+      if state_params == 'user'
+        @jobs = user_jobs
+      elsif state_params == 'draft'
+        @jobs = user_jobs.user_draft
+      elsif state_params == 'expired'
+        @jobs = user_jobs.user_expired
+      end
+    end
+
     # Only allow a trusted parameter "white list" through.
     def job_params
       params.require(:job).permit(:title, :description, :external_link,
@@ -141,6 +151,6 @@ class JobsController < ApplicationController
                                   :experience, :from_salary, :country, :remote,
                                   :to_salary, :currency, :payment_term,
                                   :education, :number_of_openings,
-                                  :twitter_handle, :hired)
+                                  :twitter_handle, :hired, :equity)
     end
 end

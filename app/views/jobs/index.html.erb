@@ -11,7 +11,7 @@
 
       <div class="col-md-4 hidden-xs">
         <%= link_to(new_job_path, :class => "button button-3d notopmargin fright") do %>
-          <%= fa_icon("plus", :text => "Post a new Job") %>
+          <%= fa_icon("plus", :text => "Create a new Job") %>
         <% end %>
       </div>
     </div>
@@ -19,7 +19,7 @@
 
 </section><!-- #page-title end -->
 
-<%= content_for :flash %>
+<%= render("shared/flash") %>
 
 <!-- Content
 ============================================= -->
@@ -29,15 +29,44 @@
 
     <div class="container clearfix">
 
+      <% if user_signed_in? %>
+        <div>
+          <span>Filter jobs</span> &nbsp;
+          <%= link_to(jobs_path) do %>
+            <%= content_tag(:button, class: display_button_filter_class(params)) do %>
+              All available jobs
+            <% end %>
+          <% end %>
+
+          <%= link_to(jobs_path(state: 'user')) do %>
+            <%= content_tag(:button, class: display_button_filter_class(params, 'user')) do %>
+              My jobs
+            <% end %>
+          <% end %>
+
+          <%= link_to(jobs_path(state: 'draft')) do %>
+            <%= content_tag(:button, class: display_button_filter_class(params, 'draft')) do %>
+              Draft
+            <% end %>
+          <% end %>
+
+          <%= link_to(jobs_path(state: 'expired')) do %>
+            <%= content_tag(:button, class: display_button_filter_class(params, 'expired')) do %>
+              Expired
+            <% end %>
+          <% end %>
+        </div>
+        <hr/>
+      <% end %><!-- Filter jobs helper -->
+
       <% if @jobs.blank? %>
 
         <div class="alert alert-info alert-dismissible" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <i class="icon-warning-sign"></i>There are no jobs on MENAdevs at the moment
+          <i class="icon-warning-sign"></i>No jobs were found
         </div>
 
       <% else %>
-
         <div class="row">
           <div class="col-md-12">
             <%= render("jobs_table", locals: { jobs: @jobs }) %>

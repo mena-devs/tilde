@@ -26,7 +26,7 @@
 
 <%= render("shared/flash") %>
 
-<section id="content" style="margin-bottom: 0px;">
+<section id="content">
 
   <div class="content-wrap">
 
@@ -61,7 +61,7 @@
               ============================================= -->
             <div class="entry-content notopmargin">
 
-              <ul style='margin-left: 26px'>
+              <ul class="content-margin-left" style="line-height: 1.8 !important;">
                 <li>
                   <i class="icon-briefcase"></i>
                   Employment type: <%= @job.employment_type.try(:humanize) %>
@@ -78,23 +78,31 @@
                 </li>
 
                 <li>
+                  <i class="icon-chart"></i>
+                  Job has equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %>
+                </li>
+
+                <li>
                   <i class="icon-plane"></i>
-                  Remote: <%= @job.remote? ? 'Yes' : 'No' %>
+                  Job is remote or has remote working as an option: <%= @job.remote? ? 'Yes' : 'No' %>
                 </li>
 
                 <% unless @job.apply_email.blank? %>
                   <li>
                     <i class="icon-email"></i>
-                    Email: <%= @job.apply_email %>
+                    Apply to email: <%= mail_to(@job.apply_email) %>
                   </li>
                 <% end %>
               </ul>
-              <% unless @job.description.blank? %>
-                <hr/>
-                <p>
+
+              <hr/>
+              <div>
+                <% if @job.description.blank? %>
+                  No job details yet, please make sure that you have a valid job description before submitting this job for approval.
+                <% else %>
                   <%=raw @job.description.html_safe %>
-                </p>
-              <% end %>
+                <% end %>
+              </div>
             </div>
             <!-- .entry-content end -->
           </div>
@@ -163,9 +171,9 @@
 
               <div class="panel-body">
                 <% if @job_statistics.size > 0 %> 
-                  <ul>
+                  <ul class="content-margin-left">
                     <% @job_statistics.each do |job_statistic| %>
-                      <li><%= link_to(visitor_name(job_statistic.user), directory_user_path(job_statistic.user)) %> - <%= job_statistic.counter %> <%= fa_icon("eye") %></li>
+                      <li><%= link_to(visitor_name(job_statistic.user), directory_user_path(job_statistic.user)) %> x <%= job_statistic.counter %> <%= fa_icon("eye") %></li>
                     <% end %>
                   </ul>
                 <% else %>

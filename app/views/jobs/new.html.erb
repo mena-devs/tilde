@@ -4,8 +4,8 @@
 
   <div class="container clearfix">
     <div class="row clearfix">
-      <div class="col-md-8 col-xs-8 nopadding">
-        <h1>New job</h1>
+      <div class="col-md-8 col-xs-8">
+        <h1>Create a new job</h1>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
 </section>
 <!-- #page-title end -->
 
-<%= content_for :flash %>
+<%= render("shared/flash") %>
 
 <!-- Content
 ============================================= -->
@@ -27,9 +27,18 @@
         <div class="col-md-12">
           <div class="style-msg alertmsg">
             <div class="sb-msg">
-              <i class="icon-warning-sign"></i>
-              Approved job posts on <%= (link_to AppSettings.application_host, AppSettings.application_host) %> are distributed via: <strong>email</strong> to all subscribed members, <strong>Slack announcement</strong> and on our <strong>Twitter</strong> account.<br/>
-              Job posts expire after <strong>1 month</strong> from the date of approval.
+              <i class="icon-warning-sign"></i> <strong>Important Information</strong>
+              <ul style="margin-left: 20px">
+                <li>All job posts are subject to approval by the administrators before they are live on the job board.</li>
+                <li>Approved job posts on <%= (link_to AppSettings.application_host, AppSettings.application_host) %> are distributed via:
+                  <ol style="margin-left: 20px">
+                    <li>Email to all subscribed members</li>
+                    <li>MENAdevs Slack Group channel #announcement</li>
+                    <li>MENAdevs account on Twitter</li>
+                  </ol>
+                </li>
+                <li>Job posts expire after <strong>1 month</strong> from the date of approval</li>
+              </ul>
             </div>
           </div>
           <br/>

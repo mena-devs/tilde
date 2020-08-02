@@ -34,17 +34,27 @@ class Notifier
                         "short": true
                     },
                     {
+                        "title": "is the job remote or has remote working as an option?",
+                        "value": job.remote,
+                        "short": true
+                    },
+                    {
                         "title": "Expected salary",
                         "value": job.salary_to_s,
                         "short": true
                     },
                     {
-                        "title": "Email to apply",
+                        "title": "Equity or Stock Options",
+                        "value": job.equity,
+                        "short": true
+                    },
+                    {
+                        "title": "Apply by email to",
                         "value": job.apply_email,
                         "short": true
                     },
                     {
-                        "title": "For more details, check out the following link:",
+                        "title": "For more details, visit the job post:",
                         "value": "#{AppSettings.application_host}/jobs/#{job.to_param}?md=slack",
                         "short": false
                     }

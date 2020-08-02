@@ -17,7 +17,7 @@ RSpec.describe "Jobs", type: :request do
     it "should list all published jobs" do
       jobs = []
       (1..11).each do
-        jobs << create(:job, user: user, aasm_state: 'approved')
+        jobs.append(create(:job, user: user, aasm_state: 'approved'))
       end
 
       get jobs_path
@@ -27,6 +27,44 @@ RSpec.describe "Jobs", type: :request do
       expect(response.body).to include(jobs[2].title)
       expect(response.body).to include(jobs[9].title)
     end
+
+    describe "Signed in user" do
+      before do
+        @draft_job_1 = create(:job, user: user)
+        @draft_job_2 = create(:job, user: user, aasm_state: 'under_review')
+        @expired_job = create(:job, user: user, aasm_state: 'disabled')
+      end
+
+      it "should allow user to view all their jobs" do
+        sign_in(user)
+        visit(jobs_path(state: 'user'))
+
+        expect(page).to have_content(@job.title)
+        expect(page).to have_content(@draft_job_1.title)
+        expect(page).to have_content(@draft_job_2.title)
+        expect(page).to have_content(@expired_job.title)
+      end
+
+      it "should allow user to view job posts they are drafting" do
+        sign_in(user)
+        visit(jobs_path(state: 'draft'))
+
+        expect(page).to_not have_content(@job.title)
+        expect(page).to have_content(@draft_job_1.title)
+        expect(page).to have_content(@draft_job_2.title)
+        expect(page).to_not have_content(@expired_job.title)
+      end
+
+      it "should allow user to view expired job posts" do
+        sign_in(user)
+        visit(jobs_path(state: 'expired'))
+
+        expect(page).to_not have_content(@job.title)
+        expect(page).to_not have_content(@draft_job_1.title)
+        expect(page).to_not have_content(@draft_job_2.title)
+        expect(page).to have_content(@expired_job.title)
+      end
+    end
   end
 
   describe "GET /jobs/new" do
@@ -35,22 +73,22 @@ RSpec.describe "Jobs", type: :request do
     end
 
     it "should render new job template" do
-      sign_in user
-      get new_job_path
+      sign_in(user)
+      get(new_job_path)
       expect(response).to have_http_status(200)
       expect(response).to render_template('jobs/new')
     end
 
     it "should redirect the login user to complete profile editing" do
-      sign_in user_without_profile
-      get new_job_path
+      sign_in(user_without_profile)
+      get(new_job_path)
       expect(response).to have_http_status(302)
       expect(response.header['location']).to include('/profile/edit')
     end
 
     it "should validate required fields" do
-      sign_in user
-      visit new_job_path
+      sign_in(user)
+      visit(new_job_path)
 
       fill_in 'Job title', with: 'Test Title'
       fill_in 'URL to apply to job',  with: 'https://example.com/jobs/1'
@@ -65,8 +103,8 @@ RSpec.describe "Jobs", type: :request do
     end
 
     it "should save job if all required fields are filled" do
-      sign_in user
-      visit new_job_path
+      sign_in(user)
+      visit(new_job_path)
 
       fill_in 'Job title', with: 'Test Title'
       fill_in 'URL to apply to job',  with: 'https://example.com/jobs/1'
@@ -159,14 +197,13 @@ RSpec.describe "Jobs", type: :request do
       click_on('Delete', match: :first)
 
       expect(page).to have_content('Job Board')
-      # FIXME: Investigate why flash does not show in tests
-      # expect(page).to have_content('Job post was successfully deleted.')
+      expect(page).to have_content('Job post was successfully deleted.')
     end
 
     it "should allow job owner to delete job from listing" do
       sign_in user
-      visit(jobs_path)
-      
+      visit(jobs_path(state: 'user'))
+
       expect(page).to have_content(@job.title)
       expect(page).to have_content('Edit')
       expect(page).to have_content('Delete')

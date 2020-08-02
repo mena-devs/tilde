@@ -82,4 +82,16 @@ module ApplicationHelper
   def authorised_admin?
     (user_signed_in? && current_user.admin?)
   end
+
+  def display_button_filter_class(parameters, state=nil)
+    class_data = 'button button-directory button-3d button-mini button-rounded'
+    
+    if (state.nil? && !parameters.has_key?(:state))
+      class_data += ' button-teal'
+    elsif (!state.nil? && parameters[:state] == state)
+      class_data += ' button-teal'
+    end
+
+    class_data
+  end
 end
