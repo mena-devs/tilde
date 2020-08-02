@@ -1,16 +1,17 @@
 <tr>
-  <td><%= invitation.invitee_name %></td>
   <td>
-    <%= link_to(invitation.invitee_email, invitation) %>
-    <% if invitation.invitee_email == current_user.email %>
-      &nbsp;
-      <%= fa_icon("check", text: "me") %>
-    <% end %>
+    <%= invitation.invitee_name %>
   </td>
-  <td><%= display_invitation_state(invitation) %></td>
-  
-  <% if authorised_admin? %>
-    <td><%= link_to("Resend", resend_invitation_path(invitation), class: "button button-3d button-mini button-rounded button-red", method: :put) %></td>
-  <% end %>
-  <td><%= link_to("View", invitation, class: "button button-3d button-mini button-rounded button-green") %></td>
+  <td>
+    <%= invitation.invitee_email %>
+  </td>
+  <td>
+    <%= display_invitation_state(invitation) %>
+  </td>
+  <td>
+    <%= invitation.created_at.strftime("%d %b %Y") %>
+  </td>
+  <td>
+    <%= link_to("Details", invitation, class: "button button-3d button-mini button-rounded button-green") %>
+  </td>
 </tr>

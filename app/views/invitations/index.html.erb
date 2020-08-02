@@ -4,9 +4,9 @@
 
   <div class="container clearfix">
     <div class="row clearfix">
-      <div class="col-md-8 col-xs-12 nopadding">
-        <h1>Slack Group invitations</h1>
-        <span class='hidden-xs'>Invitations sent to your contacts</span>
+      <div class="col-md-8 col-xs-12">
+        <h1>Invitations</h1>
+        <span class='hidden-xs'>Slack Group invitations sent to your contacts</span>
       </div>
 
       <div class="col-md-4 hidden-xs">
@@ -29,33 +29,58 @@
 
     <div class="container clearfix">
 
-      <div class="table-responsive">
-        <% if @invitations.blank? %>
+      <% if @invitations.blank? %>
 
-          <div class="alert alert-info alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <i class="icon-warning-sign"></i>You have sent 0 invitations
-          </div>
+        <div class="alert alert-info alert-dismissible" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <i class="icon-warning-sign"></i>You have sent 0 invitations
+        </div>
 
-        <% else %>
-          <table id="invitations-datatable" class="table table-striped table-bordered" cellspacing="0" width="100%">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>State</th>
-                <% if authorised_admin? %>
-                  <th>&nbsp;</th>
+      <% else %>
+
+        <div class="row">
+          <div class="col-md-12">
+            
+            <div style="padding-bottom: 25px">
+              <%= link_to(invitations_path) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params)) do %>
+                  All invitations
                 <% end %>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <%= render(partial: "invitation", collection: @invitations) %>
-            </tbody>
-          </table>
-        <% end %>
-      </div>
+              <% end %>
+
+              <%= link_to(invitations_path(state: 'accepted')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'accepted')) do %>
+                  Accepted
+                <% end %>
+              <% end %>
+
+              <%= link_to(invitations_path(state: 'pending')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'pending')) do %>
+                  Pending
+                <% end %>
+              <% end %>
+            </div>
+
+            <div class="table-responsive bottommargin">
+              <table class="table table-striped">
+                <tr>
+                  <th>Invitee Name</th>
+                  <th>Invitee Email</th>
+                  <th>Invitation Status</th>
+                  <th>Sent on</th>
+                  <th>&nbsp;</th>
+                </tr>
+            
+                <tbody>
+                  <%= render(partial: "invitation", collection: @invitations) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <!-- pagination -->
       <div class="center">
         <%= paginate @invitations %>
       </div>

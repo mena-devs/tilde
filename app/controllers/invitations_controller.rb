@@ -6,13 +6,18 @@ class InvitationsController < ApplicationController
 
   # GET /invitations
   def index
-    if current_user && current_user.admin?
-      @invitations = Invitation.all.order(created_at: :desc, updated_at: :desc).page(params[:page])
-    elsif current_user
-      @invitations = Invitation.all_sent(current_user.id).order(updated_at: :desc).page(params[:page])
+    if params.has_key?(:state)
+      invitations = Invitation.where(user: current_user.id)
+      if params[:state] == 'accepted'
+        invitations = invitations.where(aasm_state: 'accepted')
+      elsif params[:state] == 'pending'
+        invitations = invitations.where(aasm_state: ['sent', 'resent'])
+      end
     else
-      @invitations = []
+      invitations = Invitation.all_sent(current_user.id)
     end
+
+    @invitations = invitations.order(updated_at: :desc).page(params[:page])
   end
 
   # GET /list-invitations-admin

@@ -2,10 +2,11 @@
 ============================================= -->
 <section id="page-title">
 
-  <div class="container clearfix">
-    <div class="row clearfix">  
-      <div class="col-md-8 col-xs-12 nopadding">
+  <div class="container clearfix nopadding">
+    <div class="row">
+      <div class="col-md-8 col-xs-12">
         <h1>Invitee details</h1>
+        <span class='hidden-xs'>Slack Group invitations</span>
       </div>
 
       <div class="col-md-4 hidden-xs"></div>
@@ -20,29 +21,35 @@
 ============================================= -->
 <section id="content">
   <div class="content-wrap">
-    <div class="container clearfix">
-      <div class="postcontent nobottommargin">
-        <div class="table-responsive">
-          <table class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <div class="container clearfix nopadding">
+
+      <div class="postcontent">
+
+        <div class="table-responsive bottommargin">
+          <table class="table table-striped">
             <tbody>
               <tr>
-                <th width="40%">Who sent the invitation?</th>
+                <th width="40%">Member who sent the invitation</th>
                 <td><%= link_to(@invitation.user.name, directory_user_path(@invitation.user)) %></td>
               </tr>
               <tr>
-                <th>Updated on</th>
+                <th>Invitation created on</th>
+                <td><%= @invitation.created_at.strftime("%d %b %Y") %></td>
+              </tr>
+              <tr>
+                <th>Invitation updated on (i.e. approved, accepted)</th>
                 <td><%= @invitation.updated_at.strftime("%d %b %Y") %></td>
               </tr>
               <tr>
-                <th>Sent to name</th>
+                <th>Invitee name</th>
                 <td><%= @invitation.invitee_name %></td>
               </tr>
               <tr>
-                <th>Sent to email address</th>
-                <td><%= @invitation.invitee_email %></td>
+                <th>Invitee email address</th>
+                <td><%= display_tilde_member(@invitation) %></td>
               </tr>
               <tr>
-                <th>The introduction that you wrote</th>
+                <th>Introduction that you wrote about the invitee</th>
                 <td><%= @invitation.invitee_introduction %></td>
               </tr>
               <tr>
@@ -54,19 +61,19 @@
                 <td><%= @invitation.invitee_company %></td>
               </tr>
               <tr>
-                <th>Location</th>
+                <th>Invitee location</th>
                 <td><%= @invitation.location_name %></td>
               </tr>
               <tr>
-                <th>Is the invitee a member of this platform?</th>
-                <td><%= @invitation.registered? %></td>
+                <th>Is the invitee a member of Tilde?</th>
+                <td><%= display_tilde_membership(@invitation) %></td>
               </tr>
               <tr>
-                <th>State of this invitation</th>
+                <th>Status of this invitation</th>
                 <td><%= display_invitation_state(@invitation) %></td>
               </tr>
               <tr>
-                <th>Number of retries?</th>
+                <th>Number of times this invitation has been sent</th>
                 <td><%= @invitation.retries %></td>
               </tr>
             </tbody>
@@ -82,13 +89,11 @@
             </div>
 
             <div class="panel-body">
-              <div>
-                <%= link_to("Back to invitations", invitations_path, class: "button button-3d notopmargin") %>
-              </div>
-              <br/>
-              <div>
-                <%= button_to('Resend', resend_invitation_path(@invitation), class: "button button-3d notopmargin button-green", method: :put) %>
-              </div>
+              <%= link_to('Back to all invitations', invitations_path, class: "button button-3d button-mini button-rounded") %>
+
+              <% if !@invitation.accepted? %>
+                <%= link_to('Resend', resend_invitation_path(@invitation), class: "button button-3d button-mini button-rounded button-green", method: :put) %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -100,17 +105,12 @@
           <div class="sidebar-widgets-wrap">
             <div class="panel panel-info">
               <div class="panel-heading">
-                <h3 class="panel-title">Actions for admins</h3>
+                <h3 class="panel-title">Actions [for Admins]</h3>
               </div>
 
               <div class="panel-body">
-                <div>
-                  <%= link_to("All Invitations", list_invitations_admin_path, class: "button button-3d notopmargin") %>
-                </div>
-                <br/>
-                <div>
-                  <%= button_to('Approve', approve_invitation_path(@invitation), class: "button button-3d notopmargin button-green", method: :put) %>
-                </div>
+                <%= link_to("All invitations", list_invitations_admin_path, class: "button button-3d button-mini button-rounded") %>
+                <%= link_to('Approve', approve_invitation_path(@invitation), class: "button button-3d button-mini button-rounded button-green", method: :put) %>
               </div>
             </div>
           </div>
