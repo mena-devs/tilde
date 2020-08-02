@@ -4,7 +4,7 @@ class JobMailer < ApplicationMailer
   def new_job(job_id)
     @job = Job.find(job_id).decorate
 
-    subject = "MENAdevs - #{@job.user.try(:name)} posted a new job"
+    subject = "MENAdevs - #{@job.user.try(:name)} posted a new job '#{@job.title}''"
 
     mail to: AppSettings.admin_email,
          reply_to: @job.user.email,
@@ -14,7 +14,7 @@ class JobMailer < ApplicationMailer
   def job_published(job_id)
     @job = Job.find(job_id).decorate
 
-    subject = "MENAdevs - Your job post is published on the job board"
+    subject = "MENAdevs - Job '#{@job.title}' is published on the job board"
 
     mail to: @job.user.email,
          subject: subject
@@ -23,7 +23,7 @@ class JobMailer < ApplicationMailer
   def job_unpublished(job_id)
     @job = Job.find(job_id).decorate
 
-    subject = "MENAdevs - Your job post is now offline"
+    subject = "MENAdevs - Job '#{@job.title}' is now offline"
 
     mail to: @job.user.email,
          subject: subject
@@ -33,7 +33,7 @@ class JobMailer < ApplicationMailer
     @job = Job.find(job_id).decorate
     @subscriber = User.find(subscriber_id)
 
-    subject = "MENAdevs - A new job is available online"
+    subject = "MENAdevs - New job alert: '#{@job.title}'"
 
     mail to: @subscriber.email,
          subject: subject
