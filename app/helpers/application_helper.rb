@@ -68,15 +68,52 @@ module ApplicationHelper
     end
   end
 
-  def directory_letters
+  def directory_letters(selected_letter=nil)
+    unless selected_letter.nil?
+      selected_letter = selected_letter.downcase.strip
+    end
+
     letters = ('a'..'z').to_a.map.each do |letter|
       link_to(directory_users_path(name: letter)) do
-        content_tag(:button, class: 'button button-directory button-3d button-mini button-rounded button-teal') do
+        content_tag(:button, class: button_style(selected_letter == letter)) do
           letter.capitalize
         end
       end
     end
     letters.join('').html_safe
+  end
+
+  def button_style(selected=false)
+    unselected_style_class = 'button button-directory button-3d button-mini button-rounded'
+    select_style_class = unselected_style_class + ' button-teal'
+    
+    selected ? select_style_class : unselected_style_class
+  end
+
+  def display_member_description(user)
+    biography = user.profile.try(:biography)
+
+    if biography.blank?
+      return content_tag(:p, "Profile description is not set", class: "member_profile_invalid" )
+    end
+
+    content_tag(:p) do
+      truncate(biography, length: 280, omission: ' ... ') { link_to "Read more", directory_user_path(user) }
+    end
+  end
+
+  def display_member_details_inline(user)
+    member_details_one_liner = ""
+    
+    if user.profile.title
+      member_details_one_liner += user.profile.title
+    end
+
+    if user.profile.company_name && !user.profile.company_name.empty?
+      member_details_one_liner += ", at #{user.profile.company_name}"
+    end
+
+    content_tag(:p, member_details_one_liner, class: "member_profile")
   end
 
   def authorised_admin?

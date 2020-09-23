@@ -37,7 +37,9 @@ class Profile < ApplicationRecord
   store :interests, accessors: [ :a_new_role, :collaborate_on_a_project, :freelance, :to_mentor_someone, :being_mentored, :participate_at_events ], coder: JSON
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "profile_picture_default.png"
+  
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  
   validates_with AttachmentSizeValidator, attributes: :avatar, less_than: 1.megabytes
 
   def complete?

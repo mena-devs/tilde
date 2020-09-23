@@ -60,3 +60,29 @@ table.borderless td, table.borderless th{
 ul, ol {
   margin-left: 20px;
 }
+
+hr.member_profile {
+  width:300px;
+  align:left;
+  padding-bottom:5px;
+  margin:0px;
+  border-top: 1px solid gray;
+}
+
+p.member_profile {
+  font-style:italic;
+  padding-bottom:5px;
+  margin:0px;
+}
+
+p.member_profile_invalid {
+  font-weight:bold;
+  font-style:italic;
+}
+
+.members-directory tr { line-height: 14px; }
+
+.filter-title {
+  padding-top:8px;
+  margin:0px;
+}
