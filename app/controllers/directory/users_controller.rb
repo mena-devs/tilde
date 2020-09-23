@@ -9,20 +9,15 @@ class Directory::UsersController < ApplicationController
     end
 
     if (user_params.has_key?(:name) && safe_param)
-      # Filtering by NAME is enabled
       search_letter = "^[" + user_params[:name].downcase + "].*"
       @users = @members.where("lower(first_name) ~ ?", search_letter).order(:first_name, :last_name).page(params[:page])
     else
-      # Filtering by interest is enabled
-      if (params.has_key?(:state))
-        filter_by_params
-        @members.sort_by! {|user| [user.first_name, user.last_name]}
-      end
+      filter_and_sort_content_by_params
 
       @users = Kaminari.paginate_array(@members).page(params[:page]).per(10)
     end
 
-    return @users
+    @users
   end
 
   def show
@@ -48,17 +43,20 @@ class Directory::UsersController < ApplicationController
       ('a'..'z').to_a.include?(user_params[:name].downcase)
     end
 
-    def filter_by_params
-      state_params = params[:state]
+    def filter_and_sort_content_by_params
+      return unless params.has_key?(:state)
 
-      if state_params == 'new_role'
+      case params[:state].downcase.strip
+      when 'new_role'
         @members = @members.select { |member| member.profile.a_new_role == "1" }
-      elsif state_params == 'freelance'
+      when 'freelance'
         @members = @members.select { |member| member.profile.freelance == "1" }
-      elsif state_params == 'mentor'
+      when 'mentor'
         @members = @members.select { |member| member.profile.to_mentor_someone == "1" }
-      elsif state_params == 'mentee'
+      when 'mentee'
         @members = @members.select { |member| member.profile.being_mentored == "1" }
       end
+
+      @members.sort_by! {|user| [user.first_name, user.last_name]}
     end
 end

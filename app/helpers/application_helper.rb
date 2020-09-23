@@ -91,9 +91,9 @@ module ApplicationHelper
   end
 
   def display_member_description(user)
-    biography = user.profile.biography
+    biography = user.profile.try(:biography)
 
-    if biography.empty?
+    if biography.blank?
       return content_tag(:p, "Profile description is not set", class: "member_profile_invalid" )
     end
 
