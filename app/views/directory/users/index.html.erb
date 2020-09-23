@@ -10,11 +10,44 @@
         <div class="btn-toolbar directory-padding">
           <div class="btn-group">
             <%= link_to(directory_users_path) do %>
-              <%= content_tag(:button, class: 'button button-directory button-3d button-mini button-rounded button-teal') do %>
+              <% if params.has_key?(:name) %>
+                <% turn_on_button = false %>
+              <% else %>
+                <% turn_on_button = true %>
+              <% end %>
+              <%= content_tag(:button, class: button_style(turn_on_button)) do %>
                 ALL
               <% end %>
             <% end %>
-            <%= directory_letters %>
+
+            <%= directory_letters(params[:name]) %>
+
+            <div>
+              <h4 class="filter-title">Filter all members by</h4>
+              <%= link_to(directory_users_path(state: 'new_role')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'new_role')) do %>
+                  Looking for a new role
+                <% end %>
+              <% end %>
+
+              <%= link_to(directory_users_path(state: 'freelance')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'freelance')) do %>
+                  Available for freelance
+                <% end %>
+              <% end %>
+
+              <%= link_to(directory_users_path(state: 'mentor')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'mentor')) do %>
+                  Available to mentor
+                <% end %>
+              <% end %>
+
+              <%= link_to(directory_users_path(state: 'mentee')) do %>
+                <%= content_tag(:button, class: display_button_filter_class(params, 'mentee')) do %>
+                  Looking for a mentor
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
 			</div>
@@ -41,40 +74,7 @@
         </div>
 
       <% else %>
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table table-striped" id="members-directory">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @users.each do |user| %>
-                    <tr>
-                      <td width='5%'>
-                        <%= image_tag(user.profile.avatar.url(:thumb), size: '50x50', class: 'img-thumbnail') %>
-                      </td>
-                      <td width='80%'>
-                        <%= link_to directory_user_path(user) do %>
-                          <%= user.name %>
-                          <% if user_signed_in? && current_user == user %>
-                            <div class="btn btn-xs btn-primary">
-                              <%= fa_icon("check") %>
-                              me
-                            </div>
-                          <% end %>
-                        <% end %>
-                        <br/>
-                        <small><%= truncate(user.profile.biography, length: 250, omission: '...') %></small>
-                      </td>
-                    </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <%= render(partial: "list_profiles", locals: {users: @users}) %>
 
         <div class="text-center">
           <%= paginate @users %>

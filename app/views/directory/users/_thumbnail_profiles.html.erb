@@ -1,0 +1,22 @@
+<% @users.in_groups_of(4) do |users| %>
+  <div class="row">
+    <% users.each do |user| %>
+      <% unless user.nil? %>
+        <div class="col-sm-4 col-md-3">
+          <div class="thumbnail" style="min-height:600px;height:600px;">
+            <%= image_tag(user.profile.avatar.url(:thumb)) %>
+            <div class="caption">
+              <h3><%= user.name %></h3>
+              <p>
+                <%= truncate(user.profile.biography, length: 250, omission: '...') %>
+              </p>
+              <p>
+                <%= link_to("Check Profile", directory_user_path(user), class: "btn btn-primary") %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

@@ -17,7 +17,7 @@ class JobsController < ApplicationController
       filter_by_params
     end
 
-    @jobs = Kaminari.paginate_array(@jobs).page(params[:page])
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(25)
   end
 
   # GET /list-jobs-admin
