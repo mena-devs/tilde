@@ -38,17 +38,17 @@
     <div class="col-md-3" style="padding-top:25px;">
       <%= f.check_box :remote, label: "Is the job remote?" %>
     </div>
-  </div>
+  </div> <!-- Remote job -->
 
   <div class="row">
     <div class="col-md-6">
       <%= f.text_field :apply_email, label: "Email to apply" %>
-    </div>
+    </div> <!-- Email address to apply to -->
 
     <div class="col-md-6">
       <%= f.text_field :twitter_handle, label: "Twitter Account", placeholder: "Twitter Username (i.e. MENAdevs)" %>
     </div>
-  </div>
+  </div> <!-- twitter handle -->
 
   <div class="row">
 
@@ -57,14 +57,14 @@
 
       <%= f.select :education, Job.educations.keys.map { |w| [w.humanize, w] }, {label: 'Education', include_blank: 'Select education', selected: @job.education} %>
 
-    </div>
+    </div> <!-- employment type and education level -->
 
     <div class="col-md-6">
       <%= f.select :experience, Job.experiences.keys.map { |w| [w.humanize, w] }, {label: 'Experience', include_blank: 'Select experience', selected: @job.experience} %>
 
       <%= f.select :number_of_openings, [1, 2, 3, 4, 5], { label: "Number of positions", include_blank: 'Select number of positions', selected: @job.number_of_openings } %>
     </div>
-  </div>
+  </div> <!-- experience and number of openings -->
 
   <div class="row">
 
@@ -72,13 +72,13 @@
       <div class="input-group">
         <%= f.number_field :from_salary, label: 'Starting salary', placeholder: 'Enter amount', help: 'Base salary' %>
       </div>
-    </div> <!-- salary range -->
+    </div> <!-- salary range from -->
 
     <div class="col-md-2">
       <div class="input-group">
         <%= f.number_field :to_salary, label: 'To salary', placeholder: 'Enter amount', help: 'Set only if salary is a range' %>
       </div>
-    </div> <!-- salary range -->
+    </div> <!-- salary range to -->
 
     <div class="col-md-2">
       <div class="input-group">

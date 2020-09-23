@@ -40,6 +40,8 @@
   </header>
 
   <div class="clear"></div>
+  
+  <%= render("shared/flash") %>
 
   <%= yield %>
 
@@ -60,14 +62,14 @@
 <div id="gotoTop" class="icon-angle-up"></div>
 
 <% if Rails.env.production? %>
-<%= render("shared/analytics") %>
+  <%= render("shared/analytics") %>
 <% end %>
 
 <%= content_for :javascript do %>
-<%= javascript_include_async_tag('plugins.js',
-                                    'data-turbolinks-track': false) %>
-<%= javascript_include_async_tag('functions.js',
-                                    'data-turbolinks-track': false) %>
+  <%= javascript_include_async_tag('plugins.js',
+                                      'data-turbolinks-track': false) %>
+  <%= javascript_include_async_tag('functions.js',
+                                      'data-turbolinks-track': false) %>
 <% end %>
 
 <% parent_layout "base" %>

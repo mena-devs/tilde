@@ -34,8 +34,8 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "is the job remote or has remote working as an option?",
-                        "value": job.remote,
+                        "title": "Position is remote?",
+                        "value": job.boolean_to_string(job.remote),
                         "short": true
                     },
                     {
@@ -44,8 +44,8 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "Equity or Stock Options",
-                        "value": job.equity,
+                        "title": "Offering equity or Stock Options?",
+                        "value": job.boolean_to_string(job.equity),
                         "short": true
                     },
                     {
@@ -54,7 +54,7 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "For more details, visit the job post:",
+                        "title": "For more information, check the following job post:",
                         "value": "#{AppSettings.application_host}/jobs/#{job.to_param}?md=slack",
                         "short": false
                     }
