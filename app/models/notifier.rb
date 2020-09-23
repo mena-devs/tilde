@@ -34,8 +34,8 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "Job is remote or has remote working as an option?",
-                        "value": job.remote.to_s,
+                        "title": "Position is remote?",
+                        "value": job.boolean_to_string(job.remote),
                         "short": true
                     },
                     {
@@ -44,8 +44,8 @@ class Notifier
                         "short": true
                     },
                     {
-                        "title": "Job has equity or Stock Options?",
-                        "value": job.equity.to_s,
+                        "title": "Offering equity or Stock Options?",
+                        "value": job.boolean_to_string(job.equity),
                         "short": true
                     },
                     {

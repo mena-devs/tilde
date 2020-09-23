@@ -36,7 +36,7 @@
 require 'uri'
 
 class Job < ApplicationRecord
-  include AASM, CountryName
+  include AASM, CountryName, TextHelpers
 
   aasm do
     state :draft, :initial => true
