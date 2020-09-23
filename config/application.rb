@@ -17,5 +17,7 @@ module MenaDevsCom
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
 
     config.tinymce.install = :compile
+
+    config.api_only = false
   end
 end
