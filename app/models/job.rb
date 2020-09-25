@@ -183,6 +183,10 @@ class Job < ApplicationRecord
       {
         title: 'British Pound (GBP)',
         code: 'GBP'
+      },
+      {
+        title: 'Turkish Lira (TRY)',
+        code: 'TRY'
       }
     ]
   end
