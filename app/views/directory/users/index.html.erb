@@ -21,33 +21,6 @@
             <% end %>
 
             <%= directory_letters(params[:name]) %>
-
-            <div>
-              <h4 class="filter-title">Filter all members by</h4>
-              <%= link_to(directory_users_path(state: 'new_role')) do %>
-                <%= content_tag(:button, class: display_button_filter_class(params, 'new_role')) do %>
-                  Looking for a new role
-                <% end %>
-              <% end %>
-
-              <%= link_to(directory_users_path(state: 'freelance')) do %>
-                <%= content_tag(:button, class: display_button_filter_class(params, 'freelance')) do %>
-                  Available for freelance
-                <% end %>
-              <% end %>
-
-              <%= link_to(directory_users_path(state: 'mentor')) do %>
-                <%= content_tag(:button, class: display_button_filter_class(params, 'mentor')) do %>
-                  Available to mentor
-                <% end %>
-              <% end %>
-
-              <%= link_to(directory_users_path(state: 'mentee')) do %>
-                <%= content_tag(:button, class: display_button_filter_class(params, 'mentee')) do %>
-                  Looking for a mentor
-                <% end %>
-              <% end %>
-            </div>
           </div>
         </div>
 			</div>
@@ -55,8 +28,6 @@
   </div>
 
 </section><!-- #page-title end -->
-
-<%= content_for :flash %>
 
 <!-- Content
 ============================================= -->
@@ -66,6 +37,35 @@
 
     <div class="container clearfix">
 
+      <div>
+        <span>Filter members by</span> &nbsp;
+
+        <%= link_to(directory_users_path(state: 'new_role')) do %>
+          <%= content_tag(:button, class: display_button_filter_class(params, 'new_role')) do %>
+            Looking for a new role
+          <% end %>
+        <% end %>
+
+        <%= link_to(directory_users_path(state: 'freelance')) do %>
+          <%= content_tag(:button, class: display_button_filter_class(params, 'freelance')) do %>
+            Available for freelance
+          <% end %>
+        <% end %>
+
+        <%= link_to(directory_users_path(state: 'mentor')) do %>
+          <%= content_tag(:button, class: display_button_filter_class(params, 'mentor')) do %>
+            Available to mentor
+          <% end %>
+        <% end %>
+
+        <%= link_to(directory_users_path(state: 'mentee')) do %>
+          <%= content_tag(:button, class: display_button_filter_class(params, 'mentee')) do %>
+            Looking for a mentor
+          <% end %>
+        <% end %>
+      </div>
+      <br/>
+
       <% if @users.blank? %>
 
         <div class="alert alert-info alert-dismissible" role="alert">
@@ -74,6 +74,7 @@
         </div>
 
       <% else %>
+
         <%= render(partial: "list_profiles", locals: {users: @users}) %>
 
         <div class="text-center">

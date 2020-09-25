@@ -52,7 +52,7 @@ RSpec.describe "Directory", type: :request do
         expect(page).to have_content('Available for freelance')
       end
 
-      it "should be able to filter based on interest#freelanc" do
+      it "should be able to filter based on interest#freelance" do
         visit(directory_users_path(state: 'freelance'))
 
         expect(page).not_to have_content(user_1.name)

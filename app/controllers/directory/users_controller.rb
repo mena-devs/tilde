@@ -8,6 +8,8 @@ class Directory::UsersController < ApplicationController
       @members = User.open_profile
     end
 
+    @members = @members.order(:first_name, :last_name)
+
     if (user_params.has_key?(:name) && safe_param)
       search_letter = "^[" + user_params[:name].downcase + "].*"
       @users = @members.where("lower(first_name) ~ ?", search_letter).order(:first_name, :last_name).page(params[:page])
