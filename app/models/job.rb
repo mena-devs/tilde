@@ -62,7 +62,8 @@ class Job < ApplicationRecord
       after do
         unless self.posted_to_slack?
           email_notification_job_published
-          slack_and_buffer_notification_job_published
+          slack_notification_job_published
+          buffer_notification_job_published
           email_notification_to_subscribed_members
           set_dates
         end
@@ -131,9 +132,16 @@ class Job < ApplicationRecord
     country_name(country)
   end
 
-  def slack_and_buffer_notification_job_published
+  def slack_notification_job_published
     SlackNotifierWorker.perform_async(self.id)
     self.update(posted_to_slack: true)
+  end
+
+  def twitter_notification_job_published
+    BufferNotifierWorker.perform_async(self.id)
+  end
+
+  def buffer_notification_job_published
     BufferNotifierWorker.perform_async(self.id)
   end
 

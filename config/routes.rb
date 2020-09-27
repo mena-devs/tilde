@@ -169,6 +169,7 @@ Rails.application.routes.draw do
 
   namespace :private do
     resource :dashboard, only: [:show]
+    resources :social_media_accounts
     resources :api_keys, only: [:index, :update] do
       member do
         put :update_state
