@@ -55,7 +55,7 @@ class Notifier
                     },
                     {
                         "title": "For more information, check the following job post:",
-                        "value": "#{AppSettings.application_host}/jobs/#{job.to_param}?md=slack",
+                        "value": "#{AppSettings.application_host}/jobs/#{job.to_param}?utm_source=slack",
                         "short": false
                     }
                 ],
