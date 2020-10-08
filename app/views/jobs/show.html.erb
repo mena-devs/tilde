@@ -1,46 +1,34 @@
 <section id="page-title">
-
   <div class="container clearfix">
     <div class="row clearfix">
       <div class="col-md-8 col-xs-12">
         <h1><%= @job.title %></h1>
         <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
       </div>
-
       <div class="col-md-4 nopadding fright hidden-xs">
         <% if authorised_job_owner?(@job) %>
-            <%= render('owner_job_actions', job: @job) %>
+          <%= render('owner_job_actions', job: @job) %>
         <% else %>
           <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: "_blank") %>
         <% end %>
       </div>
-
       <!-- Mobile friendly interface -->
       <div class="col-md-12 nopadding visible-xs">
         <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d", target: "_blank") %>
       </div>
     </div>
-
   </div>
 </section>
-
-<%= render("shared/flash") %>
-
 <section id="content">
-
   <div class="content-wrap">
-
     <div class="container clearfix">
       <!-- Post Content
         ============================================= -->
       <div class="postcontent nobottommargin">
-
         <div class="single-post nobottommargin">
-
           <!-- Single Post
             ============================================= -->
           <div class="entry clearfix">
-
             <!-- Entry Meta
               ============================================= -->
             <ul class="entry-meta clearfix">
@@ -56,37 +44,30 @@
               </li>
             </ul>
             <!-- .entry-meta end -->
-
             <!-- Entry Content
               ============================================= -->
             <div class="entry-content notopmargin">
-
               <ul class="content-margin-left" style="line-height: 1.8 !important;">
                 <li>
                   <i class="icon-briefcase"></i>
                   Employment type: <%= @job.employment_type.try(:humanize) %>
                 </li>
-
                 <li>
                   <i class="icon-users"></i>
                   Experience: <%= @job.experience.try(:humanize) %>
                 </li>
-
                 <li>
                   <i class="icon-money"></i>
                   Salary: <%= @job.salary_to_s %>
                 </li>
-
                 <li>
                   <i class="icon-chart"></i>
                   Job has equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %>
                 </li>
-
                 <li>
                   <i class="icon-plane"></i>
                   Job is remote or has remote working as an option: <%= @job.remote? ? 'Yes' : 'No' %>
                 </li>
-
                 <% unless @job.apply_email.blank? %>
                   <li>
                     <i class="icon-email"></i>
@@ -94,7 +75,6 @@
                   </li>
                 <% end %>
               </ul>
-
               <hr/>
               <div>
                 <% if @job.description.blank? %>
@@ -108,7 +88,6 @@
           </div>
         </div>
       </div>
-
       <!-- Sidebar
           ============================================= -->
       <% if @job.online? %>
@@ -121,7 +100,6 @@
           </div>
         </div>
       <% end %>
-
       <% if authorised_admin? %>
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
@@ -129,7 +107,6 @@
               <div class="panel-heading">
                 <h3 class="panel-title">Dashboard actions</h3>
               </div>
-
               <div class="panel-body">
                 <div class="row">
                   <!-- Display admin actions -->
@@ -142,7 +119,6 @@
           </div>
         </div>
       <% end %>
-
       <% if (authorised_job_owner?(@job) || authorised_admin?) %>
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
@@ -151,14 +127,12 @@
                 <h3 class="panel-title">Status</h3>
                 <small>(Only visible to job owner)</small>
               </div>
-
               <div class="panel-body">
                 <%= job_status(@job) %>
               </div>
             </div>
           </div>
         </div>
-
         <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
           <div class="sidebar-widgets-wrap">
             <div class="panel panel-info">
@@ -168,21 +142,36 @@
                 <br/>
                 <small>(Only visible to job owner)</small>
               </div>
-
               <div class="panel-body">
-                <% if @job_statistics.size > 0 %> 
+                <% if @job_statistics.size > 0 %>
                   <ul class="content-margin-left">
                     <% @job_statistics.each do |job_statistic| %>
                       <li><%= link_to(visitor_name(job_statistic.user), directory_user_path(job_statistic.user)) %> x <%= job_statistic.counter %> <%= fa_icon("eye") %></li>
                     <% end %>
                   </ul>
                 <% else %>
-                    No views yet
+                  No views yet
                 <% end %>
               </div>
             </div>
           </div>
         </div>
+        
+        <!-- Section displays job details to share on social media channels -->
+        <% if (authorised_job_owner?(@job) || authorised_admin?) %>
+          <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
+            <div class="sidebar-widgets-wrap">
+              <div class="panel panel-info">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Share to Social Media text</h3>
+                </div>
+                <div class="panel-body">
+                  <%= @job.to_text_for_social_media %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       <% end %>
       <!-- .sidebar end -->
     </div>

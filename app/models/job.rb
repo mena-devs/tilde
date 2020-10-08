@@ -201,6 +201,21 @@ class Job < ApplicationRecord
     end
   end
 
+  def to_text_for_social_media
+    text = "#{self.company_name.titleize} is looking to hire a #{self.title}"
+    text += " in ##{self.location_name}" unless self.location_name.blank?
+    text += ". More information here https://#{AppSettings.application_host}/jobs/#{self.to_param}"
+    if !self.twitter_handle.blank?
+      if self.twitter_handle.start_with?('@')
+        text += (" " + self.twitter_handle)
+      else
+        text += (" @" + self.twitter_handle)
+      end
+    end
+
+    return text
+  end
+
   private
 
     def set_dates
