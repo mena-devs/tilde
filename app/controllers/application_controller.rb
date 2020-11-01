@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  rescue_from ActionController::InvalidAuthenticityToken, with: :render_422
+
   # API access
   before_action :authenticate_with_token!, if: :api_request
 
@@ -49,6 +51,15 @@ class ApplicationController < ActionController::Base
     }
 
     return pagination
+  end
+
+  # Handle errors
+  def handle_unverified_request
+    raise(ActionController::InvalidAuthenticityToken)
+  end
+
+  def render_422
+    redirect_to '/422'
   end
 
   def not_found
