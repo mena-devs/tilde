@@ -40,10 +40,10 @@ class Job < ApplicationRecord
 
   aasm do
     state :draft, :initial => true
-    state :under_review
-    state :approved
-    state :edited
-    state :disabled
+    state :under_review, display: "Pending Approval"
+    state :approved, display: "Published"
+    state :edited, display: "Modified"
+    state :disabled, display: "Expired"
 
     event :request_edit do
       transitions :from => [:under_review, :edited, :approved, :disabled], :to => :draft
@@ -201,10 +201,20 @@ class Job < ApplicationRecord
     end
   end
 
+  # Generic formatter to share on social media
   def to_text_for_social_media
     text = "#{self.company_name.titleize} is looking to hire a #{self.title}"
-    text += " in ##{self.location_name}" unless self.location_name.blank?
+    text += " in #{self.location_name}" unless self.location_name.blank?
     text += ". More information here https://#{AppSettings.application_host}/jobs/#{self.to_param}"
+    return text
+  end
+
+  def to_text_for_twitter
+    text = "text=#{self.company_name.titleize} is looking to hire a #{self.title}"
+    text += " in #{self.location_name}" unless self.location_name.blank?
+    text += ". More information here"
+    text += "&url=https://#{AppSettings.application_host}/jobs/#{self.to_param}"
+    text += "&hashtags=#{self.location_name}"
     if !self.twitter_handle.blank?
       if self.twitter_handle.start_with?('@')
         text += (" " + self.twitter_handle)
