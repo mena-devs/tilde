@@ -1,0 +1,49 @@
+<!-- Sidebar Company
+    ============================================= -->
+<div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
+  <div class="sidebar-widgets-wrap">
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">
+          <!-- Display company details -->
+          <div class="col-lg-12 clear-padding-margin">
+            <h3><%= job.company_name %></h3>
+            <strong><%= job.location_name %></strong>
+            
+            <% if @job.online? %>
+              <hr/>
+              <div class="center-content">
+                <%= link_to("Apply for this position", @job.external_link, class: "button button-3d button-small", target: "_blank") %>
+
+                <% unless @job.apply_email.blank? %>
+                  <%= mail_to(@job.apply_email, "Apply via email", class: "button button-3d button-yellow button-small", target: "_blank") %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-body">
+        <div class="row">
+          <!-- Display company details -->
+          <div class="col-lg-12 center-content">
+            <% if @job.online? %>
+              <p>Share this job:</p>
+              <%= link_to("mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}") do %>
+                <%= fa_icon("envelope 2x") %>
+              <% end %>
+              &nbsp;
+              <%= link_to("https://twitter.com/intent/tweet?" + @job.to_text_for_twitter, target: "_blank") do %>
+                <%= fa_icon("twitter 2x") %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- .sidebar company end -->

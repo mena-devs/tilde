@@ -128,6 +128,7 @@ Rails.application.routes.draw do
     member do
       put :pre_approve
       put :approve
+      put :reject
       put :take_down
       get :feedback
     end

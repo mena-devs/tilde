@@ -57,7 +57,7 @@ class Job < ApplicationRecord
     end
 
     event :publish do
-      transitions :from => [:under_review, :disabled], :to => :approved
+      transitions :from => [:under_review, :edited, :disabled], :to => :approved
 
       after do
         unless self.posted_to_slack?
@@ -68,6 +68,10 @@ class Job < ApplicationRecord
         end
       end
     end
+
+    # event :reject do
+    #   transitions :from => [:under_review, :edited, :disabled], :to => :rejected
+    # end
 
     event :modify do
       transitions :from => [:under_review, :approved, :disabled], :to => :edited

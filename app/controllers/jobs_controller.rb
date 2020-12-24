@@ -114,6 +114,15 @@ class JobsController < ApplicationController
     end
   end
 
+  # PATCH/PUT /jobs/1/reject
+  def reject
+    if @job.publish!
+      redirect_to(@job, notice: 'The job is now live.')
+    else
+      render :edit
+    end
+  end
+
   # PATCH/PUT /jobs/1/take_down
   def take_down
     if @job.take_down!

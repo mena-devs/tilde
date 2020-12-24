@@ -293,7 +293,24 @@ p.member_profile_invalid {
   margin-top: 25px;
 }
 
-.clear-padding-margin{
+.clear-padding-margin {
   padding:0px;
   margin:0px;
+}
+
+.lb-sm {
+  font-size: 12px;
+}
+
+.lb-md {
+  font-size: 14px;
+}
+
+.lb-lg {
+  font-size: 18px;
+}
+
+.center-content {
+  margin:auto;
+  text-align:center;
 }

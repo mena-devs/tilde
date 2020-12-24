@@ -3,7 +3,7 @@
     <%= link_to("Approve", approve_job_path(job), class: "button button-3d button-small button-green", method: 'put') %>
   </div>
   <div class="button-container">
-    <%= link_to("Reject", approve_job_path(job), class: "button button-3d button-small button-red", method: 'put') %>
+    <%= link_to("Reject", reject_job_path(job), class: "button button-3d button-small button-red", method: 'put') %>
   </div>
 <% elsif job.online? %>
   <div class="button-container">

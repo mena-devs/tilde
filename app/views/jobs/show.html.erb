@@ -3,7 +3,6 @@
     <div class="row clearfix">
       <div class="col-md-8 col-xs-12">
         <h1><%= @job.title %></h1>
-        <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
       </div>
     </div>
   </div>
@@ -38,16 +37,15 @@
             <!-- Entry Content
               ============================================= -->
             <div class="entry-content notopmargin">
-              <span class="label label-primary"><%= @job.employment_type.try(:humanize) %></span>
+              <span class="label label-primary lb-md"><%= @job.employment_type.try(:humanize) %></span>
 
-              <span class="label label-primary"><%= @job.experience.try(:humanize) %></span>
+              <span class="label label-primary lb-md"><%= @job.experience.try(:humanize) %></span>
 
-              <span class="label label-primary">Equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %></span>
+              <span class="label label-primary lb-md">Equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %></span>
 
-              <span class="label label-primary">Remote: <%= @job.remote? ? 'Yes' : 'No' %></span>
-              <p>
-                <span class="label label-success"><%= @job.salary_to_s %></span>
-              </p>
+              <span class="label label-primary lb-md">Remote: <%= @job.remote? ? 'Yes' : 'No' %></span>
+              
+              <span class="label label-success lb-md"><%= @job.salary_to_s %></span>
 
               <div class="job-description">
                 <% if @job.description.blank? %>
@@ -60,47 +58,40 @@
             <!-- .entry-content end -->
           </div>
         </div>
-
-              <!-- .actions starts -->
-        <% if @job.online? %>
-          <div class="job-post-user-actions">
-            <div class="col-md-6 col-xs-12">
-              <%= link_to("Apply for this position", @job.external_link, class: "button button-3d", target: "_blank") %>
-
-              <%# unless @job.apply_email.blank? %>
-                <%= mail_to(@job.apply_email, "Apply for this position via email", class: "button button-3d button-yellow button-mini", target: "_blank") %>
-              <%# end %>
-            </div>
-
-            <div class="col-md-6 col-xs-12" style="text-align:right">
-              <p style="margin:0px;">Share this job:</p>
-              <%= link_to("mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}") do %>
-                <%= fa_icon("inbox 2x") %>
-              <% end %>
-              &nbsp;
-              <%= link_to("https://twitter.com/intent/tweet?" + @job.to_text_for_twitter, target: "_blank") do %>
-                <%= fa_icon("twitter 2x") %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      <!-- .actions end -->
       </div>
 
-      <%= render('job_sidebar', job: @job, job_statistics: @job_statistics) %>
+      <%= render('job_info_sidebar', job: @job) %>
 
+      <%= render('job_actions_sidebar', job: @job, job_statistics: @job_statistics) %>
     </div>
   </div>
 </section>
 
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
-  "@type": "NewsArticle",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://google.com/article"
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "baseSalary": "<%= @job.from_salary %>",
+  "datePosted": <% if @job.posted_on %>"<%= @job.posted_on.strftime('%Y-%m-%d') %>"<% end %>,
+  "validThrough": <% if @job.expires_on %>"<%= @job.expires_on.strftime('%Y-%m-%d') %>"<% end %>,
+  "description": "<%= @job.description %>",
+  "educationRequirements": "<%= @job.education %>",
+  "employmentType": "<%= @job.employment_type %>",
+  "experienceRequirements": "<%= @job.experience %>",
+  "incentiveCompensation": "<%= @job.equity %>",
+  "industry": "Computer Software",
+  "hiringOrganization": "<%= @job.company_name %>",
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "Text",
+      "addressCountry": "<%= @job.location_name %>"
+    }
   },
-  "headline": "<%= @job.title %>",
+  "occupationalCategory": "15-1132.00 Software Developers, Application",
+  "qualifications": "Ability to work in a team environment with members of varying skill levels. Highly motivated. Learns quickly.",
+  "responsibilities": "Design and write specifications for tools for in-house customers Build tools according to specifications",
+  "salaryCurrency": "<%= @job.currency %>",
+  "title": "<%= @job.title %>"
 }
 </script>
