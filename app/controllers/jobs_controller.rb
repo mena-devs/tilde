@@ -146,20 +146,17 @@ class JobsController < ApplicationController
     end
 
     def filter_by_params(user = nil)
-      if user.nil?
-        user_jobs = Job.all
-      else
-        user_jobs = Job.user_jobs(user)
-      end
+      user_jobs = user.nil? ? Job.all : Job.user_jobs(user)
       state_params = params[:state]
 
-      if state_params == 'user'
+      case state_params
+      when 'user'
         @jobs = user_jobs
-      elsif state_params == 'draft'
+      when 'draft'
         @jobs = user_jobs.draft_jobs
-      elsif state_params == 'pending'
+      when 'pending'
         @jobs = user_jobs.pending_jobs
-      elsif state_params == 'expired'
+      when 'expired'
         @jobs = user_jobs.expired_jobs
       end
     end
