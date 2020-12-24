@@ -11,10 +11,10 @@ class JobsController < ApplicationController
     @page_description = 'Technical & software development jobs listed on MENAdevs'
     @page_keywords    = AppSettings.meta_tags_keywords
 
-    @jobs = Job.approved.order(:posted_on).reverse_order
+    @jobs = Job.approved_jobs.order(:posted_on).reverse_order
 
     if (user_signed_in? && params.has_key?(:state))
-      filter_by_params
+      filter_by_params(current_user)
     end
 
     @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(25)
@@ -22,7 +22,13 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @admin_jobs = Job.all.order(:updated_at).reverse_order.page(params[:page])
+    @jobs = Job.all.order(:created_at).reverse_order
+
+    if params.has_key?(:state)
+      filter_by_params
+    end
+
+    @jobs = Kaminari.paginate_array(@jobs).page(params[:page]).per(25)
 
     render :admin_index
   end
@@ -130,16 +136,22 @@ class JobsController < ApplicationController
       @job = @job.decorate.first
     end
 
-    def filter_by_params
-      user_jobs = Job.user_jobs(current_user)
+    def filter_by_params(user = nil)
+      if user.nil?
+        user_jobs = Job.all
+      else
+        user_jobs = Job.user_jobs(user)
+      end
       state_params = params[:state]
 
       if state_params == 'user'
         @jobs = user_jobs
       elsif state_params == 'draft'
-        @jobs = user_jobs.user_draft
+        @jobs = user_jobs.draft_jobs
+      elsif state_params == 'pending'
+        @jobs = user_jobs.pending_jobs
       elsif state_params == 'expired'
-        @jobs = user_jobs.user_expired
+        @jobs = user_jobs.expired_jobs
       end
     end
 

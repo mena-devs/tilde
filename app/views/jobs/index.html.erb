@@ -44,13 +44,13 @@
 
           <%= link_to(jobs_path(state: 'draft')) do %>
             <%= content_tag(:button, class: display_button_filter_class(params, 'draft')) do %>
-              Draft
+              My draft jobs
             <% end %>
           <% end %>
 
           <%= link_to(jobs_path(state: 'expired')) do %>
             <%= content_tag(:button, class: display_button_filter_class(params, 'expired')) do %>
-              Expired
+              My expired jobs
             <% end %>
           <% end %>
         </div>
