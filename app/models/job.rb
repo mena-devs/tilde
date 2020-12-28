@@ -40,10 +40,10 @@ class Job < ApplicationRecord
 
   aasm do
     state :draft, :initial => true
-    state :under_review
-    state :approved
-    state :edited
-    state :disabled
+    state :under_review, display: "Pending Approval"
+    state :approved, display: "Published"
+    state :edited, display: "Modified"
+    state :disabled, display: "Expired"
 
     event :request_edit do
       transitions :from => [:under_review, :edited, :approved, :disabled], :to => :draft
@@ -57,7 +57,7 @@ class Job < ApplicationRecord
     end
 
     event :publish do
-      transitions :from => [:under_review, :disabled], :to => :approved
+      transitions :from => [:under_review, :edited, :disabled], :to => :approved
 
       after do
         unless self.posted_to_slack?
@@ -68,6 +68,10 @@ class Job < ApplicationRecord
         end
       end
     end
+
+    # event :reject do
+    #   transitions :from => [:under_review, :edited, :disabled], :to => :rejected
+    # end
 
     event :modify do
       transitions :from => [:under_review, :approved, :disabled], :to => :edited
@@ -110,10 +114,11 @@ class Job < ApplicationRecord
   friendly_id :title, use: :slugged
 
   scope :user_jobs, -> (user) { where(user_id: user.id) }
-  scope :approved, -> { where(aasm_state: 'approved') }
-  scope :user_draft, -> { where(aasm_state: ['draft', 'under_review', 'edited']) }
-  scope :user_expired, -> { where(aasm_state: 'disabled') }
-  scope :live, -> { where.not(:posted_on => nil) }
+  scope :pending_jobs, -> { where(aasm_state: 'under_review') }
+  scope :approved_jobs, -> { where(aasm_state: 'approved') }
+  scope :draft_jobs, -> { where(aasm_state: ['draft', 'under_review', 'edited']) }
+  scope :expired_jobs, -> { where(aasm_state: 'disabled') }
+  scope :live_jobs, -> { where.not(:posted_on => nil) }
 
   def offline?
     (self.draft? || self.under_review? || self.disabled?) ? true : false
@@ -201,19 +206,32 @@ class Job < ApplicationRecord
     end
   end
 
+  # Generic formatter to share on social media
   def to_text_for_social_media
     text = "#{self.company_name.titleize} is looking to hire a #{self.title}"
-    text += " in ##{self.location_name}" unless self.location_name.blank?
+    text += " in #{self.location_name}" unless self.location_name.blank?
     text += ". More information here https://#{AppSettings.application_host}/jobs/#{self.to_param}"
-    if !self.twitter_handle.blank?
-      if self.twitter_handle.start_with?('@')
-        text += (" " + self.twitter_handle)
-      else
-        text += (" @" + self.twitter_handle)
-      end
+    
+    return text
+  end
+
+  def to_text_for_twitter
+    job_location, job_hashtags = "", ""
+    job_company_name = self.company_name.titleize
+    job_title = self.title
+    
+    unless self.location_name.blank?
+      job_location = "in #{self.location_name}"
+      job_hashtags = "&hashtags=#{self.location_name}"
+    end
+    
+    job_link = "&url=https://#{AppSettings.application_host}/jobs/#{self.to_param}"
+    
+    unless self.twitter_handle.blank?
+      job_twitter_account = clean_twitter_handle
     end
 
-    return text
+    return "text=#{job_company_name} is looking to hire a #{job_title} #{job_location}. More information here#{job_link}#{job_twitter_account}"
   end
 
   private
@@ -231,5 +249,13 @@ class Job < ApplicationRecord
     def strip_whitespace
       self.company_name = self.company_name.strip unless self.company_name.nil?
       self.apply_email = self.apply_email.strip unless self.apply_email.nil?
+    end
+
+    def clean_twitter_handle
+      if self.twitter_handle.start_with?('@')
+        return (" " + self.twitter_handle)
+      else
+        return (" @" + self.twitter_handle)
+      end
     end
 end

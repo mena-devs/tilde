@@ -1389,11 +1389,15 @@
     }
   }
   #page-title {
-    padding: 20px 0 25px;
+    padding: 20px 0 5px;
     text-align: center;
     h1 {
       line-height: 1.5;
-      font-size: 24px;
+      font-size: 20px;
+    }
+    h2 {
+      line-height: 1.2;
+      font-size: 18px;
     }
     .breadcrumb {
       position: relative !important;

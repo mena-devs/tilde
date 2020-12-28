@@ -28,9 +28,12 @@
   </td>
 
   <td>
+    <%= admin_job.aasm.human_state %>
+  </td>
+
+  <td width="5%">
     <% if (authorised_admin? && admin_job.offline?) %>
-      <%= link_to("Edit", edit_job_path(admin_job), class: "button button-3d button-mini button-rounded button-blue") %>
-      <%= link_to("Delete", job_path(admin_job), class: "button button-3d button-mini button-rounded button-red", method: 'delete') %>
+      <%= link_to("Edit", edit_job_path(admin_job), class: "button button-3d button-mini button-rounded button-blue fright") %>
     <% end %>
   </td>
 </tr>

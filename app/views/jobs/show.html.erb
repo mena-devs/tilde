@@ -3,22 +3,21 @@
     <div class="row clearfix">
       <div class="col-md-8 col-xs-12">
         <h1><%= @job.title %></h1>
-        <h2><%= @job.company_name %> <%= location_str(@job) %></h2>
-      </div>
-      <div class="col-md-4 nopadding fright hidden-xs">
-        <% if authorised_job_owner?(@job) %>
-          <%= render('owner_job_actions', job: @job) %>
-        <% else %>
-          <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d notopmargin fright hidden-xs", target: "_blank") %>
-        <% end %>
-      </div>
-      <!-- Mobile friendly interface -->
-      <div class="col-md-12 nopadding visible-xs">
-        <%= link_to("Visit page to apply", @job.external_link, class: "button button-3d", target: "_blank") %>
       </div>
     </div>
   </div>
 </section>
+
+<section class="page-actions">
+  <div class="container">
+    <div class="row">
+      <% if (authorised_job_owner?(@job) || authorised_admin?) %>
+        <%= render('job_status_progress_bar', job: @job) %>
+      <% end %>
+    </div>
+  </div>
+</section>
+
 <section id="content">
   <div class="content-wrap">
     <div class="container clearfix">
@@ -31,56 +30,28 @@
           <div class="entry clearfix">
             <!-- Entry Meta
               ============================================= -->
-            <ul class="entry-meta clearfix">
-              <li>
-                <i class="icon-calendar3"></i>
-                Posted on:
-                <%= posted_date(@job) %>
-              </li>
-              <li>
-                <i class="icon-user"></i>
-                By:
-                <%= job_creator_name(@job) %>
-              </li>
-            </ul>
+            <h4>Posted <%= posted_date(@job) %></h4>
+            <h5>By <%= job_creator_name(@job) %></h5>
             <!-- .entry-meta end -->
+
             <!-- Entry Content
               ============================================= -->
             <div class="entry-content notopmargin">
-              <ul class="content-margin-left" style="line-height: 1.8 !important;">
-                <li>
-                  <i class="icon-briefcase"></i>
-                  Employment type: <%= @job.employment_type.try(:humanize) %>
-                </li>
-                <li>
-                  <i class="icon-users"></i>
-                  Experience: <%= @job.experience.try(:humanize) %>
-                </li>
-                <li>
-                  <i class="icon-money"></i>
-                  Salary: <%= @job.salary_to_s %>
-                </li>
-                <li>
-                  <i class="icon-chart"></i>
-                  Job has equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %>
-                </li>
-                <li>
-                  <i class="icon-plane"></i>
-                  Job is remote or has remote working as an option: <%= @job.remote? ? 'Yes' : 'No' %>
-                </li>
-                <% unless @job.apply_email.blank? %>
-                  <li>
-                    <i class="icon-email"></i>
-                    Apply to email: <%= mail_to(@job.apply_email) %>
-                  </li>
-                <% end %>
-              </ul>
-              <hr/>
-              <div>
+              <span class="label label-primary lb-md"><%= @job.employment_type.try(:humanize) %></span>
+
+              <span class="label label-primary lb-md"><%= @job.experience.try(:humanize) %></span>
+
+              <span class="label label-primary lb-md">Equity or stock options: <%= @job.equity? ? 'Yes' : 'No' %></span>
+
+              <span class="label label-primary lb-md">Remote: <%= @job.remote? ? 'Yes' : 'No' %></span>
+              
+              <span class="label label-success lb-md"><%= @job.salary_to_s %></span>
+
+              <div class="job-description">
                 <% if @job.description.blank? %>
                   No job details yet, please make sure that you have a valid job description before submitting this job for approval.
                 <% else %>
-                  <%=raw @job.description.html_safe %>
+                  <%= sanitize @job.description.html_safe %>
                 <% end %>
               </div>
             </div>
@@ -88,92 +59,39 @@
           </div>
         </div>
       </div>
-      <!-- Sidebar
-          ============================================= -->
-      <% if @job.online? %>
-        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-          <div class="sidebar-widgets-wrap fright">
-            <%= link_to("mailto:?subject=Job on MENAdevs&body=Hi, you might be interested in this job I found on MENAdevs #{job_url(@job)}", class: "button button-3d button-rounded button-aqua fright") do %>
-              <%= fa_icon("inbox") %>
-              Tell a friend
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-      <% if authorised_admin? %>
-        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-          <div class="sidebar-widgets-wrap">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Dashboard actions</h3>
-              </div>
-              <div class="panel-body">
-                <div class="row">
-                  <!-- Display admin actions -->
-                  <div class="col-lg-12">
-                    <%= render('admin_job_actions', job: @job) %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <% if (authorised_job_owner?(@job) || authorised_admin?) %>
-        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-          <div class="sidebar-widgets-wrap">
-            <div class="panel panel-success">
-              <div class="panel-heading">
-                <h3 class="panel-title">Status</h3>
-                <small>(Only visible to job owner)</small>
-              </div>
-              <div class="panel-body">
-                <%= job_status(@job) %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-          <div class="sidebar-widgets-wrap">
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Statistics</h3>
-                <small>Who has viewed this job post?</small>
-                <br/>
-                <small>(Only visible to job owner)</small>
-              </div>
-              <div class="panel-body">
-                <% if @job_statistics.size > 0 %>
-                  <ul class="content-margin-left">
-                    <% @job_statistics.each do |job_statistic| %>
-                      <li><%= link_to(visitor_name(job_statistic.user), directory_user_path(job_statistic.user)) %> x <%= job_statistic.counter %> <%= fa_icon("eye") %></li>
-                    <% end %>
-                  </ul>
-                <% else %>
-                  No views yet
-                <% end %>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <!-- Section displays job details to share on social media channels -->
-        <% if (authorised_job_owner?(@job) || authorised_admin?) %>
-          <div class="sidebar nobottommargin col_last clearfix visible-lg visible-md">
-            <div class="sidebar-widgets-wrap">
-              <div class="panel panel-info">
-                <div class="panel-heading">
-                  <h3 class="panel-title">Share to Social Media text</h3>
-                </div>
-                <div class="panel-body">
-                  <%= @job.to_text_for_social_media %>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-      <!-- .sidebar end -->
+
+      <%= render('job_info_sidebar', job: @job) %>
+
+      <%= render('job_actions_sidebar', job: @job, job_statistics: @job_statistics) %>
     </div>
   </div>
 </section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "JobPosting",
+  "baseSalary": "<%= @job.from_salary %>",
+  "datePosted": <% if @job.posted_on %>"<%= @job.posted_on.strftime('%Y-%m-%d') %>"<% end %>,
+  "validThrough": <% if @job.expires_on %>"<%= @job.expires_on.strftime('%Y-%m-%d') %>"<% end %>,
+  "description": "<%= @job.description %>",
+  "educationRequirements": "<%= @job.education %>",
+  "employmentType": "<%= @job.employment_type %>",
+  "experienceRequirements": "<%= @job.experience %>",
+  "incentiveCompensation": "<%= @job.equity %>",
+  "industry": "Computer Software",
+  "hiringOrganization": "<%= @job.company_name %>",
+  "jobLocation": {
+    "@type": "Place",
+    "address": {
+      "@type": "Text",
+      "addressCountry": "<%= @job.location_name %>"
+    }
+  },
+  "occupationalCategory": "15-1132.00 Software Developers, Application",
+  "qualifications": "Ability to work in a team environment with members of varying skill levels. Highly motivated. Learns quickly.",
+  "responsibilities": "Design and write specifications for tools for in-house customers Build tools according to specifications",
+  "salaryCurrency": "<%= @job.currency %>",
+  "title": "<%= @job.title %>"
+}
+</script>

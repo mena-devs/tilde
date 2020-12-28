@@ -24,20 +24,20 @@
     <div class="container clearfix">
 
       <div class="row clearfix">
-        <div class="col-md-12">
-          <div class="style-msg alertmsg">
+        <div class="col-md-12 add-content-margin">
+          <div class="style-msg successmsg">
             <div class="sb-msg">
               <i class="icon-warning-sign"></i> <strong>Important Information</strong>
               <ul style="margin-left: 20px">
-                <li>All job posts are subject to approval by the administrators before they are live on the job board.</li>
-                <li>Approved job posts on <%= (link_to AppSettings.application_host, AppSettings.application_host) %> are distributed via:
+                <li>All job posts are subject to approval by administrators before they are live on the job board.</li>
+                <li>Once approved, job posts are distributed via the following mediums:
                   <ol style="margin-left: 20px">
-                    <li>Email to all subscribed members</li>
-                    <li>MENAdevs Slack Group channel #announcement</li>
-                    <li>MENAdevs account on Twitter</li>
+                    <li>By Email to all subscribed members</li>
+                    <li>On MENAdevs Slack Group, under the <strong>#announcement</strong> channel</li>
+                    <li>On MENAdevs <strong><%= link_to("Twitter account - @menadevs", "https://twitter.com/menadevs", target: "_blank" ) %></strong></li>
                   </ol>
                 </li>
-                <li>Job posts expire after <strong>1 month</strong> from the date of approval</li>
+                <li>Job posts expire after <strong>1 month</strong> from the date they are published, subject to renewal</li>
               </ul>
             </div>
           </div>
