@@ -2,12 +2,13 @@ module TextHelpers
   include ActiveSupport::Concern
 
   def boolean_to_string(value)
-    return "No" if value.nil?
+    yes_values = [true, 1, "1"]
+    no_values = [nil, false, 0, "0"]
 
-    if (value == true || value == 1 || value == "1")
-      "Yes"
-    elsif (value == false || value == 0 || value == "0")
-      "No"
+    if yes_values.include?(value)
+      return "Yes"
+    elsif no_values.include?(value)
+      return "No"
     end
   end
 end
