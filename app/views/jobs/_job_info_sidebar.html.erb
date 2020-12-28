@@ -13,10 +13,10 @@
             <% if @job.online? %>
               <hr/>
               <div class="center-content">
-                <%= link_to("Apply for this position", @job.external_link, class: "button button-3d button-small", target: "_blank") %>
+                <%= link_to("Apply for this position", h(@job.external_link), class: "button button-3d button-small") %>
 
                 <% unless @job.apply_email.blank? %>
-                  <%= mail_to(@job.apply_email, "Apply via email", class: "button button-3d button-yellow button-small", target: "_blank") %>
+                  <%= mail_to(@job.apply_email, "Apply via email", class: "button button-3d button-yellow button-small") %>
                 <% end %>
               </div>
             <% end %>

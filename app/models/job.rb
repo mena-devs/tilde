@@ -216,18 +216,22 @@ class Job < ApplicationRecord
   end
 
   def to_text_for_twitter
-    text = "text=#{self.company_name.titleize} is looking to hire a #{self.title}"
-    text += " in #{self.location_name}" unless self.location_name.blank?
-    text += ". More information here&url=https://#{AppSettings.application_host}/jobs/#{self.to_param}&hashtags=#{self.location_name}"
-    if !self.twitter_handle.blank?
-      if self.twitter_handle.start_with?('@')
-        text += (" " + self.twitter_handle)
-      else
-        text += (" @" + self.twitter_handle)
-      end
+    job_location, job_hashtags = "", ""
+    job_company_name = self.company_name.titleize
+    job_title = self.title
+    
+    unless self.location_name.blank?
+      job_location = "in #{self.location_name}"
+      job_hashtags = "&hashtags=#{self.location_name}"
+    end
+    
+    job_link = "&url=https://#{AppSettings.application_host}/jobs/#{self.to_param}"
+    
+    unless self.twitter_handle.blank?
+      job_twitter_account = clean_twitter_handle
     end
 
-    return text
+    return "text=#{job_company_name} is looking to hire a #{job_title} #{job_location}. More information here#{job_link}#{job_twitter_account}"
   end
 
   private
@@ -245,5 +249,13 @@ class Job < ApplicationRecord
     def strip_whitespace
       self.company_name = self.company_name.strip unless self.company_name.nil?
       self.apply_email = self.apply_email.strip unless self.apply_email.nil?
+    end
+
+    def clean_twitter_handle
+      if self.twitter_handle.start_with?('@')
+        return (" " + self.twitter_handle)
+      else
+        return (" @" + self.twitter_handle)
+      end
     end
 end
