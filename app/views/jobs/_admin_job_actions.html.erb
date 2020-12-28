@@ -1,5 +1,14 @@
 <% if job.under_review? %>
-  <%= link_to("Approve", approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: 'put') %>
+  <div class="button-container">
+    <%= link_to("Approve", approve_job_path(job), class: "button button-3d button-small button-green", method: 'put') %>
+  </div>
+  <div class="button-container">
+    <%= link_to("Reject", reject_job_path(job), class: "button button-3d button-small button-red", method: 'put') %>
+  </div>
 <% elsif job.online? %>
-  <%= link_to("Take down", take_down_job_path(job), class: "button button-3d notopmargin fright button-red", method: 'put') %>
+  <div class="button-container">
+    <%= link_to("Take down", take_down_job_path(job), class: "button button-3d button-small button-red", method: 'put') %>
+  </div>
+<% else %>
+  There are no actions at the current time
 <% end %>

@@ -12,7 +12,7 @@ RSpec.describe "Users", type: :request do
     before do
       visit new_user_session_path
 
-      expect(page).to have_content('Personal email and password')
+      expect(page).to have_content('Login with your email and password')
       expect(page).to have_content('Email')
       expect(page).to have_content('Password')
     end
@@ -60,9 +60,9 @@ RSpec.describe "Users", type: :request do
 
       click_on('Send me reset password instructions')
 
-      expect(page).to have_content("Use ONE of the login options below to login")
+      expect(page).to have_content("Use any of the login options below to login")
       expect(page).to have_content("MENAdevs Slack credentials")
-      expect(page).to have_content("Personal email and password")
+      expect(page).to have_content("Login with your email and password")
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe "Users", type: :request do
     before do
       visit new_user_session_path
 
-      expect(page).to have_content('Personal email and password')
+      expect(page).to have_content('Login with your email and password')
       expect(page).to have_content('Email')
       expect(page).to have_content('Password')
     end
