@@ -95,6 +95,7 @@ RSpec.describe "Jobs", type: :request do
       fill_in 'Description',  with: 'Lorem ipsum'
 
       click_on 'Save and continue'
+
       expect(page).to have_content('Please review the problems below:')
       expect(page).to have_content('Company name can\'t be blank')
       expect(page).to have_content('Employment type can\'t be blank')

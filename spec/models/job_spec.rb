@@ -154,4 +154,32 @@ RSpec.describe Job, type: :model do
       expect(Job.approved.count).to eq(1)
     end
   end
+
+  describe "#text_for_twitter" do
+    let(:new_job) { create(:job, aasm_state: :approved, twitter_handle: 'menadevs', title: 'Engineering Manager') }
+    let(:twitter_text) { new_job.text_for_twitter }
+
+    it "should include text tag" do
+      tweet_text = "text=" + new_job.company_name.titleize
+
+      expect(twitter_text).to match(tweet_text)
+    end
+
+    it "should include URL tag" do
+      tweet_text = "url=" + new_job.external_link
+
+      expect(twitter_text).to match(/https/)
+      expect(twitter_text).to match(new_job.title)
+    end
+
+    it "should include Hashtags tag" do
+      tweet_text = "hashtags=" + new_job.location_name
+
+      expect(twitter_text).to match(tweet_text)
+    end
+
+    it "should include Twitter handle tag" do
+      expect(twitter_text).to match(new_job.twitter_handle)
+    end
+  end
 end

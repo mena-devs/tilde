@@ -215,7 +215,7 @@ class Job < ApplicationRecord
     return text
   end
 
-  def to_text_for_twitter
+  def text_for_twitter
     job_location, job_hashtags = "", ""
     job_company_name = self.company_name.titleize
     job_title = self.title
@@ -228,10 +228,10 @@ class Job < ApplicationRecord
     job_link = "&url=https://#{AppSettings.application_host}/jobs/#{self.to_param}"
     
     unless self.twitter_handle.blank?
-      job_twitter_account = clean_twitter_handle
+      job_twitter_account = "&via=" + clean_twitter_handle
     end
 
-    return "text=#{job_company_name} is looking to hire a #{job_title} #{job_location}. More information here#{job_link}#{job_twitter_account}"
+    return "text=#{job_company_name} is looking to hire a #{job_title} #{job_location}. More information here#{job_link}#{job_hashtags}#{job_twitter_account}"
   end
 
   private
@@ -252,10 +252,6 @@ class Job < ApplicationRecord
     end
 
     def clean_twitter_handle
-      if self.twitter_handle.start_with?('@')
-        return (" " + self.twitter_handle)
-      else
-        return (" @" + self.twitter_handle)
-      end
+      self.twitter_handle.start_with?('@') ? self.twitter_handle.slice!(0) : self.twitter_handle
     end
 end
