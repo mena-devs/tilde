@@ -14,7 +14,7 @@
               <hr/>
               <div class="center-content">
                 <% unless @job.external_link.blank? %>
-                  <%= link_to("Apply for this position", url_for(@job.external_link), class: "button button-3d button-small") %>
+                  <a class="button button-3d button-small" href="<%= url_for(@job.external_link) %>" target="_blank" >Apply for this position</a>
                 <% end %>
 
                 <% unless @job.apply_email.blank? %>

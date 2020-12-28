@@ -51,7 +51,7 @@
                 <% if @job.description.blank? %>
                   No job details yet, please make sure that you have a valid job description before submitting this job for approval.
                 <% else %>
-                  <%=raw @job.description.html_safe %>
+                  <%= @job.description.html_safe %>
                 <% end %>
               </div>
             </div>
