@@ -2,7 +2,7 @@
 mode: "exact"
 language: "<%= I18n.locale.to_s.split('-')[0].downcase %>"
 schema: "html5-strict"
-element_format: "text"
+element_format: "html"
 resize: true
 height: 500
 paste_as_text: true
@@ -11,12 +11,15 @@ menubar: false
 plugins:
   - preview
   - contextmenu
+  - paste
+  - directionality
+  - fullscreen
   - nonbreaking
   - advlist
   - lists
 
 toolbar:
-  - formatselect | bold | italic | underline | bullist | numlist | outdent | indent | removeformat
+  - formatselect | fontselect | fontsizeselect | bold | italic | underline | strikethrough | alignleft | aligncenter | alignjustify | alignright | bullist | numlist | outdent | indent | removeformat
 
 setup :
   function(ed) {

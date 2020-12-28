@@ -1,13 +1,11 @@
 <% if job.offline? %>
-  <div style="width:100%;height:40px;margin:auto;">
-    <%= link_to("Edit", edit_job_path(job), class: "button button-small button-3d button-blue") %>
-  </div>
+    <%= link_to("Delete", job_path(job), class: "button button-3d notopmargin button-red fright", method: 'delete') %>
+    <%= link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright") %>
 
-  <div style="width:100%;height:40px;margin:auto;">
-    <%= link_to("Delete", job_path(job), class: "button button-small button-3d button-red", method: 'delete', data: { confirm: "Are you sure that you want to delete this job?" }) %>
-  </div>
+  <% if @job.draft? %>
+    <br/>
+    <%= link_to("Submit for approval", pre_approve_job_path(job), class: "button button-3d notopmargin fright button-green", method: 'put') %>
+  <% end %>
 <% elsif job.online? %>
-  <div style="width:100%;height:40px;margin:auto;">
-    <%= link_to("Edit", edit_job_path(job), class: "button button-small button-3d button-blue") %>
-  </div>
+  <%= link_to("Edit", edit_job_path(job), class: "button button-3d notopmargin button-blue fright") %>
 <% end %>

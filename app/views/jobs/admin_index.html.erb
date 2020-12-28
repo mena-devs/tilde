@@ -22,37 +22,7 @@
 
     <div class="container clearfix">
 
-      <!-- Filter jobs helper: start -->
-      <div>
-        <span>Filter jobs</span> &nbsp;
-        <%= link_to(list_jobs_admin_path) do %>
-          <%= content_tag(:button, class: display_button_filter_class(params)) do %>
-            All jobs
-          <% end %>
-        <% end %>
-
-        <%= link_to(list_jobs_admin_path(state: 'pending')) do %>
-          <%= content_tag(:button, class: display_button_filter_class(params, 'pending')) do %>
-            All pending approval jobs
-          <% end %>
-        <% end %>
-
-        <%= link_to(list_jobs_admin_path(state: 'draft')) do %>
-          <%= content_tag(:button, class: display_button_filter_class(params, 'draft')) do %>
-            All draft jobs
-          <% end %>
-        <% end %>
-
-        <%= link_to(list_jobs_admin_path(state: 'expired')) do %>
-          <%= content_tag(:button, class: display_button_filter_class(params, 'expired')) do %>
-            All expired jobs
-          <% end %>
-        <% end %>
-      </div>
-      <hr/>
-      <!-- Filter jobs helper: end -->
-
-      <% if @jobs.blank? %>
+      <% if @admin_jobs.blank? %>
         <div class="style-msg alertmsg">
           <div class="sb-msg"><i class="icon-warning-sign"></i>There are no jobs on MENAdevs at the moment</div>
         </div>
@@ -60,12 +30,12 @@
 
         <div class="row">
           <div class="col-md-12">
-            <%= render("admin_jobs_table", locals: { admin_jobs: @jobs }) %>
+            <%= render("admin_jobs_table", locals: { admin_jobs: @admin_jobs }) %>
           </div>
         </div>
 
         <div class="text-center">
-          <%= paginate(@jobs) %>
+          <%= paginate(@admin_jobs) %>
         </div>
       <% end %>
 

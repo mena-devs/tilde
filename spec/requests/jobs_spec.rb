@@ -122,7 +122,7 @@ RSpec.describe "Jobs", type: :request do
 
       expect(page).to have_content('Test Title')
       
-      expect(page).to have_content('By ' + user.name)
+      expect(page).to have_content('By: ' + user.name)
     
       expect(page).to have_content('Submit for approval')
       expect(page).to have_content('Edit')
@@ -139,7 +139,7 @@ RSpec.describe "Jobs", type: :request do
       visit(job_path(@job))
 
       expect(page).to have_content(@job.title)
-      expect(page).to have_content('Share this job:')
+      expect(page).to have_content('Tell a friend')
       expect(page).to_not have_content('Statistics')
     end
 
@@ -224,13 +224,14 @@ RSpec.describe "Jobs", type: :request do
       visit(job_path(@draft_job))
       
       expect(page).to have_content(@draft_job.title)
-      expect(page).to_not have_content('Share this job')
+      expect(page).to_not have_content('Tell a friend')
       expect(page).to have_content('Edit')
 
       click_on('Submit for approval', match: :first)
-      expect(page).to have_content('Pending Approval')
+
+      expect(page).to have_content('Job is under review')
       expect(page).to have_content('The job post was successfully submitted for approval before made public.')
-      expect(page).to_not have_content('Share this job')
+      expect(page).to_not have_content('Tell a friend')
     end
   end
 
@@ -249,13 +250,13 @@ RSpec.describe "Jobs", type: :request do
       
       expect(page).to have_content(@pending_job.title)
       # not approved yet
-      expect(page).to_not have_content('Share this job:')
+      expect(page).to_not have_content('Tell a friend')
       
       click_on('Approve', match: :first)
 
       expect(page).to have_content('The job is now live.')
       expect(page).to have_content('Take down')
-      expect(page).to have_content('Share this job:')
+      expect(page).to have_content('Tell a friend')
       expect(page).to have_content('Statistics')
     end
 
@@ -265,8 +266,8 @@ RSpec.describe "Jobs", type: :request do
       
       expect(page).to have_content(@pending_job.title)
       # not approved yet
-      expect(page).to_not have_content('Share this job:')
-      expect(page).to have_content('Pending Approval')
+      expect(page).to_not have_content('Tell a friend')
+      expect(page).to have_content('Job is under review')
       expect(page).to have_content('Edit')
 
       expect(page).to_not have_content('Approve')
@@ -287,13 +288,13 @@ RSpec.describe "Jobs", type: :request do
       visit(job_path(@approved_job))
 
       expect(page).to have_content(@approved_job.title)
-      expect(page).to have_content('Share this job:')
+      expect(page).to have_content('Tell a friend')
       expect(page).to have_content('Statistics')
 
       click_on('Take down', match: :first)
 
       expect(page).to have_content('The job is no longer published.')
-      expect(page).to_not have_content('Share this job:')
+      expect(page).to_not have_content('Tell a friend')
     end
   end
 

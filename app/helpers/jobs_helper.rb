@@ -8,13 +8,13 @@ module JobsHelper
   end
 
   def posted_date(job, in_words = false)
-    posted_date_str = ""
+    posted_date_str = "Not online yet"
 
     if job.approved?
       if in_words
         posted_date_str = time_ago_in_words(job.posted_on)
       elsif !job.posted_on.blank?
-        posted_date_str = job.posted_on.strftime('%b %e %Y ')
+        posted_date_str = job.posted_on.strftime('%A %e %B %Y ')
       end
     end
 
@@ -26,7 +26,9 @@ module JobsHelper
       lc_str = "[remote]"
     end
 
-    if !job.country.blank?
+    if !job.country.blank? && job.remote?
+      lc_str =  " - " + job.location_name + " [remote]"
+    elsif !job.country.blank? && !job.remote?
       lc_str =  " - " + job.location_name
     end
 
@@ -47,36 +49,11 @@ module JobsHelper
       status += 'has expired'
       alert_class = 'alert alert-danger text-center'
     else
-      status += 'is ' + job.aasm.human_state
+      status += 'is ' + job.aasm_state.to_s.humanize(capitalize: false)
       alert_class = 'alert alert-warning text-center'
     end
     
     return content_tag(:div, status, class: alert_class, role: 'alert')
-  end
-
-  def show_job_status(job)
-    job_status = ""
-    selected = false
-
-    Job.aasm.states.map(&:display_name).each do |custom_state_name|
-      css_class = ""
-
-      if job.aasm.human_state == custom_state_name
-        css_class = "is-active"
-        selected = true
-      elsif selected == false
-        css_class = "is-complete"
-      end
-
-      job_status += content_tag(:li, class: css_class) do
-        content_tag(:span) do
-          custom_state_name
-          # job.aasm.human_state
-        end
-      end
-    end
-
-    return job_status
   end
 
   def visitor_name(user)
