@@ -37,23 +37,6 @@ module JobsHelper
     (user_signed_in? && job.user_id == current_user.id)
   end
 
-  def job_status(job)
-    status = 'Job '
-
-    if job.online?
-      status += 'is online'
-      alert_class = 'alert alert-success text-center'
-    elsif job.disabled?
-      status += 'has expired'
-      alert_class = 'alert alert-danger text-center'
-    else
-      status += 'is ' + job.aasm.human_state
-      alert_class = 'alert alert-warning text-center'
-    end
-    
-    return content_tag(:div, status, class: alert_class, role: 'alert')
-  end
-
   def show_job_status(job)
     job_status = ""
     selected = false
@@ -71,7 +54,6 @@ module JobsHelper
       job_status += content_tag(:li, class: css_class) do
         content_tag(:span) do
           custom_state_name
-          # job.aasm.human_state
         end
       end
     end
