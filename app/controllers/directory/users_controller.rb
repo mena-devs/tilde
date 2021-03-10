@@ -57,6 +57,10 @@ class Directory::UsersController < ApplicationController
         @members = @members.select { |member| member.profile.to_mentor_someone == "1" }
       when 'mentee'
         @members = @members.select { |member| member.profile.being_mentored == "1" }
+      else
+        flash[:notice] = "Unsupported parameters"
+        Event.new_event("Exception: #{exception.message}", current_user, request.remote_ip)
+        redirect_to "/"
       end
 
       @members.sort_by! {|user| [user.first_name, user.last_name]}
