@@ -3,50 +3,79 @@
 <html lang="en-US">
   <head>
     <link href="//fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
-
     <%= csrf_meta_tags %>
-
     <%# CSS should go closest to the top of the document as possible. %>
     <%= stylesheet_link_tag('application',
                             media: 'all',
                             'data-turbolinks-track': false) %>
-
     <%# JavaScript must be in head for Turbolinks to work. %>
     <%= javascript_include_async_tag('application',
                                      'data-turbolinks-track': false) %>
-
     <%= yield(:head) %>
-
     <meta charset='utf-8'>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <%# Specifies the default name of home screen bookmark in iOS 6+ %>
     <meta name='apple-mobile-web-app-title' content='<%= AppSettings.application_name %>'>
-
     <%= display_meta_tags site: AppSettings.application_name %>
     <meta name="google-site-verification" content="4pv0d40h_O_7yUyWQi9-yirsuesMFTe_Z9LG-igKoDk" />
-
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
     <!-- Structured Data -->
     <script type="application/ld+json">
-    {
-      "@context": "http://schema.org",
-      "@type": "Organization",
-      "url": "https://www.menadevs.com",
-      "logo": "https://menadevs.com/assets/menadevs_logo.png",
-      "sameAs": [
-        "http://twitter.com/MenaDevs"
-      ]
-    }
+      {
+        "@context": "http://schema.org",
+        "@type": "Organization",
+        "url": "https://www.menadevs.com",
+        "logo": "https://menadevs.com/assets/menadevs_logo.png",
+        "sameAs": [
+          "http://twitter.com/MenaDevs"
+        ]
+      }
     </script>
     <!-- End Structured Data -->
   </head>
-
   <body class="stretched no-transition">
-
-    <%= yield %>
-
-    <%= yield(:javascript) %>
-  </body>
-</html>
+    <!-- The Main Wrapper
+============================================= -->
+    <div id="wrapper" class="clearfix">
+      <!-- Header
+  ============================================= -->
+      <header id="header" class="full-header" data-sticky-class="not-dark">
+        <div id="header-wrap">
+          <div class="container clearfix">
+            <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+            <div id="logo">
+              <%= link_to(image_tag('menadevs_logo.png'),
+                      root_url, :class => 'standard-logo') %>
+              <%= link_to(image_tag('menadevs_logo@2x.png'),
+                      root_url, :class => 'retina-logo') %>
+            </div>
+            <%= render("shared/navbar") %>
+          </div>
+        </div>
+      </header>
+      <div class="clear"></div>
+      <%= render("shared/flash") %>
+      <%= yield %>
+      
+      <!-- Footer
+  ============================================= -->
+      <footer id="footer" class="dark">
+        <div class="container">
+          <%= render("shared/footer") %>
+          <div>
+          </footer>
+        </div>
+        <div id="gotoTop" class="icon-angle-up"></div>
+        <% if Rails.env.production? %>
+          <%= render("shared/analytics") %>
+        <% end %>
+        <%= content_for :javascript do %>
+          <%= javascript_include_async_tag('plugins.js',
+                                      'data-turbolinks-track': false) %>
+          <%= javascript_include_async_tag('functions.js',
+                                      'data-turbolinks-track': false) %>
+        <% end %>
+        <%= yield(:javascript) %>
+      </body>
+    </html>

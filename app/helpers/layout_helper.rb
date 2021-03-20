@@ -11,7 +11,8 @@ module LayoutHelper
   #
   def parent_layout(layout)
     @view_flow.set(:layout, output_buffer)
-    output = render(:file => Rails.root.join("app/views/layouts/#{layout}.html.erb"))
+    output = render(file: Rails.root.join("app/views/layouts/#{layout}.html.erb"))
+
     self.output_buffer = ActionView::OutputBuffer.new(output)
   end
 end
