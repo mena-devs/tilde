@@ -25,7 +25,7 @@
 class CodeOfConductValidator < ActiveModel::Validator
   def validate(record)
     if record.code_of_conduct == false
-      record.errors[:base] << "Please accept our Code of Conduct to proceed"
+      record.errors.add(:base, "Please accept our Code of Conduct to proceed")
     end
   end
 end

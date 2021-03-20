@@ -1,6 +1,6 @@
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    record.errors[attribute] << (options[:message] || "must be a valid email address") unless email_valid?(value)
+    record.errors.add(attribute.to_sym, (options[:message] || "must be a valid email address")) unless email_valid?(value)
   end
 
   def email_valid?(email_address)

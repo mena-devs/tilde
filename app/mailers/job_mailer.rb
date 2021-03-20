@@ -1,5 +1,5 @@
 class JobMailer < ApplicationMailer
-  add_template_helper(JobsHelper)
+  helper(JobsHelper)
 
   def new_job(job_id)
     @job = Job.find(job_id).decorate
