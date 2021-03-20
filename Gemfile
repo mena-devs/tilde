@@ -36,12 +36,12 @@ gem 'paperclip', '~> 5.2.0'
 gem 'pg'
 gem 'pgcli-rails'
 gem 'puma'
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '>= 5.2.4.5'
 gem 'rspec-core'
 gem 'rspec-rails', '~> 3.9'
 gem 'rswag'
 gem 'redis-namespace'
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '>= 5.0'
 gem 'secure_headers', '~> 3.9'
 gem 'sidekiq', '>= 5.2.0'
 gem 'simplecov', '0.16.1'
@@ -76,7 +76,7 @@ group :development do
   gem 'sitemap_generator'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'xray-rails', '>= 0.1.18'
+  gem 'xray-rails'
 end
 
 group :test do
