@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/mena-devs/tilde.svg?branch=master)](https://travis-ci.org/mena-devs/tilde)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/maintainability)](https://codeclimate.com/github/mena-devs/tilde/maintainability)
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_shield)
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/test_coverage)](https://codeclimate.com/github/mena-devs/tilde/test_coverage)
@@ -19,7 +20,9 @@ If you have a feature request, please open a ticket.
 
 This README describes the purpose of this repository and how to set up a development environment. Other sources of documentation are as follows:
 
-* UI and API designs are in `doc/`
+* UI and API designs are in `docs/`
+
+API specifications are [located here](https://mena-devs.github.io/tilde/api_specifications/index.html)
 
 ## Purpose and features
 
@@ -66,7 +69,6 @@ To test sent out emails during development, navigate to `localhost:3000/letter_o
 ## Git workflow
 
 For contributions, please follow the following [git workflow](GIT-WORKFLOW.md)
-
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_large)
