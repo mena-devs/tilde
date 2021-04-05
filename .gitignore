@@ -60,7 +60,7 @@ jenkins-ci.sh
 /server_setup/
 /lets_encrypt/
 /node_modules/
-/doc/
+/_documentation/
 /.tomo/
 /.vagrant/
 *.pem
