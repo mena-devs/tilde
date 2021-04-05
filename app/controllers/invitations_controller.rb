@@ -77,6 +77,8 @@ class InvitationsController < ApplicationController
     if current_user.admin? && @invitation.resend_invitation
       redirect_to list_invitations_admin_path, notice: 'Invitation was resent.'
     else
+      @invitations = Invitation.all_sent(current_user.id).order(updated_at: :desc).page(params[:page])
+
       render :index
     end
   end
