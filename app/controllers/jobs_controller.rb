@@ -22,7 +22,7 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.all.order(:created_at).reverse_order
+    @jobs = Job.all.order(:updated_at).reverse_order
 
     if params.has_key?(:state)
       filter_by_params
@@ -158,6 +158,10 @@ class JobsController < ApplicationController
         @jobs = user_jobs.pending_jobs
       when 'expired'
         @jobs = user_jobs.expired_jobs
+      else
+        flash[:notice] = "Unsupported parameters"
+        Event.new_event("Exception: #{exception.message}", current_user, request.remote_ip)
+        redirect_to "/"
       end
     end
 
