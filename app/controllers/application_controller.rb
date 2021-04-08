@@ -1,7 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Exceptions
   rescue_from ActionController::InvalidAuthenticityToken, with: :render_422
+  rescue_from ActionView::MissingTemplate, with: :render_204
 
   # API access
   before_action :authenticate_with_token!, if: :api_request
@@ -56,6 +58,10 @@ class ApplicationController < ActionController::Base
   # Handle errors
   def handle_unverified_request
     raise(ActionController::InvalidAuthenticityToken)
+  end
+
+  def render_204
+    render status: 422, json: { message: "No Content" }
   end
 
   def render_422
