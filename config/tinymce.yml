@@ -14,6 +14,7 @@ plugins:
   - nonbreaking
   - advlist
   - lists
+  - paste
 
 toolbar:
   - formatselect | bold | italic | underline | bullist | numlist | outdent | indent | removeformat
