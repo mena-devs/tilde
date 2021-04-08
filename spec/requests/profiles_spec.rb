@@ -13,7 +13,7 @@ RSpec.describe "Profiles", type: :request do
     it "should show user their profile" do
       visit(user_profile_path(user))
       expect(page).to have_content(user.name.titleize)
-      expect(page).to have_content('My profile')
+      expect(page).to have_content('My Account')
       expect(page).to have_content('Logout')
       expect(page).to have_content(user.email)
     end

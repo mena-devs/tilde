@@ -23,7 +23,7 @@ RSpec.describe "Users", type: :request do
 
       click_on('Log in')
 
-      expect(page).to have_content("My profile")
+      expect(page).to have_content("My Account")
       expect(page).to have_content("Logout")
     end
 
@@ -136,7 +136,7 @@ RSpec.describe "Users", type: :request do
 
       click_on('Log in')
 
-      expect(page).to have_content("My profile")
+      expect(page).to have_content("My Account")
       expect(page).to have_content("Logout")
     end
 
@@ -212,7 +212,7 @@ RSpec.describe "Users", type: :request do
         expect(page).to have_content(open_profile_member.email)
         expect(page).to have_content(open_profile_member.name.titleize)
         expect(page).not_to have_content(member.email)
-        expect(page).to have_content('My profile')
+        expect(page).to have_content('My Account')
         expect(page).to have_content('Logout')
       end
     end

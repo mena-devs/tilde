@@ -35,6 +35,12 @@ class JobsController < ApplicationController
 
   # GET /jobs/1
   def show
+    unless @job.approved?
+      unless (user_is_owner?(@job) || user_is_admin?)
+        render_404
+      end
+    end
+
     @page_title       = @job.title
     @page_description = @job.title + ' at ' + @job.company_name
     @page_keywords    = AppSettings.meta_tags_keywords
@@ -78,7 +84,9 @@ class JobsController < ApplicationController
   # PATCH/PUT /jobs/1
   def update
     if @job.update(job_params)
-      @job.request_edit! unless @job.draft?
+      unless(@job.draft? || current_user.admin?)
+        @job.request_edit!
+      end
 
       redirect_to(@job, notice: 'Job post was successfully updated.')
     else

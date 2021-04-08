@@ -32,6 +32,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_is_owner?(objkt)
+    (user_signed_in? && current_user.id == objkt.user_id)
+  end
+
   def user_is_admin?
     (user_signed_in? && current_user.admin?)
   end

@@ -134,6 +134,7 @@ RSpec.describe "Jobs", type: :request do
   describe "GET /jobs/show" do
     before do
       @job = create(:job, user: user, aasm_state: 'approved')
+      @unpublished_job = create(:job, user: user, aasm_state: 'draft')
     end
     
     it "should allow anonymous viewing of a job" do
@@ -170,6 +171,13 @@ RSpec.describe "Jobs", type: :request do
       expect(page).to have_content(@job.title)
       expect(page).to have_content('Statistics')
       expect(page).to have_content(member.name)
+    end
+
+    it "should not allow anonymous visitors from accessing the job page if job is not published" do
+      visit(job_path(@unpublished_job))
+      
+      expect(page).to have_content('The page you were looking for doesn\'t exist.')
+      expect(page).to have_content('You may have mistyped the address or the page may have moved.')
     end
   end
 
@@ -211,10 +219,77 @@ RSpec.describe "Jobs", type: :request do
     end
   end
 
+  describe "PUT /jobs/:id" do
+    before do
+      @pending_job = create(:job, user: user, aasm_state: 'under_review')
+      @profile = create(:profile, user: admin)
+      create(:profile, user: user)
+      create(:profile, user: member)
+
+      allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
+      allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
+    end
+    
+    it "should allow admin to update job without changing job state" do
+      sign_in admin
+      visit(list_jobs_admin_path)
+
+      expect(page).to have_content(@pending_job.title)
+
+      click_on('Edit', match: :first)
+
+      expect(page).to have_content('Job title')
+      fill_in 'job_title', with: @pending_job.title + ' 1'
+
+      # not approved yet
+      expect(page).to_not have_content('Share this job:')
+
+      click_on('Save and continue', match: :first)
+
+      expect(@pending_job.reload.aasm_state).to eq("under_review")
+    end
+
+    it "should allow job owner to update job and changing job state back to draft" do
+      sign_in user
+      visit(job_path(@pending_job))
+
+      expect(page).to have_content(@pending_job.title)
+      expect(page).to have_content("Job Post Actions")
+
+      click_on('Edit', match: :first)
+
+      expect(page).to have_content('Job title')
+      fill_in 'job_title', with: @pending_job.title + ' 1'
+
+      # not approved yet
+      expect(page).to_not have_content('Share this job:')
+
+      click_on('Save and continue', match: :first)
+
+      expect(@pending_job.reload.aasm_state).to eq("draft")
+    end
+
+    it "should not allow any member to visit or update job" do
+      sign_in member
+      visit(edit_job_path(@pending_job))
+
+      expect(page).to have_content('The page you were looking for doesn\'t exist.')
+      expect(page).to have_content('If you are the application owner check the logs for more information.')
+    end
+
+    it "should not allow any anonymous visitor to visit an unpublished job post for editing" do
+      visit(edit_job_path(@pending_job))
+
+      expect(page).to have_content('You need to sign in or sign up before continuing.')
+      expect(page).to_not have_content('Edit')
+      expect(page).to_not have_content('Approve')
+    end
+  end
+
   describe "PUT /jobs/:id/pre_approve" do
     before do
       @draft_job = create(:job, user: user, aasm_state: 'draft')
-      @profile = create(:profile, user: user)
+      create(:profile, user: user)
 
       allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
       allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
@@ -238,7 +313,7 @@ RSpec.describe "Jobs", type: :request do
   describe "PUT /jobs/:id/approve" do
     before do
       @pending_job = create(:job, user: user, aasm_state: 'under_review')
-      @profile = create(:profile, user: admin)
+      create(:profile, user: admin)
 
       allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
       allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
@@ -277,7 +352,7 @@ RSpec.describe "Jobs", type: :request do
   describe "PUT /jobs/:id/take_down" do
     before do
       @approved_job = create(:job, user: user, aasm_state: 'approved')
-      @profile = create(:profile, user: admin)
+      create(:profile, user: admin)
 
       allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
       allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)
@@ -301,7 +376,7 @@ RSpec.describe "Jobs", type: :request do
   describe "PUT /jobs/:id/feedback" do
     before do
       @offline_job = create(:job, user: user, aasm_state: 'disabled')
-      @profile = create(:profile, user: user)
+      create(:profile, user: user)
 
       allow(SlackNotifierWorker).to receive(:perform_async).and_return(true)
       allow(BufferNotifierWorker).to receive(:perform_async).and_return(true)

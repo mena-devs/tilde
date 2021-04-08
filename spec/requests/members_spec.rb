@@ -20,7 +20,7 @@ RSpec.describe "Members", type: :request do
         expect(page).to have_content(user_1.name)
         expect(page).to have_content(user_2.name)
         expect(page).to have_content(user_3.name)
-        expect(page).to have_content('My profile')
+        expect(page).to have_content('My Account')
         expect(page).to have_content('Logout')
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe "Members", type: :request do
 
         expect(page).not_to have_content(user_2.name)
         expect(page).not_to have_content(user_3.name)
-        expect(page).to have_content('My profile')
+        expect(page).to have_content('My Account')
         expect(page).to have_content('Logout')
       end
     end
