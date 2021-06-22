@@ -106,7 +106,7 @@ class Job < ApplicationRecord
   before_validation :generate_unique_id, on: :create
   before_validation :strip_whitespace, on: [:create, :update]
 
-  enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary ]
+  enum employment_type: [ :part_time, :full_time, :contract, :freelance, :temporary, :internship ]
   enum experience: [ :not_applicable, :internship, :entry_level, :associate, :mid_senior_level, :director, :executive ]
   enum education: [ :unspecified, :high_school_or_equivalent, :certification, :bachelor_degree, :master_degree, :doctorate, :professional ]
   enum payment_term: [ :per_hour, :per_day, :per_month, :per_year, :per_contract ]
