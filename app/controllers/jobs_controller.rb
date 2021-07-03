@@ -22,7 +22,7 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.all.order(:updated_at).reverse_order
+    @jobs = Job.all.order("updated_at DESC, created_at DESC")
 
     if params.has_key?(:state)
       filter_by_params
