@@ -11,7 +11,7 @@ class JobsController < ApplicationController
     @page_description = 'Technical & software development jobs listed on MENAdevs'
     @page_keywords    = AppSettings.meta_tags_keywords
 
-    @jobs = Job.approved_jobs.order(:posted_on).reverse_order
+    @jobs = Job.approved_jobs.order("posted_on DESC")
 
     if (user_signed_in? && params.has_key?(:state))
       filter_by_params(current_user)
@@ -22,7 +22,7 @@ class JobsController < ApplicationController
 
   # GET /list-jobs-admin
   def list_jobs
-    @jobs = Job.all.order("updated_at DESC, created_at DESC")
+    @jobs = Job.all.order("created_at DESC, updated_at DESC")
 
     if params.has_key?(:state)
       filter_by_params
