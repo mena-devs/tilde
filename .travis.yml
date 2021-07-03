@@ -1,3 +1,4 @@
+version: ~> 1.0
 env:
   global:
     - CC_TEST_REPORTER_ID=c27f6e57b2bc42a15a967b56709a9534b0da9d7c41f766e9dec73c1cda667323
