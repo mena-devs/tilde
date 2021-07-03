@@ -114,6 +114,7 @@ RSpec.describe "Jobs", type: :request do
       select('Part time', :from => 'Employment type')
       select('Associate', :from => 'Experience')
       fill_in 'Starting salary',  with: '1000'
+      # fill_in 'To salary',  with: '1500'
       select('Per month', :from => 'Payment term')
       select('United States Dollar (USD)', :from => 'Currency')
 

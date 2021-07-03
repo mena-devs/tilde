@@ -50,6 +50,7 @@ RSpec.describe Job, type: :model do
     end
 
     let(:job) { create(:job) }
+    let(:freelance_job) { create(:job, employment_type: :freelance) }
 
     it "valid object" do
       expect(job).to be_valid
@@ -59,16 +60,40 @@ RSpec.describe Job, type: :model do
       expect(job.custom_identifier).to_not be_empty
     end
 
-    it "validate from salary to be less than to salary range" do
+    it "should not have starting salary as a negative value" do
+      job.from_salary = -100
+      job.to_salary = 500
+      expect(job).to_not be_valid
+      expect(job.errors[:from_salary]).to include('must be greater than or equal to 0')
+    end
+    
+    it "should not have upper limit salary as a negative value" do
+      job.from_salary = 100
+      job.to_salary = -1
+      expect(job).to_not be_valid
+      expect(job.errors[:to_salary]).to include('must be greater than 0')
+    end
+
+    it "should validate to salary to be less than from salary range" do
       job.from_salary = 1500
       job.to_salary = 500
       expect(job).to_not be_valid
       expect(job.errors[:to_salary]).to eq(['cannot be less than starting salary'])
+    end
 
+    it "should validate to salary to be equal to from salary" do
       job.from_salary = 10
       job.to_salary = 10
       expect(job).to_not be_valid
       expect(job.errors[:to_salary]).to eq(['cannot be less than starting salary'])
+    end
+
+    it "should not validate salary if job is a freelance contract" do
+      job.from_salary = 0
+      job.to_salary = 0
+
+      expect(freelance_job).to be_valid
+      expect(freelance_job.errors).to be_empty
     end
 
     it { should validate_presence_of :company_name }
@@ -138,6 +163,20 @@ RSpec.describe Job, type: :model do
     it "should return an empty string if invalid country" do
       job.update(country: '')
       expect(job.location_name).to eq('Not set')
+    end
+  end
+
+  describe "Job#remove_expired_jobs" do
+    let!(:approved_job_00) { create(:job, aasm_state: :approved, posted_on: (Date.today - 3.months)) }
+    let!(:approved_job_01) { create(:job, aasm_state: :approved, posted_on: (Date.today - 45.days)) }
+    let!(:approved_job_02) { create(:job, aasm_state: :approved) }
+
+    it "should unpublish live jobs that are older than 1 month" do
+      expect(Job.approved.count).to eq(3)
+
+      Job.remove_expired_jobs
+
+      expect(Job.approved.count).to eq(1)
     end
   end
 

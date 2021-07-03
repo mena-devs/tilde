@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
   end
 
   def check_user_profile_complete
-    if user_signed_in? && current_user.profile && !current_user.profile.complete?
-      redirect_to edit_user_profile_path(current_user), alert: 'Please complete your profile before proceeding'
+    if (user_signed_in? && current_user.profile && !current_user.profile.complete?)
+      redirect_to(edit_user_profile_path(current_user), notice: 'Please complete your profile before proceeding')
     end
   end
 

@@ -95,7 +95,9 @@ class Job < ApplicationRecord
   validates :title, presence: true
   validates :employment_type, presence: true
   validates :experience, presence: true
-  validates :from_salary, presence: true
+  validates :from_salary, presence: true, :if => Proc.new { |j| j.job_is_not_freelance? }
+  validates :from_salary, :numericality => { :greater_than_or_equal_to => 0 }, :if => Proc.new { |j| j.job_is_not_freelance? }
+  validates :to_salary, :numericality => { :greater_than => 0, allow_nil: true }, :if => Proc.new { |j| (j.job_is_not_freelance? && j.salary_is_set?) }
   validates :currency, presence: true, :if => Proc.new { |j| j.salary_is_set? }
   validates :payment_term, presence: true, :if => Proc.new { |j| j.salary_is_set? }
 
@@ -126,6 +128,10 @@ class Job < ApplicationRecord
 
   def online?
     self.approved?
+  end
+
+  def job_is_not_freelance?
+    self.employment_type != "freelance"
   end
 
   def salary_is_set?

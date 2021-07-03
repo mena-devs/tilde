@@ -4,7 +4,7 @@ class SalaryValidator < ActiveModel::EachValidator
   end
 
   def valid_salary_fields?(record)
-    return true if record.to_salary.blank?
+    return true if (record.to_salary.blank? || record.employment_type == "freelance")
 
     record.from_salary < record.to_salary
   end
