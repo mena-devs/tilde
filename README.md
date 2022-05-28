@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.com/mena-devs/tilde.svg?branch=master)](https://travis-ci.com/mena-devs/tilde)
+[![Build Status](https://app.travis-ci.com/mena-devs/tilde.svg?branch=main)](https://app.travis-ci.com/mena-devs/tilde)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/maintainability)](https://codeclimate.com/github/mena-devs/tilde/maintainability)
 
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_shield)
-
 [![Test Coverage](https://api.codeclimate.com/v1/badges/618cfe32cf0874f94648/test_coverage)](https://codeclimate.com/github/mena-devs/tilde/test_coverage)
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_large)
 
 # Tilde - for @MENAdevs
 
