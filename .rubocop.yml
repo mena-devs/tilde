@@ -1,5 +1,7 @@
 # Check documentation for further explanation
 # https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+AllCops:
+  TargetRubyVersion: 2.6.5
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/LineLength:
