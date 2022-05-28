@@ -439,7 +439,7 @@ GEM
     redis (4.6.0)
     redis-namespace (1.8.2)
       redis (>= 3.0.4)
-    regexp_parser (2.4.0)
+    regexp_parser (2.5.0)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.0.1)
@@ -650,7 +650,7 @@ DEPENDENCIES
   rspec-core
   rspec-rails (~> 3.9)
   rswag
-  rubocop
+  rubocop (~> 1.30)
   sass-rails (~> 5.0)
   secure_headers (~> 3.9)
   selenium-webdriver

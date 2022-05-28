@@ -72,7 +72,7 @@ group :development do
   gem 'overcommit', require: false
   gem 'rack-livereload'
   gem 'rb-fsevent', require: false
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 1.30', require: false
   gem 'sitemap_generator'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
