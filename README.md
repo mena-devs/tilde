@@ -6,11 +6,12 @@
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmena-devs%2Ftilde?ref=badge_large)
 
-# Tilde - for @MENAdevs
+# Tilde: Web Application
 
-Tilde is home for MENAdevs community and window to the outside world.
+Tilde is a web application built with Ruby on Rails.
 
-What started as a community over a Slack group, needs a communication platform.
+What started as a community over a Slack group, needed a communication platform. Tilde is considered as the public interface of MENAdevs online community and a window to the world outside of the Slack group. It consists of a job board and an online members directory.
+Employers can use the job board to advertise, free of charge, jobs to all of the community members.
 
 Tilde is Open Source, contributors from the community are welcome to join and contribute back.
 
