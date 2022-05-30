@@ -38,6 +38,8 @@ jobs:
         run: cp config/settings/test.yml.sample config/settings/test.yml
       - name: Copy example env config file
         run: cp example.env .env
+      - name: Set up database schema
+        run: bin/rails db:schema:load
       - name: Run DB migrate command
         run: bin/rails db:migrate --trace RAILS_ENV=test
       - name: Run tests rspec command
