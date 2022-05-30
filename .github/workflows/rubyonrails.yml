@@ -34,15 +34,14 @@ jobs:
         with:
           bundler-cache: true
       # Add or replace database setup steps here
-      - name: Copy test config
+      - name: Copy example test.yml database config file
         run: cp config/settings/test.yml.sample config/settings/test.yml
-      - name: Copy env config
+      - name: Copy example env config file
         run: cp example.env .env
-      - name: Set up database schema
-        run: bin/rails db:schema:load
-      # Add or replace test runners here
-      - name: Run tests
-        run: bin/rails rspec
+      - name: Run DB migrate command
+        run: bin/rails db:migrate --trace RAILS_ENV=test
+      - name: Run tests rspec command
+        run: bin/rails spec
 
   lint:
     runs-on: ubuntu-latest
