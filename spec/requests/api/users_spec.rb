@@ -13,7 +13,7 @@ RSpec.describe 'api/users', type: :request do
 
       response '200', 'Return verified users' do
         schema '$ref' => '#/components/schemas/users'
-        
+
         let!(:user) { create(:user) }
         let!(:api_key) { create(:api_key, user: user) }
         let!(:user_1) { create(:user) }
@@ -90,13 +90,14 @@ RSpec.describe 'api/users', type: :request do
         schema schema '$ref' => '#/components/schemas/users'
 
         let!(:user) { create(:user) }
-        let!(:member) { create(:user) }
+        let!(:member) { create(:user, first_name: 'user-to-find') }
         let!(:api_key) { create(:api_key, user: user) }
         let!("query[first_name]") { member.first_name }
         let(:Authorization) { 'Bearer ' + api_key.access_token }
 
         run_test! do |response|
           data = JSON.parse(response.body)
+          expect(data['data'].size).to eq(1)
           expect(data['data'].first['id']).to eq(member.custom_identifier)
           expect(data['data'].first['type']).to eq("user")
           expect(data['data'].first['attributes']['first_name']).to eq(member.first_name)

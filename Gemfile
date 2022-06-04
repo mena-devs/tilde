@@ -91,7 +91,7 @@ end
 group :development, :test do
   gem 'brakeman', require: false
   gem 'bundler-audit', '>= 0.5.0', require: false
-  gem 'database_cleaner'
+  gem 'database_cleaner-active_record'
   gem 'json-schema'
   gem 'factory_bot_rails'
 end
