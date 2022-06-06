@@ -23,7 +23,12 @@ admin_email: ''
 
 google_analytics_code: ''
 
+ip_addresses_black_list:
+  - 123.123.123.123
+
 developers_emails:
   - email@example.com
 
 sender_email: email@example.com
+
+meta_tags_keywords: ''
