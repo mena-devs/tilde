@@ -24,13 +24,12 @@ admin_email: 'email@example.com'
 
 google_analytics_code: ''
 
+ip_addresses_black_list:
+  - 123.123.123.123
+
 developers_emails:
   - email@example.com
 
-sender_email: 'email@example.com'
+sender_email: email@example.com
 
-meta_tags_keywords: 'web developer, mobile developer, software engineer,
-                    technical director, CIO, software developer,
-                    back-end developer, front-end developer,
-                    technical project manager, CTO, jobs, freelance,
-                    online community, lebanon, UAE, Egypt, Jordan, Syria'
+meta_tags_keywords: ''

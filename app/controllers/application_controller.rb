@@ -8,6 +8,9 @@ class ApplicationController < ActionController::Base
   # API access
   before_action :authenticate_with_token!, if: :api_request
 
+  # Block signups from unwanted IP addresses
+  before_action :block_ip_addresses
+
   def after_sign_in_path_for(resource)
     session[:custom_identifier] = resource.custom_identifier
     root_path
@@ -110,5 +113,14 @@ class ApplicationController < ActionController::Base
           format.html { render status: :unauthorized, text: { "ok": false, "error": "unauthorized" } }
         end
       end
+    end
+
+  protected
+    def block_ip_addresses
+      head :unauthorized if AppSettings.ip_addresses_black_list.include?(current_ip_address)
+    end
+
+    def current_ip_address
+      request.env['HTTP_X_REAL_IP'] || request.env['REMOTE_ADDR']
     end
 end
