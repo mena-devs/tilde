@@ -62,8 +62,6 @@ group :development do
   gem 'awesome_print'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'brakeman', require: false
-  gem 'bundler-audit', '>= 0.5.0', require: false
   gem 'guard', '>= 2.2.2', require: false
   gem 'guard-livereload', require: false
   gem 'guard-minitest', require: false
@@ -91,7 +89,9 @@ group :test do
 end
 
 group :development, :test do
-  gem 'database_cleaner'
+  gem 'brakeman', require: false
+  gem 'bundler-audit', '>= 0.5.0', require: false
+  gem 'database_cleaner-active_record'
   gem 'json-schema'
   gem 'factory_bot_rails'
 end
