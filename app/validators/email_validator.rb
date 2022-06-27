@@ -1,6 +1,8 @@
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    record.errors[attribute] << email_invalid_error_message unless email_valid?(value) && handle_contains_number_of_dots(value) && handle_last_character_is_not_dot(value)
+    record.errors[attribute] << email_invalid_error_message unless email_valid?(value)\
+                                                           && handle_contains_number_of_dots(value)\
+                                                           && handle_last_character_is_not_dot(value)
   end
 
   private
