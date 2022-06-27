@@ -9,36 +9,36 @@ class EmailValidator < ActiveModel::EachValidator
 
   private
 
-    def email_invalid_error_message
-      # options[:message] || I18n.t('errors.messages.email')
-      (options[:message] || "must be a valid email address")
-    end
+  def email_invalid_error_message
+    # options[:message] || I18n.t('errors.messages.email')
+    (options[:message] || "must be a valid email address")
+  end
 
-    def email_contains_dots_error_message
-      (options[:message] || "must contain fewer dots")
-    end
+  def email_contains_dots_error_message
+    (options[:message] || "must contain fewer dots")
+  end
 
-    def email_ends_with_dot_error_message
-      (options[:message] || "must not end with a dot")
-    end
+  def email_ends_with_dot_error_message
+    (options[:message] || "must not end with a dot")
+  end
 
-    def email_valid?(email_address)
-      return true if email_address.blank?
+  def email_valid?(email_address)
+    return true if email_address.blank?
 
-      email_address =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
-    end
+    email_address =~ /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+  end
 
-    def handle_contains_number_of_dots(email_address)
-      return true if email_address.blank?
+  def handle_contains_number_of_dots(email_address)
+    return true if email_address.blank?
 
-      email_handle = email_address.split('@')
-      email_handle[0].count('.') < 3 if (email_handle && !email_handle.blank?)
-    end
+    email_handle = email_address.split('@')
+    email_handle[0].count('.') < 3 if (email_handle && !email_handle.blank?)
+  end
 
-    def handle_last_character_is_not_dot(email_address)
-      return true if email_address.blank?
+  def handle_last_character_is_not_dot(email_address)
+    return true if email_address.blank?
 
-      email_handle = email_address.split('@')
-      email_handle[0][-1] != "." if (email_handle && !email_handle.blank?)
-    end
+    email_handle = email_address.split('@')
+    email_handle[0][-1] != "." if (email_handle && !email_handle.blank?)
+  end
 end
