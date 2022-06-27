@@ -42,10 +42,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :omniauthable, omniauth_providers: [:slack]
 
-  validates :email, uniqueness: true
-  validates :email, format: {
-                      with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i,
-                      on: :create }
+  validates :email, uniqueness: true, email: true
 
   before_validation :generate_unique_user_id, on: :create
 
@@ -61,9 +58,9 @@ class User < ApplicationRecord
 
   scope :news_subscribers, -> { joins(:profile).where('profiles.receive_emails IS TRUE') }
   scope :job_alert_subscribers, -> { joins(:profile).where('profiles.receive_job_alerts IS TRUE') }
-  
+
   scope :verified, -> { where("confirmed_at IS NOT NULL")}
-  
+
   scope :admins, -> { where("admin is TRUE")}
 
   scope :today, -> { where("created_at >= ?", 1.day.ago)}
@@ -189,7 +186,7 @@ class User < ApplicationRecord
 
       return user.save
     end
-    
+
     return false
   end
 

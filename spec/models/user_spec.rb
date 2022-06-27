@@ -50,7 +50,7 @@ RSpec.describe User, type: :model do
     end
 
     it { should validate_uniqueness_of :email }
-    
+
     describe '#email' do
       it { should_not allow_value("blah").for(:email) }
       it { should allow_value("a@b.com").for(:email) }

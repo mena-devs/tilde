@@ -27,8 +27,12 @@ RSpec.describe "Registrations", type: :request do
       end
     end
 
-    describe "Fails" do
-      it "should fail registration because email already exists" do
+    describe "Fails registration" do
+      before(:each) do
+        visit new_user_registration_path
+      end
+
+      it "email already exists" do
         fill_in 'Email', with: existing_user.email
         fill_in 'Password',  with: 'password'
         fill_in 'Password confirmation',  with: 'password'
@@ -39,10 +43,10 @@ RSpec.describe "Registrations", type: :request do
         expect(page).to have_content("Email has already been taken")
       end
 
-      it "should fail registration because passwords do not match" do
+      it "passwords do not match" do
         fill_in 'Email', with: 'mars@example.com'
-        fill_in 'Password',  with: 'password'
-        fill_in 'Password confirmation',  with: 'passwordz'
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'passwordz'
 
         click_on('Join us')
 
@@ -51,15 +55,37 @@ RSpec.describe "Registrations", type: :request do
       end
 
 
-      it "should fail registration because email address is incorrect" do
+      it "email address is incorrect" do
         fill_in 'Email', with: 'mars-example.com'
-        fill_in 'Password',  with: 'password'
-        fill_in 'Password confirmation',  with: 'password'
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'password'
+
+        click_on('Join us')
+
+        expect(page).to have_content("2 errors prohibited this user from being saved")
+        expect(page).to have_content("must be a valid email address")
+      end
+
+      it "email address contains uncommon number of characters" do
+        fill_in 'Email', with: 'xa.z.e.rco@gmail.com'
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'password'
 
         click_on('Join us')
 
         expect(page).to have_content("1 error prohibited this user from being saved")
-        expect(page).to have_content("Email is invalid")
+        expect(page).to have_content("must be a valid email address")
+      end
+
+      it "email address handle ends with a dot" do
+        fill_in 'Email', with: 'something-new.@gmail.com'
+        fill_in 'Password', with: 'password'
+        fill_in 'Password confirmation', with: 'password'
+
+        click_on('Join us')
+
+        expect(page).to have_content("1 error prohibited this user from being saved")
+        expect(page).to have_content("must be a valid email address")
       end
     end
   end
