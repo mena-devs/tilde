@@ -63,7 +63,7 @@ RSpec.describe "Registrations", type: :request do
         click_on('Join us')
 
         expect(page).to have_content("2 errors prohibited this user from being saved")
-        expect(page).to have_content("Email is invalid")
+        expect(page).to have_content("must be a valid email address")
       end
 
       it "email address contains uncommon number of characters" do
@@ -74,7 +74,7 @@ RSpec.describe "Registrations", type: :request do
         click_on('Join us')
 
         expect(page).to have_content("1 error prohibited this user from being saved")
-        expect(page).to have_content("must contain fewer dots")
+        expect(page).to have_content("must be a valid email address")
       end
 
       it "email address handle ends with a dot" do
@@ -85,7 +85,7 @@ RSpec.describe "Registrations", type: :request do
         click_on('Join us')
 
         expect(page).to have_content("1 error prohibited this user from being saved")
-        expect(page).to have_content("must not end with a dot")
+        expect(page).to have_content("must be a valid email address")
       end
     end
   end
