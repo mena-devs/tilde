@@ -1,19 +1,14 @@
 class EmailValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-    unless email_valid?(value)
-      record.errors[attribute] << email_invalid_error_message
-    end
+    record.errors[attribute] << email_invalid_error_message unless email_valid?(value)
 
-    unless handle_contains_number_of_dots(value)
-      record.errors[attribute] << email_contains_dots_error_message
-    end
+    record.errors[attribute] << email_contains_dots_error_message unless handle_contains_number_of_dots(value)
 
-    unless handle_last_character_is_not_dot(value)
-      record.errors[attribute] << email_ends_with_dot_error_message
-    end
+    record.errors[attribute] << email_ends_with_dot_error_message unless handle_last_character_is_not_dot(value)
   end
 
   private
+
     def email_invalid_error_message
       # options[:message] || I18n.t('errors.messages.email')
       (options[:message] || "must be a valid email address")
@@ -37,19 +32,13 @@ class EmailValidator < ActiveModel::EachValidator
       return true if email_address.blank?
 
       email_handle = email_address.split('@')
-
-      if (email_handle && !email_handle.blank?)
-        email_handle[0].count('.') < 3
-      end
+      email_handle[0].count('.') < 3 if (email_handle && !email_handle.blank?)
     end
 
     def handle_last_character_is_not_dot(email_address)
       return true if email_address.blank?
 
       email_handle = email_address.split('@')
-
-      if (email_handle && !email_handle.blank?)
-        email_handle[0][-1] != "."
-      end
+      email_handle[0][-1] != "." if (email_handle && !email_handle.blank?)
     end
 end
