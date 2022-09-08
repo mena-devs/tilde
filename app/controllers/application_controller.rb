@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
     end
 
     def block_ip_addresses
-      head :unauthorized if AppSettings.ip_addresses_black_list.include?(current_ip_address)
+      head :not_found if AppSettings.ip_addresses_black_list.include?(current_ip_address)
     end
 
     def current_ip_address
