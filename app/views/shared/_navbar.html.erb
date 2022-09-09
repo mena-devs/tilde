@@ -122,15 +122,15 @@
 
       <% if !user_signed_in? %>
         <%= content_tag(:li) do %>
-          <%= link_to(new_user_session_path) do %>
+          <%# link_to(new_user_session_path) do %>
             Sign in
-          <% end %>
+          <%# end %>
         <% end %>
 
         <%= content_tag(:li) do %>
-          <%= link_to(new_user_registration_path) do %>
+          <%# link_to(new_user_registration_path) do %>
             Sign up
-          <% end %>
+          <%# end %>
         <% end %>
 
       <% else %>

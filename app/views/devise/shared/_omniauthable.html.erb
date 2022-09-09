@@ -1,7 +1,6 @@
 <%- if devise_mapping.omniauthable? %>
   <%- resource_class.omniauth_providers.each do |provider| %>
     <%= link_to(user_slack_omniauth_authorize_path, method: :post) do %>
-      <!-- "Sign in with #{OmniAuth::Utils.camelize(provider)}" -->
       <%= image_tag('https://platform.slack-edge.com/img/sign_in_with_slack.png',
                     alt: 'Sign in with Slack',
                     width: '172', height: '40',
