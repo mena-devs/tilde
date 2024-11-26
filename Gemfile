@@ -45,7 +45,7 @@ gem 'redis-namespace'
 gem 'sass-rails', '~> 5.0'
 gem 'secure_headers', '~> 3.9'
 gem 'sidekiq', '>= 6.2.0'
-gem 'simplecov', '0.16.1'
+gem 'simplecov', '0.21.2'
 gem 'slack-notifier'
 
 gem 'tinymce-rails', '>= 4.9.2'
