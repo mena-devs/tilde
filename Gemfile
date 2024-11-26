@@ -10,7 +10,7 @@ gem 'bootstrap_form', '~> 2.7'
 gem 'bootstrap-sass', '~> 3.3'
 gem 'bootscale', require: false
 gem 'buffer'
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 5.0'
 gem 'config'
 gem 'country_select'
 gem 'devise', '>= 4.7.1'
